@@ -1,0 +1,14 @@
+version: 2.1
+
+jobs:
+  build:
+    resource_class: small
+    docker:
+      - image: ubuntu:20.04
+    steps:
+      - checkout
+      - run: apt update
+      - run: DEBIAN_FRONTEND=noninteractive TZ=Europe/Brussels apt install -y gcc g++ libsfml-dev cmake git
+      - run: mkdir -p build
+      - run: cd build && cmake ..
+      - run: cd build && make
