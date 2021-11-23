@@ -13,6 +13,7 @@ set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 add_executable(${PROJECT_NAME} main.cpp)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    message("Mac is obv. the best")
     set(CMAKE_PREFIX_PATH "~/Qt/5.15.2/clang_64/lib/cmake/Qt5")
     set(Core_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Core")
     set(Widgets_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets")
