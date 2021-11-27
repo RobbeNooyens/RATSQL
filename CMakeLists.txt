@@ -10,7 +10,7 @@ set(QT_VERSION 5)
 set(REQUIRED_LIBS Core Gui Widgets)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/Token.h src/algorithms/ShuntingAlgorithm.cpp src/algorithms/ShuntingAlgorithm.h src/algorithms/LevenshteinDistance.cpp src/algorithms/LevenshteinDistance.h src/datastructures/ParseTree.cpp src/datastructures/ParseTree.h src/datastructures/Node.cpp src/datastructures/Node.h)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     message("Mac is obv. the best")
