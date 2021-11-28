@@ -6,6 +6,7 @@
 #define RATSQL_NODE_H
 
 #include <string>
+#include <memory>
 
 class Node {
     std::string data;
