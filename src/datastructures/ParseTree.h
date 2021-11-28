@@ -30,11 +30,6 @@ public:
      */
     const std::shared_ptr<Node>& getRoot() const;
     /**
-     * Sets the root of this parse tree
-     * @param nRoot     A shared pointer to the node we want as our root
-     */
-    void setRoot(const std::shared_ptr<Node>& nRoot);
-    /**
      * Will return the yield of a parse tree. Makes use of a recursive function.
      * @return  std::string     The yield of this parse tree
      */

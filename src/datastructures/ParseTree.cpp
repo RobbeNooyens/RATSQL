@@ -8,10 +8,6 @@ const std::shared_ptr<Node> &ParseTree::getRoot() const {
     return this->root;
 }
 
-void ParseTree::setRoot(const std::shared_ptr<Node> &nRoot) {
-    this->root = nRoot;
-}
-
 std::string ParseTree::getYield() const {
     try {
         assert(this->getRoot().use_count() != 0);

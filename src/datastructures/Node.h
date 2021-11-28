@@ -46,21 +46,6 @@ public:
      */
     std::shared_ptr<Node> getRightVar() const;
     /**
-     * Sets the node left to the current node
-     * @param nLeftVar
-     */
-    void setLeftVar(const std::shared_ptr<Node>& nLeftVar);
-    /**
-     * Sets the node middle to the current node
-     * @param nMiddleVar
-     */
-    void setMiddleVar(const std::shared_ptr<Node>& nMiddleVar);
-    /**
-     * Sets the node right to the current node
-     * @param nRightVar
-     */
-    void setRightVar(const std::shared_ptr<Node>& nRightVar);
-    /**
      * Adds an operation to a node.
      * Left node := Node(var1)
      * Middle node := Node(oper)
