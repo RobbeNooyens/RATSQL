@@ -8,10 +8,68 @@
 #include <string>
 
 class Node {
+private:
+    /// Data of a node
     std::string data;
-    std::shared_ptr<Node> left;
-    std::shared_ptr<Node> right;
-    std::shared_ptr<Node> middle;
+    /// Shared pointer to the node left to the current one
+    std::shared_ptr<Node> leftVar;
+    /// Shared pointer to the node middle to the current one
+    std::shared_ptr<Node> middleVar;
+    /// Shared pointer to the node right of the current one
+    std::shared_ptr<Node> rightVar;
+public:
+    /**
+     * Mr. constructo
+     * @param nData     The data this node with get
+     */
+    explicit Node(const std::string& nData) {
+        this->data = nData;
+    }
+    /**
+     * Gets the data of the string
+     * @return std::string      Returns the data of a node - a string
+     */
+    std::string getData();
+    /**
+     * Gets the node left of the current one
+     * @return std::shared_ptr<Node>    Shared pointer to the left node
+     */
+    std::shared_ptr<Node> getLeftVar() const;
+    /**
+     * Gets the node in the middle of the current one
+     * @return std::shared_ptr<Node>    Shared pointer to the middle node
+     */
+    std::shared_ptr<Node> getMiddleVar() const;
+    /**
+     * Gets the node right of the current one
+     * @return std::shared_ptr<Node>    Shared pointer to the right node
+     */
+    std::shared_ptr<Node> getRightVar() const;
+    /**
+     * Sets the node left to the current node
+     * @param nLeftVar
+     */
+    void setLeftVar(const std::shared_ptr<Node>& nLeftVar);
+    /**
+     * Sets the node middle to the current node
+     * @param nMiddleVar
+     */
+    void setMiddleVar(const std::shared_ptr<Node>& nMiddleVar);
+    /**
+     * Sets the node right to the current node
+     * @param nRightVar
+     */
+    void setRightVar(const std::shared_ptr<Node>& nRightVar);
+    /**
+     * Adds an operation to a node.
+     * Left node := Node(var1)
+     * Middle node := Node(oper)
+     * Right node := Node(var2)
+     * @param var1
+     * @param oper
+     * @param var2
+     */
+    void addOperation(const std::string& var1, const std::string& oper, const std::string& var2);
 };
 
 
