@@ -26,17 +26,28 @@ bool LevenshteinDistance::evalLevenshteinDistance(const std::string &str1, const
     // TODO - return what een error :(
     if (len1 == 0 || len2 == 0) return false;
 
+    // Create matrix
     std::shared_ptr<Utils::Matrix> m = std::make_shared<Utils::Matrix>(len1 + 1, len2 + 1);
 
-    for (int i = 0; i <= (int) len1; i++) {
-        m->setValue()
+    // Initialize the matrix
+    for (int i = 0; i <= len1; i++) m->setValue(i, 0, i);
+    for (int i = 0; i <= len2; i++) m->setValue(0, i, i);
+
+    // Fill matrix
+    for (int i = 1; i <= len1; i++) {
+        for (int j = 1; j <= len2; j++) {
+
+            int equalFlag = 0;
+            if (str1[i - 1] != str2[j - 1]) equalFlag = 1;
+
+            int min = std::min(m->getValue(i - 1, j) + 1,
+                               std::min(m->getValue(i, j - 1) + 1,
+                               m->getValue(i - 1, j - 1) + equalFlag));
+            m->setValue(i, j, min);
+        }
     }
 
-    for (int i = 0; i <= (int) len2; i++) {
-    }
-
-
-    return false;
+    return m->getValue(len1,len2) <= deviation;
 }
 
 
