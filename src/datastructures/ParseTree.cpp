@@ -2,6 +2,7 @@
 // Created by Cédric Leclercq on 25/11/2021.
 //
 
+#include <iostream>
 #include "ParseTree.h"
 
 const std::shared_ptr<Node> &ParseTree::getRoot() const {
@@ -12,7 +13,8 @@ std::string ParseTree::getYield() const {
     try {
         assert(this->getRoot().use_count() != 0);
     } catch(std::exception& exc) {
-        // TODO
+        std::cerr << exc.what() << std::endl;
+        return std::string{};
     }
     std::string yield;
     return this->inorderTraversalYield(this->getRoot(), yield);

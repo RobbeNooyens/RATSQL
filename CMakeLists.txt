@@ -13,7 +13,7 @@ set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 
 add_executable(${PROJECT_NAME}
         src/main.cpp
-        src/Token.h
+        src/utilities/Token.h
         src/algorithms/ShuntingAlgorithm.cpp
         src/algorithms/ShuntingAlgorithm.h
         src/algorithms/LevenshteinDistance.cpp
@@ -21,7 +21,7 @@ add_executable(${PROJECT_NAME}
         src/datastructures/ParseTree.cpp
         src/datastructures/ParseTree.h
         src/datastructures/Node.cpp
-        src/datastructures/Node.h)
+        src/datastructures/Node.h src/utilities/Utils.h src/parsers/ShuntingYardParser.cpp src/parsers/ShuntingYardParser.h)
 
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)

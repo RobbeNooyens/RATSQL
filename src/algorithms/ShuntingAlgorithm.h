@@ -6,11 +6,15 @@
 #define RATSQL_SHUNTINGALGORITHM_H
 
 #include <string>
+#include <vector>
 
 class ShuntingAlgorithm {
 public:
     ShuntingAlgorithm()=default;
     std::string operator()();
+
+private:
+    std::vector<std::string> stack;
 
 };
 

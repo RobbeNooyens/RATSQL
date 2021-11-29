@@ -3,3 +3,8 @@
 //
 
 #include "ShuntingAlgorithm.h"
+
+std::string ShuntingAlgorithm::operator()() {
+
+    return "Pablo is homo";
+}
