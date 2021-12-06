@@ -24,6 +24,7 @@ namespace Utils {
         Matrix(int dimX, int dimY) {
             this->matrix = std::vector<std::vector<int>>(dimX, std::vector<int>(dimY));
         }
+        ~Matrix()=default;
         /**
          * Setter for a value in the matrix
          * @param x     Which row in the matrix
