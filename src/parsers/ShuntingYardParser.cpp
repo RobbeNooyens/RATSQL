@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include "ShuntingYardParser.h"
 
 using namespace std;
@@ -11,21 +12,55 @@ ShuntingYardParser::ShuntingYardParser() = default;
 
 void ShuntingYardParser::consume(string &symbol) {
     std::cout << "Consuming [" << symbol << "]" << std::endl;
-    if(tokens.find(symbol) != tokens.end()) {
-
+    if(isOperator(symbol)) {
+        consumeOperator(symbol);
+    } else {
+        consumeText(symbol);
     }
 }
 
 void ShuntingYardParser::flush() {
-
+    while(!operatorStack.empty()) {
+        queue.push(operatorStack.top());
+        operatorStack.pop();
+    }
 }
 
 void ShuntingYardParser::consumeOperator(string &opSymbol) {
-
+    if(opSymbol == "(") {
+        operatorStack.push(opSymbol);
+        return;
+    } else if(opSymbol == ")") {
+        printOperatorStack();
+        std::string stackTop = operatorStack.top();
+        while(stackTop != "(") {
+            operatorStack.pop();
+            queue.push(stackTop);
+            stackTop = getStackTop();
+        }
+        operatorStack.pop();
+        return;
+    }
+    if(operatorStack.empty()) {
+        operatorStack.push(opSymbol);
+        return;
+    }
+    int weight = precedence[opSymbol];
+    string stacktop = getStackTop();
+    int weightStacktop = precedence[stacktop];
+    if(weight >= weightStacktop) {
+        queue.push(stacktop);
+        operatorStack.pop();
+        if(stacktop == "π" && getStackTop() == "ρ") {
+            queue.push(operatorStack.top());
+            operatorStack.pop();
+        }
+    }
+    operatorStack.push(opSymbol);
 }
 
 void ShuntingYardParser::consumeText(string &text) {
-
+    queue.push(text);
 }
 
 template <typename T>
@@ -52,4 +87,16 @@ void ShuntingYardParser::printQueue() {
         queue.push(front);
         cout << front << endl;
     }
+}
+
+bool ShuntingYardParser::isOperator(string &symbol) {
+    for(const auto& entry: precedence) {
+        if(entry.first == symbol)
+            return true;
+    }
+    return false;
+}
+
+std::string &ShuntingYardParser::getStackTop() {
+    return operatorStack.empty() ? emptyStack : operatorStack.top();
 }

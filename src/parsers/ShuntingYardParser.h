@@ -10,6 +10,7 @@
 #include <set>
 #include <stack>
 #include <queue>
+#include <map>
 
 class ShuntingYardParser {
 public:
@@ -25,7 +26,21 @@ private:
     std::stack<std::string> operatorStack;
     std::queue<std::string> queue;
 
-    std::set<std::string> tokens = {"π", "σ", "⋈", "∪", "∩", "-", "(", ")"};
+    std::string emptyStack;
+    std::string& getStackTop();
+
+    bool isOperator(std::string& symbol);
+    std::map<std::string, int> precedence = {
+            {"π", 2},
+            {"σ", 1},
+            {"⋈", 10},
+            {"∪", 1},
+            {"∩", 1},
+            {"-", 1},
+            {"ρ", 3},
+            {"(", 20},
+            {")", 20}
+    };
 
     void consumeOperator(std::string& opSymbol);
     void consumeText(std::string& text);
