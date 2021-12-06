@@ -7,15 +7,19 @@
 
 #include<vector>
 #include<string>
+#include <set>
 
 class ShuntingYardParser {
 public:
     ShuntingYardParser();
 
     void consume(std::string& symbol);
+    void flush();
 
 private:
     std::vector<std::string> stack;
+
+    std::set<std::string> tokens = {"π", "σ", "⋈", "∪", "∩", "-", "(", ")"};
 
     void consumeOperator();
     void consumeText();

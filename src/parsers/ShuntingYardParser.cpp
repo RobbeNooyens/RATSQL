@@ -5,30 +5,18 @@
 #include "ShuntingYardParser.h"
 
 void consume(std::string& symbol){
-    if(symbol == "PI") {
 
-    } else if (symbol == "SIGMA") {
 
-    } else if (symbol == "RHO") {
+}
 
-    } else if (symbol == "X") {
+ShuntingYardParser::ShuntingYardParser() {
 
-    } else if (symbol == "JOIN") {
+}
 
-    } else if (symbol == "UNION") {
+void ShuntingYardParser::consume(std::string &symbol) {
 
-    } else if (symbol == "INTERSECT") {
+}
 
-    } else if (symbol == "-") {
-
-    } else if (symbol == "(") {
-
-    } else if (symbol == ")") {
-
-    } else if (symbol == ",") {
-
-    } else {
-
-    }
+void ShuntingYardParser::flush() {
 
 }
