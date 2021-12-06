@@ -46,8 +46,7 @@ bool LevenshteinDistance::evalLevenshteinDistance(const std::string &str1, const
             m->setValue(i, j, min);
         }
     }
-
-    return m->getValue(len1,len2) <= deviation;
+    return m->getValue((int)len1,(int)len2) <= deviation;
 }
 
 
