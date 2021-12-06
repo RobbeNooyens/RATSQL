@@ -11,10 +11,21 @@
 
 class RelaxParser {
 private:
-    const char delimiter = '\\';
+    const char delimiter = ' ';
 
 public:
+    /**
+     * Constructor for Relax Parser
+     * @param parseString string to parse
+     */
     RelaxParser(const std::string &parseString);
+
+    /**
+     * Function to split strings on " "
+     * @param parseString string to split
+     * @return vector with split parts
+     */
+    std::vector<std::string> splitString(const std::string &parseString);
 };
 
 

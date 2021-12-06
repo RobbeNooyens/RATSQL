@@ -1,0 +1,19 @@
+S -> Expression Table;
+Expression -> Projection | Selection | Rename | Join ;
+Join -> Table JOIN;
+Selection -> SIGMA select_premise;
+select_premise -> var operator1 var | equation operator2 equation;
+Projection -> PI column;
+Rename -> RHO rename_premise;
+
+operator1 -> EQ | NEQ | GEQ | LEQ;
+operator2 -> AND | OR;
+
+Table -> Table operator3 Table | table_name;
+
+operator3 -> INTERSECT | UNION | DIV | SUB | JOIN | SCALAR;
+rename_symbol -> LEFTARROW | RIGHTARROW;
+
+var -> column_name | number | string;
+number -> [0-9] [1-9]* | number . number ;
+string -> " [a-zA-Z_]* "
