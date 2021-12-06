@@ -28,20 +28,20 @@ find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 
 #if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    #message("Mac is obv. the best")
-    #set(CMAKE_PREFIX_PATH "~/Qt/5.15.2/clang_64/lib/cmake/Qt5")
-    #set(Core_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Core")
-    #set(Widgets_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets")
-    #set(Gui_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui")
-    #if (NOT CMAKE_PREFIX_PATH)
-    #    message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
-    #            "(-DCMAKE_PREFIX_PATH=\"path/to/Qt/lib/cmake\" or -DCMAKE_PREFIX_PATH=/usr/include/{host}/qt{version}/ on Ubuntu)")
-    #endif()
+#message("Mac is obv. the best")
+#set(CMAKE_PREFIX_PATH "~/Qt/5.15.2/clang_64/lib/cmake/Qt5")
+#set(Core_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Core")
+#set(Widgets_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Widgets")
+#set(Gui_DIR "~/Qt/5.15.2/clang_64/lib/cmake/Qt5Gui")
+#if (NOT CMAKE_PREFIX_PATH)
+#    message(WARNING "CMAKE_PREFIX_PATH is not defined, you may need to set it "
+#            "(-DCMAKE_PREFIX_PATH=\"path/to/Qt/lib/cmake\" or -DCMAKE_PREFIX_PATH=/usr/include/{host}/qt{version}/ on Ubuntu)")
+#endif()
 
 #elseif (WIN32)
-    # This one is needed for windows
-    #find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
-    #target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
+# This one is needed for windows
+#find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
+#target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 #endif ()
 
 
@@ -74,5 +74,3 @@ target_link_libraries(${PROJECT_NAME} ${REQUIRED_LIBS_QUALIFIED})
 #                "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
 #    endforeach (QT_LIB)
 #endif ()
-
-

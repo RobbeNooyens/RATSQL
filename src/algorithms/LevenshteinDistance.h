@@ -16,21 +16,21 @@ private:
      * @param str
      * @param index
      */
-    static void remove(std::string& str, int index);
+    __attribute__((unused)) static void remove(std::string& str, int index);
     /**
      *
      * @param str
      * @param index
      * @param ch
      */
-    static void replace(std::string& str, int index, const std::string& ch);
+    __attribute__((unused)) static void replace(std::string& str, int index, const std::string& ch);
     /**
      *
      * @param str
      * @param index
      * @param ch
      */
-    static void add(std::string& str, int index, const std::string& ch);
+    __attribute__((unused)) static void add(std::string& str, int index, const std::string& ch);
 public:
     /**
      * Function that evaluates the levenshtein distance according to a deviation.
