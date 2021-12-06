@@ -8,21 +8,27 @@
 #include<vector>
 #include<string>
 #include <set>
+#include <stack>
+#include <queue>
 
 class ShuntingYardParser {
 public:
     ShuntingYardParser();
 
+    void printOperatorStack();
+    void printQueue();
+
     void consume(std::string& symbol);
     void flush();
 
 private:
-    std::vector<std::string> stack;
+    std::stack<std::string> operatorStack;
+    std::queue<std::string> queue;
 
     std::set<std::string> tokens = {"π", "σ", "⋈", "∪", "∩", "-", "(", ")"};
 
-    void consumeOperator();
-    void consumeText();
+    void consumeOperator(std::string& opSymbol);
+    void consumeText(std::string& text);
 };
 
 

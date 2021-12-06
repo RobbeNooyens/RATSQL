@@ -2,17 +2,18 @@
 #include <QPushButton>
 #include <iostream>
 #include "algorithms/LevenshteinDistance.h"
+#include "algorithms/ShuntingAlgorithm.h"
 
 int main(int argc, char *argv[]) {
 
-    std::cout << std::boolalpha << LevenshteinDistance::evalLevenshteinDistance("ikCEDRICbencoolenjijniet",
-                                                                                "ikbencoolenjijniet", 6) << "\n";
-
+    std::string input = "σ maker2<maker ( ρ maker2←maker π maker,type Prouct ⨝ π maker,type Product )";
 //    QApplication a(argc, argv);
 //    QPushButton button("Hello world!", nullptr);
 //    button.resize(200, 100);
 //    button.show();
 //    return 69;
     //return QApplication::exec();
-    std::cout << "Hello world\n";
+    ShuntingAlgorithm algorithm;
+    algorithm(input);
+    return 0;
 }

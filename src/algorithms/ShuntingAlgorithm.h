@@ -7,15 +7,15 @@
 
 #include <string>
 #include <vector>
+#include "../parsers/ShuntingYardParser.h"
 
 class ShuntingAlgorithm {
 public:
     ShuntingAlgorithm()=default;
-    std::string operator()();
+    void operator()(std::string& str);
 
 private:
-    std::vector<std::string> stack;
-
+    ShuntingYardParser parser;
 };
 
 

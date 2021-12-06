@@ -8,6 +8,7 @@
 #include <utility>
 #include <vector>
 #include <string>
+#include <cassert>
 
 namespace Utils {
 
