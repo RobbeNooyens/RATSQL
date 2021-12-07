@@ -3,6 +3,7 @@
 //
 
 #include <sstream>
+#include <iostream>
 #include "ShuntingAlgorithm.h"
 
 using namespace std;
@@ -25,4 +26,5 @@ void ShuntingAlgorithm::operator()(string &str) {
     parser.flush();
     parser.printOperatorStack();
     parser.printQueue();
+    parser.generateOutput(cout);
 }

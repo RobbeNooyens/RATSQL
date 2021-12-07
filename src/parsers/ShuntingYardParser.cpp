@@ -97,6 +97,48 @@ bool ShuntingYardParser::isOperator(string &symbol) {
     return false;
 }
 
-std::string &ShuntingYardParser::getStackTop() {
+string &ShuntingYardParser::getStackTop() {
     return operatorStack.empty() ? emptyStack : operatorStack.top();
+}
+
+void ShuntingYardParser::generateOutput(ostream &stream) {
+    vector<string> combined;
+    string queueFront;
+    while(!queue.empty()) {
+        queueFront = queue.front();
+        if(isOperator(queueFront)) {
+            string stackTop1 = textStack.top();
+            textStack.pop();
+            string stackTop2 = textStack.top();
+            textStack.pop();
+            // TODO: error handling
+            string joined;
+            if(operatorTypes[queueFront] == PREFIX) {
+                joined = queueFront.append(" ").append(stackTop2).append(" ").append(stackTop1);
+            } else if(operatorTypes[queueFront] == INFIX) {
+                joined = stackTop2.append(" ").append(queueFront).append(" ").append(stackTop1);
+            } else {
+                joined = stackTop2.append(" ").append(stackTop1).append(" ").append(queueFront);
+            }
+            int index = -1;
+            for(int i = 0; i < combined.size(); i++) {
+                if(combined[i] == joined) {
+                    index = i;
+                }
+            }
+            if(index == -1) {
+                index = (int) combined.size();
+                combined.push_back(joined);
+            }
+            textStack.push(to_string(index));
+        } else {
+            textStack.push(queueFront);
+        }
+        queue.pop();
+    }
+    int index = 0;
+    for(auto& s: combined) {
+        stream << index << ": " << s << endl;
+        index++;
+    }
 }

@@ -12,6 +12,8 @@
 #include <queue>
 #include <map>
 
+enum OperatorType {PREFIX, INFIX, POSTFIX};
+
 class ShuntingYardParser {
 public:
     ShuntingYardParser();
@@ -22,9 +24,12 @@ public:
     void consume(std::string& symbol);
     void flush();
 
+    void generateOutput(std::ostream& stream);
+
 private:
     std::stack<std::string> operatorStack;
     std::queue<std::string> queue;
+    std::stack<std::string> textStack;
 
     std::string emptyStack;
     std::string& getStackTop();
@@ -42,8 +47,19 @@ private:
             {")", 20}
     };
 
+    std::map<std::string, OperatorType> operatorTypes = {
+            {"π", PREFIX},
+            {"σ", PREFIX},
+            {"⋈", INFIX},
+            {"∪", INFIX},
+            {"∩", INFIX},
+            {"-", INFIX},
+            {"ρ", PREFIX}
+    };
+
     void consumeOperator(std::string& opSymbol);
     void consumeText(std::string& text);
+
 };
 
 
