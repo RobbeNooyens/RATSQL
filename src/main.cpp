@@ -2,6 +2,7 @@
 #include <QPushButton>
 #include <iostream>
 #include "algorithms/LevenshteinDistance.h"
+#include "algorithms/ShuntingAlgorithm.h"
 
 int main(int argc, char *argv[]) {
 
@@ -79,5 +80,7 @@ int main(int argc, char *argv[]) {
 //    button.show();
 //    return 69;
     //return QApplication::exec();
-    std::cout << "Hello world\n";
+    ShuntingAlgorithm algorithm;
+    algorithm(input);
+    return 0;
 }
