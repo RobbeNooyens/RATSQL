@@ -3,15 +3,20 @@
 #include <iostream>
 #include "algorithms/LevenshteinDistance.h"
 #include "algorithms/ShuntingAlgorithm.h"
+#include "io/handlers/CommandHandler.h"
 
 int main(int argc, char *argv[]) {
-
-
+    ParseCommand parseCommand;
+    std::string cmd;
+    while(cmd != "exit") {
+        getline(std::cin, cmd);
+        parseCommand(cmd);
+    }
+    return 0;
     /*
     std::cout << std::boolalpha << LevenshteinDistance::evalLevenshteinDistance("ikCEDRICbencoolenjijniet",
                                                                                 "ikbencoolenjijniet", 6) << "\n";
     */
-    std::string cmd;
     while(true) {
         getline(std::cin, cmd);
         if (cmd == "exit") {

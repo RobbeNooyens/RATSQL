@@ -1,0 +1,14 @@
+//
+// Created by robnoo on 9/12/21.
+//
+
+#ifndef RATSQL_SHUNTING_YARD_SQLSTATEMENT_H
+#define RATSQL_SHUNTING_YARD_SQLSTATEMENT_H
+
+
+class SQLStatement {
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_SQLSTATEMENT_H

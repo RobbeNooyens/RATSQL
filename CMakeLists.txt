@@ -25,7 +25,7 @@ add_executable(RATSQL
         src/datastructures/Node.h
         src/utilities/Utils.h
         src/parsers/ShuntingYardParser.cpp
-        src/parsers/ShuntingYardParser.h)
+        src/parsers/ShuntingYardParser.h src/io/ParseCommand.h src/io/handlers/CommandHandler.h src/main_gui.cpp src/io/Parsers.h src/io/ParseCommand.cpp src/io/handlers/LevdisCommandHandler.cpp src/io/handlers/LevdisCommandHandler.h src/io/handlers/CommandHandlers.cpp src/io/handlers/CommandHandlers.h src/datastructures/RAExpression.cpp src/datastructures/RAExpression.h src/datastructures/SQLStatement.cpp src/datastructures/SQLStatement.h src/datastructures/ParseSettings.h src/datastructures/ReplaceSuggestion.h src/io/Parsers.cpp)
 
 add_executable(RATSQL_SHUNTING_YARD
         src/main_shunting_yard.cpp
