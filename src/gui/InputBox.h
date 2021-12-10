@@ -12,4 +12,15 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#ifndef RATSQL_SHUNTING_YARD_INPUTBOX_H
+#define RATSQL_SHUNTING_YARD_INPUTBOX_H
+
+
+#include <QTextEdit>
+
+class InputBox: public QTextEdit {
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_INPUTBOX_H

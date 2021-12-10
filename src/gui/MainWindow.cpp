@@ -12,4 +12,12 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#include <QPushButton>
+#include "MainWindow.h"
+
+MainWindow::MainWindow(): QMainWindow() {
+    QWidget* button = new QPushButton("Hello world!", this);
+    button->resize(200, 100);
+    button->show();
+    this->setCentralWidget(button);
+}

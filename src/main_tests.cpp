@@ -12,4 +12,9 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#include "tests/TestManager.h"
+
+int main(int argc, char *argv[]) {
+    TestManager::runTests();
+    return 0;
+}

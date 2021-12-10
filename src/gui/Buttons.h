@@ -12,4 +12,15 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#ifndef RATSQL_SHUNTING_YARD_BUTTONS_H
+#define RATSQL_SHUNTING_YARD_BUTTONS_H
+
+
+#include <QWidget>
+
+class Buttons: public QWidget {
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_BUTTONS_H

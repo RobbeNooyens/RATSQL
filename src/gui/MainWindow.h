@@ -12,4 +12,25 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#ifndef RATSQL_SHUNTING_YARD_MAINWINDOW_H
+#define RATSQL_SHUNTING_YARD_MAINWINDOW_H
+
+
+#include <QMainWindow>
+
+class GUIHandler;
+
+class MainWindow: public QMainWindow {
+public:
+    MainWindow();
+
+    // TODO: implement gui classes
+
+private:
+    // Attributes
+    std::shared_ptr<GUIHandler> guiHandler;
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_MAINWINDOW_H

@@ -12,4 +12,8 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#include "ShuntingYardTest.h"
+
+void ShuntingYardTest::run() {
+    // TODO: write test for shuntingyard algorithm
+}

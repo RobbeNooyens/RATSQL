@@ -12,4 +12,8 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#include "LevenshteinTest.h"
+
+void LevenshteinTest::run() {
+    // TODO: write test for levenshtein algorithm
+}

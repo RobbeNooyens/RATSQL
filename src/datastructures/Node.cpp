@@ -1,6 +1,16 @@
-//
-// Created by Cédric Leclercq on 25/11/2021.
-//
+/**
+ *  ╒══════════════════════════════════════════════════╕
+ *  │                                                  │
+ *  │                 RATSQL Project                   │
+ *  │            Relational Algebra To SQL             │
+ *  │                                                  │
+ *  │  Contributors: Pablo Deputter, Cédric Leclercq,  │
+ *  │               Robbe Nooyens, Maarten Peirsman    │
+ *  │                                                  │
+ *  │   University of Antwerp - Advanced Programming   │
+ *  │                                                  │
+ *  ╘══════════════════════════════════════════════════╛
+ */
 
 #include "Node.h"
 

@@ -12,4 +12,16 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#ifndef RATSQL_SHUNTING_YARD_LEVENSHTEINTEST_H
+#define RATSQL_SHUNTING_YARD_LEVENSHTEINTEST_H
+
+#include "Test.h"
+
+class LevenshteinTest: public Test {
+public:
+    void run() override;
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_LEVENSHTEINTEST_H

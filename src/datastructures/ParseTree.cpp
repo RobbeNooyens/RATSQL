@@ -1,8 +1,19 @@
-//
-// Created by Cédric Leclercq on 25/11/2021.
-//
+/**
+ *  ╒══════════════════════════════════════════════════╕
+ *  │                                                  │
+ *  │                 RATSQL Project                   │
+ *  │            Relational Algebra To SQL             │
+ *  │                                                  │
+ *  │  Contributors: Pablo Deputter, Cédric Leclercq,  │
+ *  │               Robbe Nooyens, Maarten Peirsman    │
+ *  │                                                  │
+ *  │   University of Antwerp - Advanced Programming   │
+ *  │                                                  │
+ *  ╘══════════════════════════════════════════════════╛
+ */
 
 #include <iostream>
+#include <cassert>
 #include "ParseTree.h"
 
 const std::shared_ptr<Node> &ParseTree::getRoot() const {
@@ -12,7 +23,7 @@ const std::shared_ptr<Node> &ParseTree::getRoot() const {
 std::string ParseTree::getYield() const {
     try {
         assert(this->getRoot().use_count() != 0);
-    } catch(std::exception& exc) {
+    } catch (std::exception &exc) {
         std::cerr << exc.what() << std::endl;
         return std::string{};
     }
@@ -20,7 +31,7 @@ std::string ParseTree::getYield() const {
     return this->inorderTraversalYield(this->getRoot(), yield);
 }
 
-std::string ParseTree::inorderTraversalYield(const std::shared_ptr<Node>& node, std::string& oYield) const {
+std::string ParseTree::inorderTraversalYield(const std::shared_ptr<Node> &node, std::string &oYield) const {
     if (node->getLeftVar() != nullptr)
         inorderTraversalYield(node->getLeftVar(), oYield); // First search left node
 

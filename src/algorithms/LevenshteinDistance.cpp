@@ -1,9 +1,20 @@
-//
-// Created by Cédric Leclercq on 25/11/2021.
-//
+/**
+ *  ╒══════════════════════════════════════════════════╕
+ *  │                                                  │
+ *  │                 RATSQL Project                   │
+ *  │            Relational Algebra To SQL             │
+ *  │                                                  │
+ *  │  Contributors: Pablo Deputter, Cédric Leclercq,  │
+ *  │               Robbe Nooyens, Maarten Peirsman    │
+ *  │                                                  │
+ *  │   University of Antwerp - Advanced Programming   │
+ *  │                                                  │
+ *  ╘══════════════════════════════════════════════════╛
+ */
 
 #include "LevenshteinDistance.h"
 #include <thread>
+#include <memory>
 
 void LevenshteinDistance::remove(std::string &str, int index) {
     str.erase(index,1);

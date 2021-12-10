@@ -1,18 +1,51 @@
-#include <QApplication>
-#include <QPushButton>
+/**
+ *  ╒══════════════════════════════════════════════════╕
+ *  │                                                  │
+ *  │                 RATSQL Project                   │
+ *  │            Relational Algebra To SQL             │
+ *  │                                                  │
+ *  │  Contributors: Pablo Deputter, Cédric Leclercq,  │
+ *  │               Robbe Nooyens, Maarten Peirsman    │
+ *  │                                                  │
+ *  │   University of Antwerp - Advanced Programming   │
+ *  │                                                  │
+ *  ╘══════════════════════════════════════════════════╛
+ */
+
 #include <iostream>
 #include "algorithms/LevenshteinDistance.h"
-#include "algorithms/ShuntingAlgorithm.h"
-#include "io/handlers/CommandHandler.h"
+#include "io/CommandHandler.h"
+
+
+enum CmdColor {GREEN, WHITE, BLUE};
+
+std::string color(std::string str, CmdColor color) {
+    std::string result;
+    switch (color) {
+        case GREEN:
+            result = "\x1B[92m";
+            break;
+        case WHITE:
+            result = "\x1B[97m";
+            break;
+        case BLUE:
+            result = "\x1B[94m";
+            break;
+    }
+    result.append(str).append("\033[0m");
+    return result;
+}
 
 int main(int argc, char *argv[]) {
-    ParseCommand parseCommand;
+    CommandHandler handleCommand;
     std::string cmd;
     while(cmd != "exit") {
+        std::cout << color("root@laptop", GREEN) << color(":", WHITE) << color("~/Programs/RATSQL$ ", BLUE);
         getline(std::cin, cmd);
-        parseCommand(cmd);
+        handleCommand(cmd);
     }
     return 0;
+    // TODO: refactor to CommandHandler
     /*
     std::cout << std::boolalpha << LevenshteinDistance::evalLevenshteinDistance("ikCEDRICbencoolenjijniet",
                                                                                 "ikbencoolenjijniet", 6) << "\n";
@@ -85,7 +118,5 @@ int main(int argc, char *argv[]) {
 //    button.show();
 //    return 69;
     //return QApplication::exec();
-    ShuntingAlgorithm algorithm;
-    algorithm(input);
     return 0;
 }

@@ -12,4 +12,11 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include "SQLStatement.h"
+#include "Test.h"
+
+void Test::expect(bool equality, std::string message) {
+    if(!equality) {
+        TestManager::testFailed(message);
+    }
+}
+
