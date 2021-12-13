@@ -12,29 +12,15 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#ifndef RATSQL_SHUNTING_YARD_SQLSTATEMENT_H
+#define RATSQL_SHUNTING_YARD_SQLSTATEMENT_H
 
-using namespace std;
+/**
+ * Represents an SQL statement
+ */
+class SQLStatement {
 
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
-}
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_SQLSTATEMENT_H

@@ -12,29 +12,27 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#ifndef RATSQL_SHUNTING_YARD_TESTMANAGER_H
+#define RATSQL_SHUNTING_YARD_TESTMANAGER_H
 
-using namespace std;
 
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
-}
+#include <string>
+#include <vector>
+#include <memory>
+
+class Test;
+
+class TestManager {
+public:
+    static void testFailed(std::string& message);
+    static void runTests();
+
+private:
+    static TestManager& getInstance();
+    TestManager();
+    std::vector<std::unique_ptr<Test>> tests;
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_TESTMANAGER_H

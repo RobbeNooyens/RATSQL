@@ -12,29 +12,12 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#include <QApplication>
+#include "gui/MainWindow.h"
 
-using namespace std;
-
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
+int main(int argc, char *argv[]) {
+    QApplication application(argc, argv);
+    MainWindow window;
+    window.show();
+    return application.exec();
 }

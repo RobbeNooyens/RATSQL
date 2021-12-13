@@ -12,29 +12,25 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#ifndef RATSQL_SHUNTING_YARD_MAINWINDOW_H
+#define RATSQL_SHUNTING_YARD_MAINWINDOW_H
 
-using namespace std;
 
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
-}
+#include <QMainWindow>
+
+class GUIHandler;
+
+class MainWindow: public QMainWindow {
+public:
+    MainWindow();
+
+    // TODO: implement gui classes
+
+private:
+    // Attributes
+    std::shared_ptr<GUIHandler> guiHandler;
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_MAINWINDOW_H

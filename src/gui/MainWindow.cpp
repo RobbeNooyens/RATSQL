@@ -12,29 +12,12 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#include <QPushButton>
+#include "MainWindow.h"
 
-using namespace std;
-
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
+MainWindow::MainWindow(): QMainWindow() {
+    QWidget* button = new QPushButton("Hello world!", this);
+    button->resize(200, 100);
+    button->show();
+    this->setCentralWidget(button);
 }

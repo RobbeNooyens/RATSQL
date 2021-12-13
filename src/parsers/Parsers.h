@@ -12,29 +12,30 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#ifndef RATSQL_SHUNTING_YARD_PARSERS_H
+#define RATSQL_SHUNTING_YARD_PARSERS_H
 
-using namespace std;
+#include <memory>
+#include <vector>
 
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
-}
+class ReplaceSuggestion;
+class RAExpression;
+class SQLStatement;
+class ParseSettings;
+
+
+namespace parsers {
+    // Error correction
+    std::vector<ReplaceSuggestion> checkTypos(const std::shared_ptr<RAExpression>& expression);
+
+    // Optimization
+    std::shared_ptr<RAExpression> optimizeRA(const std::shared_ptr<RAExpression>& expression);
+
+    // Naming conventions
+    std::vector<ReplaceSuggestion> checkNamingConventions(const std::shared_ptr<RAExpression>& expression);
+
+    // SQL parser
+    std::shared_ptr<SQLStatement> toSQL(const std::shared_ptr<RAExpression>& expression, ParseSettings& settings);
+};
+
+#endif //RATSQL_SHUNTING_YARD_PARSERS_H

@@ -12,29 +12,18 @@
  *  ╘══════════════════════════════════════════════════╛
  */
 
-#include <sstream>
-#include <iostream>
-#include "ShuntingAlgorithm.h"
+#ifndef RATSQL_SHUNTING_YARD_RAEXPRESSION_H
+#define RATSQL_SHUNTING_YARD_RAEXPRESSION_H
 
-using namespace std;
 
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
-    for(char c: str) {
-        if(c == ' ') {
-            string token = stream.str();
-            parser.consume(token);
-            stream.str(string());
-        } else {
-            stream << c;
-        }
-    }
-    if(!stream.str().empty()) {
-        string token = stream.str();
-        parser.consume(token);
-    }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(cout);
-}
+#include <string>
+
+class RAExpression {
+public:
+    void setWord(int index, std::string);
+    std::string getWord(int index);
+
+};
+
+
+#endif //RATSQL_SHUNTING_YARD_RAEXPRESSION_H
