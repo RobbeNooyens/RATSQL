@@ -9,14 +9,16 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
+set(QT_VERSION 5)
+set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
 #set (QT_COMPILER_FLAGS -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64")
 if (${CMAKE_SYSTEM_PROCESSOR} MATCHES "arm64" AND ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set(CMAKE_PREFIX_PATH "~/Qt/6.2.2/macos/lib/cmake")
+    set(QT_VERSION 6)
+    set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets)
 endif()
-set(QT_VERSION 6)
 set(QT_BUILD Qt${QT_VERSION})
 set(REQUIRED_LIBS Core Gui Widgets)
-set(REQUIRED_LIBS_QUALIFIED Qt6::Core Qt6::Gui Qt6::Widgets)
 
 add_executable(RATSQL_CMD
         src/main_cmd.cpp
