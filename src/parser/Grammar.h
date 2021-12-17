@@ -12,8 +12,8 @@
 
 class Production {
 public:
-    std::string from;
-    std::vector<std::vector<std::string>> to;
+    TokenTypes from;
+    std::vector<TokenTypes> to;
 };
 
 using ProductionRules = std::vector<Production>;
@@ -49,25 +49,44 @@ static std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, 
                                          ROUNDED_BRACKET_RIGHT, DOT};
 
 static ProductionRules productions {
-        {"S", {{"EXPRESSION"}, {"NAME", "EQ", "EXPRESSION"}}},
-        {"EXPRESSION", {{"TABLE"}, {"MODIFICATION", "EXPRESSION"}}},
-        {"MODIFICATION", {{"PROJECTION"}, {"SELECTION"}, {"RENAME"}, {"JOIN"}}},
+        {S, {EXPRESSION}},
+        {S, {NAME, EQ, EXPRESSION}},
+        {EXPRESSION, {TABLE}},
+        {EXPRESSION, {MODIFICATION, EXPRESSION}},
+        {MODIFICATION, {PROJECTION}},
+        {MODIFICATION, {SELECTION}},
+        {MODIFICATION, {RENAME}},
+        {MODIFICATION, {JOIN}},
 
-        {"JOIN", {{"PROJECTION"}, {"SELECTION"}, {"RENAME"}, {"JOIN"}}},
-        {"SELECTION", {{"SIGMA"}, {"EQUATION"}}},
-        {"PROJECTION", {{"PI"}, {"COLUMN_NAME"}}},
-        {"RENAME", {{"RHO"}, {"RENAME_PREMISE"}}},
+        {JOIN, {PROJECTION}},
+        {JOIN, {SELECTION}},
+        {JOIN, {RENAME}},
+        {JOIN, {JOIN}},
+        {SELECTION, {SIGMA}},
+        {SELECTION, {EQUATION}},
+        {PROJECTION, {PI}},
+        {PROJECTION, {COLUMN_NAME}},
+        {RENAME, {RHO}},
+        {RENAME, {RENAME_PREMISE}},
 
-        {"RENAME_PREMISE", {{"NAME", "RENAME_SYMBOL", "NAME"}}},
-        {"RENAME_SYMBOL", {{"LEFTARROW"}, {"RIGHTARROW"}}},
+        {RENAME_PREMISE, {NAME, RENAME_SYMBOL, NAME}},
+        {RENAME_SYMBOL, {LEFTARROW}},
+        {RENAME_SYMBOL, {RIGHTARROW}},
 
-        {"OPERATOR1", {{"EQ"}, {"NEQ"}, {"GEQ"}, {"LEQ"}}},
-        {"OPERATOR2", {{"AND"}, {"OR"}}},
+//        {OPERATOR1, {{EQ}, {NEQ}, {GEQ}, {LEQ}}},
+//        {OPERATOR2, {{AND}, }},
+//
+//        {TABLE, {{ROUNDED_BRACKET_LEFT, TABLE, OPERATOR3, TABLE, ROUNDED_BRACKET_RIGHT},
+//                   {TABLE, OPERATOR3, TABLE}, {TABLE_NAME}, {ROUNDED_BRACKET_LEFT, TABLE_NAME, ROUNDED_BRACKET_RIGHT}}},
+//
+//        {OPERATOR3, {{INTERSECT}, {UNION}, {DIV}, {SUB}, {JOIN}, {SCALAR}}},
+//
+//        {EQUATION, {{NOT, ROUNDED_BRACKET_LEFT}, {EQUATION}, {ROUNDED_BRACKET_RIGHT}, {VAR, OPERATOR1, VAR}, {EQUATION, OPERATOR2, EQUATION}}},
+//
+//        {VAR, {{COLUMN_NAME}, {NUMBER}, {STRING}}},
+//        {NUMBER, {{DIGIT}, {DIGIT, DOT, DIGIT}}},
 
-        {"TABLE", {{"ROUNDED_BRACKET_LEFT", "TABLE", "OPERATOR3", "TABLE", "ROUNDED_BRACKET_RIGHT"},
-                   {"TABLE", "OPERATOR3", "TABLE"}, {"TABLE_NAME"}, {"ROUNDED_BRACKET_LEFT", "TABLE_NAME", "ROUNDED_BRACKET_RIGHT"}}},
 
-        {"OPERATOR3", {{"INTERSECT"}, {"UNION"}, {"DIV"}, {"SUB"}, {"JOIN"}, {"SCALAR"}}},
 };
 
 struct Grammar {

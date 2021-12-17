@@ -19,7 +19,9 @@ operator3 -> INTERSECT | UNION | DIV | SUB | JOIN | SCALAR;
 equation -> NOT ROUNDED_BRACKET_LEFT  equation ROUNDED_BRACKET_RIGHT | var operator1 var | equation operator2 equation;
 
 var -> column_name | number | string;
-number -> [0-9] [1-9]* | number DOT number ;
+number -> digit | number DOT digit ;
+digit -> [0-9] [1-9]*
+
 string -> ' [a-zA-Z_]* ';
 name -> [a-zA-Z_]+ ;
 column_name -> name DOT name | name;
