@@ -29,6 +29,8 @@ enum TokenTypes {
     NEQ,
     GEQ,
     LEQ,
+    LT,
+    GT,
     INTERSECT,
     UNION,
     DIV,

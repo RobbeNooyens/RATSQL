@@ -72,11 +72,14 @@ public:
      */
     void earleyParse(const vector<TokenTypes> &words, Grammar &grammar);
 
+    // Todo: Git gut
     void predict(const ClosureRule &closureRule, unsigned int k, const Grammar &g);
 
     void scan(const ClosureRule &closureRule, unsigned int k, const vector<TokenTypes> &words);
 
     void complete(const ClosureRule &closureRule, unsigned int k);
+
+    void makeTree() const;
 };
 
 
