@@ -136,7 +136,7 @@ void CommandHandler::toSQL() {
 void CommandHandler::lexify() {
     string expression;
     cout << "Expression: ";
-    cin >> expression;
+    getline(cin, expression);
     Lexer lexer = Lexer(expression);
     auto t = lexer.tokenise(expression);
     for(Token s: t) {
