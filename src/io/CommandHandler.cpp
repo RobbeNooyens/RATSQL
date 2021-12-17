@@ -13,7 +13,9 @@
  */
 
 #include <vector>
+#include <iostream>
 #include "CommandHandler.h"
+#include "../parser/Lexer.h"
 
 using namespace std;
 
@@ -57,8 +59,8 @@ void CommandHandler::operator()(std::string &command) {
         toSQL();
     } else if(command == "autoconventions") {
         autoConventions();
-    } else if(command == "autoconventions") {
-        autoConventions();
+    } else if(command == "lexify") {
+        lexify();
     }
 }
 /**
@@ -122,4 +124,12 @@ void CommandHandler::autoConventions() {
  */
 void CommandHandler::toSQL() {
     // TODO: implement command
+}
+
+void CommandHandler::lexify() {
+    string expression;
+    cout << "Expression: " << endl;
+    cin >> expression;
+    Lexer lexer = Lexer(expression);
+
 }
