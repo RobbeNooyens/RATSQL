@@ -37,6 +37,7 @@ enum TokenTypes {
     SUB,
     SCALAR,
     JOIN,
+    JOIN_OP,
     COMMENT,
     MULTI_COMMENT_START,
     MULTI_COMMENT_STOP,
@@ -45,10 +46,13 @@ enum TokenTypes {
     ROUNDED_BRACKET_LEFT,
     ROUNDED_BRACKET_RIGHT,
     DOT,
+    COMMA,
     NAME,
     NUMBER,
     STRING,
-    TERMINAL
+    TERMINAL,
+    PROJECTION_PREMISE,
+    QUOTE
 };
 
 using namespace std;
@@ -85,7 +89,17 @@ public:
      */
     Token(TokenTypes t, const string &c): tokenType(t), content(c) {}
 
-    TokenTypes getType() {return tokenType;}
+    /**
+     * Function returning the type of the token
+     * @return type of the token
+     */
+    TokenTypes getType() const {return tokenType;}
+
+    /**
+     * Function returning the content of the token
+     * @return content of the token
+     */
+    string getContent() const {return content;}
 };
 
 #endif //RATSQL_TOKEN_H

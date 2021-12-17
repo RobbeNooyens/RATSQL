@@ -1,28 +1,30 @@
 S -> Expression | name EQ Expression;
 Expression -> Modification Expression | Table;
-Modification -> Projection | Selection | Rename | Join ;
-Join -> Table JOIN | Table JOIN equation;
+Modification -> Projection | Selection | Rename | Join_Op ;
+Join_Op -> Table JOIN | Table JOIN equation;
 Selection -> SIGMA equation;
-Projection -> PI column_name;
+Projection -> PI projection_premise;
 Rename -> RHO rename_premise;
 
-rename_premise -> name rename_symbol name;
+projection_premise -> column_name | projection_premise COMMA projection_premise;
+rename_premise -> column_name rename_symbol column_name;
 rename_symbol -> LEFTARROW | RIGHTARROW;
 
-operator1 -> EQ | NEQ | GEQ | LEQ;
+operator1 -> EQ | NEQ | GEQ | LEQ | LT | GT;
 operator2 -> AND | OR;
 
-Table -> ROUNDED_BRACKET_LEFT Table operator3 Table ROUNDED_BRACKET_RIGHT | Table operator3 Table | table_name | ROUNDED_BRACKET_LEFT table_name ROUNDED_BRACKET_RIGHT;
+Table -> ROUNDED_BRACKET_LEFT Table operator3 Table ROUNDED_BRACKET_RIGHT | Table operator3 Table | name | ROUNDED_BRACKET_LEFT Table ROUNDED_BRACKET_RIGHT;
 
 operator3 -> INTERSECT | UNION | DIV | SUB | JOIN | SCALAR;
 
-equation -> NOT ROUNDED_BRACKET_LEFT  equation ROUNDED_BRACKET_RIGHT | var operator1 var | equation operator2 equation;
+equation -> NOT ROUNDED_BRACKET_LEFT equation ROUNDED_BRACKET_RIGHT | var operator1 var | equation operator2 equation;
 
 var -> column_name | number | string;
-number -> digit | number DOT digit ;
-digit -> [0-9] [1-9]*
+number -> digit | digit DOT digit | digit COMMA digit ;
+digit -> [0-9] [1-9]*;
 
 string -> ' [a-zA-Z_]* ';
 name -> [a-zA-Z_]+ ;
 column_name -> name DOT name | name;
 DOT -> '.' ;
+COMMA -> ',';

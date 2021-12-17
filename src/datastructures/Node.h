@@ -18,10 +18,12 @@
 #include <string>
 #include <memory>
 
+#include "../parser/Token.h"
+
 class Node {
 private:
     /// Data of a node
-    std::string data;
+    Token data;
     /// Shared pointer to the node left to the current one
     std::shared_ptr<Node> leftVar;
     /// Shared pointer to the node middle to the current one
@@ -33,14 +35,12 @@ public:
      * Mr. constructo
      * @param nData     The data this node with get
      */
-    explicit Node(const std::string& nData) {
-        this->data = nData;
-    }
+    explicit Node(const Token& nData);
     /**
      * Gets the data of the string
      * @return std::string      Returns the data of a node - a string
      */
-    std::string getData();
+    const Token & getData();
     /**
      * Gets the node left of the current one
      * @return std::shared_ptr<Node>    Shared pointer to the left node
@@ -56,6 +56,7 @@ public:
      * @return std::shared_ptr<Node>    Shared pointer to the right node
      */
     std::shared_ptr<Node> getRightVar() const;
+
     /**
      * Adds an operation to a node.
      * Left node := Node(var1)
@@ -65,7 +66,7 @@ public:
      * @param oper
      * @param var2
      */
-    void addOperation(const std::string& var1, const std::string& oper, const std::string& var2);
+    void addOperation(const Token &var1, const Token &oper, const Token &var2);
 };
 
 

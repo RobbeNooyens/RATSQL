@@ -29,7 +29,7 @@ public:
 //    vector<Token> tokenise(const string &s);
 
     /**
-     * Function to split strings on " "
+     * Function to split strings on the characters listed in the delimiter variable
      * @param parseString string to split
      * @return vector with split parts
      */
@@ -81,6 +81,8 @@ public:
      * @return true if it represents a name
      */
     bool isName(const string &s);
+
+    unsigned int isDelimiter(const string &s);
 };
 
 

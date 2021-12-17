@@ -49,13 +49,15 @@ static std::vector<std::vector<std::string>> names = {{"pi",        "π"},
                                                       {"}"},
                                                       {"("},
                                                       {")"},
-                                                      {"."}};
+                                                      {"."},
+                                                      {","},
+                                                      {"'"}};
 
 static std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, AND, OR, NOT, EQ, NEQ, GEQ, LEQ, LT, GT,
                                          INTERSECT, UNION,
                                          DIV, SUB, SCALAR, JOIN, COMMENT, MULTI_COMMENT_START, MULTI_COMMENT_STOP,
                                          CURLY_BRACKET_LEFT, CURLY_BRACKET_RIGHT, ROUNDED_BRACKET_LEFT,
-                                         ROUNDED_BRACKET_RIGHT, DOT, TERMINAL};
+                                         ROUNDED_BRACKET_RIGHT, DOT, COMMA, QUOTE};
 
 static ProductionRules productions {
         Production(S, {EXPRESSION}),
@@ -67,18 +69,15 @@ static ProductionRules productions {
         Production(MODIFICATION, {RENAME}),
         Production(MODIFICATION, {JOIN}),
 
-        Production(JOIN, {PROJECTION}),
-        Production(JOIN, {SELECTION}),
-        Production(JOIN, {RENAME}),
-        Production(JOIN, {JOIN}),
-        Production(SELECTION, {SIGMA}),
-        Production(SELECTION, {EQUATION}),
-        Production(PROJECTION, {PI}),
-        Production(PROJECTION, {COLUMN_NAME}),
-        Production(RENAME, {RHO}),
-        Production(RENAME, {RENAME_PREMISE}),
+        Production(JOIN_OP, {TABLE, JOIN}),
+        Production(JOIN_OP, {TABLE, JOIN, EQUATION}),
+        Production(SELECTION, {SIGMA, EQUATION}),
+        Production(PROJECTION, {PI, PROJECTION_PREMISE}),
+        Production(RENAME, {RHO, RENAME_PREMISE}),
 
-        Production(RENAME_PREMISE, {NAME, RENAME_SYMBOL, NAME}),
+        Production(PROJECTION_PREMISE, {COLUMN_NAME}),
+        Production(PROJECTION_PREMISE, {PROJECTION_PREMISE, COMMA, PROJECTION_PREMISE}),
+        Production(RENAME_PREMISE, {COLUMN_NAME, RENAME_SYMBOL, COLUMN_NAME}),
         Production(RENAME_SYMBOL, {LEFTARROW}),
         Production(RENAME_SYMBOL, {RIGHTARROW}),
 
@@ -86,12 +85,15 @@ static ProductionRules productions {
         Production(OPERATOR1, {NEQ}),
         Production(OPERATOR1, {GEQ}),
         Production(OPERATOR1, {LEQ}),
+        Production(OPERATOR1, {LT}),
+        Production(OPERATOR1, {GT}),
         Production(OPERATOR2, {AND}),
+        Production(OPERATOR2, {OR}),
 
         Production(TABLE, {ROUNDED_BRACKET_LEFT, TABLE, OPERATOR3, TABLE, ROUNDED_BRACKET_RIGHT}),
         Production(TABLE, {TABLE, OPERATOR3, TABLE}),
-        Production(TABLE, {TABLE_NAME}),
-        Production(TABLE, {ROUNDED_BRACKET_LEFT, TABLE_NAME, ROUNDED_BRACKET_RIGHT}),
+        Production(TABLE, {NAME}),
+        Production(TABLE, {ROUNDED_BRACKET_LEFT, TABLE, ROUNDED_BRACKET_RIGHT}),
 
         Production(OPERATOR3, {INTERSECT}),
         Production(OPERATOR3, {UNION}),
@@ -100,9 +102,7 @@ static ProductionRules productions {
         Production(OPERATOR3, {JOIN}),
         Production(OPERATOR3, {SCALAR}),
 
-        Production(EQUATION, {NOT, ROUNDED_BRACKET_LEFT}),
-        Production(EQUATION, {EQUATION}),
-        Production(EQUATION, {ROUNDED_BRACKET_RIGHT}),
+        Production(EQUATION, {NOT, ROUNDED_BRACKET_LEFT, EQUATION, ROUNDED_BRACKET_RIGHT}),
         Production(EQUATION, {VAR, OPERATOR1, VAR}),
         Production(EQUATION, {EQUATION, OPERATOR2, EQUATION}),
 
@@ -111,7 +111,17 @@ static ProductionRules productions {
         Production(VAR, {STRING}),
         Production(NUMBER, {DIGIT}),
         Production(NUMBER, {DIGIT, DOT, DIGIT}),
+        Production(NUMBER, {DIGIT, COMMA, DIGIT}),
 
+        Production(COLUMN_NAME, {NAME, DOT, NAME}),
+        Production(COLUMN_NAME, {NAME}),
+
+        Production(STRING, {QUOTE, NAME, QUOTE}),
+
+        Production(DIGIT, {TERMINAL}),
+        Production(NAME, {TERMINAL}),
+        Production(DOT, {TERMINAL}),
+        Production(COMMA, {TERMINAL})
 };
 
 struct Grammar {

@@ -26,9 +26,10 @@ unsigned int ClosureRule::getOrigin() const {
     return origin;
 }
 
+// Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
 void Parser::earleyParse(const vector<TokenTypes> &words, Grammar &grammar) {
     // Add basic start rule
-    productionRule[0].emplace(ClosureRule(Production(S_, {grammar.startSymbol}), 0, 0));
+    productionRule[0].emplace_back(ClosureRule(Production(S_, {grammar.startSymbol}), 0, 0));
     // Loop over alle words
     for (int i = 0; i < words.size(); ++i) {
         for (auto &currentState : productionRule[i]) {
@@ -47,21 +48,21 @@ void Parser::earleyParse(const vector<TokenTypes> &words, Grammar &grammar) {
 
 void Parser::predict(const ClosureRule &closureRule, unsigned int k, const Grammar &g) {
     for (auto &rule : g.getRules(closureRule.nextElement())) {
-        productionRule[k].emplace(ClosureRule(rule, k, 0));
+        productionRule[k].emplace_back(ClosureRule(rule, k, 0));
     }
 }
 
 void Parser::scan(const ClosureRule &closureRule, unsigned int k, const vector<TokenTypes> &words) {
-    productionRule[k+1].emplace(ClosureRule(closureRule.getProduction(), closureRule.getOrigin(), closureRule.getClosure() + 1));
+    productionRule[k+1].emplace_back(ClosureRule(closureRule.getProduction(), closureRule.getOrigin(), closureRule.getClosure() + 1));
 }
 
 void Parser::complete(const ClosureRule &closureRule, unsigned int k) {
     for (auto &rule : productionRule[closureRule.getOrigin()]) {
-        productionRule[k].emplace(ClosureRule(closureRule.getProduction(), closureRule.getOrigin(), closureRule.getClosure() + 1));
+        productionRule[k].emplace_back(ClosureRule(closureRule.getProduction(), closureRule.getOrigin(), closureRule.getClosure() + 1));
     }
 }
 
-void Parser::makeTree() const {
-    return;
+ParseTree Parser::makeTree() const {
+    ParseTree tree;
 }
 

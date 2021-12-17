@@ -10,6 +10,7 @@
 #include <set>
 
 #include "Grammar.h"
+#include "../datastructures/ParseTree.h"
 
 class ClosureRule {
     /// Production on which the closure is based
@@ -63,7 +64,7 @@ public:
 
 class Parser {
     /// Production rules used by the grammar
-    std::vector<std::set<ClosureRule>> productionRule;
+    std::vector<std::vector<ClosureRule>> productionRule;
 public:
     /**
      * Function to construct an early parser for a given set of tokens, based on a grammar
@@ -79,7 +80,7 @@ public:
 
     void complete(const ClosureRule &closureRule, unsigned int k);
 
-    void makeTree() const;
+    ParseTree makeTree() const;
 };
 
 

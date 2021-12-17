@@ -42,9 +42,13 @@ std::string ParseTree::inorderTraversalYield(const std::shared_ptr<Node> &node, 
         inorderTraversalYield(node->getRightVar(), oYield); // Lastly, search right node
 
     if (node->getLeftVar() == nullptr and node->getRightVar() == nullptr)
-        oYield += node->getData(); // We want the yield, so only the nodes with no children can give their data
+        oYield += node->getData().getContent(); // We want the yield, so only the nodes with no children can give their data
 
     return oYield;
+}
+
+ParseTree::ParseTree(const Node &n) {
+    root = std::make_shared<Node>(n);
 }
 
 

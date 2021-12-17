@@ -29,10 +29,43 @@ vector<string> Lexer::splitString(const string &parseString) {
             // Remove the substring from the string that needs to be parsed still
             stringCopy.erase(stringCopy.begin(), stringCopy.begin() + i+1);
             i = 0;
+        } else { // Todo: nakijken
+            // Check for a match with any other delimiter
+            unsigned int k = isDelimiter(stringCopy);
+            if (k) {
+                // Make a substring and place it in the list of substrings
+                string substr = stringCopy.substr(0, k);
+                stringToTokens.emplace_back(substr);
+                // Remove the substring from the string that needs to be parsed still
+                stringCopy.erase(stringCopy.begin(), stringCopy.begin() + k +1);
+                i = 0;
+            }
         }
     }
     stringToTokens.emplace_back(stringCopy);
     return stringToTokens;
+}
+
+// Todo: nakijken
+unsigned int Lexer::isDelimiter(const string &s) {
+    for (const auto &name : names) {
+        for (const auto &n : name) {
+            string temp;
+            int j = 0;
+            temp += s[j];
+            while (temp.size() < n.size()) {
+                if (n[j] != s[j]) {
+                    break;
+                } else {
+                    temp += s[++j];
+                }
+            }
+            if (n == temp) {
+                return j;
+            }
+        }
+    }
+    return 0;
 }
 
 vector<Token> Lexer::tokenise(const vector<string> &v) {

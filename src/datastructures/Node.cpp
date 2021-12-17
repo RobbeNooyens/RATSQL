@@ -14,7 +14,7 @@
 
 #include "Node.h"
 
-std::string Node::getData() {
+const Token & Node::getData() {
     return this->data;
 }
 
@@ -30,11 +30,13 @@ std::shared_ptr<Node> Node::getRightVar() const {
     return this->rightVar;
 }
 
-void Node::addOperation(const std::string &var1, const std::string &oper, const std::string &var2) {
+void Node::addOperation(const Token &var1, const Token &oper, const Token &var2) {
     this->leftVar = std::shared_ptr<Node>(new Node(var1));
     this->middleVar = std::shared_ptr<Node>(new Node(oper));
     this->rightVar = std::shared_ptr<Node>(new Node(var2));
 }
+
+Node::Node(const Token &nData): data(move(nData)) {}
 
 
 

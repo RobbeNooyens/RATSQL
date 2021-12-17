@@ -34,6 +34,13 @@ public:
      * Constructor boi
      */
     ParseTree()=default;
+
+    /**
+     * Better constructor boi
+     * @param n root node
+     */
+    ParseTree(const Node &n);
+
     /**
      * Gets the root of this parse tree
      * @return std::shared_ptr<Node>&   A shared pointer to the root of this parse tree
