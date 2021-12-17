@@ -56,12 +56,16 @@ static map<TokenTypes, string> toString{
     {SIGMA, "SIGMA"},
     {RHO, "RHO"},
     {LEFTARROW, "LEFTARROW"},
-    {STRING, "STRING"},
+    {RIGHTARROW, "LEFTARROW"},
     {ROUNDED_BRACKET_LEFT, "ROUNDED_BRACKET_LEFT"},
     {ROUNDED_BRACKET_RIGHT, "ROUNDED_BRACKET_RIGHTT"},
+    {STRING, "STRING"},
     {NAME, "NAME"},
     {STRING, "STRING"},
     {DOT, "DOT"},
+    {JOIN, "JOIN"},
+    {LEQ, "LT"},
+    {GEQ, "GT"},
 };
 
 class Token {

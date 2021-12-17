@@ -134,9 +134,9 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-    string expression;
-    cout << "Expression: ";
-    getline(cin, expression);
+    string expression = "σ maker2 < maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+//    cout << "Expression: ";
+//    getline(cin, expression);
     Lexer lexer = Lexer(expression);
     auto t = lexer.tokenise(expression);
     for(Token s: t) {
