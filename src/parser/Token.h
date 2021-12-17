@@ -57,14 +57,33 @@ enum TokenTypes {
 
 using namespace std;
 
-static map<TokenTypes, string> toString{
+static map<TokenTypes, string> wStringToString { // Todo: verzin beter normale namen?
+        {PI, "pi"},
+        {SIGMA, "sigma"},
+        {RHO, "rho"},
+        {LEFTARROW, "<-"},
+        {RIGHTARROW, "->"},
+        {JOIN, "join"},
+        {SCALAR, "x"},
+        {AND, "and"},
+        {OR, "or"},
+        {NOT, "not"},
+        {NEQ, "!="},
+        {GEQ, ">="},
+        {LEQ, "<="},
+        {INTERSECT, "intersect"},
+        {UNION, "union"},
+        {DIV, "/"}
+};
+
+static map<TokenTypes, string> tokenToString{
     {PI, "PI"},
     {SIGMA, "SIGMA"},
     {RHO, "RHO"},
     {LEFTARROW, "LEFTARROW"},
     {RIGHTARROW, "LEFTARROW"},
     {ROUNDED_BRACKET_LEFT, "ROUNDED_BRACKET_LEFT"},
-    {ROUNDED_BRACKET_RIGHT, "ROUNDED_BRACKET_RIGHTT"},
+    {ROUNDED_BRACKET_RIGHT, "ROUNDED_BRACKET_RIGHT"},
     {STRING, "STRING"},
     {NAME, "NAME"},
     {STRING, "STRING"},
@@ -79,7 +98,7 @@ class Token {
     TokenTypes tokenType;
 
     /// Original content that was turned into this token
-    wstring content;
+    string content;
 
 public:
     /**
@@ -87,7 +106,7 @@ public:
      * @param t Type of the token
      * @param c Content of the token
      */
-    Token(TokenTypes t, const wstring &c): tokenType(t), content(c) {}
+    Token(TokenTypes t, const string &c): tokenType(t), content(c) {}
 
     /**
      * Function returning the type of the token
@@ -99,7 +118,7 @@ public:
      * Function returning the content of the token
      * @return content of the token
      */
-    const wstring& getContent() const {return content;}
+    const string & getContent() const {return content;}
 };
 
 #endif //RATSQL_TOKEN_H

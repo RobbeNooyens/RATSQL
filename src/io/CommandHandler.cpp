@@ -135,19 +135,19 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-    wstring expression = L"σ maker2 < maker ( ρ maker2 ← maker π maker , type Product ⋈ π maker , type Product )";
-//    string expression = "pi maker ( Test )";
+//    wstring expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+    wstring expression = L"pi maker ( Test )";
 //    cout << "Expression: ";
 //    getline(cin, expression);
-    Lexer lexer = Lexer(expression);
+    Lexer lexer = Lexer();
     vector<Token> t = lexer.tokenise(expression);
-    for(Token s: t) {
-        cout << toString[s.getType()] << " ";
+    for(const Token &s: t) {
+        cout << tokenToString[s.getType()] << " ";
     }
     cout << endl;
     Parser parser{};
     vector<TokenTypes> tokenTypes;
-    for(auto& token: t) {
+    for(const auto& token: t) {
         tokenTypes.push_back(token.getType());
     }
     Grammar grammar{};

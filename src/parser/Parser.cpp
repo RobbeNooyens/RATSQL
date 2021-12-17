@@ -11,7 +11,7 @@ bool ClosureRule::isFinished() const {
 }
 
 TokenTypes ClosureRule::nextElement() const {
-    return production.to[closure + 1];
+    return production.to[closure];
 }
 
 unsigned int ClosureRule::getClosure() const {
@@ -28,6 +28,8 @@ unsigned int ClosureRule::getOrigin() const {
 
 // Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
 void Parser::earleyParse(const vector<TokenTypes> &words, Grammar &grammar) {
+    // Reserve space in the productionrules
+    productionRule = reserveSpaceProductionRules(words.size() + 1);
     // Add basic start rule
     productionRule[0].emplace_back(ClosureRule(Production(S_, {grammar.startSymbol}), 0, 0));
     // Loop over alle words
@@ -58,11 +60,23 @@ void Parser::scan(const ClosureRule &closureRule, unsigned int k, const vector<T
 
 void Parser::complete(const ClosureRule &closureRule, unsigned int k) {
     for (auto &rule : productionRule[closureRule.getOrigin()]) {
-        productionRule[k].emplace_back(ClosureRule(closureRule.getProduction(), closureRule.getOrigin(), closureRule.getClosure() + 1));
+        if (rule.nextElement() == closureRule.getProduction().from) {
+            productionRule[k].emplace_back(ClosureRule(rule.getProduction(), rule.getOrigin(), rule.getClosure() + 1));
+        }
     }
 }
 
 ParseTree Parser::makeTree() const {
     ParseTree tree;
+    return tree;
+}
+
+std::vector<std::vector<ClosureRule>> Parser::reserveSpaceProductionRules(unsigned int size) {
+    std::vector<std::vector<ClosureRule>> v;
+    v.reserve(size);
+    for (int i = 0; i < size; ++i) {
+        v.emplace_back(std::vector<ClosureRule>{});
+    }
+    return v;
 }
 

@@ -24,7 +24,7 @@ public:
      * Constructor for Relax Parser
      * @param parseString string to parse
      */
-    Lexer(const wstring &parseString);
+    Lexer();
 
 //    vector<Token> tokenise(const string &s);
 
@@ -82,7 +82,7 @@ public:
      */
     bool isName(const wstring &s);
 
-    unsigned int isDelimiter(const wstring &s);
+    unsigned int isDelimiter(const wstring &s, unsigned int offset);
 };
 
 

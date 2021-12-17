@@ -81,6 +81,8 @@ public:
     void complete(const ClosureRule &closureRule, unsigned int k);
 
     ParseTree makeTree() const;
+
+    static std::vector<std::vector<ClosureRule>> reserveSpaceProductionRules(unsigned int size);
 };
 
 
