@@ -6,6 +6,8 @@
 #define RATSQL_TOKEN_H
 
 #include <string>
+#include <map>
+
 
 enum TokenTypes {
     // GRAMMATICA
@@ -48,6 +50,19 @@ enum TokenTypes {
 
 using namespace std;
 
+static map<TokenTypes, string> toString{
+    {PI, "PI"},
+    {SIGMA, "SIGMA"},
+    {RHO, "RHO"},
+    {LEFTARROW, "LEFTARROW"},
+    {STRING, "STRING"},
+    {ROUNDED_BRACKET_LEFT, "ROUNDED_BRACKET_LEFT"},
+    {ROUNDED_BRACKET_RIGHT, "ROUNDED_BRACKET_RIGHTT"},
+    {NAME, "NAME"},
+    {STRING, "STRING"},
+    {DOT, "DOT"},
+};
+
 class Token {
     /// Type of the token
     TokenTypes tokenType;
@@ -62,6 +77,8 @@ public:
      * @param c Content of the token
      */
     Token(TokenTypes t, const string &c): tokenType(t), content(c) {}
+
+    TokenTypes getType() {return tokenType;}
 };
 
 #endif //RATSQL_TOKEN_H

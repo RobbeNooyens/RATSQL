@@ -36,6 +36,13 @@ void split(const string& input, string& cmdName, vector<string>& args){
             word.push_back(c);
         }
     }
+    if(!word.empty()) {
+        if(isName) {
+            cmdName = word;
+        } else {
+            args.push_back(word);
+        }
+    }
 }
 
 void CommandHandler::operator()(std::string &command) {
@@ -128,8 +135,11 @@ void CommandHandler::toSQL() {
 
 void CommandHandler::lexify() {
     string expression;
-    cout << "Expression: " << endl;
+    cout << "Expression: ";
     cin >> expression;
     Lexer lexer = Lexer(expression);
-
+    auto t = lexer.tokenise(expression);
+    for(Token s: t) {
+        cout << toString[s.getType()] << " ";
+    }
 }
