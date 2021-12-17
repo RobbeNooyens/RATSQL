@@ -31,6 +31,7 @@ vector<string> Lexer::splitString(const string &parseString) {
             i = 0;
         }
     }
+    stringToTokens.emplace_back(stringCopy);
     return stringToTokens;
 }
 
