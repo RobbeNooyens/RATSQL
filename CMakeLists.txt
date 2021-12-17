@@ -46,6 +46,8 @@ add_executable(RATSQL_CMD
         src/parser/Token.h
         src/parser/Grammar.h
         src/parser/UndefinedTokenException.h
+        src/parser/Parser.h
+        src/parser/Parser.cpp
         src/io/CommandHandler.h
         src/io/CommandHandler.cpp
         )

@@ -16,6 +16,7 @@
 #include <iostream>
 #include "CommandHandler.h"
 #include "../parser/Lexer.h"
+#include "../parser/Parser.h"
 
 using namespace std;
 
@@ -134,14 +135,21 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-    string expression = "σ maker2 < maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+    string expression = "σ maker2 < maker ( ρ maker2 ← maker π makertype Product ⋈ π makertype Product )";
 //    string expression = "pi maker ( Test )";
 //    cout << "Expression: ";
 //    getline(cin, expression);
     Lexer lexer = Lexer(expression);
-    auto t = lexer.tokenise(expression);
+    vector<Token> t = lexer.tokenise(expression);
     for(Token s: t) {
         cout << toString[s.getType()] << " ";
     }
     cout << endl;
+    Parser parser{};
+    vector<TokenTypes> tokenTypes;
+    for(auto& token: t) {
+        tokenTypes.push_back(token.getType());
+    }
+    Grammar grammar{};
+    parser.earleyParse(tokenTypes, grammar);
 }
