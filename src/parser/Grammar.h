@@ -14,6 +14,10 @@ class Production {
 public:
     TokenTypes from;
     std::vector<TokenTypes> to;
+
+    unsigned int getRightSize() const {return to.size();}
+
+    Production(TokenTypes left, std::vector<TokenTypes> right): from(left), to(move(right)) {}
 };
 
 using ProductionRules = std::vector<Production>;
@@ -42,73 +46,84 @@ static std::vector<std::vector<std::string>> names = {{"pi",        "π"},
                                                       {"("},
                                                       {")"},
                                                       {"."}};
+
 static std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, AND, OR, NOT, EQ, NEQ, GEQ, LEQ,
                                          INTERSECT, UNION,
                                          DIV, SUB, SCALAR, JOIN, COMMENT, MULTI_COMMENT_START, MULTI_COMMENT_STOP,
                                          CURLY_BRACKET_LEFT, CURLY_BRACKET_RIGHT, ROUNDED_BRACKET_LEFT,
-                                         ROUNDED_BRACKET_RIGHT, DOT};
+                                         ROUNDED_BRACKET_RIGHT, DOT, TERMINAL};
 
 static ProductionRules productions {
-        {S, {EXPRESSION}},
-        {S, {NAME, EQ, EXPRESSION}},
-        {EXPRESSION, {TABLE}},
-        {EXPRESSION, {MODIFICATION, EXPRESSION}},
-        {MODIFICATION, {PROJECTION}},
-        {MODIFICATION, {SELECTION}},
-        {MODIFICATION, {RENAME}},
-        {MODIFICATION, {JOIN}},
+        Production(S, {EXPRESSION}),
+        Production(S, {NAME, EQ, EXPRESSION}),
+        Production(EXPRESSION, {TABLE}),
+        Production(EXPRESSION, {MODIFICATION, EXPRESSION}),
+        Production(MODIFICATION, {PROJECTION}),
+        Production(MODIFICATION, {SELECTION}),
+        Production(MODIFICATION, {RENAME}),
+        Production(MODIFICATION, {JOIN}),
 
-        {JOIN, {PROJECTION}},
-        {JOIN, {SELECTION}},
-        {JOIN, {RENAME}},
-        {JOIN, {JOIN}},
-        {SELECTION, {SIGMA}},
-        {SELECTION, {EQUATION}},
-        {PROJECTION, {PI}},
-        {PROJECTION, {COLUMN_NAME}},
-        {RENAME, {RHO}},
-        {RENAME, {RENAME_PREMISE}},
+        Production(JOIN, {PROJECTION}),
+        Production(JOIN, {SELECTION}),
+        Production(JOIN, {RENAME}),
+        Production(JOIN, {JOIN}),
+        Production(SELECTION, {SIGMA}),
+        Production(SELECTION, {EQUATION}),
+        Production(PROJECTION, {PI}),
+        Production(PROJECTION, {COLUMN_NAME}),
+        Production(RENAME, {RHO}),
+        Production(RENAME, {RENAME_PREMISE}),
 
-        {RENAME_PREMISE, {NAME, RENAME_SYMBOL, NAME}},
-        {RENAME_SYMBOL, {LEFTARROW}},
-        {RENAME_SYMBOL, {RIGHTARROW}},
+        Production(RENAME_PREMISE, {NAME, RENAME_SYMBOL, NAME}),
+        Production(RENAME_SYMBOL, {LEFTARROW}),
+        Production(RENAME_SYMBOL, {RIGHTARROW}),
 
-        {OPERATOR1, {EQ}},
-        {OPERATOR1, {NEQ}},
-        {OPERATOR1, {GEQ}},
-        {OPERATOR1, {LEQ}},
-        {OPERATOR2, {AND}},
+        Production(OPERATOR1, {EQ}),
+        Production(OPERATOR1, {NEQ}),
+        Production(OPERATOR1, {GEQ}),
+        Production(OPERATOR1, {LEQ}),
+        Production(OPERATOR2, {AND}),
 
-        {TABLE, {ROUNDED_BRACKET_LEFT, TABLE, OPERATOR3, TABLE, ROUNDED_BRACKET_RIGHT}},
-        {TABLE, {TABLE, OPERATOR3, TABLE}},
-        {TABLE, {TABLE_NAME}},
-        {TABLE, {ROUNDED_BRACKET_LEFT, TABLE_NAME, ROUNDED_BRACKET_RIGHT}},
+        Production(TABLE, {ROUNDED_BRACKET_LEFT, TABLE, OPERATOR3, TABLE, ROUNDED_BRACKET_RIGHT}),
+        Production(TABLE, {TABLE, OPERATOR3, TABLE}),
+        Production(TABLE, {TABLE_NAME}),
+        Production(TABLE, {ROUNDED_BRACKET_LEFT, TABLE_NAME, ROUNDED_BRACKET_RIGHT}),
 
-        {OPERATOR3, {INTERSECT}},
-        {OPERATOR3, {UNION}},
-        {OPERATOR3, {DIV}},
-        {OPERATOR3, {SUB}},
-        {OPERATOR3, {JOIN}},
-        {OPERATOR3, {SCALAR}},
+        Production(OPERATOR3, {INTERSECT}),
+        Production(OPERATOR3, {UNION}),
+        Production(OPERATOR3, {DIV}),
+        Production(OPERATOR3, {SUB}),
+        Production(OPERATOR3, {JOIN}),
+        Production(OPERATOR3, {SCALAR}),
 
-        {EQUATION, {NOT, ROUNDED_BRACKET_LEFT}},
-        {EQUATION, {EQUATION}},
-        {EQUATION, {ROUNDED_BRACKET_RIGHT}},
-        {EQUATION, {VAR, OPERATOR1, VAR}},
-        {EQUATION, {EQUATION, OPERATOR2, EQUATION}},
+        Production(EQUATION, {NOT, ROUNDED_BRACKET_LEFT}),
+        Production(EQUATION, {EQUATION}),
+        Production(EQUATION, {ROUNDED_BRACKET_RIGHT}),
+        Production(EQUATION, {VAR, OPERATOR1, VAR}),
+        Production(EQUATION, {EQUATION, OPERATOR2, EQUATION}),
 
-        {VAR, {COLUMN_NAME}},
-        {VAR, {NUMBER}},
-        {VAR, {STRING}},
-        {NUMBER, {DIGIT}},
-        {NUMBER, {DIGIT, DOT, DIGIT}},
+        Production(VAR, {COLUMN_NAME}),
+        Production(VAR, {NUMBER}),
+        Production(VAR, {STRING}),
+        Production(NUMBER, {DIGIT}),
+        Production(NUMBER, {DIGIT, DOT, DIGIT}),
 
 };
 
 struct Grammar {
-    std::string startSymbol = "S";
+    TokenTypes startSymbol = S;
 
     ProductionRules productionRules = productions;
+
+    ProductionRules getRules(TokenTypes t) const {
+        ProductionRules result;
+        for (auto &p : productionRules) {
+            if (p.from == t) {
+                result.emplace_back(p);
+            }
+        }
+        return result;
+    }
 };
 
 static std::map<std::string, TokenTypes> generateTokenMap() {
