@@ -115,6 +115,8 @@ add_executable(RATSQL_SHUNTING_YARD
         src/parsers/ShuntingYardParser.cpp
         src/parsers/ShuntingYardParser.h)
 
+add_executable(RATSQL_PARSER src/parser/Grammar.h src/parser/Lexer.cpp src/parser/Lexer.h src/parser/Token.h src/parser/UndefinedTokenException.h src/parser/Parser.cpp src/parser/Parser.h)
+
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 target_link_libraries(RATSQL_GUI ${REQUIRED_LIBS_QUALIFIED})

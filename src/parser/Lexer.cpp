@@ -49,7 +49,9 @@ vector<Token> Lexer::tokenise(const vector<string> &v) {
         } else {
             throw UndefinedTokenException(entry);
         }
+        t.emplace_back(Token(token, entry));
     }
+    return t;
 }
 
 bool Lexer::isString(const string &s) {
