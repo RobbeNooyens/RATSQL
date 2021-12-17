@@ -29,4 +29,8 @@ public:
     const char * what() const noexcept override;
 };
 
+const char *UndefinedTokenException::what() const noexcept {
+    return message.c_str();
+}
+
 #endif //RATSQL_UNDEFINEDTOKENEXCEPTION_H
