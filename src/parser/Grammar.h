@@ -43,6 +43,8 @@ static std::vector<std::vector<std::string>> names = {{"pi",        "π"},
                                                       {"--"},
                                                       {"/*"},
                                                       {"*/"},
+                                                      {"{"},
+                                                      {"}"},
                                                       {"("},
                                                       {")"},
                                                       {"."}};
