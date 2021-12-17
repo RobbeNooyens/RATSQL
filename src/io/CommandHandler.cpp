@@ -13,9 +13,7 @@
  */
 
 #include <vector>
-#include <iostream>
 #include "CommandHandler.h"
-#include "../parser/Lexer.h"
 
 using namespace std;
 
@@ -38,7 +36,7 @@ void split(const string& input, string& cmdName, vector<string>& args){
     }
 }
 
-void CommandHandler::operator()(string &command) {
+void CommandHandler::operator()(std::string &command) {
     split(command, commandName, arguments);
     if(commandName.empty())
         return;
@@ -61,8 +59,6 @@ void CommandHandler::operator()(string &command) {
         autoConventions();
     } else if(command == "autoconventions") {
         autoConventions();
-    } else if(command == "lexify") {
-
     }
 }
 /**
@@ -127,12 +123,3 @@ void CommandHandler::autoConventions() {
 void CommandHandler::toSQL() {
     // TODO: implement command
 }
-
-void CommandHandler::lexify() {
-    string expression;
-    cout << "Expression: " << endl;
-    cin >> expression;
-    Lexer lexer = Lexer(expression);
-
-}
-

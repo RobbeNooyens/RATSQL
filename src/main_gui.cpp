@@ -13,8 +13,8 @@
  */
 
 #include <QApplication>
-#include "gui/MainWindow.h"
 
+#include "gui/MainWindow.h"
 int main(int argc, char *argv[]) {
     QApplication application(argc, argv);
     MainWindow window;

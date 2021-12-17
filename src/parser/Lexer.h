@@ -53,6 +53,10 @@ public:
      * Function to check if a string represents a string
      * @param s the string to check
      * @return true if it represents a string
+     */    /**
+     * Function to check if a string represents a string
+     * @param s the string to check
+     * @return true if it represents a string
      */
     bool isString(const string &s);
 
@@ -60,10 +64,18 @@ public:
      * Function to check if a string represents a number
      * @param s the string to check
      * @return true if it represents a number
+     */    /**
+     * Function to check if a string represents a number
+     * @param s the string to check
+     * @return true if it represents a number
      */
     bool isNumber(const string &s);
 
     /**
+     * Function to check if a string represents a name
+     * @param s the string to check
+     * @return true if it represents a name
+     */    /**
      * Function to check if a string represents a name
      * @param s the string to check
      * @return true if it represents a name
