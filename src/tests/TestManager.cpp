@@ -16,6 +16,9 @@
 #include "TestManager.h"
 #include "Test.h"
 
+#include "LevenshteinTest.h"
+#include "ShuntingYardTest.h"
+
 using namespace std;
 
 void TestManager::testFailed(std::string &message) {
@@ -33,4 +36,11 @@ TestManager &TestManager::getInstance() {
     return INSTANCE;
 }
 
-TestManager::TestManager() = default;
+void TestManager::initiateTests() {
+    this->tests.push_back(std::make_unique<LevenshteinTest>());
+    this->tests.push_back(std::make_unique<ShuntingYardTest>());
+}
+
+TestManager::TestManager() {
+    this->initiateTests();
+}

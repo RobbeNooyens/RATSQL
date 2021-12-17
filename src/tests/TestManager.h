@@ -30,6 +30,7 @@ public:
 private:
     static TestManager& getInstance();
     TestManager();
+    void initiateTests();
     std::vector<std::unique_ptr<Test>> tests;
 
 };
