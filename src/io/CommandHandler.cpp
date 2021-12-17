@@ -123,4 +123,3 @@ void CommandHandler::autoConventions() {
 void CommandHandler::toSQL() {
     // TODO: implement command
 }
-

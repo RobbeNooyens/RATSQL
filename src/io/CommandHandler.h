@@ -38,6 +38,7 @@ private:
     void checkConventions();
     void autoConventions();
     void toSQL();
+    void lexify();
 };
 
 

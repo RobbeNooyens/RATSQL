@@ -42,6 +42,11 @@ add_executable(RATSQL_CMD
         src/parsers/ShuntingYardParser.h
         src/parsers/Parsers.h
         src/parsers/Parsers.cpp
+        src/parser/Lexer.h
+        src/parser/Lexer.cpp
+        src/parser/Token.h
+        src/parser/Grammar.h
+        src/parser/UndefinedTokenException.h
         src/io/CommandHandler.h
         src/io/CommandHandler.cpp
         )
