@@ -142,4 +142,5 @@ void CommandHandler::lexify() {
     for(Token s: t) {
         cout << toString[s.getType()] << " ";
     }
+    cout << endl;
 }
