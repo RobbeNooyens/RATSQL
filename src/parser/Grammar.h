@@ -9,11 +9,11 @@
 #include <map>
 #include <vector>
 
-std::vector<std::vector<std::string>> names = {{"pi", "π"}, {"sigma", "σ"}, {"rho", "ρ"}, {"←"}, {"→"}, {"and", "∧"},
+static std::vector<std::vector<std::string>> names = {{"pi", "π"}, {"sigma", "σ"}, {"rho", "ρ"}, {"←"}, {"→"}, {"and", "∧"},
                                                {"or", "∨"}, {"¬"}, {"="}, {"!=", "≠"}, {"≥", ">="}, {"≤", "<="},
                                                {"intersect", "∩"}, {"union", "∪"}, {"÷", "/"}, {"-"}, {"⨯", "x"},
                                                {"⨝"}, {"--"}, {"/*"}, {"*/"}, {"("}, {")"}, {"."}};
-std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, AND, OR, NOT, EQ, NEQ, GEQ, LEQ, INTERSECT, UNION,
+static std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, AND, OR, NOT, EQ, NEQ, GEQ, LEQ, INTERSECT, UNION,
                                   DIV, SUB, SCALAR, JOIN, COMMENT, MULTI_COMMENT_START, MULTI_COMMENT_STOP,
                                   CURLY_BRACKET_LEFT, CURLY_BRACKET_RIGHT, ROUNDED_BRACKET_LEFT, ROUNDED_BRACKET_RIGHT, DOT};
 
