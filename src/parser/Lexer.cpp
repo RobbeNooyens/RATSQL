@@ -22,7 +22,7 @@ vector<string> Lexer::splitString(const string &parseString) {
     // List of substrings
     vector<string> stringToTokens;
     for (int i = 0; i < stringCopy.size(); ++i) {
-        if (stringCopy[i] == delimiter) { // Check if the end of a word has been reached
+        if (stringCopy[i] != delimiter) { // Check if the end of a word has been reached
             // Make a substring and place it in the list of substrings
             string substr = stringCopy.substr(0, i);
             stringToTokens.emplace_back(substr);

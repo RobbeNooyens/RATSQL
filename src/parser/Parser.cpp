@@ -61,3 +61,7 @@ void Parser::complete(const ClosureRule &closureRule, unsigned int k) {
     }
 }
 
+void Parser::makeTree() const {
+    return;
+}
+
