@@ -79,7 +79,7 @@ class Token {
     TokenTypes tokenType;
 
     /// Original content that was turned into this token
-    string content;
+    wstring content;
 
 public:
     /**
@@ -87,7 +87,7 @@ public:
      * @param t Type of the token
      * @param c Content of the token
      */
-    Token(TokenTypes t, const string &c): tokenType(t), content(c) {}
+    Token(TokenTypes t, const wstring &c): tokenType(t), content(c) {}
 
     /**
      * Function returning the type of the token
@@ -99,7 +99,7 @@ public:
      * Function returning the content of the token
      * @return content of the token
      */
-    string getContent() const {return content;}
+    const wstring& getContent() const {return content;}
 };
 
 #endif //RATSQL_TOKEN_H

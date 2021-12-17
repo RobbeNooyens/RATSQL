@@ -17,14 +17,14 @@ class Lexer {
 private:
     const char delimiter = ' ';
 
-    map<string, TokenTypes> tokenMap;
+    map<wstring, TokenTypes> tokenMap;
 
 public:
     /**
      * Constructor for Relax Parser
      * @param parseString string to parse
      */
-    Lexer(const string &parseString);
+    Lexer(const wstring &parseString);
 
 //    vector<Token> tokenise(const string &s);
 
@@ -33,21 +33,21 @@ public:
      * @param parseString string to split
      * @return vector with split parts
      */
-    vector<string> splitString(const string &parseString);
+    vector<wstring> splitString(const wstring &parseString);
 
     /**
      * Function to tokenise a vector of strings
      * @param v vector containing strings
      * @return vector containing tokens for the strings
      */
-    vector<Token> tokenise(const vector<string> &v);
+    vector<Token> tokenise(const vector<wstring> &v);
 
     /**
      * Function to tokenise a string, splitting it on ' '
      * @param s string to tokenise
      * @return vector containing tokens for the string
      */
-    vector<Token> tokenise(const string &s);
+    vector<Token> tokenise(const wstring &s);
 
     /**
      * Function to check if a string represents a string
@@ -58,7 +58,7 @@ public:
      * @param s the string to check
      * @return true if it represents a string
      */
-    bool isString(const string &s);
+    bool isString(const wstring &s);
 
     /**
      * Function to check if a string represents a number
@@ -69,7 +69,7 @@ public:
      * @param s the string to check
      * @return true if it represents a number
      */
-    bool isNumber(const string &s);
+    bool isNumber(const wstring &s);
 
     /**
      * Function to check if a string represents a name
@@ -80,9 +80,9 @@ public:
      * @param s the string to check
      * @return true if it represents a name
      */
-    bool isName(const string &s);
+    bool isName(const wstring &s);
 
-    unsigned int isDelimiter(const string &s);
+    unsigned int isDelimiter(const wstring &s);
 };
 
 

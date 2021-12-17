@@ -28,7 +28,7 @@ private:
      * @param oYield        the yield it already found
      * @return std::string  the yield of param node
      */
-    std::string inorderTraversalYield(const std::shared_ptr<Node>& node, std::string& oYield) const;
+    std::wstring inorderTraversalYield(const std::shared_ptr<Node>& node, std::wstring& oYield) const;
 public:
     /**
      * Constructor boi
@@ -50,7 +50,7 @@ public:
      * Will return the yield of a parse tree. Makes use of a recursive function.
      * @return  std::string     The yield of this parse tree
      */
-    std::string getYield() const;
+    std::wstring getYield() const;
 };
 
 

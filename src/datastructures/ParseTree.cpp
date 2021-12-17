@@ -20,18 +20,18 @@ const std::shared_ptr<Node> &ParseTree::getRoot() const {
     return this->root;
 }
 
-std::string ParseTree::getYield() const {
+std::wstring ParseTree::getYield() const {
     try {
         assert(this->getRoot().use_count() != 0);
     } catch (std::exception &exc) {
-        std::cerr << exc.what() << std::endl;
-        return std::string{};
+        std::wcerr << exc.what() << std::endl;
+        return std::wstring{};
     }
-    std::string yield;
+    std::wstring yield;
     return this->inorderTraversalYield(this->getRoot(), yield);
 }
 
-std::string ParseTree::inorderTraversalYield(const std::shared_ptr<Node> &node, std::string &oYield) const {
+std::wstring ParseTree::inorderTraversalYield(const std::shared_ptr<Node> &node, std::wstring &oYield) const {
     if (node->getLeftVar() != nullptr)
         inorderTraversalYield(node->getLeftVar(), oYield); // First search left node
 
