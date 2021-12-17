@@ -134,7 +134,7 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-    wstring expression = L"σ maker2 < maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+    wstring expression = L"σ maker2 < maker ( ρ maker2 ← maker π maker , type Product ⋈ π maker , type Product )";
 //    string expression = "pi maker ( Test )";
 //    cout << "Expression: ";
 //    getline(cin, expression);

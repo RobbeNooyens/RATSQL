@@ -22,36 +22,36 @@ public:
 
 using ProductionRules = std::vector<Production>;
 
-static std::vector<std::vector<std::string>> names = {{"pi",        "π"},
-                                                      {"sigma",     "σ"},
-                                                      {"rho",       "ρ"},
-                                                      {"←"},
-                                                      {"→"},
-                                                      {"and",       "∧"},
-                                                      {"or",        "∨"},
-                                                      {"¬"},
-                                                      {"="},
-                                                      {"!=",        "≠"},
-                                                      {"≥",         ">="},
-                                                      {"≤",         "<="},
-                                                      {"<"},
-                                                      {">"},
-                                                      {"intersect", "∩"},
-                                                      {"union",     "∪"},
-                                                      {"÷",         "/"},
-                                                      {"-"},
-                                                      {"⨯",         "x"},
-                                                      {"⨝",         "join", "⋈"},
-                                                      {"--"},
-                                                      {"/*"},
-                                                      {"*/"},
-                                                      {"{"},
-                                                      {"}"},
-                                                      {"("},
-                                                      {")"},
-                                                      {"."},
-                                                      {","},
-                                                      {"'"}};
+static std::vector<std::vector<std::wstring>> names = {{L"pi",        L"π"},
+                                                      {L"sigma",     L"σ"},
+                                                      {L"rho",       L"ρ"},
+                                                      {L"←"},
+                                                      {L"→"},
+                                                      {L"and",       L"∧"},
+                                                      {L"or",        L"∨"},
+                                                      {L"¬"},
+                                                      {L"="},
+                                                      {L"!=",        L"≠"},
+                                                      {L"≥",         L">="},
+                                                      {L"≤",         L"<="},
+                                                      {L"<"},
+                                                      {L">"},
+                                                      {L"intersect", L"∩"},
+                                                      {L"union",     L"∪"},
+                                                      {L"÷",         L"/"},
+                                                      {L"-"},
+                                                      {L"⨯",         L"x"},
+                                                      {L"⨝",         L"join", L"⋈"},
+                                                      {L"--"},
+                                                      {L"/*"},
+                                                      {L"*/"},
+                                                      {L"{"},
+                                                      {L"}"},
+                                                      {L"("},
+                                                      {L")"},
+                                                      {L"."},
+                                                      {L","},
+                                                      {L"'"}};
 
 static std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, AND, OR, NOT, EQ, NEQ, GEQ, LEQ, LT, GT,
                                          INTERSECT, UNION,
@@ -140,8 +140,8 @@ struct Grammar {
     }
 };
 
-static std::map<std::string, TokenTypes> generateTokenMap() {
-    std::map<std::string, TokenTypes> map;
+static std::map<std::wstring, TokenTypes> generateTokenMap() {
+    std::map<std::wstring, TokenTypes> map;
     for (int i = 0; i < names.size(); ++i) {
         for (auto &name: names[i]) {
             map.emplace(name, tokens[i]);
