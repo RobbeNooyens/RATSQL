@@ -22,7 +22,6 @@ set(REQUIRED_LIBS Core Gui Widgets)
 
 add_executable(RATSQL_CMD
         src/main_cmd.cpp
-        src/utilities/Token.h
         src/utilities/Utils.h
         src/algorithms/ShuntingAlgorithm.cpp
         src/algorithms/ShuntingAlgorithm.h
@@ -53,7 +52,6 @@ add_executable(RATSQL_CMD
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
-        src/utilities/Token.h
         src/utilities/Utils.h
         src/algorithms/ShuntingAlgorithm.cpp
         src/algorithms/ShuntingAlgorithm.h
@@ -86,7 +84,6 @@ add_executable(RATSQL_GUI
 
 add_executable(RATSQL_TESTS
         src/main_tests.cpp
-        src/utilities/Token.h
         src/utilities/Utils.h
         src/algorithms/ShuntingAlgorithm.cpp
         src/algorithms/ShuntingAlgorithm.h
