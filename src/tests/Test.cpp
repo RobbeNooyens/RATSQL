@@ -12,21 +12,11 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#include "Test.h"
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
+void Test::expect(bool equality, std::string message) {
+    if(!equality) {
+        TestManager::testFailed(message);
+    }
+}
 
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
-
-private:
-    ShuntingYardParser parser;
-};
-
-
-#endif //RATSQL_SHUNTINGALGORITHM_H

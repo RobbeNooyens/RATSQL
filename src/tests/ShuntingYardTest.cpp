@@ -12,21 +12,8 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#include "ShuntingYardTest.h"
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
-
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
-
-private:
-    ShuntingYardParser parser;
-};
-
-
-#endif //RATSQL_SHUNTINGALGORITHM_H
+void ShuntingYardTest::run() {
+    // TODO: write test for shuntingyard algorithm
+}

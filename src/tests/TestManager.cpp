@@ -12,21 +12,25 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#include <iostream>
+#include "TestManager.h"
+#include "Test.h"
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
+using namespace std;
 
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
+void TestManager::testFailed(std::string &message) {
+    cout << message << endl;
+}
 
-private:
-    ShuntingYardParser parser;
-};
+void TestManager::runTests() {
+    for(auto& test: TestManager::getInstance().tests) {
+        test->run();
+    }
+}
 
+TestManager &TestManager::getInstance() {
+    static TestManager INSTANCE;
+    return INSTANCE;
+}
 
-#endif //RATSQL_SHUNTINGALGORITHM_H
+TestManager::TestManager() = default;

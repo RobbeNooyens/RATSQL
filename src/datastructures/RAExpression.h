@@ -12,21 +12,18 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#ifndef RATSQL_SHUNTING_YARD_RAEXPRESSION_H
+#define RATSQL_SHUNTING_YARD_RAEXPRESSION_H
+
 
 #include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
 
-class ShuntingAlgorithm {
+class RAExpression {
 public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
+    void setWord(int index, std::string);
+    std::string getWord(int index);
 
-private:
-    ShuntingYardParser parser;
 };
 
 
-#endif //RATSQL_SHUNTINGALGORITHM_H
+#endif //RATSQL_SHUNTING_YARD_RAEXPRESSION_H

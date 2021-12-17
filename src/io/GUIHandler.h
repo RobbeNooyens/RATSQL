@@ -12,21 +12,23 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#ifndef RATSQL_SHUNTING_YARD_GUIHANDLER_H
+#define RATSQL_SHUNTING_YARD_GUIHANDLER_H
 
-#include <string>
+#include <memory>
 #include <vector>
-#include "../parsers/ShuntingYardParser.h"
 
-class ShuntingAlgorithm {
+class RAExpression;
+class SQLStatement;
+
+class GUIHandler {
 public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
+    // TODO: implement class
 
 private:
-    ShuntingYardParser parser;
+    std::shared_ptr<RAExpression> ra;
+    std::shared_ptr<SQLStatement> sql;
 };
 
 
-#endif //RATSQL_SHUNTINGALGORITHM_H
+#endif //RATSQL_SHUNTING_YARD_GUIHANDLER_H

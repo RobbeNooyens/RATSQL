@@ -12,21 +12,31 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#include "Parsers.h"
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
+// Include datastructures
+#include "../datastructures/ParseSettings.h"
+#include "../datastructures/RAExpression.h"
+#include "../datastructures/ReplaceSuggestion.h"
+#include "../datastructures/SQLStatement.h"
 
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
+std::vector<ReplaceSuggestion> parsers::checkTypos(const std::shared_ptr<RAExpression> &expression) {
+    // TODO implement
+    return {};
+}
 
-private:
-    ShuntingYardParser parser;
-};
+std::shared_ptr<RAExpression> parsers::optimizeRA(const std::shared_ptr<RAExpression> &expression) {
+    // TODO implement
+    return {};
+}
 
+std::shared_ptr<SQLStatement>
+parsers::toSQL(const std::shared_ptr<RAExpression> &expression, ParseSettings &settings) {
+    // TODO implement
+    return {};
+}
 
-#endif //RATSQL_SHUNTINGALGORITHM_H
+std::vector<ReplaceSuggestion> parsers::checkNamingConventions(const std::shared_ptr<RAExpression> &expression) {
+    // TODO implement
+    return {};
+}

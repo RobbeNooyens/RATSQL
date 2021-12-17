@@ -12,21 +12,16 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#ifndef RATSQL_SHUNTING_YARD_LEVENSHTEINTEST_H
+#define RATSQL_SHUNTING_YARD_LEVENSHTEINTEST_H
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
+#include "Test.h"
 
-class ShuntingAlgorithm {
+class LevenshteinTest: public Test {
 public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
+    void run() override;
 
-private:
-    ShuntingYardParser parser;
 };
 
 
-#endif //RATSQL_SHUNTINGALGORITHM_H
+#endif //RATSQL_SHUNTING_YARD_LEVENSHTEINTEST_H

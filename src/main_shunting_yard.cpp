@@ -12,21 +12,12 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#include "algorithms/LevenshteinDistance.h"
+#include "algorithms/ShuntingAlgorithm.h"
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
-
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
-
-private:
-    ShuntingYardParser parser;
-};
-
-
-#endif //RATSQL_SHUNTINGALGORITHM_H
+int main(int argc, char* argv[]) {
+    std::string input = "σ maker2<maker ( ρ maker2←maker π maker,type Product ⋈ π maker,type Product )";
+    ShuntingAlgorithm algorithm;
+    algorithm(input);
+    return 0;
+}

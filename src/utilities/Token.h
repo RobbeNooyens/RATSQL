@@ -12,21 +12,34 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
+#ifndef RATSQL_TOKEN_H
+#define RATSQL_TOKEN_H
 
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
-
-private:
-    ShuntingYardParser parser;
+enum Tokens {
+    PI,
+    SIGMA,
+    RHO,
+    LEFTARROW,
+    RIGHTARROW,
+    AND,
+    OR,
+    NOT,
+    EQ,
+    NEQ,
+    GEQ,
+    LEQ,
+    INTERSECT,
+    UNION,
+    DIV,
+    SUB,
+    SCALAR,
+    JOIN,
+    COMMENT,
+    CURLY_BRACKET_LEFT,
+    CURLY_BRACKET_RIGHT,
+    ROUNDED_BRACKET_LEFT,
+    ROUNDED_BRACKET_RIGHT;
 };
 
-
-#endif //RATSQL_SHUNTINGALGORITHM_H
+#endif //RATSQL_TOKEN_H

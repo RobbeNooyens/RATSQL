@@ -12,21 +12,25 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#ifndef RATSQL_SHUNTING_YARD_MAINWINDOW_H
+#define RATSQL_SHUNTING_YARD_MAINWINDOW_H
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
 
-class ShuntingAlgorithm {
+#include <QMainWindow>
+
+class GUIHandler;
+
+class MainWindow: public QMainWindow {
 public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
+    MainWindow();
+
+    // TODO: implement gui classes
 
 private:
-    ShuntingYardParser parser;
+    // Attributes
+    std::shared_ptr<GUIHandler> guiHandler;
+
 };
 
 
-#endif //RATSQL_SHUNTINGALGORITHM_H
+#endif //RATSQL_SHUNTING_YARD_MAINWINDOW_H

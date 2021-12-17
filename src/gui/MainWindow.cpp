@@ -12,21 +12,12 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTINGALGORITHM_H
-#define RATSQL_SHUNTINGALGORITHM_H
+#include <QPushButton>
+#include "MainWindow.h"
 
-#include <string>
-#include <vector>
-#include "../parsers/ShuntingYardParser.h"
-
-class ShuntingAlgorithm {
-public:
-    ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
-
-private:
-    ShuntingYardParser parser;
-};
-
-
-#endif //RATSQL_SHUNTINGALGORITHM_H
+MainWindow::MainWindow(): QMainWindow() {
+    QWidget* button = new QPushButton("Hello world!", this);
+    button->resize(200, 100);
+    button->show();
+    this->setCentralWidget(button);
+}
