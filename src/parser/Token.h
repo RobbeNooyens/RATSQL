@@ -66,8 +66,8 @@ static map<TokenTypes, string> toString{
     {STRING, "STRING"},
     {DOT, "DOT"},
     {JOIN, "JOIN"},
-    {LEQ, "LT"},
-    {GEQ, "GT"},
+    {LT, "LT"},
+    {GT, "GT"},
 };
 
 class Token {
