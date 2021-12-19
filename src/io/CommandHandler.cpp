@@ -152,4 +152,5 @@ void CommandHandler::lexify() {
     }
     Grammar grammar{};
     parser.earleyParse(tokenTypes, grammar);
+    parser.makeTree();
 }

@@ -7,6 +7,10 @@
 #include <iostream>
 #include <algorithm>
 
+// Pseudocode
+#define EMPTY_ORDERED_SET std::vector<ClosureRule>()
+
+
 ClosureRule::ClosureRule(const Production &p, unsigned int o, unsigned int c) : production(p), closure(c), origin(o) {}
 
 bool ClosureRule::isFinished() const {
@@ -42,10 +46,16 @@ bool ClosureRule::operator!=(const ClosureRule &rhs) const {
 
 // Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
 void Parser::earleyParse(const vector<TokenTypes> &words, Grammar &grammar) {
+    // INIT
     // Reserve space in the productionrules
     productionRule = reserveSpaceProductionRules(words.size() + 1);
+    // Add sets
+    for(int i = 0; i < words.size(); i++) {
+        productionRule.emplace_back(EMPTY_ORDERED_SET);
+    }
+
+    // EARLEY_PARSE
     // Add basic start rule
-    productionRule.emplace_back(std::vector<ClosureRule>());
     productionRule[0].push_back(ClosureRule(Production(S_, {grammar.startSymbol}), 0, 0));
     // Loop over all words
     for (int i = 0; i < words.size(); ++i) {
