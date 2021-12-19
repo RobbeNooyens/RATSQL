@@ -53,7 +53,7 @@ public:
      * Function that returns the production rule used in the closure rule
      * @return const reference to the production used
      */
-    const Production& getProduction() const;
+    Production& getProduction();
 
     /**
      * Function that returns the origin of the closure rule
@@ -88,11 +88,11 @@ public:
     void earleyParse(const vector<TokenTypes> &words, Grammar &grammar);
 
     // Todo: Git gut
-    void predict(const ClosureRule &closureRule, unsigned int k, const Grammar &g);
+    void predictor(const ClosureRule &closureRule, unsigned int k, const Grammar &g);
 
-    void scan(const ClosureRule &closureRule, unsigned int k, const vector<TokenTypes> &words);
+    void scanner(ClosureRule &closureRule, unsigned int k, const vector<TokenTypes> &words);
 
-    void complete(const ClosureRule &closureRule, unsigned int k);
+    void completer(const ClosureRule &closureRule, unsigned int k);
 
     ParseTree makeTree() const;
 
