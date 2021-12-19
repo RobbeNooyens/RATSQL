@@ -20,6 +20,26 @@ endif()
 set(QT_BUILD Qt${QT_VERSION})
 set(REQUIRED_LIBS Core Gui Widgets)
 
+# Doxygen
+find_package(Doxygen)
+if (DOXYGEN_FOUND)
+    # input and output files
+    set(DOXYYGEN_IN ${PROJECT_SOURCE_DIR}/docs/Doxyfile.in)
+    set(DOXYGEN_OUT ${PROJECT_SOURCE_DIR}/docs/Doxyfile)
+
+    # configure doxygen file
+    configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
+    message("Generating Doxygen documentation...")
+
+    # add custom target
+    ADD_CUSTOM_TARGET(RATSQL_DOCS
+            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            VERBATIM)
+else (DOXYGEN_FOUND)
+    message("Doxygen package was not found")
+endif (DOXYGEN_FOUND)
+
 add_executable(RATSQL_CMD
         src/main_cmd.cpp
         src/utilities/Utils.h

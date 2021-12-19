@@ -4,6 +4,9 @@
 
 #include "Parser.h"
 
+#include <iostream>
+#include <algorithm>
+
 ClosureRule::ClosureRule(const Production &p, unsigned int o, unsigned int c) : production(p), closure(c), origin(o) {}
 
 bool ClosureRule::isFinished() const {
@@ -26,13 +29,25 @@ unsigned int ClosureRule::getOrigin() const {
     return origin;
 }
 
+bool ClosureRule::operator==(const ClosureRule &rhs) const {
+    if (rhs.closure == closure && rhs.origin == origin &&
+        rhs.production.from == production.from && rhs.production.to == production.to) { return true; }
+    return false;
+}
+
+bool ClosureRule::operator!=(const ClosureRule &rhs) const {
+    if (rhs == *this) { return false; }
+    return true;
+}
+
 // Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
 void Parser::earleyParse(const vector<TokenTypes> &words, Grammar &grammar) {
     // Reserve space in the productionrules
     productionRule = reserveSpaceProductionRules(words.size() + 1);
     // Add basic start rule
-    productionRule[0].emplace_back(ClosureRule(Production(S_, {grammar.startSymbol}), 0, 0));
-    // Loop over alle words
+    productionRule.emplace_back(std::vector<ClosureRule>());
+    productionRule[0].push_back(ClosureRule(Production(S_, {grammar.startSymbol}), 0, 0));
+    // Loop over all words
     for (int i = 0; i < words.size(); ++i) {
         for (auto &currentState : productionRule[i]) {
             if (!currentState.isFinished()) {
@@ -46,6 +61,28 @@ void Parser::earleyParse(const vector<TokenTypes> &words, Grammar &grammar) {
             }
         }
     }
+//    std::cout << productionRule.size() << "\n";
+    // Remove duplicates inside productionRule
+    productionRule.erase(std::unique(std::begin(productionRule), std::end(productionRule)),
+                         std::end(productionRule));
+//
+//
+//    for (const auto &i : productionRule)
+//    {
+//        for (const auto &j : i)
+//        {
+//            std::cout << "origin: " << j.getOrigin() << "\n";
+//            std::cout << "closure: " <<  j.getClosure() << "\n";
+//            std::cout << "productionFrom: " << j.getProduction().from << "\n";
+//            std::cout << "productionTo: ";
+//            for (const auto &k : j.getProduction().to)
+//            {
+//                std::cout << k << ", ";
+//            }
+//            std::cout << "\n";
+//        }
+//    }
+//    std::cout << productionRule.size() << "\n";
 }
 
 void Parser::predict(const ClosureRule &closureRule, unsigned int k, const Grammar &g) {
@@ -79,4 +116,3 @@ std::vector<std::vector<ClosureRule>> Parser::reserveSpaceProductionRules(unsign
     }
     return v;
 }
-

@@ -60,6 +60,20 @@ public:
      * @return the origin of the closure rule
      */
     unsigned int getOrigin() const;
+
+    /**
+     * Returns true if 2 ClosureRule's are equal
+     * @param rhs ClosureRule - given object to check if equal to this
+     * @return bool
+     */
+    bool operator==(const ClosureRule &rhs) const;
+
+    /**
+     * Returns true if 2 ClosureRule's aren't equal
+     * @param rhs ClosureRule - given object to check if not equal to this
+     * @return bool
+     */
+    bool operator!=(const ClosureRule &rhs) const;
 };
 
 class Parser {

@@ -34,7 +34,6 @@ bool LevenshteinDistance::evalLevenshteinDistance(const std::string &str1, const
 
     size_t len1 = str1.size();
     size_t len2 = str2.size();
-    // TODO - return what een error :(
     if (len1 == 0 || len2 == 0) return false;
 
     // Create matrix
