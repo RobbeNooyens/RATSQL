@@ -39,6 +39,7 @@ private:
     void autoConventions();
     void toSQL();
     void lexify();
+    void parse();
 };
 
 

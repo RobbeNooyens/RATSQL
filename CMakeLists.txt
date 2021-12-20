@@ -3,6 +3,7 @@ project(RATSQL_CMD)
 project(RATSQL_GUI)
 project(RATSQL_TESTS)
 project(RATSQL_SHUNTING_YARD)
+project(RATSQL_PARSING)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_AUTOMOC ON)
@@ -70,7 +71,9 @@ add_executable(RATSQL_CMD
         src/parser/Parser.cpp
         src/io/CommandHandler.h
         src/io/CommandHandler.cpp
-        )
+        src/datastructures/CFG.cpp
+        src/datastructures/CFG.h
+        libs/json.hpp)
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
@@ -138,6 +141,14 @@ add_executable(RATSQL_SHUNTING_YARD
         src/algorithms/ShuntingAlgorithm.h
         src/parsers/ShuntingYardParser.cpp
         src/parsers/ShuntingYardParser.h)
+
+add_executable(RATSQL_PARSING
+        src/main_parsing.cpp
+        src/parser/Parser.h
+        src/parser/Parser.cpp
+        src/datastructures/CFG.cpp
+        src/datastructures/CFG.h
+        libs/json.hpp)
 
 add_executable(RATSQL_PARSER src/parser/Grammar.h src/parser/Lexer.cpp src/parser/Lexer.h src/parser/Token.h src/parser/UndefinedTokenException.h src/parser/Parser.cpp src/parser/Parser.h)
 

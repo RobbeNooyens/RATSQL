@@ -69,6 +69,8 @@ void CommandHandler::operator()(std::string &command) {
         autoConventions();
     } else if(command == "lexify") {
         lexify();
+    } else if(command == "parse") {
+        parse();
     }
 }
 /**
@@ -146,12 +148,11 @@ void CommandHandler::lexify() {
         cout << tokenToString[s.getType()] << " ";
     }
     cout << endl;
-    Parser parser{};
-    vector<TokenTypes> tokenTypes;
-    for(const auto& token: t) {
-        tokenTypes.push_back(token.getType());
-    }
-    Grammar grammar{};
-    parser.earleyParse(tokenTypes, grammar);
+}
+
+void CommandHandler::parse() {
+    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
+    Parser parser;
+    parser.earleyParse(words);
     parser.makeTree();
 }

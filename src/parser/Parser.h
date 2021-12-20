@@ -8,95 +8,59 @@
 #include <string>
 #include <vector>
 #include <set>
+#include <memory>
 
-#include "Grammar.h"
-#include "../datastructures/ParseTree.h"
+#include "../datastructures/CFG.h"
 
-class ClosureRule {
-    /// Production on which the closure is based
-    Production production;
-
-    /// Position of the closure
-    unsigned int closure;
-
-    /// Origin of the closure rule
-    unsigned int origin;
-
+class ParseState {
 public:
-    /**
-     * Constructor for closure rule
-     * @param p production used to make the closure rule
-     * @param o origin of the closure rule
-     * @param c index of the closure (0 by default)
-     */
-    ClosureRule(const Production &p, unsigned int o, unsigned int c = 0);
+    ParseState();
+    ParseState(Production production, int dot, int origin);
 
-    /**
-     * Getter for the closure
-     * @return the index where the closure is
-     */
-    unsigned int getClosure() const;
+    const Production& getProduction();
+    int getDot() const;
+    int getOrigin() const;
 
-    /**
-     * Function to check whether a closure has reached the end of a right side
-     * @return true if yes
-     */
-    bool isFinished() const;
+    const std::string& nextElement();
 
-    /**
-     * Function that returns the next element in the productionrule
-     * @return the next token
-     */
-    TokenTypes nextElement() const;
+    bool isFinished();
 
-    /**
-     * Function that returns the production rule used in the closure rule
-     * @return const reference to the production used
-     */
-    Production& getProduction();
+    std::string toString();
 
-    /**
-     * Function that returns the origin of the closure rule
-     * @return the origin of the closure rule
-     */
-    unsigned int getOrigin() const;
+//    bool operator==(const ParseState& rhs);
+//    bool operator!=(const ParseState& rhs);
 
-    /**
-     * Returns true if 2 ClosureRule's are equal
-     * @param rhs ClosureRule - given object to check if equal to this
-     * @return bool
-     */
-    bool operator==(const ClosureRule &rhs) const;
+    bool operator==(ParseState& rhs);
+    bool operator!=(ParseState& rhs);
 
-    /**
-     * Returns true if 2 ClosureRule's aren't equal
-     * @param rhs ClosureRule - given object to check if not equal to this
-     * @return bool
-     */
-    bool operator!=(const ClosureRule &rhs) const;
+
+private:
+    Production production;
+    int dot = 0;
+    int origin = 0;
+
 };
 
 class Parser {
     /// Production rules used by the grammar
-    std::vector<std::vector<ClosureRule>> productionRule;
+    std::vector<std::vector<ParseState>> S;
+    std::unique_ptr<CFG> cfg;
 public:
     /**
      * Function to construct an early parser for a given set of tokens, based on a grammar
      * @param words tokens
      * @param grammar grammar
      */
-    void earleyParse(const vector<TokenTypes> &words, Grammar &grammar);
+    void earleyParse(const std::vector<std::string> &words);
+
+    Parser();
 
     // Todo: Git gut
-    void predictor(const ClosureRule &closureRule, unsigned int k, const Grammar &g);
+    void predictor(ParseState &closureRule, unsigned int k);
 
-    void scanner(ClosureRule &closureRule, unsigned int k, const vector<TokenTypes> &words);
+    void scanner(ParseState &closureRule, unsigned int k, const std::vector<std::string> &words);
 
-    void completer(const ClosureRule &closureRule, unsigned int k);
-
-    ParseTree makeTree() const;
-
-    static std::vector<std::vector<ClosureRule>> reserveSpaceProductionRules(unsigned int size);
+    void completer(ParseState &closureRule, unsigned int k);
 };
 
 
