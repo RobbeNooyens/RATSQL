@@ -18,23 +18,27 @@
 
 using namespace std;
 
-void ShuntingAlgorithm::operator()(string &str) {
-    stringstream stream;
+void ShuntingAlgorithm::operator()(string &str, std::ostream& stream) {
+    stringstream strStream;
     for(char c: str) {
         if(c == ' ') {
-            string token = stream.str();
+            string token = strStream.str();
             parser.consume(token);
-            stream.str(string());
+            strStream.str(string());
         } else {
-            stream << c;
+            strStream << c;
         }
     }
-    if(!stream.str().empty()) {
-        string token = stream.str();
+    if(!strStream.str().empty()) {
+        string token = strStream.str();
         parser.consume(token);
     }
     parser.flush();
     parser.printOperatorStack();
     parser.printQueue();
-    parser.generateOutput(cout);
+    parser.generateOutput(stream);
+}
+
+ShuntingYardParser ShuntingAlgorithm::getParser() const {
+    return this->parser;
 }

@@ -22,9 +22,9 @@
 class ShuntingAlgorithm {
 public:
     ShuntingAlgorithm()=default;
-    void operator()(std::string& str);
-
-private:
+    void operator()(std::string& str, std::ostream& stream=std::cout);
+    ShuntingYardParser getParser() const;
+protected:
     ShuntingYardParser parser;
 };
 

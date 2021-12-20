@@ -18,10 +18,8 @@
 
 using namespace std;
 
-ShuntingYardParser::ShuntingYardParser() = default;
-
 void ShuntingYardParser::consume(string &symbol) {
-    std::cout << "Consuming [" << symbol << "]" << std::endl;
+    std::cout << "Consuming [" << symbol << "]" << std::endl; // todo remove debug
     if(isOperator(symbol)) {
         consumeOperator(symbol);
     } else {
@@ -85,6 +83,44 @@ void traverse_stack(stack<T> & st) {
 }
 
 void ShuntingYardParser::printOperatorStack() {
+    // todo is this supposed to be empty? - current output below
+    /*
+Consuming [σ]
+Consuming [maker2<maker]
+Consuming [(]
+Consuming [ρ]
+Consuming [maker2←maker]
+Consuming [π]
+Consuming [maker,type]
+Consuming [Product]
+Consuming [⋈]
+Consuming [π]
+Consuming [maker,type]
+Consuming [Product]
+Consuming [)]
+Operator stack:
+π
+⋈
+(
+σ
+Operator stack: // todo here
+Queue:
+maker2<maker
+maker2←maker
+maker,type
+Product
+π
+ρ
+maker,type
+Product
+π
+⋈
+σ
+0: π maker,type Product
+1: ρ maker2←maker 0
+2: 1 ⋈ 0
+3: σ maker2<maker 2
+     */
     cout << "Operator stack:" << endl;
     traverse_stack(operatorStack);
 }
@@ -111,7 +147,7 @@ string &ShuntingYardParser::getStackTop() {
     return operatorStack.empty() ? emptyStack : operatorStack.top();
 }
 
-void ShuntingYardParser::generateOutput(ostream &stream) {
+void ShuntingYardParser::generateOutput(ostream &stream, bool print, bool saveExpression) {
     vector<string> combined;
     string queueFront;
     while(!queue.empty()) {
@@ -120,8 +156,7 @@ void ShuntingYardParser::generateOutput(ostream &stream) {
             string stackTop1 = textStack.top();
             textStack.pop();
             string stackTop2 = textStack.top();
-            textStack.pop();
-            // TODO: error handling
+            if (!textStack.empty()) textStack.pop();
             string joined;
             if(operatorTypes[queueFront] == PREFIX) {
                 joined = queueFront.append(" ").append(stackTop2).append(" ").append(stackTop1);
@@ -146,9 +181,15 @@ void ShuntingYardParser::generateOutput(ostream &stream) {
         }
         queue.pop();
     }
-    int index = 0;
-    for(auto& s: combined) {
-        stream << index << ": " << s << endl;
-        index++;
-    }
+    RAExpression exp(combined);
+    if (saveExpression) this->expression = exp;
+    if (print) exp.printExpression(stream);
+}
+
+RAExpression ShuntingYardParser::getRAExpression() const {
+    return this->expression;
+}
+
+void ShuntingYardParser::generateOutput(bool saveExpression, bool print, ostream &stream) {
+    this->generateOutput(stream,print,saveExpression);
 }

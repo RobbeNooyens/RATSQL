@@ -21,28 +21,33 @@
 #include <stack>
 #include <queue>
 #include <map>
+#include <iostream>
+#include "../datastructures/RAExpression.h"
 
 enum OperatorType {PREFIX, INFIX, POSTFIX};
 
 class ShuntingYardParser {
 public:
-    ShuntingYardParser();
+    ShuntingYardParser() = default;
 
     void printOperatorStack();
     void printQueue();
 
     void consume(std::string& symbol);
     void flush();
-
-    void generateOutput(std::ostream& stream);
+    void generateOutput(std::ostream& stream=std::cout, bool print=true, bool saveExpression=false);
+    void generateOutput(bool saveExpression, bool print=true, std::ostream& stream=std::cout);
+    RAExpression getRAExpression() const;
 
 private:
     std::stack<std::string> operatorStack;
     std::queue<std::string> queue;
     std::stack<std::string> textStack;
+    RAExpression expression{};
 
     std::string emptyStack;
     std::string& getStackTop();
+
 
     bool isOperator(std::string& symbol);
     std::map<std::string, int> precedence = {
