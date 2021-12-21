@@ -8,7 +8,7 @@
 #include "Lexer.h"
 #include "UndefinedTokenException.h"
 
-Lexer::Lexer() : tokenMap(generateTokenMap()) {}
+Lexer::Lexer(const map<wstring, string> &m, const vector<vector<wstring>> &a) : tokenMap(m), aliases(a) {}
 
 vector<wstring> Lexer::splitString(const wstring &parseString) {
     // String that needs to be parsed
@@ -50,7 +50,7 @@ vector<wstring> Lexer::splitString(const wstring &parseString) {
 
 // Todo: nakijken
 unsigned int Lexer::isDelimiter(const wstring &s, unsigned int offset) {
-    for (const auto &name : names) {
+    for (const auto &name : aliases) {
         for (const auto &n : name) {
             wstring temp;
             int j = 1;
@@ -70,26 +70,26 @@ unsigned int Lexer::isDelimiter(const wstring &s, unsigned int offset) {
     return 0;
 }
 
-vector<Token> Lexer::tokenise(const vector<wstring> &v) {
-    vector<Token> t;
+vector<TokenTemplate> Lexer::tokenise(const vector<wstring> &v) {
+    vector<TokenTemplate> t;
     for (auto &entry : v) {
-        TokenTypes token;
+        string token;
         // Make a normal string from the wstring entry
         string content (entry.begin(), entry.end());
         if (isString(entry)) {
-            token = STRING;
+            token = "STRING";
         } else if (tokenMap.find(entry) != tokenMap.end()) {
             token = tokenMap[entry];
-            content = wStringToString[token];
+            content = token;
         } else if (isNumber(entry)) {
-            token = NUMBER;
+            token = "NUMBER";
         } else if (isName(entry)){
-            token = NAME;
+            token = "NAME";
         } else {
             string k (entry.begin(), entry.end());
             throw UndefinedTokenException(k);
         }
-        t.emplace_back(Token(token, content));
+        t.emplace_back(TokenTemplate(token, content));
     }
     return t;
 }
@@ -123,6 +123,8 @@ bool Lexer::isName(const wstring &s) {
     }
 }
 
-vector<Token> Lexer::tokenise(const wstring &s) {
+vector<TokenTemplate> Lexer::tokenise(const wstring &s) {
     return tokenise(splitString(s));
 }
+
+Lexer::Lexer(): tokenMap(), aliases() {}

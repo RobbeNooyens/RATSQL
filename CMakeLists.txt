@@ -148,9 +148,14 @@ add_executable(RATSQL_PARSING
         src/parser/Parser.cpp
         src/datastructures/CFG.cpp
         src/datastructures/CFG.h
-        libs/json.hpp)
+        libs/json.hpp
+        src/parser/Lexer.h
+        src/parser/Lexer.cpp
+        src/parser/TokenTemplate.h
+        src/parser/TokenTemplate.cpp)
 
-add_executable(RATSQL_PARSER src/parser/Grammar.h src/parser/Lexer.cpp src/parser/Lexer.h src/parser/Token.h src/parser/UndefinedTokenException.h src/parser/Parser.cpp src/parser/Parser.h)
+
+add_executable(RATSQL_PARSER src/parser/Grammar.h src/parser/Lexer.cpp src/parser/Lexer.h src/parser/Token.h src/parser/UndefinedTokenException.h src/parser/Parser.cpp src/parser/Parser.h src/parser/TokenTemplate.cpp src/parser/TokenTemplate.h)
 
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)

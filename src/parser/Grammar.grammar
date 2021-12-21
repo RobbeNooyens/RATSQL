@@ -23,7 +23,7 @@ var -> column_name | number | string;
 number -> digit | digit DOT digit | digit COMMA digit ;
 digit -> [0-9] [1-9]*;
 
-string -> ' [a-zA-Z_]* ';
+string -> QUOTE name QUOTE;
 name -> [a-zA-Z_]+ ;
 column_name -> name DOT name | name;
 DOT -> '.' ;

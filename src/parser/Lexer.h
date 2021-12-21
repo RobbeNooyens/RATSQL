@@ -5,11 +5,11 @@
 #ifndef RATSQL_LEXER_H
 #define RATSQL_LEXER_H
 
-#include "Grammar.h"
+#include "TokenTemplate.h"
 
 #include <string>
 #include <vector>
-#include <fstream>
+#include <map>
 
 using namespace std;
 
@@ -17,14 +17,18 @@ class Lexer {
 private:
     const char delimiter = ' ';
 
-    map<wstring, TokenTypes> tokenMap;
+    map<wstring, string> tokenMap;
+
+    vector<vector<wstring>> aliases;
 
 public:
+    Lexer();
     /**
      * Constructor for Relax Parser
-     * @param parseString string to parse
+     * @param m mapping from inputs to tokentypes
+     * @param a list of supported aliases
      */
-    Lexer();
+    Lexer(const map<wstring, string> &m, const vector<vector<wstring>> &a);
 
 //    vector<Token> tokenise(const string &s);
 
@@ -40,14 +44,14 @@ public:
      * @param v vector containing strings
      * @return vector containing tokens for the strings
      */
-    vector<Token> tokenise(const vector<wstring> &v);
+    vector<TokenTemplate> tokenise(const vector<wstring> &v);
 
     /**
      * Function to tokenise a string, splitting it on ' '
      * @param s string to tokenise
      * @return vector containing tokens for the string
      */
-    vector<Token> tokenise(const wstring &s);
+    vector<TokenTemplate> tokenise(const wstring &s);
 
     /**
      * Function to check if a string represents a string
@@ -82,6 +86,12 @@ public:
      */
     bool isName(const wstring &s);
 
+    /**
+     * Function checking for a delimiter in a string
+     * @param s string to check
+     * @param offset amount of characters that have been checked already
+     * @return length of the found delimiter (0 if none was found)
+     */
     unsigned int isDelimiter(const wstring &s, unsigned int offset);
 };
 

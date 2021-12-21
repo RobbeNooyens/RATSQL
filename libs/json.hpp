@@ -2467,7 +2467,7 @@ namespace detail
 // Note to maintainers:
 //
 // Every trait in this file expects a non CV-qualified type.
-// The only exceptions are in the 'aliases for detected' section
+// The only exceptions are in the 'aliasMap for detected' section
 // (i.e. those of the form: decltype(T::member_function(std::declval<T>())))
 //
 // In this case, T has to be properly CV-qualified to constraint the function arguments
@@ -2479,7 +2479,7 @@ NLOHMANN_BASIC_JSON_TPL_DECLARATION
 struct is_basic_json<NLOHMANN_BASIC_JSON_TPL> : std::true_type {};
 
 //////////////////////////
-// aliases for detected //
+// aliasMap for detected //
 //////////////////////////
 
 template <typename T>
@@ -14726,7 +14726,7 @@ class basic_json
     /// workaround type for MSVC
     using basic_json_t = NLOHMANN_BASIC_JSON_TPL;
 
-    // convenience aliases for types residing in namespace detail;
+    // convenience aliasMap for types residing in namespace detail;
     using lexer = ::nlohmann::detail::lexer<basic_json>;
     using parser = ::nlohmann::detail::parser<basic_json>;
 

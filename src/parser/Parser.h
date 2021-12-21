@@ -11,6 +11,7 @@
 #include <memory>
 
 #include "../datastructures/CFG.h"
+#include "TokenTemplate.h"
 
 class ParseState {
 public:
@@ -30,8 +31,8 @@ public:
 //    bool operator==(const ParseState& rhs);
 //    bool operator!=(const ParseState& rhs);
 
-    bool operator==(ParseState& rhs);
-    bool operator!=(ParseState& rhs);
+    bool operator==(ParseState& rhs) const;
+    bool operator!=(ParseState& rhs) const;
 
 
 private:
@@ -51,14 +52,14 @@ public:
      * @param words tokens
      * @param grammar grammar
      */
-    void earleyParse(const std::vector<std::string> &words);
+    void earleyParse(const std::vector<TokenTemplate> &words);
 
-    Parser();
+    Parser(std::unique_ptr<CFG> g = std::make_unique<CFG>("../input/test.json"));
 
     // Todo: Git gut
     void predictor(ParseState &closureRule, unsigned int k);
 
-    void scanner(ParseState &closureRule, unsigned int k, const std::vector<std::string> &words);
+    void scanner(ParseState &state, unsigned int k, const vector<TokenTemplate> &words);
 
     void completer(ParseState &closureRule, unsigned int k);
 };

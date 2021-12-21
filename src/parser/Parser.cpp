@@ -19,7 +19,7 @@
 using namespace std;
 
 // Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
-void Parser::earleyParse(const vector<string> &words) {
+void Parser::earleyParse(const std::vector<TokenTemplate> &words) {
     // INIT
     // Reserve space in the productionrules
     S.reserve(LENGTH(words) + 1);
@@ -71,8 +71,8 @@ void Parser::predictor(ParseState &state, unsigned int k) {
     }
 }
 
-void Parser::scanner(ParseState &state, unsigned int k, const vector<std::string> &words) {
-    if(state.nextElement() == words[k])
+void Parser::scanner(ParseState &state, unsigned int k, const vector<TokenTemplate> &words) {
+    if(state.nextElement() == words[k].getType())
         ADD_TO_SET(k+1, state.getProduction(), state.getDot() + 1, state.getOrigin());
 }
 
@@ -84,9 +84,7 @@ void Parser::completer(ParseState &state, unsigned int k) {
     }
 }
 
-Parser::Parser() {
-    cfg = std::make_unique<CFG>("../input/test.json");
-}
+Parser::Parser(std::unique_ptr<CFG> g) : cfg(move(g)) {}
 
 
 // ParseState
@@ -125,7 +123,7 @@ bool ParseState::isFinished() {
 //    return !(*this == rhs);
 //}
 
-bool ParseState::operator==(ParseState &rhs) {
+bool ParseState::operator==(ParseState &rhs) const {
     if(dot != rhs.dot || origin != rhs.origin)
         return false;
     if(production.first != rhs.production.first || production.second != rhs.production.second)
@@ -133,7 +131,7 @@ bool ParseState::operator==(ParseState &rhs) {
     return true;
 }
 
-bool ParseState::operator!=(ParseState &rhs) {
+bool ParseState::operator!=(ParseState &rhs) const {
     return !(*this == rhs);
 }
 

@@ -10,7 +10,10 @@
     {"head": "PROJECTION_PREMISE", "body": ["COLUMN_NAME"]},
     {"head": "COLUMN_NAME", "body": ["NAME"]},
     {"head": "TABLE", "body": ["ROUNDED_BRACKET_LEFT", "TABLE", "ROUNDED_BRACKET_RIGHT"]},
-    {"head": "TABLE", "body": ["NAME"]}
+    {"head": "TABLE", "body": ["NAME", "π"]}
   ],
-  "Start": "S"
+  "Start": "S",
+  "Aliases": [
+    {"head":  "PI", "body":  ["pi", "π", "PI"]}
+  ]
 }
