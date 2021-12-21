@@ -10,7 +10,7 @@
   ],
   "Start": "S",
   "Aliases": [
-    {"head":  "number", "body":  ["0"]},
+    {"head":  "number", "body":  ["number", "0"]},
     {"head":  "plus", "body":  ["+"]},
     {"head":  "mul", "body":  ["*"]}
   ]

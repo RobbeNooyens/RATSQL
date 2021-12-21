@@ -1,19 +1,23 @@
 {
   "Variables": ["S", "EXPRESSION", "MODIFICATION", "TABLE", "PROJECTION", "PROJECTION_PREMISE", "COLUMN_NAME"],
-  "Terminals": ["PI", "NAME", "ROUNDED_BRACKET_LEFT", "ROUNDED_BRACKET_RIGHT"],
+  "Terminals": ["NUMBER", "STRING", "NAME", "PI", "ROUNDED_BRACKET_LEFT", "ROUNDED_BRACKET_RIGHT", "EQ"],
   "Productions": [
     {"head": "S", "body": ["EXPRESSION"]},
+    {"head": "S", "body": ["NAME", "EQ", "EXPRESSION"]},
     {"head": "EXPRESSION", "body": ["MODIFICATION", "EXPRESSION"]},
     {"head": "EXPRESSION", "body": ["TABLE"]},
     {"head": "MODIFICATION", "body": ["PROJECTION"]},
     {"head": "PROJECTION", "body": ["PI", "PROJECTION_PREMISE"]},
     {"head": "PROJECTION_PREMISE", "body": ["COLUMN_NAME"]},
-    {"head": "COLUMN_NAME", "body": ["NAME"]},
     {"head": "TABLE", "body": ["ROUNDED_BRACKET_LEFT", "TABLE", "ROUNDED_BRACKET_RIGHT"]},
-    {"head": "TABLE", "body": ["NAME", "π"]}
+    {"head": "TABLE", "body": ["COLUMN_NAME"]},
+    {"head": "COLUMN_NAME", "body": ["NAME"]}
   ],
   "Start": "S",
   "Aliases": [
-    {"head":  "PI", "body":  ["pi", "π", "PI"]}
+    {"head":  "PI", "body":  ["pi", "π", "PI"]},
+    {"head":  "EQ", "body":  ["eq", "=", "EQ"]},
+    {"head":  "ROUNDED_BRACKET_LEFT", "body":  ["("]},
+    {"head":  "ROUNDED_BRACKET_RIGHT", "body":  [")"]}
   ]
 }

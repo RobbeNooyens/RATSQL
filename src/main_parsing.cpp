@@ -12,9 +12,9 @@ using namespace std;
 int main(int argc, char *argv[]) {
 //    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
     vector<TokenTemplate> words{TokenTemplate("number", ""), TokenTemplate("+", ""), TokenTemplate("number", ""), TokenTemplate("*", ""), TokenTemplate("number", "")};
-    std::unique_ptr<CFG> g = std::make_unique<CFG>("../input/test.json");
+    std::unique_ptr<CFG> g = std::make_unique<CFG>("../input/grammar.json");
     Lexer lexer(g->getAliasMap(), g->getAliases());
     Parser parser(move(g));
-    parser.earleyParse(lexer.tokenise(L"number + number * number"));
+    parser.earleyParse(lexer.tokenise(L"π a (R)"));
     return 0;
 }
