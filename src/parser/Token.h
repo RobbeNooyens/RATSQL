@@ -74,7 +74,7 @@ enum TokenTypes {
 
 using namespace std;
 
-static map<TokenTypes, string> wStringToString { // Todo: verzin beter normale namen?
+static map<TokenTypes, string> stringToString { // Todo: verzin beter normale namen?
         {PI, "pi"},
         {SIGMA, "sigma"},
         {RHO, "rho"},

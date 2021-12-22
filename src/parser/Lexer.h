@@ -17,9 +17,9 @@ class Lexer {
 private:
     const char delimiter = ' ';
 
-    map<wstring, string> tokenMap;
+    map<string, string> tokenMap;
 
-    vector<vector<wstring>> aliases;
+    vector<vector<string>> aliases;
 
 public:
     Lexer();
@@ -28,7 +28,7 @@ public:
      * @param m mapping from inputs to tokentypes
      * @param a list of supported aliases
      */
-    Lexer(const map<wstring, string> &m, const vector<vector<wstring>> &a);
+    Lexer(const map<string, string> &m, const vector<vector<string>> &a);
 
 //    vector<Token> tokenise(const string &s);
 
@@ -37,21 +37,21 @@ public:
      * @param parseString string to split
      * @return vector with split parts
      */
-    vector<wstring> splitString(const wstring &parseString);
+    vector<string> splitString(const string &parseString);
 
     /**
      * Function to tokenise a vector of strings
      * @param v vector containing strings
      * @return vector containing tokens for the strings
      */
-    vector<TokenTemplate> tokenise(const vector<wstring> &v);
+    vector<TokenTemplate> tokenise(const vector<string> &v);
 
     /**
      * Function to tokenise a string, splitting it on ' '
      * @param s string to tokenise
      * @return vector containing tokens for the string
      */
-    vector<TokenTemplate> tokenise(const wstring &s);
+    vector<TokenTemplate> tokenise(const string &s);
 
     /**
      * Function to check if a string represents a string
@@ -62,7 +62,7 @@ public:
      * @param s the string to check
      * @return true if it represents a string
      */
-    bool isString(const wstring &s);
+    bool isString(const string &s);
 
     /**
      * Function to check if a string represents a number
@@ -73,7 +73,7 @@ public:
      * @param s the string to check
      * @return true if it represents a number
      */
-    bool isNumber(const wstring &s);
+    bool isNumber(const string &s);
 
     /**
      * Function to check if a string represents a name
@@ -84,7 +84,7 @@ public:
      * @param s the string to check
      * @return true if it represents a name
      */
-    bool isName(const wstring &s);
+    bool isName(const string &s);
 
     /**
      * Function checking for a delimiter in a string, matching the longest possible delimiter
@@ -92,7 +92,7 @@ public:
      * @param offset amount of characters that have been checked already
      * @return length of the found delimiter (0 if none was found)
      */
-    unsigned int isDelimiter(const wstring &s, unsigned int offset);
+    unsigned int isDelimiter(const string &s, unsigned int offset);
 };
 
 

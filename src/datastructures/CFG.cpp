@@ -220,11 +220,11 @@ CFG::CFG(const std::string& file) {
         variables.insert((std::string) variable);
     }
     for (const auto &alias : j["Aliases"]) {
-        std::vector<std::wstring> v;
+        std::vector<std::string> v;
         for (const auto &a : alias["body"]) {
             std::string head = alias["head"];
             std::string body = a;
-            std::wstring b(body.begin(), body.end());
+            std::string b(body.begin(), body.end());
             aliasMap.emplace(b, head);
             v.emplace_back(b);
         }
@@ -258,10 +258,10 @@ ProductionRules CFG::getRules(const string &head) {
     return rules;
 }
 
-const vector<std::vector<std::wstring>> &CFG::getAliases() const {
+const vector<std::vector<std::string>> &CFG::getAliases() const {
     return aliases;
 }
 
-const map<std::wstring, std::string> &CFG::getAliasMap() const {
+const map<std::string, std::string> &CFG::getAliasMap() const {
     return aliasMap;
 }

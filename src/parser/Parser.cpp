@@ -46,15 +46,15 @@ void Parser::earleyParse(const std::vector<TokenTemplate> &words) {
                 completer(state, k);
             }
             // remove duplicates
-            for(int i = 0; i < S[k].size(); i++) {
-                ParseState rule = S[k][i];
-                for(int j = i+1; j < S[k].size(); j++) {
-                    if(rule == S[k][j]) {
-                        S[k].erase(S[k].begin() + j);
-                    }
-                }
-            }
-
+            removeDuplicates(k);
+//            for(int i = 0; i < S[k].size(); i++) {
+//                ParseState rule = S[k][i];
+//                for(int j = i+1; j < S[k].size(); j++) {
+//                    if(rule == S[k][j]) {
+//                        S[k].erase(S[k].begin() + j);
+//                    }
+//                }
+//            }
         }
     }
     for(int k = 0; k < S.size(); k++) {
@@ -85,6 +85,18 @@ void Parser::completer(ParseState &state, unsigned int k) {
 }
 
 Parser::Parser(std::unique_ptr<CFG> g) : cfg(move(g)) {}
+
+void Parser::removeDuplicates(int k) {
+    // remove duplicates
+    for(int i = 0; i < S[k].size(); i++) {
+        ParseState rule = S[k][i];
+        for(int j = i+1; j < S[k].size(); j++) {
+            if (rule == S[k][j]) {
+                S[k].erase(S[k].begin() + j);
+            }
+        }
+    }
+}
 
 
 // ParseState

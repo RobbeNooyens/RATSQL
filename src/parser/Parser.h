@@ -62,6 +62,8 @@ public:
     void scanner(ParseState &state, unsigned int k, const vector<TokenTemplate> &words);
 
     void completer(ParseState &closureRule, unsigned int k);
+
+    void removeDuplicates(int k);
 };
 
 

@@ -22,7 +22,7 @@
 //
 //using ProductionRules = std::vector<Production>;
 //
-//static std::vector<std::vector<std::wstring>> names = {{L"pi",        L"π"},
+//static std::vector<std::vector<std::string>> names = {{L"pi",        L"π"},
 //                                                      {L"sigma",     L"σ"},
 //                                                      {L"rho",       L"ρ"},
 //                                                      {L"←",         L"<-"},
@@ -140,8 +140,8 @@
 //    }
 //};
 //
-//static std::map<std::wstring, TokenTypes> generateTokenMap() {
-//    std::map<std::wstring, TokenTypes> map;
+//static std::map<std::string, TokenTypes> generateTokenMap() {
+//    std::map<std::string, TokenTypes> map;
 //    for (int i = 0; i < names.size(); ++i) {
 //        for (auto &name: names[i]) {
 //            map.emplace(name, tokens[i]);

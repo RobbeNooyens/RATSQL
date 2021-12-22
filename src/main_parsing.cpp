@@ -16,7 +16,6 @@ int main(int argc, char *argv[]) {
     Lexer lexer(g->getAliasMap(), g->getAliases());
     Parser parser(move(g));
     string input = "π a (R)";
-    wstring k(input.begin(), input.end());
-    parser.earleyParse(lexer.tokenise(k));
+    parser.earleyParse(lexer.tokenise(input));
     return 0;
 }

@@ -137,9 +137,9 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-//    wstring expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
-    wstring expression = L"π maker ( Product )";
-//    wstring expression = L"pi maker ( Test )";
+//    string expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+    string expression = L"π maker ( Product )";
+//    string expression = L"pi maker ( Test )";
 //    cout << "Expression: ";
 //    getline(cin, expression);
     Lexer lexer = Lexer(<#initializer#>, <#initializer#>);

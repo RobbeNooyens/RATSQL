@@ -28,9 +28,9 @@ public:
     bool isTerminal(const std::string& s);
     ProductionRules getRules(const std::string& head);
 
-    const std::vector<std::vector<std::wstring>> &getAliases() const;
+    const std::vector<std::vector<std::string>> &getAliases() const;
 
-    const std::map<std::wstring, std::string> &getAliasMap() const;
+    const std::map<std::string, std::string> &getAliasMap() const;
 
     void print();
 
@@ -40,9 +40,9 @@ private:
     ProductionRules productionRules;
     std::string startSymbol;
 
-    std::vector<std::vector<std::wstring>> aliases;
+    std::vector<std::vector<std::string>> aliases;
 
-    std::map<std::wstring, std::string> aliasMap;
+    std::map<std::string, std::string> aliasMap;
 
     std::string stringSetToString(StringSet &set);
     std::string stringVectorToString(std::vector<std::string> &vector);

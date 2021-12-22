@@ -4179,7 +4179,7 @@ class wide_string_input_adapter : public input_adapter_protocol
         wide_string_input_helper<WideStringType, T>::fill_buffer(str, current_wchar, utf8_bytes, utf8_bytes_index, utf8_bytes_filled);
     }
 
-    /// the wstring to process
+    /// the string to process
     const WideStringType& str;
 
     /// index of the current wchar in str
@@ -4209,8 +4209,8 @@ class input_adapter
     input_adapter(std::istream&& i)
         : ia(std::make_shared<input_stream_adapter>(i)) {}
 
-    input_adapter(const std::wstring& ws)
-        : ia(std::make_shared<wide_string_input_adapter<std::wstring>>(ws)) {}
+    input_adapter(const std::string& ws)
+        : ia(std::make_shared<wide_string_input_adapter<std::string>>(ws)) {}
 
     input_adapter(const std::u16string& ws)
         : ia(std::make_shared<wide_string_input_adapter<std::u16string>>(ws)) {}
