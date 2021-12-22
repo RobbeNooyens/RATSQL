@@ -15,6 +15,8 @@ int main(int argc, char *argv[]) {
     std::unique_ptr<CFG> g = std::make_unique<CFG>("../input/grammar.json");
     Lexer lexer(g->getAliasMap(), g->getAliases());
     Parser parser(move(g));
-    parser.earleyParse(lexer.tokenise(L"π a (R)"));
+    string input = "π a (R)";
+    wstring k(input.begin(), input.end());
+    parser.earleyParse(lexer.tokenise(k));
     return 0;
 }

@@ -50,6 +50,7 @@ vector<wstring> Lexer::splitString(const wstring &parseString) {
 
 // Todo: nakijken
 unsigned int Lexer::isDelimiter(const wstring &s, unsigned int offset) {
+    int k = 0;
     for (const auto &name : aliases) {
         for (const auto &n : name) {
             wstring temp;
@@ -63,11 +64,11 @@ unsigned int Lexer::isDelimiter(const wstring &s, unsigned int offset) {
                 }
             }
             if (n == temp) {
-                return j;
+                k = max(k, j);
             }
         }
     }
-    return 0;
+    return k;
 }
 
 vector<TokenTemplate> Lexer::tokenise(const vector<wstring> &v) {
@@ -76,13 +77,13 @@ vector<TokenTemplate> Lexer::tokenise(const vector<wstring> &v) {
         string token;
         // Make a normal string from the wstring entry
         string content (entry.begin(), entry.end());
-        if (isString(entry)) {
+        /*if (isString(entry)) {
             token = "STRING";
-        } else if (tokenMap.find(entry) != tokenMap.end()) {
+        } else */if (tokenMap.find(entry) != tokenMap.end()) {
             token = tokenMap[entry];
             content = token;
         } else if (isNumber(entry)) {
-            token = "NUMBER";
+            token = "DIGIT";
         } else if (isName(entry)){
             token = "NAME";
         } else {

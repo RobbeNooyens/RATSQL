@@ -87,7 +87,7 @@ public:
     bool isName(const wstring &s);
 
     /**
-     * Function checking for a delimiter in a string
+     * Function checking for a delimiter in a string, matching the longest possible delimiter
      * @param s string to check
      * @param offset amount of characters that have been checked already
      * @return length of the found delimiter (0 if none was found)
