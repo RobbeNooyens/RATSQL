@@ -23,7 +23,7 @@ void ShuntingAlgorithm::operator()(string &str, std::ostream& stream) {
     for(char c: str) {
         if(c == ' ') {
             string token = strStream.str();
-            parser.consume(token);
+            SAParser.consume(token);
             strStream.str(string());
         } else {
             strStream << c;
@@ -31,14 +31,12 @@ void ShuntingAlgorithm::operator()(string &str, std::ostream& stream) {
     }
     if(!strStream.str().empty()) {
         string token = strStream.str();
-        parser.consume(token);
+        SAParser.consume(token);
     }
-    parser.flush();
-    parser.printOperatorStack();
-    parser.printQueue();
-    parser.generateOutput(stream);
+    SAParser.flush();
+    SAParser.parse(stream);
 }
 
 ShuntingYardParser ShuntingAlgorithm::getParser() const {
-    return this->parser;
+    return this->SAParser;
 }

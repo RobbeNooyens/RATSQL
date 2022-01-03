@@ -15,11 +15,12 @@
 #include <iostream>
 #include <algorithm>
 #include "ShuntingYardParser.h"
+#include "../exceptions/ExceptionHandler.h"
 
 using namespace std;
 
 void ShuntingYardParser::consume(string &symbol) {
-    std::cout << "Consuming [" << symbol << "]" << std::endl; // todo remove debug
+    //std::cout << "Consuming [" << symbol << "]" << std::endl; // todo remove debug
     if(isOperator(symbol)) {
         consumeOperator(symbol);
     } else {
@@ -32,6 +33,7 @@ void ShuntingYardParser::flush() {
         queue.push(operatorStack.top());
         operatorStack.pop();
     }
+    expression = RAExpression();
 }
 
 void ShuntingYardParser::consumeOperator(string &opSymbol) {
@@ -39,7 +41,7 @@ void ShuntingYardParser::consumeOperator(string &opSymbol) {
         operatorStack.push(opSymbol);
         return;
     } else if(opSymbol == ")") {
-        printOperatorStack();
+        //printOperatorStack(); // todo remove debug
         std::string stackTop = operatorStack.top();
         while(stackTop != "(") {
             operatorStack.pop();
@@ -72,60 +74,23 @@ void ShuntingYardParser::consumeText(string &text) {
 }
 
 template <typename T>
-void traverse_stack(stack<T> & st) {
-    if(st.empty())
-        return;
-    T x = st.top();
-    cout << x << endl;
-    st.pop();
-    traverse_stack(st);
-    st.push(x);
+void traverse_stack(stack<T> st) {
+    while (!st.empty()) {
+        try { cout << st.top() << endl; } catch (exception &e) {
+            // typename T cannot be used by std::cout
+            ExceptionHandler::handle(e,"An error occurred while trying to traverse the stack.");
+            return;
+        }
+        st.pop();
+    }
 }
 
-void ShuntingYardParser::printOperatorStack() {
-    // todo is this supposed to be empty? - current output below
-    /*
-Consuming [σ]
-Consuming [maker2<maker]
-Consuming [(]
-Consuming [ρ]
-Consuming [maker2←maker]
-Consuming [π]
-Consuming [maker,type]
-Consuming [Product]
-Consuming [⋈]
-Consuming [π]
-Consuming [maker,type]
-Consuming [Product]
-Consuming [)]
-Operator stack:
-π
-⋈
-(
-σ
-Operator stack: // todo here
-Queue:
-maker2<maker
-maker2←maker
-maker,type
-Product
-π
-ρ
-maker,type
-Product
-π
-⋈
-σ
-0: π maker,type Product
-1: ρ maker2←maker 0
-2: 1 ⋈ 0
-3: σ maker2<maker 2
-     */
+__attribute__((unused)) void ShuntingYardParser::printOperatorStack() {
     cout << "Operator stack:" << endl;
     traverse_stack(operatorStack);
 }
 
-void ShuntingYardParser::printQueue() {
+__attribute__((unused)) void ShuntingYardParser::printQueue() {
     cout << "Queue:" << endl;
     for(int i = 0; i < queue.size(); i++) {
         string front = queue.front();
@@ -136,9 +101,8 @@ void ShuntingYardParser::printQueue() {
 }
 
 bool ShuntingYardParser::isOperator(string &symbol) {
-    for(const auto& entry: precedence) {
-        if(entry.first == symbol)
-            return true;
+    if(any_of(precedence.begin(),precedence.end(),[symbol](const std::pair<std::string,int>& entry) { return entry.first == symbol; })) {
+        return true;
     }
     return false;
 }
@@ -147,49 +111,68 @@ string &ShuntingYardParser::getStackTop() {
     return operatorStack.empty() ? emptyStack : operatorStack.top();
 }
 
-void ShuntingYardParser::generateOutput(ostream &stream, bool print, bool saveExpression) {
-    vector<string> combined;
+RAExpression ShuntingYardParser::parse(ostream &stream, bool print) {
+    // Creating a new expression for saving
+    expression = RAExpression();
+    // Creating a new variable for printing
+    vector<string> output;
+
+    // Algorithm
     string queueFront;
     while(!queue.empty()) {
         queueFront = queue.front();
         if(isOperator(queueFront)) {
-            string stackTop1 = textStack.top();
-            textStack.pop();
-            string stackTop2 = textStack.top();
-            if (!textStack.empty()) textStack.pop();
-            string joined;
-            if(operatorTypes[queueFront] == PREFIX) {
-                joined = queueFront.append(" ").append(stackTop2).append(" ").append(stackTop1);
-            } else if(operatorTypes[queueFront] == INFIX) {
-                joined = stackTop2.append(" ").append(queueFront).append(" ").append(stackTop1);
-            } else {
-                joined = stackTop2.append(" ").append(stackTop1).append(" ").append(queueFront);
-            }
-            int index = -1;
-            for(int i = 0; i < combined.size(); i++) {
-                if(combined[i] == joined) {
-                    index = i;
-                }
-            }
-            if(index == -1) {
-                index = (int) combined.size();
-                combined.push_back(joined);
-            }
-            textStack.push(to_string(index));
+            // Operator found, parse!
+            parseOperator(queueFront, output);
         } else {
+            // No operator, add to the textStack
             textStack.push(queueFront);
         }
+        // Pop the top of the queue and start over
         queue.pop();
     }
-    RAExpression exp(combined);
-    if (saveExpression) this->expression = exp;
-    if (print) exp.printExpression(stream);
+
+    // Printing the result if asked to do so
+    if (print) expression.printExpression(stream);
+    return expression;
 }
 
 RAExpression ShuntingYardParser::getRAExpression() const {
     return this->expression;
 }
 
-void ShuntingYardParser::generateOutput(bool saveExpression, bool print, ostream &stream) {
-    this->generateOutput(stream,print,saveExpression);
+void ShuntingYardParser::parseOperator(string &queueFront, vector<string>& output) {
+    string stackTop1 = textStack.top();
+    textStack.pop();
+    string stackTop2 = textStack.top();
+    if (!textStack.empty()) textStack.pop();
+
+    string joined;
+    RAWord word;
+    if(operatorTypes[queueFront] == PREFIX) {
+        // We have an operator that uses prefix
+        word = {queueFront, stackTop2, stackTop1};
+        joined = queueFront.append(" ").append(stackTop2).append(" ").append(stackTop1);
+    } else if(operatorTypes[queueFront] == INFIX) {
+        // Operator that uses infix
+        word = {stackTop2, queueFront, stackTop1};
+        joined = stackTop2.append(" ").append(queueFront).append(" ").append(stackTop1);
+    } else {
+        // Operator that uses postfix
+        word = {stackTop2, stackTop1, queueFront};
+        joined = stackTop2.append(" ").append(stackTop1).append(" ").append(queueFront);
+    }
+    
+    int index = -1;
+    for(int i = 0; i < output.size(); i++) {
+        if(output[i] == joined) {
+            index = i;
+        }
+    }
+    if(index == -1) {
+        index = (int) output.size();
+        expression.addWord(word);
+        output.push_back(joined);
+    }
+    textStack.push(to_string(index));
 }

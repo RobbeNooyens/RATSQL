@@ -16,7 +16,7 @@
 #include "../exceptions/ExceptionHandler.h"
 #include <iostream>
 
-void RAExpression::setWord(int index, const std::string& word) {
+void RAExpression::setWord(int index, const RAWord& word) {
     try {
         this->expression[index] = word;
     } catch (std::exception& exc) {
@@ -25,7 +25,7 @@ void RAExpression::setWord(int index, const std::string& word) {
     }
 }
 
-std::string RAExpression::getWord(int index) {
+RAWord RAExpression::getWord(int index) {
     try {
         return this->expression[index];
     } catch (std::exception& exc) {
@@ -38,15 +38,25 @@ std::string RAExpression::getWord(int index) {
 void RAExpression::printExpression(std::ostream &stream) {
     int index = 0;
     for(auto& s: this->expression) {
-        stream << index << ": " << s << std::endl;
+        std::string toPrint{};
+        for (auto& elem: s) {
+            toPrint += elem + " ";
+            if (elem == s.back()) toPrint.pop_back();
+        }
+        stream << index << ": " << toPrint << std::endl;
         index++;
     }
 }
 
-RAExpression::RAExpression(std::vector<std::string> expression) {
-    this->expression = std::move(expression);
+RAExpression::RAExpression(const std::vector<std::string>& expression) {
+    auto word = RAWord();
+
 }
 
-std::vector<std::string> RAExpression::getExpression() const {
+std::vector<RAWord> RAExpression::getExpression() const {
     return this->expression;
+}
+
+void RAExpression::addWord(const RAWord &word) {
+    expression.push_back(word);
 }

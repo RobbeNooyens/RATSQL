@@ -18,10 +18,12 @@
 #include <vector>
 #include <string>
 
+using RAWord = std::vector<std::string>;
+
 class RAExpression {
 private:
     /// @brief Relation algebra expression
-    std::vector<std::string> expression;
+    std::vector<RAWord> expression;
 public:
     /**
      * @brief Default constructor
@@ -31,23 +33,28 @@ public:
      * @brief Constructor that will make an expression based on the given vector
      * @param expression    Given vector of strings
      */
-    explicit RAExpression(std::vector<std::string> expression);
+    explicit RAExpression(const std::vector<std::string>& expression);
     /**
      * @brief Setter for a word in the expression
      * @param index     Index on where the word should come
      */
-    void setWord(int index, const std::string& word);
+    void setWord(int index, const RAWord& word);
+    /**
+     * @brief Will add a word to the expression
+     * @param word      Word to add to the expression
+     */
+    void addWord(const RAWord& word);
     /**
      * @brief Getter for a word on a given index
      * @param index     Index of the world we want to get
      * @return
      */
-    std::string getWord(int index);
+    RAWord getWord(int index);
     /**
      * @brief Getter for the expression
      * @return      Expression
      */
-    std::vector<std::string> getExpression() const;
+    std::vector<RAWord> getExpression() const;
     /**
      * @brief Print the expression to a io stream
      * @param stream    io stream to print to

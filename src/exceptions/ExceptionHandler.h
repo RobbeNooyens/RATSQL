@@ -10,7 +10,7 @@
 class ExceptionHandler {
 public:
     __attribute__((unused)) static ExceptionHandler& getInstance();
-    static void handle(std::exception& exc, const std::string& message);
+    static void handle(std::exception& exc, const std::string& message) noexcept;
 };
 
 

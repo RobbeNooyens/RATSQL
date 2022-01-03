@@ -11,7 +11,7 @@ __attribute__((unused)) ExceptionHandler &ExceptionHandler::getInstance() {
     return excHandler;
 }
 
-void ExceptionHandler::handle(std::exception &exc, const std::string& message) {
+void ExceptionHandler::handle(std::exception &exc, const std::string& message) noexcept {
     std::cerr << message << std::endl;
     std::cout << "The exception was: ";
     std::cerr << exc.what() << std::endl;
