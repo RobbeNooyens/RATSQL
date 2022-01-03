@@ -154,5 +154,4 @@ void CommandHandler::parse() {
     vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
     Parser parser;
     parser.earleyParse(words);
-    parser.makeTree();
 }

@@ -29,7 +29,7 @@ void Parser::earleyParse(const vector<string> &words) {
 
     // EARLEY_PARSE
     // Add basic start rule
-    Production startProduction{"S_", {cfg->getStartSymbol()}};
+    ProductionRule startProduction{"S_", {cfg->getStartSymbol()}};
     ADD_TO_SET(0, startProduction, 0, 0);
     // Loop over all words
     for (int k = 0; k < LENGTH(words) + 1; ++k) {
@@ -91,9 +91,9 @@ Parser::Parser() {
 
 // ParseState
 
-ParseState::ParseState(Production production, int dot, int origin): production(std::move(production)), dot(dot), origin(origin) {};
+ParseState::ParseState(ProductionRule production, int dot, int origin): production(std::move(production)), dot(dot), origin(origin) {};
 
-const Production &ParseState::getProduction() {
+const ProductionRule &ParseState::getProduction() {
     return production;
 }
 

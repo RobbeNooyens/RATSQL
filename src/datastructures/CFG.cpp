@@ -159,7 +159,7 @@ void CFG::print() {
     std::cout << "V = {" << stringSetToString(this->variables) << "}" << std::endl;
     std::cout << "T = {" << stringSetToString(this->terminals) << "}" << std::endl;
     std::cout << "P = {" << std::endl;
-    for(Production production: productionRules) {
+    for(auto& production: productionRules) {
         std::cout << "    " << production.first << "   -> `" << stringVectorToString(production.second) << "`" << std::endl;
     }
     std::cout << "}" << std::endl;
@@ -178,7 +178,7 @@ std::string CFG::stringSetToString(StringSet &set) {
     return output;
 }
 
-std::string CFG::stringVectorToString(std::vector<std::string> &vector) {
+std::string CFG::stringVectorToString(const std::vector<std::string> &vector) {
     std::string output;
     int count = 0;
     for(const std::basic_string<char>& s: vector) {

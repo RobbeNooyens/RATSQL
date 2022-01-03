@@ -73,7 +73,9 @@ add_executable(RATSQL_CMD
         src/io/CommandHandler.cpp
         src/datastructures/CFG.cpp
         src/datastructures/CFG.h
-        libs/json.hpp)
+        libs/json.hpp
+        src/exceptions/ExceptionHandler.cpp
+        src/exceptions/ExceptionHandler.h)
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
@@ -92,6 +94,8 @@ add_executable(RATSQL_GUI
         src/datastructures/SQLStatement.h
         src/datastructures/ParseSettings.h
         src/datastructures/ReplaceSuggestion.h
+        src/exceptions/ExceptionHandler.h
+        src/exceptions/ExceptionHandler.cpp
         src/parsers/ShuntingYardParser.cpp
         src/parsers/ShuntingYardParser.h
         src/parsers/Parsers.h
@@ -124,6 +128,8 @@ add_executable(RATSQL_TESTS
         src/datastructures/SQLStatement.h
         src/datastructures/ParseSettings.h
         src/datastructures/ReplaceSuggestion.h
+        src/exceptions/ExceptionHandler.h
+        src/exceptions/ExceptionHandler.cpp
         src/parsers/ShuntingYardParser.cpp
         src/parsers/ShuntingYardParser.h
         src/parsers/Parsers.h
@@ -133,14 +139,20 @@ add_executable(RATSQL_TESTS
         src/tests/Test.h
         src/tests/LevenshteinTest.cpp
         src/tests/LevenshteinTest.h
-        src/tests/ShuntingYardTest.cpp src/tests/ShuntingYardTest.h src/tests/Test.cpp)
+        src/tests/ShuntingYardTest.cpp
+        src/tests/ShuntingYardTest.h
+        src/tests/Test.cpp)
 
 add_executable(RATSQL_SHUNTING_YARD
         src/main_shunting_yard.cpp
         src/algorithms/ShuntingAlgorithm.cpp
         src/algorithms/ShuntingAlgorithm.h
         src/parsers/ShuntingYardParser.cpp
-        src/parsers/ShuntingYardParser.h)
+        src/parsers/ShuntingYardParser.h
+        src/exceptions/ExceptionHandler.h
+        src/exceptions/ExceptionHandler.cpp
+        src/datastructures/RAExpression.h
+        src/datastructures/RAExpression.cpp)
 
 add_executable(RATSQL_PARSING
         src/main_parsing.cpp
@@ -149,8 +161,6 @@ add_executable(RATSQL_PARSING
         src/datastructures/CFG.cpp
         src/datastructures/CFG.h
         libs/json.hpp)
-
-add_executable(RATSQL_PARSER src/parser/Grammar.h src/parser/Lexer.cpp src/parser/Lexer.h src/parser/Token.h src/parser/UndefinedTokenException.h src/parser/Parser.cpp src/parser/Parser.h)
 
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)

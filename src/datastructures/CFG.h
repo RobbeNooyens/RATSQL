@@ -11,8 +11,8 @@
 #include <vector>
 
 typedef std::set<std::string> StringSet;
-typedef std::pair<std::string, std::vector<std::string>> Production;
-typedef std::set<Production> ProductionRules;
+typedef std::pair<std::string, std::vector<std::string>> ProductionRule;
+typedef std::set<ProductionRule> ProductionRules;
 
 class CFG {
 public:
@@ -37,7 +37,7 @@ private:
     std::string startSymbol;
 
     std::string stringSetToString(StringSet &set);
-    std::string stringVectorToString(std::vector<std::string> &vector);
+    std::string stringVectorToString(const std::vector<std::string> &vector);
 
 };
 

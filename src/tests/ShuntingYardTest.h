@@ -17,11 +17,12 @@
 
 
 #include "Test.h"
+#include "../algorithms/ShuntingAlgorithm.h"
 
 class ShuntingYardTest: public Test {
 public:
     void run() override;
-
+    static void testExpectedOutput();
 };
 
 

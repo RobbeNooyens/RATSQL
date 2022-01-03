@@ -20,7 +20,7 @@ public:
     Production(TokenTypes left, std::vector<TokenTypes> right): from(left), to(move(right)) {}
 };
 
-using ProductionRules = std::vector<Production>;
+using ProdRules = std::vector<Production>;
 
 static std::vector<std::vector<std::wstring>> names = {{L"pi",        L"π"},
                                                       {L"sigma",     L"σ"},
@@ -59,7 +59,7 @@ static std::vector<TokenTypes> tokens = {PI, SIGMA, RHO, LEFTARROW, RIGHTARROW, 
                                          CURLY_BRACKET_LEFT, CURLY_BRACKET_RIGHT, ROUNDED_BRACKET_LEFT,
                                          ROUNDED_BRACKET_RIGHT, DOT, COMMA, QUOTE};
 
-static ProductionRules productions {
+static ProdRules productions {
         Production(S, {EXPRESSION}),
         Production(S, {NAME, EQ, EXPRESSION}),
         Production(EXPRESSION, {TABLE}),
@@ -127,10 +127,10 @@ static ProductionRules productions {
 struct Grammar {
     TokenTypes startSymbol = S;
 
-    ProductionRules productionRules = productions;
+    ProdRules productionRules = productions;
 
-    ProductionRules getRules(TokenTypes t) const {
-        ProductionRules result;
+    ProdRules getRules(TokenTypes t) const {
+        ProdRules result;
         for (auto &p : productionRules) {
             if (p.from == t) {
                 result.emplace_back(p);

@@ -15,9 +15,9 @@
 class ParseState {
 public:
     ParseState();
-    ParseState(Production production, int dot, int origin);
+    ParseState(ProductionRule production, int dot, int origin);
 
-    const Production& getProduction();
+    const ProductionRule& getProduction();
     int getDot() const;
     int getOrigin() const;
 
@@ -35,7 +35,7 @@ public:
 
 
 private:
-    Production production;
+    ProductionRule production;
     int dot = 0;
     int origin = 0;
 

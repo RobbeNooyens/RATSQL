@@ -22,7 +22,6 @@ public:
     void run() override;
 
     static void testDistance();
-    static void testEvalDistance();
     static void testIdentical();
     static void testNotIdentical();
 };
