@@ -6,23 +6,27 @@
 #define RATSQL_PARSING_TREE_H
 
 
+#include "ParseToken.h"
+
 class Tree {
 public:
-    Tree(std::string content);
+    explicit Tree(std::string token);
+    ~Tree();
 
-//    void addChild(int option, Tree* tree);
-//    Tree* getChild(int option, int index);
     void addChild(Tree* tree);
     Tree* getChild(int index);
 
     std::vector<Tree*>& getChildren();
 
-    ~Tree();
+    void assignTokens(const std::vector<ParseToken> &tokens, int &tokenIndex);
+
+    void exportDot(std::string& file);
+    void exportDotRecursive(std::ofstream& out, int& index);
 
 
 private:
-    std::string content;
-//    std::vector<std::vector<Tree*>> children;
+    std::string token;
+    std::string value;
     std::vector<Tree*> children;
 
 };

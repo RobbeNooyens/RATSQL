@@ -75,7 +75,7 @@ add_executable(RATSQL_CMD
         src/datastructures/CFG.h
         libs/json.hpp
         src/exceptions/ExceptionHandler.cpp
-        src/exceptions/ExceptionHandler.h src/parser/Tree.cpp src/parser/Tree.h src/parser/ParseState.cpp src/parser/ParseState.h)
+        src/exceptions/ExceptionHandler.h src/parser/Tree.cpp src/parser/Tree.h src/parser/ParseState.cpp src/parser/ParseState.h src/parser/ParseToken.cpp src/parser/ParseToken.h)
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
@@ -164,7 +164,7 @@ add_executable(RATSQL_PARSING
         src/parser/Tree.h
         src/parser/ParseState.h
         src/parser/ParseState.cpp
-        libs/json.hpp)
+        libs/json.hpp src/parser/ParseToken.cpp src/parser/ParseToken.h)
 
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)

@@ -22,11 +22,11 @@
 using namespace std;
 
 // Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
-void Parser::earleyParse(const vector<string> &words) {
+void Parser::earleyParse(const vector<ParseToken> &tokens) {
     // INIT
     // Reserve space in the productionrules
-    S.reserve(LENGTH(words) + 1);
-    for(int k = 0; k < LENGTH(words) + 1; k++) {
+    S.reserve(LENGTH(tokens) + 1);
+    for(int k = 0; k < LENGTH(tokens) + 1; k++) {
         S.emplace_back(EMPTY_ORDERED_SET);
     }
 
@@ -35,14 +35,14 @@ void Parser::earleyParse(const vector<string> &words) {
     ProductionRule startProduction{"S_", {cfg->getStartSymbol()}};
     ADD_TO_SET(0, startProduction, 0, 0);
     // Loop over all words
-    for (int k = 0; k < LENGTH(words) + 1; ++k) {
+    for (int k = 0; k < LENGTH(tokens) + 1; ++k) {
         for(int it = 0; it < LENGTH(S[k]); it++) {
             auto state = S[k][it];
             if (!state->isFinished()) {
                 if (IS_VARIABLE(state->nextElement())) {
                     predictor(state, k);
                 } else {
-                    scanner(state, k, words);
+                    scanner(state, k, tokens);
                 }
             } else {
                 completer(state, k);
@@ -79,10 +79,14 @@ void Parser::earleyParse(const vector<string> &words) {
     }
     if(initReplacement) {
         Tree* root = new Tree("S_");
-//        Tree* second = new Tree(initReplacement->getProduction().second.front());
-//        root->addChild(second);
         initReplacement->evaluate(root);
-        int i = 0;
+        int index = 0;
+        root->assignTokens(tokens, index);
+        std::string output = "../output/out.dot";
+        root->exportDot(output);
+        if(index != tokens.size()) {
+            throw std::runtime_error("Index should be at end of vector");
+        }
     }
 
 
@@ -95,8 +99,8 @@ void Parser::predictor(ParseState* state, unsigned int k) {
     }
 }
 
-void Parser::scanner(ParseState* state, unsigned int k, const vector<std::string> &words) {
-    if(state->nextElement() == words[k]) {
+void Parser::scanner(ParseState* state, unsigned int k, const vector<ParseToken> &tokens) {
+    if(state->nextElement() == tokens[k].getToken()) {
         ADD_TO_SET(k+1, state->getProduction(), state->getDot() + 1, state->getOrigin());
         std::pair<ParseState*, ParseState*> pair = {state, nullptr};
         CONSTRUCT_TREE(pair);
@@ -113,8 +117,8 @@ void Parser::completer(ParseState* state, unsigned int k) {
     }
 }
 
-Parser::Parser() {
-    cfg = std::make_shared<CFG>("../input/test.json");
+Parser::Parser(std::string& grammar) {
+    cfg = std::make_shared<CFG>(grammar);
 }
 
 Parser::~Parser() {

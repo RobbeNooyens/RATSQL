@@ -11,6 +11,7 @@
 #include <memory>
 
 #include "../datastructures/CFG.h"
+#include "ParseToken.h"
 
 class ParseState;
 
@@ -24,15 +25,15 @@ public:
      * @param words tokens
      * @param grammar grammar
      */
-    void earleyParse(const std::vector<std::string> &words);
+    void earleyParse(const std::vector<ParseToken> &words);
 
-    Parser();
+    explicit Parser(std::string& grammar);
     ~Parser();
 
     // Todo: Git gut
     void predictor(ParseState* closureRule, unsigned int k);
 
-    void scanner(ParseState* closureRule, unsigned int k, const std::vector<std::string> &words);
+    void scanner(ParseState* state, unsigned int k, const std::vector<ParseToken> &tokens);
 
     void completer(ParseState* closureRule, unsigned int k);
 };

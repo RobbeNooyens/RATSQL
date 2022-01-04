@@ -1,0 +1,25 @@
+digraph ParseTree {
+  0 [label="S_"];
+  0 -> 1
+  1 [label="S"];
+  1 -> 2
+  2 [label="EXPRESSION"];
+  2 -> 3
+  3 [label="MODIFICATION"];
+  3 -> 4
+  4 [label="PROJECTION"];
+  4 -> 5
+  5 [label="PI"];
+  4 -> 6
+  6 [label="PROJECTION_PREMISE"];
+  6 -> 7
+  7 [label="COLUMN_NAME"];
+  7 -> 8
+  8 [label="NAME"];
+  2 -> 9
+  9 [label="EXPRESSION"];
+  9 -> 10
+  10 [label="TABLE"];
+  10 -> 11
+  11 [label="ROUNDED_BRACKET_RIGHT"];
+}
