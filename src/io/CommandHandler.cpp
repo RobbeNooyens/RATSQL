@@ -69,6 +69,8 @@ void CommandHandler::operator()(std::string &command) {
         autoConventions();
     } else if(command == "lexify") {
         lexify();
+    } else if(command == "parse") {
+        parse();
     }
 }
 /**
@@ -135,7 +137,8 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-    wstring expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+//    wstring expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+    wstring expression = L"π maker ( Product )";
 //    wstring expression = L"pi maker ( Test )";
 //    cout << "Expression: ";
 //    getline(cin, expression);
@@ -145,12 +148,10 @@ void CommandHandler::lexify() {
         cout << tokenToString[s.getType()] << " ";
     }
     cout << endl;
-    Parser parser{};
-    vector<TokenTypes> tokenTypes;
-    for(const auto& token: t) {
-        tokenTypes.push_back(token.getType());
-    }
-    Grammar grammar{};
-    parser.earleyParse(tokenTypes, grammar);
-    parser.makeTree();
+}
+
+void CommandHandler::parse() {
+    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
+    Parser parser;
+    parser.earleyParse(words);
 }

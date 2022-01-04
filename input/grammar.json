@@ -1,0 +1,16 @@
+{
+  "Variables": ["S", "EXPRESSION", "MODIFICATION", "TABLE", "PROJECTION", "PROJECTION_PREMISE", "COLUMN_NAME"],
+  "Terminals": ["PI", "NAME", "ROUNDED_BRACKET_LEFT", "ROUNDED_BRACKET_RIGHT"],
+  "Productions": [
+    {"head": "S", "body": ["EXPRESSION"]},
+    {"head": "EXPRESSION", "body": ["MODIFICATION", "EXPRESSION"]},
+    {"head": "EXPRESSION", "body": ["TABLE"]},
+    {"head": "MODIFICATION", "body": ["PROJECTION"]},
+    {"head": "PROJECTION", "body": ["PI", "PROJECTION_PREMISE"]},
+    {"head": "PROJECTION_PREMISE", "body": ["COLUMN_NAME"]},
+    {"head": "COLUMN_NAME", "body": ["NAME"]},
+    {"head": "TABLE", "body": ["ROUNDED_BRACKET_LEFT", "TABLE", "ROUNDED_BRACKET_RIGHT"]},
+    {"head": "TABLE", "body": ["NAME"]}
+  ],
+  "Start": "S"
+}
