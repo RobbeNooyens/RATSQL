@@ -21,7 +21,7 @@ using namespace std;
 void ShuntingAlgorithm::operator()(string &str, std::ostream& stream) {
     stringstream strStream;
     for(char c: str) {
-        if(c == ' ') {
+        if(c == ' ') { // todo the error of the spaces around the error is here - can't use space to separate items!
             string token = strStream.str();
             SAParser.consume(token);
             strStream.str(string());

@@ -45,4 +45,30 @@ bool LevenshteinDistance::evalLevenshteinDistance(const std::string &str1, const
     return m->getValue((int)len1,(int)len2) <= deviation;
 }
 
+LevenshteinDistance::LevenshteinDistance(const std::string& path) {
+    std::ifstream file(path);
+    if (!file.is_open())
+    {
+        // TODO - error
+    }
+    std::string str;
+    while (std::getline(file, str)) {  mDict.emplace_back(str); }
+    file.close();
+}
+
+LevenshteinDistance &LevenshteinDistance::getInstance() {
+    static LevenshteinDistance instance("resources/words_small.txt");
+    return instance;
+}
+
+std::pair<bool, std::vector<std::string>> LevenshteinDistance::eval(const std::string &str1, int deviation) {
+    std::vector<std::string> sugg;
+    std::cout << str1 << "\n";
+    bool flag = false;
+    for (const auto &i : mDict) {
+        if (evalLevenshteinDistance(str1, i, deviation)) { sugg.emplace_back(i); }
+        if (str1 == i) { flag = true; }
+    }
+    return {flag,sugg};
+}
 

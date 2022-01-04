@@ -67,8 +67,6 @@ void CommandHandler::operator()(std::string &command) {
         toSQL();
     } else if(command == "autoconventions") {
         autoConventions();
-    } else if(command == "lexify") {
-        lexify();
     } else if(command == "parse") {
         parse();
     }
@@ -136,22 +134,14 @@ void CommandHandler::toSQL() {
     // TODO: implement command
 }
 
-void CommandHandler::lexify() {
-//    string expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
-    string expression = L"π maker ( Product )";
-//    string expression = L"pi maker ( Test )";
-//    cout << "Expression: ";
-//    getline(cin, expression);
-    Lexer lexer = Lexer(<#initializer#>, <#initializer#>);
-    vector<Token> t = lexer.tokenise(expression);
-    for(const Token &s: t) {
-        cout << tokenToString[s.getType()] << " ";
-    }
-    cout << endl;
-}
-
 void CommandHandler::parse() {
-    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
-    Parser parser(std::unique_ptr<CFG>());
-    parser.earleyParse(words);
+    vector<ParseToken> tokens{
+            {"PI", "pi"},
+            {"NAME", "id"},
+            {"ROUNDED_BRACKET_LEFT", "("},
+            {"NAME", "Person"},
+            {"ROUNDED_BRACKET_RIGHT", ")"}};
+    std::string cfg = "../input/grammar.json";
+    Parser parser(cfg);
+    parser.earleyParse(tokens);
 }

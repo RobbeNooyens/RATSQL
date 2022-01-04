@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QMenu>
 #include <QThread>
+#include <QList>
 
 #include <iostream>
 
@@ -84,7 +85,7 @@ void TextEdit::onCustomMenu(QPoint pos)
                 QString data = QString::fromStdString(i);
                 QAction* a = new QAction(data, customMenu);
                 a->setData(data);
-                newActions.emplace_back(a);
+                newActions.push_back(a);
             }
             customMenu->addActions(newActions);
             connect(customMenu, SIGNAL(triggered(QAction*)), this, SLOT(onCorrect(QAction*)));
