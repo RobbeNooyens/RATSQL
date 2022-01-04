@@ -137,12 +137,12 @@ void CommandHandler::toSQL() {
 }
 
 void CommandHandler::lexify() {
-//    wstring expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
-    wstring expression = L"π maker ( Product )";
-//    wstring expression = L"pi maker ( Test )";
+//    string expression = L"σ maker2<maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
+    string expression = L"π maker ( Product )";
+//    string expression = L"pi maker ( Test )";
 //    cout << "Expression: ";
 //    getline(cin, expression);
-    Lexer lexer = Lexer();
+    Lexer lexer = Lexer(<#initializer#>, <#initializer#>);
     vector<Token> t = lexer.tokenise(expression);
     for(const Token &s: t) {
         cout << tokenToString[s.getType()] << " ";
@@ -152,6 +152,6 @@ void CommandHandler::lexify() {
 
 void CommandHandler::parse() {
     vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
-    Parser parser;
+    Parser parser(std::unique_ptr<CFG>());
     parser.earleyParse(words);
 }

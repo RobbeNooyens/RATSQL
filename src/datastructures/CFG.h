@@ -28,6 +28,10 @@ public:
     bool isTerminal(const std::string& s);
     ProductionRules getRules(const std::string& head);
 
+    const std::vector<std::vector<std::string>> &getAliases() const;
+
+    const std::map<std::string, std::string> &getAliasMap() const;
+
     void print();
 
 private:
@@ -35,6 +39,10 @@ private:
     StringSet terminals;
     ProductionRules productionRules;
     std::string startSymbol;
+
+    std::vector<std::vector<std::string>> aliases;
+
+    std::map<std::string, std::string> aliasMap;
 
     std::string stringSetToString(StringSet &set);
     std::string stringVectorToString(const std::vector<std::string> &vector);

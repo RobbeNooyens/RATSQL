@@ -8,20 +8,20 @@
 #include "Lexer.h"
 #include "UndefinedTokenException.h"
 
-Lexer::Lexer() : tokenMap(generateTokenMap()) {}
+Lexer::Lexer(const map<string, string> &m, const vector<vector<string>> &a) : tokenMap(m), aliases(a) {}
 
-vector<wstring> Lexer::splitString(const wstring &parseString) {
+vector<string> Lexer::splitString(const string &parseString) {
     // String that needs to be parsed
-    wstring stringCopy = parseString;
+    string stringCopy = parseString;
     // List of substrings
-    vector<wstring> stringToTokens;
+    vector<string> stringToTokens;
     for (int i = 0; i < stringCopy.size(); ++i) {
-        wstring w;
+        string w;
         w += stringCopy[i];
         if (stringCopy[i] == delimiter) { // Check if the end of a word has been reached
             if (i != 0) {
                 // Make a substring and place it in the list of substrings
-                wstring substr = stringCopy.substr(0, i);
+                string substr = stringCopy.substr(0, i);
                 stringToTokens.emplace_back(substr);
             }
             // Remove the substring from the string that needs to be parsed still
@@ -33,11 +33,11 @@ vector<wstring> Lexer::splitString(const wstring &parseString) {
             if (k) {
                 // Check for any offset, if a delimiter is found, the previous substring should also be saved
                 if (i > 0) {
-                    wstring substr = stringCopy.substr(0, i);
+                    string substr = stringCopy.substr(0, i);
                     stringToTokens.emplace_back(substr);
                 }
                 // Make a substring and place it in the list of substrings
-                wstring substr = stringCopy.substr(i, k);
+                string substr = stringCopy.substr(i, k);
                 stringToTokens.emplace_back(substr);
                 // Remove the substring from the string that needs to be parsed still
                 stringCopy.erase(stringCopy.begin(), stringCopy.begin() + i + k);
@@ -49,10 +49,11 @@ vector<wstring> Lexer::splitString(const wstring &parseString) {
 }
 
 // Todo: nakijken
-unsigned int Lexer::isDelimiter(const wstring &s, unsigned int offset) {
-    for (const auto &name : names) {
+unsigned int Lexer::isDelimiter(const string &s, unsigned int offset) {
+    int k = 0;
+    for (const auto &name : aliases) {
         for (const auto &n : name) {
-            wstring temp;
+            string temp;
             int j = 1;
             temp += s[offset + j - 1];
             while (temp.size() < n.size()) {
@@ -63,38 +64,35 @@ unsigned int Lexer::isDelimiter(const wstring &s, unsigned int offset) {
                 }
             }
             if (n == temp) {
-                return j;
+                k = max(k, j);
             }
         }
     }
-    return 0;
+    return k;
 }
 
-vector<Token> Lexer::tokenise(const vector<wstring> &v) {
-    vector<Token> t;
+vector<TokenTemplate> Lexer::tokenise(const vector<string> &v) {
+    vector<TokenTemplate> t;
     for (auto &entry : v) {
-        TokenTypes token;
-        // Make a normal string from the wstring entry
-        string content (entry.begin(), entry.end());
-        if (isString(entry)) {
-            token = STRING;
-        } else if (tokenMap.find(entry) != tokenMap.end()) {
+        string token;
+        /*if (isString(entry)) {
+            token = "STRING";
+        } else */if (tokenMap.find(entry) != tokenMap.end()) {
             token = tokenMap[entry];
-            content = wStringToString[token];
         } else if (isNumber(entry)) {
-            token = NUMBER;
+            token = "DIGIT";
         } else if (isName(entry)){
-            token = NAME;
+            token = "NAME";
         } else {
             string k (entry.begin(), entry.end());
             throw UndefinedTokenException(k);
         }
-        t.emplace_back(Token(token, content));
+        t.emplace_back(TokenTemplate(token, entry));
     }
     return t;
 }
 
-bool Lexer::isString(const wstring &s) {
+bool Lexer::isString(const string &s) {
     // A part of the input is considered a string when it starts and ends with a string delimiter
     int lastChar = s.size() - 1;
     for (auto &delimiter : {'"', '\''}) {
@@ -105,7 +103,7 @@ bool Lexer::isString(const wstring &s) {
     return false;
 }
 
-bool Lexer::isNumber(const wstring &s) {
+bool Lexer::isNumber(const string &s) {
     // None of the characters in the string can be anything other than a digit or a dot
     if (std::all_of(s.begin(), s.end(), [&](char c) { return isdigit(c) or c == '.';})) {
         return true;
@@ -114,7 +112,7 @@ bool Lexer::isNumber(const wstring &s) {
     }
 }
 
-bool Lexer::isName(const wstring &s) {
+bool Lexer::isName(const string &s) {
     // All characters in the string should be alphanumeric, the first one should be alpha
     if (isalpha(s[0]) and all_of(s.begin()+1, s.end(), [&](char c) { return isalnum(c);})) {
         return true;
@@ -123,6 +121,8 @@ bool Lexer::isName(const wstring &s) {
     }
 }
 
-vector<Token> Lexer::tokenise(const wstring &s) {
+vector<TokenTemplate> Lexer::tokenise(const string &s) {
     return tokenise(splitString(s));
 }
+
+Lexer::Lexer(): tokenMap(), aliases() {}

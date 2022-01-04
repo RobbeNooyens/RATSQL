@@ -1,4 +1,7 @@
-S -> Expression | name EQ Expression;
+S -> Expression | name EQ Expression | Comment | S S;
+Comment -> Multiline_comment | Singleline_comment;
+Multiline_comment -> "/*" tekst "*/";
+Singleline_comment -> "--" tekst EOL;
 Expression -> Modification Expression | Table;
 Modification -> Projection | Selection | Rename | Join_Op ;
 Join_Op -> Table JOIN | Table JOIN equation;
@@ -7,13 +10,12 @@ Projection -> PI projection_premise;
 Rename -> RHO rename_premise;
 
 projection_premise -> column_name | projection_premise COMMA projection_premise;
-rename_premise -> column_name rename_symbol column_name;
-rename_symbol -> LEFTARROW | RIGHTARROW;
+rename_premise -> column_name RIGHTARROW name | name LEFTARROW column_name;
 
 operator1 -> EQ | NEQ | GEQ | LEQ | LT | GT;
 operator2 -> AND | OR;
 
-Table -> ROUNDED_BRACKET_LEFT Table operator3 Table ROUNDED_BRACKET_RIGHT | Table operator3 Table | name | ROUNDED_BRACKET_LEFT Table ROUNDED_BRACKET_RIGHT;
+Table -> ROUNDED_BRACKET_LEFT Table ROUNDED_BRACKET_RIGHT | Table operator3 Table | name;
 
 operator3 -> INTERSECT | UNION | DIV | SUB | JOIN | SCALAR;
 
@@ -21,10 +23,12 @@ equation -> NOT ROUNDED_BRACKET_LEFT equation ROUNDED_BRACKET_RIGHT | var operat
 
 var -> column_name | number | string;
 number -> digit | digit DOT digit | digit COMMA digit ;
-digit -> [0-9] [1-9]*;
 
-string -> ' [a-zA-Z_]* ';
-name -> [a-zA-Z_]+ ;
+string -> QUOTE name QUOTE;
 column_name -> name DOT name | name;
+
+EOL -> "\n" | "\r";
+digit -> [0-9] [1-9]*;
+name -> [a-zA-Z_]+ ;
 DOT -> '.' ;
 COMMA -> ',';

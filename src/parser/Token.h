@@ -74,7 +74,7 @@ enum TokenTypes {
 
 using namespace std;
 
-static map<TokenTypes, string> wStringToString { // Todo: verzin beter normale namen?
+static map<TokenTypes, string> stringToString { // Todo: verzin beter normale namen?
         {PI, "pi"},
         {SIGMA, "sigma"},
         {RHO, "rho"},
@@ -112,7 +112,7 @@ static map<TokenTypes, string> tokenToString{
 
 class Token {
     /// Type of the token
-    TokenTypes tokenType;
+    string tokenType;
 
     /// Original content that was turned into this token
     string content;
@@ -123,13 +123,13 @@ public:
      * @param t Type of the token
      * @param c Content of the token
      */
-    Token(TokenTypes t, const string &c): tokenType(t), content(c) {}
+    Token(const string &t, const string &c): tokenType(t), content(c) {}
 
     /**
      * Function returning the type of the token
      * @return type of the token
      */
-    TokenTypes getType() const {return tokenType;}
+    const string &getType() const {return tokenType;}
 
     /**
      * Function returning the content of the token

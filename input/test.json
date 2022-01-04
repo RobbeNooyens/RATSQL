@@ -1,12 +1,17 @@
 {
   "Variables": ["S", "M", "T"],
-  "Terminals": ["+", "*", "number"],
+  "Terminals": ["plus", "mul", "number"],
   "Productions": [
-    {"head": "S", "body": ["S", "+", "M"]},
+    {"head": "S", "body": ["S", "plus", "M"]},
     {"head": "S", "body": ["M"]},
-    {"head": "M", "body": ["M", "*", "T"]},
+    {"head": "M", "body": ["M", "mul", "T"]},
     {"head": "M", "body": ["T"]},
     {"head": "T", "body": ["number"]}
   ],
-  "Start": "S"
+  "Start": "S",
+  "Aliases": [
+    {"head":  "number", "body":  ["number", "0"]},
+    {"head":  "plus", "body":  ["+"]},
+    {"head":  "mul", "body":  ["*"]}
+  ]
 }

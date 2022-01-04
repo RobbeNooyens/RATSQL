@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include <utility>
+#include <string>
 
 using namespace std;
 using json = nlohmann::json;
@@ -218,7 +219,17 @@ CFG::CFG(const std::string& file) {
     for(const auto& variable: j["Variables"]) {
         variables.insert((std::string) variable);
     }
-
+    for (const auto &alias : j["Aliases"]) {
+        std::vector<std::string> v;
+        for (const auto &a : alias["body"]) {
+            std::string head = alias["head"];
+            std::string body = a;
+            std::string b(body.begin(), body.end());
+            aliasMap.emplace(b, head);
+            v.emplace_back(b);
+        }
+        aliases.emplace_back(v);
+    }
 }
 
 bool CFG::accepts(const std::string& str) {
@@ -245,4 +256,12 @@ ProductionRules CFG::getRules(const string &head) {
             rules.insert(rule);
     }
     return rules;
+}
+
+const vector<std::vector<std::string>> &CFG::getAliases() const {
+    return aliases;
+}
+
+const map<std::string, std::string> &CFG::getAliasMap() const {
+    return aliasMap;
 }
