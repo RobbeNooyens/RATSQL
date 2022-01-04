@@ -16,7 +16,7 @@
 #include <iostream>
 #include "CommandHandler.h"
 #include "../parser/Lexer.h"
-#include "../parser/Parser.h"
+#include "../parser/EarleyParser.h"
 
 using namespace std;
 
@@ -142,6 +142,6 @@ void CommandHandler::parse() {
             {"NAME", "Person"},
             {"ROUNDED_BRACKET_RIGHT", ")"}};
     std::string cfg = "../input/grammar.json";
-    Parser parser(cfg);
+    EarleyParser parser(cfg);
     parser.earleyParse(tokens);
 }

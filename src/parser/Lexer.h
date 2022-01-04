@@ -5,7 +5,7 @@
 #ifndef RATSQL_LEXER_H
 #define RATSQL_LEXER_H
 
-#include "TokenTemplate.h"
+#include "ParseTemplate.h"
 
 #include <string>
 #include <vector>
@@ -44,14 +44,14 @@ public:
      * @param v vector containing strings
      * @return vector containing tokens for the strings
      */
-    vector<TokenTemplate> tokenise(const vector<string> &v);
+    vector<ParseToken> tokenise(const vector<string> &v);
 
     /**
      * Function to tokenise a string, splitting it on ' '
      * @param s string to tokenise
      * @return vector containing tokens for the string
      */
-    vector<TokenTemplate> tokenise(const string &s);
+    vector<ParseToken> tokenise(const string &s);
 
     /**
      * Function to check if a string represents a string

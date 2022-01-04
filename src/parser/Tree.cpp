@@ -29,10 +29,6 @@ Tree *Tree::getChild(int index) {
     return index >= children.size() ? nullptr : children[index];
 }
 
-std::vector<Tree *> &Tree::getChildren() {
-    return children;
-}
-
 Tree::Tree(std::string token): token(std::move(token)), value("") {
 
 }

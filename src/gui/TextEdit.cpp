@@ -20,16 +20,16 @@ void HighLighter::highlightBlock(const QString &text)
     spellingFormat.setUnderlineColor(Qt::red);
 
     // TODO - syntax highlighting in output
-    // TODO - ingore special characters
+    // TODO - ignore special characters
 
     QStringList list = text.split(QRegularExpression("\\s++"));
-    int words = list.size();
+    int words = static_cast<int>(list.size());
     int wordPointer = 0;
     for (int i = 0; i < words; i++)
     {
         QString section = text.section(QRegularExpression("\\s+"), i, i, QString::SectionIncludeLeadingSep);
 
-//        // TODO - clear
+//        // TODO - clear // todo wat?
 //        const auto& found = mBuffer.find(section);
 //        if (found != std::end(mBuffer))
 //        {
@@ -64,7 +64,7 @@ TextEdit::TextEdit(QWidget* parent) : QTextEdit(parent),
 void TextEdit::onCustomMenu(QPoint pos)
 {
     QMenu* autocorrect = createStandardContextMenu();
-    QMenu* customMenu = new QMenu(QString("Replace"), this);
+    auto customMenu = new QMenu(QString("Replace"), this);
 
     QTextCursor t = textCursor();
     t.select(QTextCursor::SelectionType());
@@ -83,7 +83,7 @@ void TextEdit::onCustomMenu(QPoint pos)
             for (const auto& i : suggestions.second)
             {
                 QString data = QString::fromStdString(i);
-                QAction* a = new QAction(data, customMenu);
+                auto a = new QAction(data, customMenu);
                 a->setData(data);
                 newActions.push_back(a);
             }

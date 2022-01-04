@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     setFixedSize(1000, 700);
 
 
-    // TODO
+    // TODO // TODO: wa is deze todo pablo?
     mTextEdit = new TextEdit;
 
     ui->layoutTextEdit->addWidget(mTextEdit);
@@ -39,7 +39,7 @@ void MainWindow::createMenu()
 {
     // Central widget
     this->setCentralWidget(ui->centralwidget);
-    // TODO - CMakelists.txt post-build command
+    // TODO - CMakelists.txt post-build command // todo wa is deze todo pablo?
     std::ifstream file("resources/styleSheet.qss");
     if (!file.is_open()) { std::cerr << "styleSheet can't be opened\n"; }
     std::string styleSheet((std::istreambuf_iterator<char>(file)),
@@ -164,7 +164,7 @@ void MainWindow::onConvertBtnClicked()
                          QMessageBox::Ok);
     }
 
-    // TODO - errors terugkrijgen van parser
+    // TODO - errors terugkrijgen van parser // todo wa is deze todo pablo?
 
 //    ui->textEditOutput->clear();
 //    ui->textEditOutput->insertPlainText(QString::fromStdString(expr));

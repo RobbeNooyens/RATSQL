@@ -71,8 +71,8 @@ unsigned int Lexer::isDelimiter(const string &s, unsigned int offset) {
     return k;
 }
 
-vector<TokenTemplate> Lexer::tokenise(const vector<string> &v) {
-    vector<TokenTemplate> t;
+vector<ParseToken> Lexer::tokenise(const vector<string> &v) {
+    vector<ParseToken> t;
     for (auto &entry : v) {
         string token;
         /*if (isString(entry)) {
@@ -87,7 +87,7 @@ vector<TokenTemplate> Lexer::tokenise(const vector<string> &v) {
             string k (entry.begin(), entry.end());
             throw UndefinedTokenException(k);
         }
-        t.emplace_back(TokenTemplate(token, entry));
+        t.emplace_back(ParseToken(token, entry));
     }
     return t;
 }
@@ -121,7 +121,7 @@ bool Lexer::isName(const string &s) {
     }
 }
 
-vector<TokenTemplate> Lexer::tokenise(const string &s) {
+vector<ParseToken> Lexer::tokenise(const string &s) {
     return tokenise(splitString(s));
 }
 

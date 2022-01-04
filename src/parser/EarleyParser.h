@@ -11,11 +11,11 @@
 #include <memory>
 
 #include "../datastructures/CFG.h"
-#include "ParseToken.h"
+#include "ParseTemplate.h"
 
 class ParseState;
 
-class Parser {
+class EarleyParser {
     /// Production rules used by the grammar
     std::vector<std::vector<ParseState*>> S;
     std::shared_ptr<CFG> cfg;
@@ -27,10 +27,9 @@ public:
      */
     void earleyParse(const std::vector<ParseToken> &words);
 
-    explicit Parser(std::string& grammar);
-    ~Parser();
+    explicit EarleyParser(std::string& grammar);
+    ~EarleyParser();
 
-    // Todo: Git gut
     void predictor(ParseState* closureRule, unsigned int k);
 
     void scanner(ParseState* state, unsigned int k, const std::vector<ParseToken> &tokens);

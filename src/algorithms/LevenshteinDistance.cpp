@@ -13,6 +13,7 @@
  */
 
 #include "LevenshteinDistance.h"
+#include "../exceptions/ExceptionHandler.h"
 #include <thread>
 #include <memory>
 
@@ -47,13 +48,13 @@ bool LevenshteinDistance::evalLevenshteinDistance(const std::string &str1, const
 
 LevenshteinDistance::LevenshteinDistance(const std::string& path) {
     std::ifstream file(path);
-    if (!file.is_open())
-    {
-        // TODO - error
+    try {
+        std::string str;
+        while (std::getline(file, str)) { mDict.emplace_back(str); }
+        file.close();
+    } catch (std::exception& e) {
+        ExceptionHandler::handle(e,"Levenshtein distance file read failed!"); // todo file is not open if this fails?
     }
-    std::string str;
-    while (std::getline(file, str)) {  mDict.emplace_back(str); }
-    file.close();
 }
 
 LevenshteinDistance &LevenshteinDistance::getInstance() {

@@ -4,8 +4,8 @@
 
 #include <string>
 #include <vector>
-#include "parser/Parser.h"
-#include "parser/ParseToken.h"
+#include "parser/EarleyParser.h"
+#include "parser/ParseTemplate.h"
 // #include "parser/Lexer.h"
 using namespace std;
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 //        {"*", "*"},
 //        {"number", "3"}};
 //    std::string cfg = "../input/test2.json";
-//    Parser parser(cfg);
+//    EarleyParser parser(cfg);
 
     vector<ParseToken> tokens{
             {"PI", "pi"},
@@ -26,16 +26,16 @@ int main(int argc, char *argv[]) {
             {"NAME", "Person"},
             {"ROUNDED_BRACKET_RIGHT", ")"}};
     std::string cfg = "../input/grammar.json";
-    Parser parser(cfg);
+    EarleyParser parser(cfg);
 
     parser.earleyParse(tokens);
 
     /*
      * //    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
-    vector<TokenTemplate> words{TokenTemplate("number", ""), TokenTemplate("+", ""), TokenTemplate("number", ""), TokenTemplate("*", ""), TokenTemplate("number", "")};
+    vector<ParseToken> words{ParseToken("number", ""), ParseToken("+", ""), ParseToken("number", ""), ParseToken("*", ""), ParseToken("number", "")};
     std::unique_ptr<CFG> g = std::make_unique<CFG>("../input/grammar.json");
     Lexer lexer(g->getAliasMap(), g->getAliases());
-    Parser parser(move(g));
+    EarleyParser parser(move(g));
     string input = "π a (R)";
     parser.earleyParse(lexer.tokenise(input));
     return 0;

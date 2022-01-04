@@ -38,7 +38,7 @@ private:
     void checkConventions();
     void autoConventions();
     void toSQL();
-    void parse();
+    static void parse();
 };
 
 

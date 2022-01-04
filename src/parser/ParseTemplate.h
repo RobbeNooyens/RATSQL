@@ -2,14 +2,15 @@
 // Created by Maarten on 21/12/2021.
 //
 
-#ifndef RATSQL_PARSING_TOKENTEMPLATE_H
-#define RATSQL_PARSING_TOKENTEMPLATE_H
+#ifndef RATSQL_PARSING_PARSETEMPLATE_H
+#define RATSQL_PARSING_PARSETEMPLATE_H
 
 #include <string>
+#include <utility>
 
 using namespace std;
 
-class TokenTemplate {
+class ParseToken {
     /// Type of the token
     string tokenType;
 
@@ -22,20 +23,20 @@ public:
      * @param t Type of the token
      * @param c Content of the token
      */
-    TokenTemplate(const string &t, const string &c): tokenType(t), content(c) {}
+    ParseToken(string t, string c): tokenType(std::move(t)), content(std::move(c)) {}
 
     /**
      * Function returning the type of the token
      * @return type of the token
      */
-    const string &getType() const {return tokenType;}
+    const string &getToken() const {return tokenType;}
 
     /**
      * Function returning the content of the token
      * @return content of the token
      */
-    const string & getContent() const {return content;}
+    const string &getContent() const {return content;}
 };
 
 
-#endif //RATSQL_PARSING_TOKENTEMPLATE_H
+#endif //RATSQL_PARSING_PARSETEMPLATE_H

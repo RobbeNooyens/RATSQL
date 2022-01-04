@@ -34,6 +34,12 @@ public:
 
     static LevenshteinDistance& getInstance();
 
+    /**
+     * @brief Evaluates a string compared with the dictionary
+     * @param str1      input string
+     * @param deviation max allowed levenshtein deviation
+     * @return  pair(wordFoundInDictionary, similarWordsToInput)
+     */
     std::pair<bool, std::vector<std::string>> eval(const std::string& str1, int deviation = 2);
 
     /**

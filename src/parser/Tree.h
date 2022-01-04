@@ -6,7 +6,7 @@
 #define RATSQL_PARSING_TREE_H
 
 
-#include "ParseToken.h"
+#include "ParseTemplate.h"
 
 class Tree {
 public:
@@ -22,8 +22,6 @@ public:
 
     void exportDot(std::string& file);
     void exportDotRecursive(std::ofstream& out, int& index);
-
-
 private:
     std::string token;
     std::string value;

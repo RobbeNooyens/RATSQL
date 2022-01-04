@@ -2,7 +2,7 @@
 // Created by Maarten on 17/12/2021.
 //
 
-#include "Parser.h"
+#include "EarleyParser.h"
 #include "Tree.h"
 #include "ParseState.h"
 
@@ -21,8 +21,7 @@
 
 using namespace std;
 
-// Todo: veranderd van set naar vector, check of er geen dubbels zijn aangemaakt
-void Parser::earleyParse(const vector<ParseToken> &tokens) {
+void EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
     // INIT
     // Reserve space in the productionrules
     S.reserve(LENGTH(tokens) + 1);
@@ -93,13 +92,13 @@ void Parser::earleyParse(const vector<ParseToken> &tokens) {
 
 }
 
-void Parser::predictor(ParseState* state, unsigned int k) {
+void EarleyParser::predictor(ParseState* state, unsigned int k) {
     for (auto &rule : GRAMMAR_RULES_FOR(state->nextElement())) {
         ADD_TO_SET(k, rule, 0, k);
     }
 }
 
-void Parser::scanner(ParseState* state, unsigned int k, const vector<ParseToken> &tokens) {
+void EarleyParser::scanner(ParseState* state, unsigned int k, const vector<ParseToken> &tokens) {
     if(state->nextElement() == tokens[k].getToken()) {
         ADD_TO_SET(k+1, state->getProduction(), state->getDot() + 1, state->getOrigin());
         std::pair<ParseState*, ParseState*> pair = {state, nullptr};
@@ -107,7 +106,7 @@ void Parser::scanner(ParseState* state, unsigned int k, const vector<ParseToken>
     }
 }
 
-void Parser::completer(ParseState* state, unsigned int k) {
+void EarleyParser::completer(ParseState* state, unsigned int k) {
     for (auto &rule : S[state->getOrigin()]) {
         if (rule->nextElement() == state->getProduction().first) {
             ADD_TO_SET(k, rule->getProduction(), rule->getDot() + 1, rule->getOrigin());
@@ -117,11 +116,11 @@ void Parser::completer(ParseState* state, unsigned int k) {
     }
 }
 
-Parser::Parser(std::string& grammar) {
+EarleyParser::EarleyParser(std::string& grammar) {
     cfg = std::make_shared<CFG>(grammar);
 }
 
-Parser::~Parser() {
+EarleyParser::~EarleyParser() {
     for(int i = 0; i < S.size(); i++) {
         for(int j = 0; j < S[i].size(); j++) {
             delete S[i][j];
