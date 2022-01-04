@@ -1,36 +1,67 @@
-/**
- *  ╒═══════════════════════════════════════════════════════════╕
- *  │                                                           │
- *  │                     RATSQL Project                        │
- *  │                Relational Algebra To SQL                  │
- *  │                                                           │
- *  │       Contributors: Pablo Deputter, Cédric Leclercq,      │
- *  │                     Robbe Nooyens, Maarten Peirsman       │
- *  │                                                           │
- *  │    University of Antwerp - Machines en Berekenbaarheid    │
- *  │                                                           │
- *  ╘═══════════════════════════════════════════════════════════╛
- */
-
-#ifndef RATSQL_SHUNTING_YARD_MAINWINDOW_H
-#define RATSQL_SHUNTING_YARD_MAINWINDOW_H
-
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include <QStringListModel>
+#include <QMessageBox>
 
-class GUIHandler;
+#include "CharButton.h"
+#include "SettingButton.h"
+#include "TextEdit.h"
 
-class MainWindow: public QMainWindow {
+#include <memory>
+#include <vector>
+#include <iostream>
+
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
+    Q_OBJECT
 public:
-    MainWindow();
-
-    // TODO: implement gui classes
+    /**
+     * @brief Constructor for MainWindow object
+     * @param parent
+     */
+    MainWindow(QWidget *parent = nullptr);
+    /**
+     * @Destructor for MainWindow object
+    */
+    ~MainWindow();
+private:
+    /**
+     * @brief Create buttons, actions, ...
+     */
+    void createMenu();
+    /**
+     * @brief Create buttons for different special characters
+     */
+    void createCharButtons();
+    /**
+     * @brief Create check buttons for the converting settings
+     */
+    void createSettingButtons();
+    /**
+     * @brief Show message box on screen
+     * @param icon QMessageBox::Icon - icon of messageBox
+     * @param title QString - title of messageBox
+     * @param text QString - text of messageBox
+     * @param button QMessageBox::StandardButton - standard button on messagebox
+     * @return QMessageBox - newly created messageBox with given specs
+     */
+    QMessageBox* createMessageBox(QMessageBox::Icon icon, const QString& title, const QString& text,
+                                  QMessageBox::StandardButton button);
+public slots:
+    void onConvertBtnClicked();
 
 private:
-    // Attributes
-    std::shared_ptr<GUIHandler> guiHandler;
+    Ui::MainWindow *ui;
+    std::vector<CharButton*> mCharacters;
+    std::vector<SettingButton*> mSettings;
 
+    TextEdit* mTextEdit;
 };
-
-
-#endif //RATSQL_SHUNTING_YARD_MAINWINDOW_H
+#endif // MAINWINDOW_H

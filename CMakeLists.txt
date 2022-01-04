@@ -6,9 +6,12 @@ project(RATSQL_SHUNTING_YARD)
 project(RATSQL_PARSING)
 
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
+
+SET(CMAKE_CXX_FLAGS -O3)
+SET(CMAKE_CXX_FLAGS -pthread)
 
 set(QT_VERSION 5)
 set(REQUIRED_LIBS_QUALIFIED Qt5::Core Qt5::Gui Qt5::Widgets)
@@ -104,12 +107,14 @@ add_executable(RATSQL_GUI
         src/io/GUIHandler.h
         src/gui/MainWindow.cpp
         src/gui/MainWindow.h
-        src/gui/InputBox.cpp
-        src/gui/InputBox.h
-        src/gui/OutputBox.cpp
-        src/gui/OutputBox.h
-        src/gui/Buttons.cpp
-        src/gui/Buttons.h)
+        src/gui/MainWindow.ui
+        src/gui/CharButton.h
+        src/gui/CharButton.cpp
+        src/gui/SettingButton.h
+        src/gui/SettingButton.cpp
+        src/gui/TextEdit.h
+        src/gui/TextEdit.cpp
+        )
 
 add_executable(RATSQL_TESTS
         src/main_tests.cpp

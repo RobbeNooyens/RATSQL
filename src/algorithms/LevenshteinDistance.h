@@ -16,32 +16,51 @@
 #define RATSQL_LEVENSHTEINDISTANCE_H
 
 #include <string>
+#include <fstream>
+#include <vector>
+#include <iostream>
 
 #include "../utilities/Utils.h"
 
 class LevenshteinDistance {
 private:
-    /**
-     *
-     * @param str
-     * @param index
-     */
-    static void remove(std::string& str, int index);
-    /**
-     *
-     * @param str
-     * @param index
-     * @param ch
-     */
-    static void replace(std::string& str, int index, const std::string& ch);
-    /**
-     *
-     * @param str
-     * @param index
-     * @param ch
-     */
-    static void add(std::string& str, int index, const std::string& ch);
+    std::vector<std::string> mDict;
+
+    LevenshteinDistance(std::string path)
+    {
+        std::ifstream file(path);
+        if (!file.is_open())
+        {
+            // TODO - error
+        }
+        std::string str;
+        while (std::getline(file, str)) {  mDict.emplace_back(str); }
+        file.close();
+    }
 public:
+    LevenshteinDistance& operator=(const LevenshteinDistance&) = delete;
+
+    LevenshteinDistance(const LevenshteinDistance&) = delete;
+
+    static LevenshteinDistance& getInstance()
+    {
+        static LevenshteinDistance instance("resources/words_small.txt");
+        return instance;
+    }
+
+    std::pair<bool, std::vector<const std::string>> eval(const std::string& str1, int deviation = 2)
+    {
+        std::vector<const std::string> sugg;
+        std::cout << str1 << "\n";
+        bool flag = false;
+        for (const auto &i : mDict)
+        {
+            if (evalLevenshteinDistance(str1, i, deviation)) { sugg.emplace_back(i); }
+            if (str1 == i) { flag = true; }
+        }
+        return {flag,sugg};
+    }
+
     /**
      * Function that evaluates the levenshtein distance according to a deviation.
      * If the levenshtein distance between the first string and the second string <= deviation, then true.
