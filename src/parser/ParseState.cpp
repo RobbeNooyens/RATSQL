@@ -5,7 +5,6 @@
 #include <sstream>
 #include "ParseState.h"
 #include "Tree.h"
-#include "../datastructures/CFG.h"
 
 ParseState::ParseState(ProductionRule production, unsigned int dot, unsigned int origin): production(std::move(production)), dot(dot), origin(origin) {};
 
@@ -43,21 +42,18 @@ void ParseState::evaluate(Tree *tree) {
         return;
     }
     auto statePair = derivedStates.front();
+    if(dot == production.second.size()) {
+        for(auto& s: production.second) {
+            tree->addChild(new Tree(s));
+        }
+    }
     if(statePair.second) {
         // Complete
-        if(dot == production.second.size()) {
-            for(auto& s: production.second) {
-                tree->addChild(new Tree(s));
-            }
-        }
         statePair.first->evaluate(tree->getChild(dot - 1));
         statePair.second->evaluate(tree);
     } else {
         // Scan
-        if(tree->getChildren().empty())
-            tree->addChild(new Tree(production.second[dot-1])); // Add single terminals
-        else
-            statePair.first->evaluate(tree);
+        statePair.first->evaluate(tree);
     }
 }
 

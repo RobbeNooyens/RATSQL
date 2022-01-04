@@ -21,5 +21,11 @@ digraph ParseTree {
   9 -> 10
   10 [label="TABLE"];
   10 -> 11
-  11 [label="ROUNDED_BRACKET_RIGHT"];
+  11 [label="ROUNDED_BRACKET_LEFT"];
+  10 -> 12
+  12 [label="TABLE"];
+  12 -> 13
+  13 [label="NAME"];
+  10 -> 14
+  14 [label="ROUNDED_BRACKET_RIGHT"];
 }

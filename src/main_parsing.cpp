@@ -10,8 +10,6 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-//    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
-
 //    vector<ParseToken> tokens{
 //        {"number", "1"},
 //        {"+", "+"},
