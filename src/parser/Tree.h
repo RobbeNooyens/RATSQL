@@ -16,8 +16,6 @@ public:
     void addChild(Tree* tree);
     Tree* getChild(int index);
 
-    std::vector<Tree*>& getChildren();
-
     void assignTokens(const std::vector<ParseToken> &tokens, int &tokenIndex);
 
     void exportDot(std::string& file);

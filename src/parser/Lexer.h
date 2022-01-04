@@ -24,7 +24,7 @@ private:
 public:
     Lexer();
     /**
-     * Constructor for Relax Parser
+     * Constructor for Relax EarleyParser
      * @param m mapping from inputs to tokentypes
      * @param a list of supported aliases
      */
