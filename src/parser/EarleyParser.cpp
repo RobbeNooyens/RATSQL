@@ -3,7 +3,7 @@
 //
 
 #include "EarleyParser.h"
-#include "Tree.h"
+#include "TreeNode.h"
 #include "ParseState.h"
 
 #include <iostream>
@@ -21,7 +21,7 @@
 
 using namespace std;
 
-void EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
+TreeNode * EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
     // INIT
     // Reserve space in the productionrules
     S.reserve(LENGTH(tokens) + 1);
@@ -77,7 +77,7 @@ void EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
         }
     }
     if(initReplacement) {
-        Tree* root = new Tree("S_");
+        TreeNode* root = new TreeNode("S_");
         initReplacement->evaluate(root);
         int index = 0;
         root->assignTokens(tokens, index);
@@ -86,10 +86,9 @@ void EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
         if(index != tokens.size()) {
             throw std::runtime_error("Index should be at end of vector");
         }
+        return root;
     }
-
-
-
+    return nullptr;
 }
 
 void EarleyParser::predictor(ParseState* state, unsigned int k) {
@@ -128,3 +127,5 @@ EarleyParser::~EarleyParser() {
         }
     }
 }
+
+EarleyParser::EarleyParser(const shared_ptr<CFG> &cfg): cfg(cfg) {}

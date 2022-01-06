@@ -4,7 +4,7 @@
 
 #include <sstream>
 #include "ParseState.h"
-#include "Tree.h"
+#include "TreeNode.h"
 
 ParseState::ParseState(ProductionRule production, unsigned int dot, unsigned int origin): production(std::move(production)), dot(dot), origin(origin) {};
 
@@ -36,7 +36,7 @@ void ParseState::addDerivedState(std::pair<ParseState*, ParseState*> state) {
     derivedStates.push_back(state);
 }
 
-void ParseState::evaluate(Tree *tree) {
+void ParseState::evaluate(TreeNode *tree) {
     // Predict
     if(dot == 0) {
         return;
@@ -44,7 +44,8 @@ void ParseState::evaluate(Tree *tree) {
     auto statePair = derivedStates.front();
     if(dot == production.second.size()) {
         for(auto& s: production.second) {
-            tree->addChild(new Tree(s));
+            auto ptr = createNode(s);
+            tree->addChild(ptr);
         }
     }
     if(statePair.second) {
@@ -54,6 +55,29 @@ void ParseState::evaluate(Tree *tree) {
     } else {
         // Scan
         statePair.first->evaluate(tree);
+    }
+}
+
+TreeNode* ParseState::createNode(const std::string &s) const {
+    if (s == "DOT" || s == "DIGIT" || s == "NAME" || s == "COMMA") {
+        return new BasicNode(s);
+    } else if (s == "SELECTION") {
+        return new SelectionNode(s);
+    } else if (s == "EXPRESSION") {
+        return new ExpressionNode(s);
+    } else if (s == "MODIFICATION") {
+        return new ModificationNode(s);
+    } else if (s == "SELECTION") {
+        return new SelectionNode(s);
+    } else if (s == "PROJECTION") {
+        return new ProjectionNode(s);
+    } else if (s == "TABLE") {
+        return new TableNode(s);
+    }
+
+
+    else {
+        return new TreeNode(s);
     }
 }
 

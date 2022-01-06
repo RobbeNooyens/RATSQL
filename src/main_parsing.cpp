@@ -4,9 +4,11 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 #include "parser/EarleyParser.h"
 #include "parser/ParseTemplate.h"
-// #include "parser/Lexer.h"
+#include "parser/Lexer.h"
+
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -19,17 +21,27 @@ int main(int argc, char *argv[]) {
 //    std::string cfg = "../input/test2.json";
 //    EarleyParser parser(cfg);
 
-    vector<ParseToken> tokens{
-            {"PI", "pi"},
-            {"NAME", "id"},
-            {"ROUNDED_BRACKET_LEFT", "("},
-            {"NAME", "Person"},
-            {"ROUNDED_BRACKET_RIGHT", ")"}};
-    std::string cfg = "../input/grammar.json";
+/// Optie 1 -> zonder lexer
+
+//    std::string grammar = "../input/grammar.json";
+//    EarleyParser parser(grammar);
+//    vector<ParseToken> tokens{
+//            {"PI", "pi"},
+//            {"NAME", "id"},
+//            {"ROUNDED_BRACKET_LEFT", "("},
+//            {"NAME", "Person"},
+//            {"ROUNDED_BRACKET_RIGHT", ")"}};
+
+/// Optie 2 -> met lexer
+
+    std::shared_ptr<CFG> cfg = make_shared<CFG>("../input/grammar.json");
+    Lexer lexer = Lexer(cfg->getAliasMap(), cfg->getAliases());
     EarleyParser parser(cfg);
+    auto tokens = lexer.tokenise("sigma a=1 (R)");
+    auto tree = parser.earleyParse(tokens);
+    auto s = tree->translate();
 
-    parser.earleyParse(tokens);
-
+    std::cout << s << std::endl;
     /*
      * //    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
     vector<ParseToken> words{ParseToken("number", ""), ParseToken("+", ""), ParseToken("number", ""), ParseToken("*", ""), ParseToken("number", "")};
