@@ -53,6 +53,17 @@ public:
     std::string translate() const override;
 };
 
+class ValueNode: public TreeNode {
+public:
+    /**
+     * Constructor
+     * @param token
+     */
+     explicit ValueNode(const std::string &token);
+
+     std::string translate() const override;
+};
+
 class ExpressionNode: public TreeNode {
 public:
     /**
@@ -99,6 +110,15 @@ public:
     void translate(std::vector<std::string> &v) const override;
 };
 
+class RenameNode: public TreeNode {
+public:
+    /**
+     * Constructor
+     * @param token
+     */
+    explicit RenameNode(const std::string &token);
+};
+
 class TableNode: public TreeNode {
 public:
     /**
@@ -111,6 +131,7 @@ public:
 
     void translate(std::vector<std::string> &v) const override;
 };
+
 
 
 #endif //RATSQL_PARSING_TREENODE_H

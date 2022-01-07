@@ -1,6 +1,6 @@
 {
-  "Variables": ["S", "EXPRESSION", "MODIFICATION", "TABLE", "PROJECTION", "PROJECTION_PREMISE", "COLUMN_NAME"],
-  "Terminals": ["NUMBER", "STRING", "NAME", "PI", "ROUNDED_BRACKET_LEFT", "ROUNDED_BRACKET_RIGHT", "EQ"],
+  "Variables": ["S", "COMMENT", "MULTILINE_COMMENT", "LINE_COMMENT","EXPRESSION", "MODIFICATION", "JOIN_OP", "SELECTION", "PROJECTION", "RENAME", "PROJECTION_PREMISE", "RENAME_PREMISE", "OPERATOR1", "OPERATOR2", "OPERATOR3", "EQUATION", "VAR", "NUMBER", "STRING", "TABLE", "COLUMN_NAME"],
+  "Terminals": ["DIGIT", "NAME", "PI", "SIGMA", "RHO", "JOIN", "COMMA", "DOT", "RIGHT_ARROW", "LEFT_ARROW", "ROUNDED_BRACKET_LEFT", "ROUNDED_BRACKET_RIGHT", "EQ", "NEQ", "GEQ", "LEQ", "LT", "GT", "AND", "OR", "NOT", "INTERSECT", "UNION", "DIV", "SUB", "JOIN", "SCALAR", "EOL", "MULTI_COMMENT_START", "MULTI_COMMENT_END", "LINE_COMMENT_START", "QUOTE"],
   "Productions": [
     {"head": "S", "body": ["EXPRESSION"]},
     {"head": "S", "body": ["NAME", "EQ", "EXPRESSION"]},
@@ -54,6 +54,7 @@
     {"head": "VAR", "body": ["NUMBER"]},
     {"head": "VAR", "body": ["STRING"]},
     {"head": "NUMBER", "body": ["DIGIT"]},
+    {"head": "NUMBER", "body": ["MINUS", "NUMBER"]},
     {"head": "NUMBER", "body": ["DIGIT", "DOT", "DIGIT"]},
     {"head": "NUMBER", "body": ["DIGIT", "COMMA", "DIGIT"]},
 
@@ -94,6 +95,8 @@
     {"head":  "DOT", "body":  ["."]},
     {"head":  "MULTI_COMMENT_START", "body":  ["/*"]},
     {"head":  "MULTI_COMMENT_END", "body":  ["*/"]},
-    {"head":  "LINE_COMMENT_START", "body":  ["--"]}
+    {"head":  "LINE_COMMENT_START", "body":  ["--"]},
+    {"head": "MINUS", "body": ["-"]},
+    {"head":  "QUOTE", "body":  ["'"]}
   ]
 }

@@ -6,6 +6,8 @@
 #include "TreeNode.h"
 #include "ParseState.h"
 
+#include "../utilities/Utils.h"
+
 #include <iostream>
 #include <utility>
 #include <sstream>
@@ -16,7 +18,7 @@
 #define ADD_TO_SET(set_index, production, dot, origin) ParseState* stateToAdd = new ParseState(production, dot, origin); S[set_index].push_back(stateToAdd)
 #define GRAMMAR_RULES_FOR(nonterminal) cfg->getRules(nonterminal)
 //#define IS_TERMINAL(token) cfg->isTerminal(token)
-#define IS_VARIABLE(token) cfg->isVariable(token)
+#define IS_VARIABLE(token) !cfg->isTerminal(token)
 #define CONSTRUCT_TREE(stateFrom) stateToAdd->addDerivedState(stateFrom)
 
 using namespace std;
@@ -33,6 +35,8 @@ TreeNode * EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
     // Add basic start rule
     ProductionRule startProduction{"S_", {cfg->getStartSymbol()}};
     ADD_TO_SET(0, startProduction, 0, 0);
+//    ParseState* s = new ParseState(startProduction, 0, 0);
+//    Utils::emplace_back_unique(S[0], s);
     // Loop over all words
     for (int k = 0; k < LENGTH(tokens) + 1; ++k) {
         for(int it = 0; it < LENGTH(S[k]); it++) {
@@ -46,7 +50,7 @@ TreeNode * EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
             } else {
                 completer(state, k);
             }
-            // remove duplicates
+            // remove duplicates --> Changed by using emplace_unique
             for(int i = 0; i < S[k].size(); i++) {
                 ParseState* rule = S[k][i];
                 for(int j = i+1; j < S[k].size(); j++) {
@@ -94,14 +98,19 @@ TreeNode * EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
 void EarleyParser::predictor(ParseState* state, unsigned int k) {
     for (auto &rule : GRAMMAR_RULES_FOR(state->nextElement())) {
         ADD_TO_SET(k, rule, 0, k);
+//        ParseState* s = new ParseState(rule, 0, k);
+//        Utils::emplace_back_unique(S[k], s);
     }
 }
 
 void EarleyParser::scanner(ParseState* state, unsigned int k, const vector<ParseToken> &tokens) {
     if(state->nextElement() == tokens[k].getToken()) {
         ADD_TO_SET(k+1, state->getProduction(), state->getDot() + 1, state->getOrigin());
+//        ParseState* s = new ParseState(state->getProduction(), state->getDot() + 1, state->getOrigin());
+//        Utils::emplace_back_unique(S[k + 1], s);
         std::pair<ParseState*, ParseState*> pair = {state, nullptr};
         CONSTRUCT_TREE(pair);
+//        s->addDerivedState(pair);
     }
 }
 
@@ -109,8 +118,11 @@ void EarleyParser::completer(ParseState* state, unsigned int k) {
     for (auto &rule : S[state->getOrigin()]) {
         if (rule->nextElement() == state->getProduction().first) {
             ADD_TO_SET(k, rule->getProduction(), rule->getDot() + 1, rule->getOrigin());
+//            ParseState* s = new ParseState(rule->getProduction(), rule->getDot() + 1, rule->getOrigin());
+//            Utils::emplace_back_unique(S[k], s);
             std::pair<ParseState*, ParseState*> pair = {state, rule};
             CONSTRUCT_TREE(pair);
+//            s->addDerivedState(pair);
         }
     }
 }

@@ -8,6 +8,7 @@
 #include "parser/EarleyParser.h"
 #include "parser/ParseTemplate.h"
 #include "parser/Lexer.h"
+#include "utilities/Utils.h"
 
 using namespace std;
 
@@ -34,14 +35,18 @@ int main(int argc, char *argv[]) {
 
 /// Optie 2 -> met lexer
 
+    std::vector<std::string> v = {"a", "b"};
+    std::string a = "a";
+    auto b = Utils::insert_unique(v, v.begin(), a);
+
     std::shared_ptr<CFG> cfg = make_shared<CFG>("../input/grammar.json");
     Lexer lexer = Lexer(cfg->getAliasMap(), cfg->getAliases());
     EarleyParser parser(cfg);
-    auto tokens = lexer.tokenise("sigma a=1 (R)");
+    auto tokens = lexer.tokenise("sigma name = 'a' pi name sigma id = 1 pi id, name (test)");
     auto tree = parser.earleyParse(tokens);
     auto s = tree->translate();
 
-    std::cout << s << std::endl;
+    std::cout << std::endl << s << std::endl;
     /*
      * //    vector<string> words{"PI", "NAME", "ROUNDED_BRACKET_LEFT", "NAME", "ROUNDED_BRACKET_RIGHT"};
     vector<ParseToken> words{ParseToken("number", ""), ParseToken("+", ""), ParseToken("number", ""), ParseToken("*", ""), ParseToken("number", "")};

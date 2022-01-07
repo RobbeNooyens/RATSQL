@@ -97,23 +97,20 @@ std::string ExpressionNode::translate() const {
     for (int i = 0; i < 4; ++i) {
         v.emplace_back("");
     }
-    for (auto child : children) {
-        child->translate(v);
+    for (auto child = children.rbegin(); child != children.rend(); ++child) {
+        (*child)->translate(v);
     }
 
     // Check the contents of the vector
     if (v[0].empty()) {
-        v[0] = "SELECT *";
+        v[0] = "SELECT * FROM ";
     }
     if (v[1].empty()) {
         // Todo: throw error saying a table should be specified
-    } else {
-        std::string from = "FROM ";
-        v[1].insert(v[1].begin(), from.begin(), from.end());
     }
     std::string output;
     for (const auto &s : v) {
-        output += s + " ";
+        output += s;
     }
     return output;
 }
@@ -125,11 +122,18 @@ void ExpressionNode::translate(vector<std::string> &v) const {
 SelectionNode::SelectionNode(const string &token): TreeNode(token) {}
 
 void SelectionNode::translate(vector<std::string> &v) const {
+    static int tempTableCount = 0;
     std::string output;
     for (auto child : children) {
         output += child->translate();
     }
-    v[4] += "WHERE " + output;
+    std::string where = " WHERE ";
+    if (!v[2].empty()) {
+        std::string tempTableName = "TempTable" + to_string(tempTableCount);
+        std::string tempTable = ") AS " + tempTableName;
+        where.insert(where.begin(), tempTable.begin(), tempTable.end());
+    }
+    v[2] += where + output;
 }
 
 BasicNode::BasicNode(const std::string &token): TreeNode(token) {}
@@ -145,8 +149,8 @@ std::string BasicNode::translate() const {
 ModificationNode::ModificationNode(const string &token): TreeNode(token) {}
 
 void ModificationNode::translate(vector<std::string> &v) const {
-    for (auto child : children) {
-        child->translate(v);
+    for (auto child = children.rbegin(); child != children.rend(); ++child) {
+        (*child)->translate(v);
     }
 }
 
@@ -157,7 +161,11 @@ void ProjectionNode::translate(vector<std::string> &v) const {
     for (auto child: children) {
         output += child->translate();
     }
-    v[0] += output;
+    output += " FROM ";
+    if (!v[0].empty()) {
+        output += "(";
+    }
+    v[0].insert(v[0].begin(), output.begin(), output.end());
 }
 
 TableNode::TableNode(const string &token): TreeNode(token) {}
@@ -171,5 +179,21 @@ std::string TableNode::translate() const {
     for (auto child : children) {
         output += child->translate();
     }
+    // Filter out brackets
+    for (int i = 0; i < output.size(); ++i) {
+        auto c = output.begin() + i;
+        if (*c == '(' || *c == ')') {
+            output.erase(c);
+            --i;
+        }
+    }
     return output;
 }
+
+ValueNode::ValueNode(const string &token): TreeNode(token) {}
+
+std::string ValueNode::translate() const {
+    return token;
+}
+
+RenameNode::RenameNode(const string &token): TreeNode(token) {}

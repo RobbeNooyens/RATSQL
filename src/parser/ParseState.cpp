@@ -59,7 +59,8 @@ void ParseState::evaluate(TreeNode *tree) {
 }
 
 TreeNode* ParseState::createNode(const std::string &s) const {
-    if (s == "DOT" || s == "DIGIT" || s == "NAME" || s == "COMMA") {
+    if (s == "DOT" || s == "DIGIT" || s == "NAME" || s == "COMMA" || s == "EQ" || s == "ROUNDED_BRACKET_LEFT" ||
+        s == "ROUNDED_BRACKET_RIGHT") {
         return new BasicNode(s);
     } else if (s == "SELECTION") {
         return new SelectionNode(s);
@@ -71,8 +72,16 @@ TreeNode* ParseState::createNode(const std::string &s) const {
         return new SelectionNode(s);
     } else if (s == "PROJECTION") {
         return new ProjectionNode(s);
+    } else if (s == "RENAME") {
+        return new RenameNode(s);
     } else if (s == "TABLE") {
         return new TableNode(s);
+    } else if (s == "AND" || s == "OR") {
+        return new ValueNode(s);
+    } else if (s == "NEQ") {
+        return new ValueNode("!=");
+    } else if (s == "QUOTE") {
+        return new ValueNode("'");
     }
 
 
