@@ -1,115 +1,90 @@
 #include "TextEdit.h"
+#include "Highlighter.h"
 
-#include <QKeyEvent>
 #include <QAbstractItemView>
 #include <QApplication>
-#include <QModelIndex>
-#include <QAbstractItemModel>
 #include <QScrollBar>
-#include <QDebug>
 #include <QMenu>
 #include <QThread>
 #include <QList>
+#include <QFont>
 
 #include <iostream>
 
-void HighLighter::highlightBlock(const QString &text)
+TextEdit::TextEdit(QWidget* parent, bool readonly) : QTextEdit(parent), mErrorDetection(false), mDeviation(1),
+                                      mNamingConventions(false), mOptimize(false)
 {
-    QTextCharFormat spellingFormat;
-    spellingFormat.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
-    spellingFormat.setUnderlineColor(Qt::red);
-
-    // TODO - syntax highlighting in output
-    // TODO - ignore special characters
-
-    QStringList list = text.split(QRegularExpression("\\s++"));
-    int words = static_cast<int>(list.size());
-    int wordPointer = 0;
-    for (int i = 0; i < words; i++)
-    {
-        QString section = text.section(QRegularExpression("\\s+"), i, i, QString::SectionIncludeLeadingSep);
-
-//        // TODO - clear // todo wat?
-//        const auto& found = mBuffer.find(section);
-//        if (found != std::end(mBuffer))
-//        {
-//            if (found->second) { setFormat(wordPointer, section.length(), spellingFormat); }
-////            else { wordPointer += section.length(); }
-//            continue;
-//        }
-
-        const auto& suggestions = LevenshteinDistance::getInstance().eval(section.toStdString());
-        bool correctFlag = suggestions.first;
-
-        if (!correctFlag)
-        {
-            setFormat(wordPointer, section.length(), spellingFormat);
-        }
-        wordPointer += section.length();
-        // TODO
-//        mBuffer.emplace(std::make_pair(section, correctFlag));
-    }
-}
-
-TextEdit::TextEdit(QWidget* parent) : QTextEdit(parent),
-    mErrorDetection(false), mOptimize(false), mNamingConventions(false)
-{
+    setFont(QFont("Courier", 12));
+    setReadOnly(readonly);
     setContextMenuPolicy(Qt::CustomContextMenu);
+    installEventFilter(this);
+    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomMenu(QPoint)));
 
     mHighlighter = new HighLighter(this);
-
-    connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomMenu(QPoint)));
+    connect(this, SIGNAL(spacePressed()), mHighlighter, SLOT(onSpacePressed()));
 }
 
-void TextEdit::onCustomMenu(QPoint pos)
+QMenu* TextEdit::createReplaceMenu()
 {
-    QMenu* autocorrect = createStandardContextMenu();
-    auto customMenu = new QMenu(QString("Replace"), this);
-
+    auto replaceMenu = new QMenu(QString("Replace"), this);
     QTextCursor t = textCursor();
     t.select(QTextCursor::SelectionType());
     setTextCursor(t);
-
+    // If user has selected any text
     if (textCursor().hasSelection())
     {
-        QString selected = textCursor().selectedText();
-        bool correctFlag = false;
-        // TODO - distance blalalaa
-        const auto& suggestions = LevenshteinDistance::getInstance().eval(selected.toStdString(), 1);
+        QString selected = textCursor().selectedText().toLower();
+        const auto& suggestions = LevenshteinDistance::getInstance().eval(selected.toStdString(),
+                                                                          mDeviation);
 
-        if (!correctFlag)
+        QList<QAction*> newActions;
+        for (const auto&i : suggestions.second)
         {
-            QList<QAction*> newActions;
-            for (const auto& i : suggestions.second)
-            {
-                QString data = QString::fromStdString(i);
-                auto a = new QAction(data, customMenu);
-                a->setData(data);
-                newActions.push_back(a);
-            }
-            customMenu->addActions(newActions);
-            connect(customMenu, SIGNAL(triggered(QAction*)), this, SLOT(onCorrect(QAction*)));
+            QString data = QString::fromStdString(i);
+            auto a = new QAction(data, replaceMenu);
+            a->setData(data);
+            newActions.push_back(a);
         }
+        replaceMenu->addActions(newActions);
+        connect(replaceMenu, SIGNAL(triggered(QAction*)), this, SLOT(onCorrect(QAction*)));
     }
-    autocorrect->insertMenu(autocorrect->actions().first(), customMenu);
-    autocorrect->exec(mapToGlobal(pos));
-    delete customMenu;
+    return replaceMenu;
+}
+
+bool TextEdit::eventFilter(QObject *object, QEvent *event)
+{
+    if (object == this && event->type() == QEvent::KeyPress)
+    {
+        auto* keyEvent = dynamic_cast<QKeyEvent*>(event);
+        if (keyEvent->key() == Qt::Key_Space)
+        {
+            emit(spacePressed());
+        }
+        return false;
+    }
+    return false;
+}
+
+void TextEdit::onCustomMenu(const QPoint& pos)
+{
+    QMenu* menu = createStandardContextMenu();
+    // Don't create replace sub-menu when user doesn't need error detection
+    if (mErrorDetection)
+    {
+        const auto& replaceMenu = createReplaceMenu();
+        menu->insertMenu(menu->actions().first(), replaceMenu);
+    }
+    menu->exec(mapToGlobal(pos));
 }
 
 void TextEdit::onCorrect(QAction* act)
 {
+    // User didn't select an option
     if (act->data().isNull()) { return; }
-    QString correction = act->data().toString();
+    QString suggestion = act->data().toString();
     QTextCursor c = textCursor();
     c.beginEditBlock();
     c.removeSelectedText();
-    c.insertText(correction);
+    c.insertText(suggestion);
     c.endEditBlock();
-}
-
-QString TextEdit::getSelectedText() const
-{
-    QTextCursor t = textCursor();
-    t.select(QTextCursor::WordUnderCursor);
-    return t.selectedText();
 }

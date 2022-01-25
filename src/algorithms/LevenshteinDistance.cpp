@@ -62,13 +62,20 @@ LevenshteinDistance &LevenshteinDistance::getInstance() {
     return instance;
 }
 
-std::pair<bool, std::vector<std::string>> LevenshteinDistance::eval(const std::string &str1, int deviation) {
+std::pair<bool, std::vector<std::string>> LevenshteinDistance::eval(const std::string &str1, int deviation, bool skip) {
     std::vector<std::string> sugg;
-    std::cout << str1 << "\n";
     bool flag = false;
     for (const auto &i : mDict) {
-        if (evalLevenshteinDistance(str1, i, deviation)) { sugg.emplace_back(i); }
-        if (str1 == i) { flag = true; }
+        if (str1 == i)
+        {
+            flag = true;
+            if (skip) { return {flag, sugg}; }
+        }
+
+        if (evalLevenshteinDistance(str1, i, deviation))
+        {
+            sugg.emplace_back(i);
+        }
     }
     return {flag,sugg};
 }

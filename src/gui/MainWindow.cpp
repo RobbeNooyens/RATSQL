@@ -1,11 +1,11 @@
-#include "MainWindow.h"
-#include "./ui_MainWindow.h"
-
 #include <iostream>
 #include <fstream>
 #include <streambuf>
 #include <thread>
 #include <chrono>
+
+#include "MainWindow.h"
+#include "./ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,19 +15,12 @@ MainWindow::MainWindow(QWidget *parent)
     setWindowTitle(tr("RATSQL"));
     setFixedSize(1000, 700);
 
-
-    // TODO // TODO: wa is deze todo pablo?
-    mTextEdit = new TextEdit;
-
-    ui->layoutTextEdit->addWidget(mTextEdit);
-
     // Create menu + other things
-    createMenu();
+    init();
 }
 
 MainWindow::~MainWindow()
 {
-
     for (const auto& i : mCharacters) { delete i; }
     for (const auto &i : mSettings) { delete i; }
     mCharacters.clear();
@@ -35,7 +28,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::createMenu()
+void MainWindow::init()
 {
     // Central widget
     this->setCentralWidget(ui->centralwidget);
@@ -46,20 +39,13 @@ void MainWindow::createMenu()
                      std::istreambuf_iterator<char>());
     ui->centralwidget->setStyleSheet(QString::fromStdString(styleSheet));
 
+    // Editor
+    mTextEdit = new TextEdit(this);
+    mOutputTextEdit = new TextEdit(this, true);
+    ui->layoutTextEdit->addWidget(mTextEdit);
+    ui->layoutTextEdit->addWidget(mOutputTextEdit);
+
     // Menu bar
-
-
-    // Text editor - input
-//    ui->textEditInput->setReadOnly(false);
-//    ui->textEditInput->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-//    ui->textEditInput->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-//    ui->textEditInput->setPlaceholderText(tr("Start typing your Regular Expression ..."));
-
-    // Text editor - output
-//    ui->textEditOutput->setReadOnly(true);
-//    ui->textEditOutput->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-//    ui->textEditOutput->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-//    ui->textEditOutput->setPlaceholderText(tr("SQL output ..."));
 
     // Convert button
     ui->buttonConvert->setText(QString("CONVERT"));
@@ -73,6 +59,8 @@ void MainWindow::createMenu()
     ui->gridChards->setHorizontalSpacing(1);
     ui->gridChards->setVerticalSpacing(1);
     createCharButtons();
+
+
 }
 
 void MainWindow::createCharButtons()
@@ -80,10 +68,10 @@ void MainWindow::createCharButtons()
     /**
      * @brief Lambda function for inserting character buttons into gridChars
      * @param character std::wstring - special character
-     * @param row unsigned int - row where button needs to be placed
-     * @param column unsigned int - column where button needs to placed
+     * @param row int - row where button needs to be placed
+     * @param column int - column where button needs to placed
      */
-    auto createButton = [this](const std::wstring& character, unsigned int row, unsigned int column) -> void {
+    auto createButton = [this](const std::wstring& character, int row, int column) -> void {
         CharButton* a = new CharButton(QString::fromStdWString(character), this);
         connect(a, SIGNAL(clicked(QString)), mTextEdit, SLOT(onCharacterAdded(QString)));
         mCharacters.emplace_back(a);
@@ -125,7 +113,7 @@ void MainWindow::createCharButtons()
 
 void MainWindow::createSettingButtons()
 {
-    auto createButton = [this](const std::string& name, unsigned int row, unsigned int column) -> SettingButton* {
+    auto createButton = [this](const std::string& name, int row, int column) -> SettingButton* {
         SettingButton* s = new SettingButton(QString::fromStdString(name), this);
         mSettings.emplace_back(s);
         ui->gridSettings->addWidget(s, row, column);
@@ -133,6 +121,12 @@ void MainWindow::createSettingButtons()
     };
     auto er = createButton("Error correction", 0, 0);
     connect(er, SIGNAL(clicked(bool)), mTextEdit, SLOT(onErrorDetection(bool)));
+    auto* erDeviation = new QLineEdit("1", this);
+    erDeviation->setMaxLength(1);
+    erDeviation->setValidator(new QIntValidator(0, 10, erDeviation));
+    ui->gridSettings->addWidget(erDeviation, 0, 1);
+    mSettings.emplace_back(erDeviation);
+    connect(erDeviation, SIGNAL(textChanged(QString)), mTextEdit, SLOT(onDeviation(QString)));
 
     auto opt = createButton("Optimizer", 1, 0);
     connect(opt, SIGNAL(clicked(bool)), mTextEdit, SLOT(onOptimize(bool)));
@@ -144,9 +138,9 @@ void MainWindow::createSettingButtons()
 QMessageBox* MainWindow::createMessageBox(QMessageBox::Icon icon, const QString& title, const QString& text,
                                 QMessageBox::StandardButton button)
 {
-    QMessageBox* msg = new QMessageBox(icon, title, text, button);
-    QSpacerItem* horizontalSpacer = new QSpacerItem(250, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
-    QGridLayout* layout = (QGridLayout*)msg->layout();
+    auto* msg = new QMessageBox(icon, title, text, button);
+    auto* horizontalSpacer = new QSpacerItem(250, 0, QSizePolicy::Minimum, QSizePolicy::Expanding);
+    auto* layout = (QGridLayout*)msg->layout();
     layout->addItem(horizontalSpacer, layout->rowCount(), 0, 1, layout->columnCount());
     msg->exec();
     return msg;
@@ -155,18 +149,18 @@ QMessageBox* MainWindow::createMessageBox(QMessageBox::Icon icon, const QString&
 void MainWindow::onConvertBtnClicked()
 {
     // Regular expression
-    std::string expr = mTextEdit->toPlainText().toStdString();
+    std::string query = mTextEdit->toPlainText().toStdString();
 
     // Show error message if expression is empty
-    if (expr.empty())
+    if (query.empty())
     {
         createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error: given regular expression is empty."),
                          QMessageBox::Ok);
     }
 
-    // TODO - errors terugkrijgen van parser // todo wa is deze todo pablo?
 
-//    ui->textEditOutput->clear();
-//    ui->textEditOutput->insertPlainText(QString::fromStdString(expr));
+
+    mOutputTextEdit->clear();
+    mOutputTextEdit->insertPlainText(QString::fromStdString(query));
 }
 

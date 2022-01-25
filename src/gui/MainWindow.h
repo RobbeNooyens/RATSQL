@@ -5,6 +5,9 @@
 #include <QPushButton>
 #include <QStringListModel>
 #include <QMessageBox>
+#include <QLineEdit>
+#include <QLabel>
+#include <QValidator>
 
 #include "CharButton.h"
 #include "SettingButton.h"
@@ -35,7 +38,7 @@ private:
     /**
      * @brief Create buttons, actions, ...
      */
-    void createMenu();
+    void init();
     /**
      * @brief Create buttons for different special characters
      */
@@ -60,8 +63,9 @@ public slots:
 private:
     Ui::MainWindow *ui;
     std::vector<CharButton*> mCharacters;
-    std::vector<SettingButton*> mSettings;
+    std::vector<QWidget*> mSettings;
 
     TextEdit* mTextEdit;
+    TextEdit* mOutputTextEdit;
 };
 #endif // MAINWINDOW_H

@@ -95,6 +95,8 @@ add_executable(RATSQL_GUI
         src/gui/CharButton.h
         src/gui/CharButton.cpp
         src/gui/SettingButton.h
+        src/gui/Highlighter.cpp
+        src/gui/Highlighter.h
         src/gui/SettingButton.cpp
         src/gui/TextEdit.h
         src/gui/TextEdit.cpp

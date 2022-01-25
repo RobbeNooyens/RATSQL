@@ -3248,7 +3248,7 @@ buddy
 hardcover
 observed
 dean
-setup
+init
 poll
 booking
 glossary

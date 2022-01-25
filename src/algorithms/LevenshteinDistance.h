@@ -32,15 +32,20 @@ public:
 
     LevenshteinDistance(const LevenshteinDistance&) = delete;
 
+    LevenshteinDistance& operator=(const LevenshteinDistance&&) = delete;
+
+    LevenshteinDistance(const LevenshteinDistance&&) = delete;
+
     static LevenshteinDistance& getInstance();
 
     /**
      * @brief Evaluates a string compared with the dictionary
      * @param str1      input string
      * @param deviation max allowed levenshtein deviation
+     * @param skip return if one match is found
      * @return  pair(wordFoundInDictionary, similarWordsToInput)
      */
-    std::pair<bool, std::vector<std::string>> eval(const std::string& str1, int deviation = 2);
+    std::pair<bool, std::vector<std::string>> eval(const std::string& str1, int deviation = 2, bool skip = false);
 
     /**
      * Function that evaluates the levenshtein distance according to a deviation.
