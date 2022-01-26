@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
     std::string a = "a";
     auto b = Utils::insert_unique(v, v.begin(), a);
 
-    std::shared_ptr<CFG> cfg = make_shared<CFG>("../input/grammar.json");
+    std::shared_ptr<CFG> cfg = make_shared<CFG>("input/grammar.json");
     Lexer lexer = Lexer(cfg->getAliasMap(), cfg->getAliases());
     EarleyParser parser(cfg);
 //    std::string input = "σ model = 1001 pi maker, model sigma type = 'pc' pi maker, model, type (Product)";
