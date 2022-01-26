@@ -70,7 +70,7 @@ add_executable(RATSQL_CMD
         src/datastructures/CFG.h
         libs/json.hpp
         src/exceptions/ExceptionHandler.cpp
-        src/exceptions/ExceptionHandler.h src/parser/Tree.cpp src/parser/Tree.h src/parser/ParseState.cpp src/parser/ParseState.h)
+        src/exceptions/ExceptionHandler.h src/parser/TreeNode.cpp src/parser/TreeNode.h src/parser/ParseState.cpp src/parser/ParseState.h)
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
@@ -143,12 +143,16 @@ add_executable(RATSQL_PARSING
         src/parser/EarleyParser.cpp
         src/datastructures/CFG.cpp
         src/datastructures/CFG.h
-        src/parser/Tree.cpp
-        src/parser/Tree.h
+        src/parser/TreeNode.cpp
+        src/parser/TreeNode.h
         src/parser/ParseState.h
         src/parser/ParseState.cpp
-        libs/json.hpp)
+        libs/json.hpp
+        src/parser/SQLTranslator.cpp
+        src/parser/SQLTranslator.h
+        src/parser/Lexer.cpp
+        src/parser/Lexer.h)
 
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
-target_link_libraries(RATSQL_GUI ${REQUIRED_LIBS_QUALIFIED})
+#target_link_libraries(RATSQL_GUI ${REQUIRED_LIBS_QUALIFIED})

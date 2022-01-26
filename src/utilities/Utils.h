@@ -19,6 +19,7 @@
 #include <vector>
 #include <string>
 #include <cassert>
+#include <algorithm>
 
 namespace Utils {
 
@@ -69,6 +70,24 @@ namespace Utils {
         }
 
     };
+
+    template<typename T>
+    bool insert_unique(std::vector<T> &v, typename std::vector<T>::iterator iter, const T &t) {
+        if (std::find(v.begin(), v.end(), t) == v.end()) {
+            v.insert(iter, t);
+            return true;
+        }
+        return false;
+    }
+
+    template<typename T>
+    bool emplace_back_unique(std::vector<T> &v, const T &t) {
+        if (std::find(v.begin(), v.end(), t) == v.end()) {
+            v.emplace_back(t);
+            return true;
+        }
+        return false;
+    }
 }
 
 #endif //RATSQL_UTILS_H
