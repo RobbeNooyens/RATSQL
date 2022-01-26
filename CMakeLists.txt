@@ -70,7 +70,9 @@ add_executable(RATSQL_CMD
         src/datastructures/CFG.h
         libs/json.hpp
         src/exceptions/ExceptionHandler.cpp
-        src/exceptions/ExceptionHandler.h src/parser/ParseState.cpp src/parser/ParseState.h src/parser/Tokens.h)
+        src/exceptions/ExceptionHandler.h
+        src/parser/TreeNode.cpp src/parser/TreeNode.h
+        src/parser/ParseState.cpp src/parser/ParseState.h src/parser/Tokens.h)
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
@@ -86,40 +88,31 @@ add_executable(RATSQL_GUI
         src/datastructures/ParseSettings.h
         src/datastructures/ReplaceSuggestion.h
         src/exceptions/ExceptionHandler.h
+        src/exceptions/ExceptionHandler.cpp
+        src/utilities/Parsers.h
+        src/utilities/Parsers.cpp
+        src/gui/MainWindow.cpp
+        src/gui/MainWindow.h
+        src/gui/MainWindow.ui
+        src/gui/CharButton.h
+        src/gui/CharButton.cpp
+        src/gui/SettingButton.h
+        src/gui/Highlighter.cpp
+        src/gui/Highlighter.h
+        src/gui/SettingButton.cpp
+        src/gui/TextEdit.h
+        src/gui/TextEdit.cpp
+        src/datastructures/RAExpression.h
+        src/datastructures/SQLStatement.cpp
+        src/datastructures/SQLStatement.h
+        src/datastructures/ParseSettings.h
+        src/datastructures/ReplaceSuggestion.h
+        src/exceptions/ExceptionHandler.h
         src/parser/TreeNode.cpp
         src/parser/TreeNode.h
         src/parser/ParseState.cpp
-        src/parser/ParseState.h)
-
-#add_executable(RATSQL_GUI
-#        src/main_gui.cpp
-#        src/utilities/Utils.h
-#        src/algorithms/ShuntingAlgorithm.cpp
-#        src/algorithms/ShuntingAlgorithm.h
-#        src/algorithms/LevenshteinDistance.cpp
-#        src/algorithms/LevenshteinDistance.h
-#        src/datastructures/RAExpression.cpp
-#        src/datastructures/RAExpression.h
-#        src/datastructures/SQLStatement.cpp
-#        src/datastructures/SQLStatement.h
-#        src/datastructures/ParseSettings.h
-#        src/datastructures/ReplaceSuggestion.h
-#        src/exceptions/ExceptionHandler.h
-#        src/exceptions/ExceptionHandler.cpp
-#        src/utilities/Parsers.h
-#        src/utilities/Parsers.cpp
-#        src/gui/MainWindow.cpp
-#        src/gui/MainWindow.h
-#        src/gui/MainWindow.ui
-#        src/gui/CharButton.h
-#        src/gui/CharButton.cpp
-#        src/gui/SettingButton.h
-#        src/gui/Highlighter.cpp
-#        src/gui/Highlighter.h
-#        src/gui/SettingButton.cpp
-#        src/gui/TextEdit.h
-#        src/gui/TextEdit.cpp
-#        )
+        src/parser/ParseState.h
+        )
 
 add_executable(RATSQL_TESTS
         src/main_tests.cpp
@@ -170,7 +163,14 @@ add_executable(RATSQL_PARSING
         src/datastructures/CFG.h
         src/parser/ParseState.h
         src/parser/ParseState.cpp
-        libs/json.hpp)
+        src/parser/TreeNode.h
+        src/parser/TreeNode.cpp
+        src/parser/SQLTranslator.cpp
+        src/parser/SQLTranslator.h
+        src/parser/Lexer.h
+        src/parser/Lexer.cpp
+        libs/json.hpp
+        )
 
 # Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)

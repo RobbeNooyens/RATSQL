@@ -89,6 +89,22 @@ std::string TreeNode::translate() const {
     return output;
 }
 
+const string &TreeNode::getToken() const {
+    return token;
+}
+
+const string &TreeNode::getValue() const {
+    return value;
+}
+
+std::string BasicNode::translate() const {
+    std::string output = value;
+    for (auto child : children) {
+        output += child->translate();
+    }
+    return output;
+}
+
 ExpressionNode::ExpressionNode(const string &token): TreeNode(token) {}
 
 std::string ExpressionNode::translate() const {
@@ -119,6 +135,15 @@ void ExpressionNode::translate(vector<std::string> &v) const {
     v[1] += translate();
 }
 
+ModificationNode::ModificationNode(const string &token): TreeNode(token) {}
+
+void ModificationNode::translate(vector<std::string> &v) const {
+    for (auto child = children.rbegin(); child != children.rend(); ++child) {
+        (*child)->translate(v);
+        const TreeNode *node = *child;
+    }
+}
+
 SelectionNode::SelectionNode(const string &token): TreeNode(token) {}
 
 void SelectionNode::translate(vector<std::string> &v) const {
@@ -138,22 +163,6 @@ void SelectionNode::translate(vector<std::string> &v) const {
 
 BasicNode::BasicNode(const std::string &token): TreeNode(token) {}
 
-std::string BasicNode::translate() const {
-    std::string output = value;
-    for (auto child : children) {
-        output += child->translate();
-    }
-    return output;
-}
-
-ModificationNode::ModificationNode(const string &token): TreeNode(token) {}
-
-void ModificationNode::translate(vector<std::string> &v) const {
-    for (auto child = children.rbegin(); child != children.rend(); ++child) {
-        (*child)->translate(v);
-    }
-}
-
 ProjectionNode::ProjectionNode(const string &token): TreeNode(token) {}
 
 void ProjectionNode::translate(vector<std::string> &v) const {
@@ -164,6 +173,9 @@ void ProjectionNode::translate(vector<std::string> &v) const {
     output += " FROM ";
     if (!v[0].empty()) {
         output += "(";
+        std::string tempTableName = "TempTable" + to_string(9999);
+        std::string tempTable = ") AS " + tempTableName;
+        v[2] += tempTable;
     }
     v[0].insert(v[0].begin(), output.begin(), output.end());
 }

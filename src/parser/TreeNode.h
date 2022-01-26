@@ -35,6 +35,18 @@ public:
      */
     virtual void translate(std::vector<std::string> &v) const {};
 
+    /**
+     * Getter for the token
+     * @return the token
+     */
+    const string &getToken() const;
+
+    /**
+     * Getter for the value
+     * @return the value
+     */
+    const string &getValue() const;
+
 protected:
     std::string token;
     std::string value;
