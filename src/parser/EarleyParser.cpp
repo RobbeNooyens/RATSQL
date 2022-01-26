@@ -85,7 +85,7 @@ TreeNode * EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
         initReplacement->evaluate(root);
         int index = 0;
         root->assignTokens(tokens, index);
-        std::string output = "../output/out.dot";
+        std::string output = "output/out.dot";
         root->exportDot(output);
         if(index != tokens.size()) {
             throw std::runtime_error("Index should be at end of vector");
