@@ -85,6 +85,13 @@ namespace Utils {
 
     };
 
+    /**
+     * Function to insert an item at a given location in a vector, ensuring there are no duplicates
+     * @param v vector to insert into
+     * @param iter place to insert in
+     * @param t item to insert
+     * @return true if item inserted, false if it already existed
+     */
     template<typename T>
     bool insert_unique(std::vector<T> &v, typename std::vector<T>::iterator iter, const T &t) {
         if (std::find(v.begin(), v.end(), t) == v.end()) {
@@ -94,6 +101,12 @@ namespace Utils {
         return false;
     }
 
+    /**
+     * Function to emplace an item in a vector, ensuring there are no duplicates
+     * @param v vector to insert into
+     * @param t item to insert
+     * @return true if item inserted, false if it already existed
+     */
     template<typename T>
     bool emplace_back_unique(std::vector<T> &v, const T &t) {
         if (std::find(v.begin(), v.end(), t) == v.end()) {
