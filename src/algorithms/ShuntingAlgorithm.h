@@ -72,28 +72,53 @@ private:
     /// @brief Map with the precedence of all the operators
     std::map<std::string, int> precedence = {
             {Tokens::PI, 2},
-            {Tokens::SIGMA, 2},
+            {Tokens::SIGMA, 3},
+            {Tokens::RHO, 4},
+
             {Tokens::JOIN, 10},
-            {Tokens::UNION, 5},
-            {Tokens::INTERSECT, 1},
-            {Tokens::SUBTRACT, 1},
-            {Tokens::RHO, 3},
+            {Tokens::UNION, 10},
+            {Tokens::INTERSECT, 10},
+            {Tokens::SUBTRACT, 10},
+            {Tokens::SCALAR, 10},
+            {Tokens::DOT, 10},
+
             {Tokens::ROUNDED_BRACKET_LEFT, 20},
             {Tokens::ROUNDED_BRACKET_RIGHT, 20},
+
+            {Tokens::AND, 2},
+            {Tokens::OR, 2},
+            {Tokens::NOT, 2},
+
+            {Tokens::EQUALS, 30},
+            {Tokens::NOT_EQUALS, 1},
+            {Tokens::LESS_THAN_OR_EQUALS, 1},
+            {Tokens::GREATER_THAN_OR_EQUALS, 1},
             {Tokens::LESS_THAN, 1},
             {Tokens::GREATER_THAN, 1},
             {Tokens::COMMA, 1},
-            {Tokens::ARROW_LEFT, 1}
+            {Tokens::ARROW_LEFT, 1},
+            {Tokens::ARROW_RIGHT, 1},
     };
     /// @brief Map with all the kind of notations of all the operators
     std::map<std::string, OperatorType> operatorTypes = {
             {Tokens::PI, PREFIX},
             {Tokens::SIGMA, PREFIX},
+            {Tokens::RHO, PREFIX},
+
+            {Tokens::AND, INFIX},
+            {Tokens::OR, INFIX},
+            {Tokens::NOT, INFIX},
+
             {Tokens::JOIN, INFIX},
             {Tokens::UNION, INFIX},
             {Tokens::INTERSECT, INFIX},
             {Tokens::SUBTRACT, INFIX},
-            {Tokens::RHO, PREFIX},
+
+            {Tokens::EQUALS, INFIX},
+            {Tokens::NOT_EQUALS, INFIX},
+            {Tokens::GREATER_THAN_OR_EQUALS, INFIX},
+            {Tokens::LESS_THAN_OR_EQUALS, INFIX},
+            {Tokens::LESS_THAN_OR_EQUALS, INFIX},
             {Tokens::LESS_THAN, INFIX},
             {Tokens::GREATER_THAN, INFIX},
             {Tokens::COMMA, INFIX},

@@ -85,6 +85,8 @@ void ShuntingAlgorithm::consumeOperator(ParseToken &opSymbol) {
 
 void ShuntingAlgorithm::consumeText(ParseToken &text) {
     queue.push(text);
+    if(operatorStack.empty())
+        return;
     auto& opToken = operatorStack.top().getToken();
     if(opToken == Tokens::COMMA || opToken == Tokens::ARROW_LEFT || opToken == Tokens::LESS_THAN) {
         queue.push(operatorStack.top());

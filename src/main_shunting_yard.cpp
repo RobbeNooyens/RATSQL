@@ -20,6 +20,8 @@
 
 int main(int argc, char* argv[]) {
     std::vector<ParseToken> tokens = {
+            {Tokens::NAME, "test"},
+            {Tokens::EQUALS, "="},
             {Tokens::SIGMA, "σ"},
             {Tokens::NAME, "maker2"},
             {Tokens::LESS_THAN, "<"},

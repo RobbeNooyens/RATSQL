@@ -19,6 +19,7 @@ namespace Tokens {
     const std::string LESS_THAN_OR_EQUALS = "LEQ";
     const std::string LESS_THAN = "LT";
     const std::string GREATER_THAN = "GT";
+
     const std::string AND = "AND";
     const std::string OR = "OR";
     const std::string NOT = "NOT";
