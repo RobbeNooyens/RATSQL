@@ -12,6 +12,9 @@
 #include "CharButton.h"
 #include "SettingButton.h"
 #include "TextEdit.h"
+#include "../datastructures/CFG.h"
+#include "../parser/Lexer.h"
+#include "../parser/EarleyParser.h"
 
 #include <memory>
 #include <vector>
@@ -64,6 +67,10 @@ private:
     Ui::MainWindow *ui;
     std::vector<CharButton*> mCharacters;
     std::vector<QWidget*> mSettings;
+
+    std::shared_ptr<CFG> mCFG;
+    std::unique_ptr<Lexer> mLexer;
+    std::unique_ptr<EarleyParser> mEarlyParser;
 
     TextEdit* mTextEdit;
     TextEdit* mOutputTextEdit;

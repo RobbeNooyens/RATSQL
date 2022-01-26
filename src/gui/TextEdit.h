@@ -31,6 +31,8 @@ public:
      */
     explicit TextEdit(QWidget* parent = nullptr, bool readonly = false);
 
+    void setHighLighter(HighLighter* highlighter);
+
     bool isErrorDetection() const { return mErrorDetection; }
     bool isOptimized() const { return mOptimize; }
     bool isNamingConventions() const { return mNamingConventions; }

@@ -4,18 +4,7 @@
 
 #include "Highlighter.h"
 
-HighLighter::HighLighter(QTextEdit *parent) : QSyntaxHighlighter(parent), mErrorDetection(false), mDeviation(1), mErrorFlag(false)
-{
-    // Syntax highlighting for operators
-    QStringList operators;
-    QTextCharFormat formatOperators;
-    formatOperators.setForeground(QBrush(QColor(4, 185, 127)));
-    formatOperators.setFontWeight(13);
-    operators << "\\π" << "\\σ" << "\\ρ" << "\\->" << "\\<-" << "\\∨" << "\\¬" << "\\≠" << "\\=" << "\\=" << "\\>"
-             << "\\<" << "\\≥" << "\\≤" << "\\∧"<< "\\∩" << "\\∪" << "\\/" << "\\-" << "\\⨯" << "\\⨝" << "\\{"
-             << "\\}" << "\\(" << "\\)" << "\\." << "\\," << "\\'";
-    addKeywords(operators, formatOperators);
-}
+HighLighter::HighLighter(QTextEdit *parent) : QSyntaxHighlighter(parent), mErrorDetection(false), mDeviation(1), mErrorFlag(false) {}
 
 void HighLighter::addKeywords(const QStringList &keywords, const QTextCharFormat& format)
 {
