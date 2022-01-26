@@ -24,7 +24,11 @@ using namespace std;
 
 void ShuntingAlgorithm::operator()(std::vector<ParseToken>& tokens, std::ostream& stream) {
     for(auto& token: tokens) {
-        consume(token);
+        if(isOperator(token)) {
+            consumeOperator(token);
+        } else {
+            consumeText(token);
+        }
         printQueue();
         printOperatorStack();
         cout << endl;
@@ -32,15 +36,6 @@ void ShuntingAlgorithm::operator()(std::vector<ParseToken>& tokens, std::ostream
     flush();
     printQueue();
     parse(stream);
-}
-
-
-void ShuntingAlgorithm::consume(ParseToken& token) {
-    if(isOperator(token)) {
-        consumeOperator(token);
-    } else {
-        consumeText(token);
-    }
 }
 
 void ShuntingAlgorithm::flush() {
@@ -72,6 +67,8 @@ void ShuntingAlgorithm::consumeOperator(ParseToken &opSymbol) {
     int weight = precedence[opSymbol.getToken()];
     auto& stacktop = getStackTop();
     int weightStacktop = precedence[stacktop.getToken()];
+    if(stacktop.getToken() == Tokens::EQUALS && operatorStack.size() == 1)
+        weightStacktop = 30;
     if(weight >= weightStacktop) {
         queue.push(stacktop);
         operatorStack.pop();
@@ -88,7 +85,7 @@ void ShuntingAlgorithm::consumeText(ParseToken &text) {
     if(operatorStack.empty())
         return;
     auto& opToken = operatorStack.top().getToken();
-    if(opToken == Tokens::COMMA || opToken == Tokens::ARROW_LEFT || opToken == Tokens::LESS_THAN) {
+    if(opToken == Tokens::COMMA || opToken == Tokens::ARROW_LEFT || opToken == Tokens::LESS_THAN || opToken == Tokens::EQUALS) {
         queue.push(operatorStack.top());
         operatorStack.pop();
     }

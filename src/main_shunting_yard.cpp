@@ -17,14 +17,18 @@
 #include "algorithms/ShuntingAlgorithm.h"
 #include "parser/Lexer.h"
 #include "parser/Tokens.h"
+#include "datastructures/CFG.h"
 
 int main(int argc, char* argv[]) {
+    std::shared_ptr<CFG> cfg = make_shared<CFG>("../input/grammar.json");
+    Lexer lexer = Lexer(cfg->getAliasMap(), cfg->getAliases());
+
     std::vector<ParseToken> tokens = {
             {Tokens::NAME, "test"},
             {Tokens::EQUALS, "="},
             {Tokens::SIGMA, "σ"},
             {Tokens::NAME, "maker2"},
-            {Tokens::LESS_THAN, "<"},
+            {Tokens::EQUALS, "="},
             {Tokens::NAME, "maker"},
             {Tokens::ROUNDED_BRACKET_LEFT, "("},
             {Tokens::RHO, "ρ"},
@@ -69,8 +73,9 @@ int main(int argc, char* argv[]) {
         U
         sigma
      */
-//    std::string input = "σ maker2 < maker ( ρ maker2←maker π maker,type Product U π maker,type Product )";
+    std::string input = "σ maker2 < maker ( ρ maker2←maker π maker,type Product U π maker,type Product )";
+    auto tokenized = lexer.tokenise(input);
     ShuntingAlgorithm algorithm;
-    algorithm(tokens);
+    algorithm(tokenized);
     return 0;
 }

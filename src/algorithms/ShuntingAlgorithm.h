@@ -89,7 +89,7 @@ private:
             {Tokens::OR, 2},
             {Tokens::NOT, 2},
 
-            {Tokens::EQUALS, 30},
+            {Tokens::EQUALS, 1},
             {Tokens::NOT_EQUALS, 1},
             {Tokens::LESS_THAN_OR_EQUALS, 1},
             {Tokens::GREATER_THAN_OR_EQUALS, 1},
@@ -124,11 +124,6 @@ private:
             {Tokens::COMMA, INFIX},
             {Tokens::ARROW_LEFT, INFIX},
     };
-    /**
-     * @brief Will consume an input (needs to be done before parsing)
-     * @param symbol
-     */
-    void consume(ParseToken& token);
     /**
      * @brief Will flush the stack and create a new expression
      */
