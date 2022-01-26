@@ -19,9 +19,22 @@
 #include <vector>
 #include <string>
 #include <cassert>
-#include <algorithm>
 
 namespace Utils {
+    /**
+     * @brief Convert given string from camel case to snake case
+     * @example "RatIsCool" --> "rat_is_cool"
+     * @param camel std::string - string in camel case
+     * @return std::string in snake case
+     */
+    static std::string toSnakeCase(const std::string &camel);
+    /**
+     * @brief Convert given string from snake case to camel case
+     * @example "rat_is_cool" --> "RatIsCool"
+     * @param snake std::string - string in snake case
+     * @return std::string in camel case
+     */
+    static std::string toCamelCase(const std::string &snake);
 
     class Matrix {
     private:
@@ -70,24 +83,6 @@ namespace Utils {
         }
 
     };
-
-    template<typename T>
-    bool insert_unique(std::vector<T> &v, typename std::vector<T>::iterator iter, const T &t) {
-        if (std::find(v.begin(), v.end(), t) == v.end()) {
-            v.insert(iter, t);
-            return true;
-        }
-        return false;
-    }
-
-    template<typename T>
-    bool emplace_back_unique(std::vector<T> &v, const T &t) {
-        if (std::find(v.begin(), v.end(), t) == v.end()) {
-            v.emplace_back(t);
-            return true;
-        }
-        return false;
-    }
 }
 
 #endif //RATSQL_UTILS_H
