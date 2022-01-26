@@ -12,6 +12,7 @@
 
 #include "../datastructures/CFG.h"
 #include "ParseTemplate.h"
+#include "TreeNode.h"
 
 class ParseState;
 
@@ -22,12 +23,19 @@ class EarleyParser {
 public:
     /**
      * Function to construct an early parser for a given set of tokens, based on a grammar
-     * @param words tokens
+     * @param tokens tokens
      * @param grammar grammar
      */
-    void earleyParse(const std::vector<ParseToken> &words);
+    TreeNode * earleyParse(const std::vector<ParseToken> &tokens);
 
     explicit EarleyParser(std::string& grammar);
+
+    /**
+     * Constructor for EarlyParser
+     * @param cfg pointer to the grammar
+     */
+    explicit EarleyParser(const std::shared_ptr<CFG> &cfg);
+
     ~EarleyParser();
 
     void predictor(ParseState* closureRule, unsigned int k);

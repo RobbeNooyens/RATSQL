@@ -11,7 +11,7 @@
 #include <memory>
 #include "../datastructures/CFG.h"
 
-class Tree;
+class TreeNode;
 
 class ParseState {
 public:
@@ -29,7 +29,7 @@ public:
 
     // Actions
     void addDerivedState(std::pair<ParseState*, ParseState*> state);
-    void evaluate(Tree *tree);
+    void evaluate(TreeNode *tree);
 
     // Comparators
     bool operator==(ParseState& rhs);
@@ -41,6 +41,7 @@ private:
     unsigned int origin = 0;
     std::vector<std::pair<ParseState*, ParseState*>> derivedStates;
 
+    TreeNode *createNode(const std::string &s) const;
 };
 
 

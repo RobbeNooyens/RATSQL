@@ -45,6 +45,10 @@ vector<string> Lexer::splitString(const string &parseString) {
             }
         }
     }
+    // Add any possible remainings
+    if (!stringCopy.empty()) {
+        stringToTokens.emplace_back(stringCopy);
+    }
     return stringToTokens;
 }
 
