@@ -81,7 +81,7 @@
     {"head":  "OR", "body":  ["or","∨"]},
     {"head":  "NOT", "body":  ["not", "!","¬"]},
     {"head":  "INTERSECT", "body":  ["intersect", "∩"]},
-    {"head":  "UNION", "body":  ["union", "∪"]},
+    {"head":  "UNION", "body":  ["union", "∪", "U"]},
     {"head":  "DIV", "body":  ["/", "÷"]},
     {"head":  "SUB", "body":  ["-"]},
     {"head":  "JOIN", "body":  ["join", "⨝","⋈"]},

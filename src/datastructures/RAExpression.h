@@ -17,13 +17,18 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 
-using RAWord = std::vector<std::string>;
+class ParseToken;
+
+using RAWord = std::vector<ParseToken>;
+
+class ParseToken;
 
 class RAExpression {
 private:
     /// @brief Relation algebra expression
-    std::vector<RAWord> expression;
+    std::vector<std::shared_ptr<RAWord>> expression;
 public:
     /**
      * @brief Default constructor
@@ -35,31 +40,38 @@ public:
      */
     explicit RAExpression(const std::vector<std::string>& expression);
     /**
+     * @brief Constructor that will make an expression based on the given vector
+     * @param expression    Given vector of strings
+     */
+    explicit RAExpression(const std::vector<ParseToken>& expression);
+    /**
      * @brief Setter for a word in the expression
      * @param index     Index on where the word should come
      */
-    void setWord(int index, const RAWord& word);
+    void setWord(int index, const std::shared_ptr<RAWord>& word);
     /**
      * @brief Will add a word to the expression
      * @param word      Word to add to the expression
      */
-    void addWord(const RAWord& word);
+    void addWord(std::shared_ptr<RAWord> &word);
     /**
      * @brief Getter for a word on a given index
      * @param index     Index of the world we want to get
      * @return
      */
-    RAWord getWord(int index);
+    std::shared_ptr<RAWord> getWord(int index);
     /**
      * @brief Getter for the expression
      * @return      Expression
      */
-    std::vector<RAWord> getExpression() const;
+    std::vector<std::shared_ptr<RAWord>> getExpression() const;
     /**
      * @brief Print the expression to a io stream
      * @param stream    io stream to print to
      */
     void printExpression(std::ostream & stream);
+
+    bool operator==(const RAExpression &rhs) const;
 
 };
 

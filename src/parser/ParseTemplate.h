@@ -7,6 +7,7 @@
 
 #include <string>
 #include <utility>
+#include <ostream>
 
 using namespace std;
 
@@ -36,6 +37,11 @@ public:
      * @return content of the token
      */
     const string &getContent() const {return content;}
+
+    friend ostream &operator<<(ostream &os, const ParseToken &token) {
+        os << token.tokenType << "(" << token.content << ")";
+        return os;
+    }
 };
 
 
