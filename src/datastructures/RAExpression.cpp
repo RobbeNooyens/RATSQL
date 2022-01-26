@@ -15,8 +15,9 @@
 #include "RAExpression.h"
 #include "../exceptions/ExceptionHandler.h"
 #include <iostream>
+#include "../parser/ParseTemplate.h"
 
-void RAExpression::setWord(int index, const RAWord& word) {
+void RAExpression::setWord(int index, const std::shared_ptr<RAWord>& word) {
     try {
         this->expression[index] = word;
     } catch (std::exception& exc) {
@@ -25,7 +26,7 @@ void RAExpression::setWord(int index, const RAWord& word) {
     }
 }
 
-RAWord RAExpression::getWord(int index) {
+std::shared_ptr<RAWord> RAExpression::getWord(int index) {
     try {
         return this->expression[index];
     } catch (std::exception& exc) {
@@ -39,9 +40,9 @@ void RAExpression::printExpression(std::ostream &stream) {
     int index = 0;
     for(auto& s: this->expression) {
         std::string toPrint{};
-        for (auto& elem: s) {
-            toPrint += elem + " ";
-            if (elem == s.back()) toPrint.pop_back();
+        for (auto& elem: *s) {
+            toPrint += elem.getContent() + " ";
+            if (elem.getContent() == s->back().getContent()) toPrint.pop_back();
         }
         stream << index << ": " << toPrint << std::endl;
         index++;
@@ -53,10 +54,19 @@ RAExpression::RAExpression(const std::vector<std::string>& expression) {
 
 }
 
-std::vector<RAWord> RAExpression::getExpression() const {
+std::vector<std::shared_ptr<RAWord>> RAExpression::getExpression() const {
     return this->expression;
 }
 
-void RAExpression::addWord(const RAWord &word) {
+void RAExpression::addWord(std::shared_ptr<RAWord> &word) {
     expression.push_back(word);
+}
+
+RAExpression::RAExpression(const std::vector<ParseToken> &expression) {
+    // TODO: make RAExpression work with ParseTokens
+
+}
+
+bool RAExpression::operator==(const RAExpression &rhs) const {
+    return expression == rhs.expression;
 }

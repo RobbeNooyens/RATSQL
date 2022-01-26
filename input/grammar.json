@@ -91,7 +91,6 @@
     {"head":  "EOL", "body":  ["\n", "\r"]},
     {"head":  "COMMA", "body":  [","]},
     {"head":  "DOT", "body":  ["."]},
-    {"head":  "RIGHT_ARROW", "body":  ["<-", "←"]},
     {"head":  "MULTI_COMMENT_START", "body":  ["/*"]},
     {"head":  "MULTI_COMMENT_END", "body":  ["*/"]},
     {"head":  "LINE_COMMENT_START", "body":  ["--"]}

@@ -23,7 +23,12 @@
 #include <map>
 #include <iostream>
 #include "../datastructures/RAExpression.h"
+#include "../parser/Tokens.h"
+#include "../parser/ParseTemplate.h"
+
 enum OperatorType {PREFIX, INFIX, POSTFIX};
+
+class ParseToken;
 
 /**
  * @class ShuntingAlgorithm
@@ -40,7 +45,7 @@ public:
      * @param str       str for the algorithm to apply on
      * @param stream    ostream for the output
      */
-    void operator()(std::string& str, std::ostream& stream=std::cout);
+    void operator()(std::vector<ParseToken>& tokens, std::ostream& stream=std::cout);
     /**
      * @brief Will parse the input, create an expression, and possibly print the result
      * @param stream    to which stream to print - default is cout
@@ -55,42 +60,50 @@ public:
     RAExpression getRAExpression() const;
 private:
     /// @brief Stack with all the operators
-    std::stack<std::string> operatorStack{};
+    std::stack<ParseToken> operatorStack{};
     /// @brief Main queue with the full string expression
-    std::queue<std::string> queue{};
+    std::queue<ParseToken> queue{};
     /// @brief Stack with all the non-operator variables
-    std::stack<std::string> textStack{};
+    std::stack<ParseToken> textStack{};
     /// @brief The relational expression that the pars() function returns
     RAExpression expression{};
     /// @brief Demonstrates an empty string
-    std::string emptyString{};
+    ParseToken emptyToken{"", ""};
     /// @brief Map with the precedence of all the operators
     std::map<std::string, int> precedence = {
-            {"π", 2},
-            {"σ", 1},
-            {"⋈", 10},
-            {"∪", 1},
-            {"∩", 1},
-            {"-", 1},
-            {"ρ", 3},
-            {"(", 20},
-            {")", 20}
+            {Tokens::PI, 2},
+            {Tokens::SIGMA, 2},
+            {Tokens::JOIN, 10},
+            {Tokens::UNION, 5},
+            {Tokens::INTERSECT, 1},
+            {Tokens::SUBTRACT, 1},
+            {Tokens::RHO, 3},
+            {Tokens::ROUNDED_BRACKET_LEFT, 20},
+            {Tokens::ROUNDED_BRACKET_RIGHT, 20},
+            {Tokens::LESS_THAN, 1},
+            {Tokens::GREATER_THAN, 1},
+            {Tokens::COMMA, 1},
+            {Tokens::ARROW_LEFT, 1}
     };
     /// @brief Map with all the kind of notations of all the operators
     std::map<std::string, OperatorType> operatorTypes = {
-            {"π", PREFIX},
-            {"σ", PREFIX},
-            {"⋈", INFIX},
-            {"∪", INFIX},
-            {"∩", INFIX},
-            {"-", INFIX},
-            {"ρ", PREFIX}
+            {Tokens::PI, PREFIX},
+            {Tokens::SIGMA, PREFIX},
+            {Tokens::JOIN, INFIX},
+            {Tokens::UNION, INFIX},
+            {Tokens::INTERSECT, INFIX},
+            {Tokens::SUBTRACT, INFIX},
+            {Tokens::RHO, PREFIX},
+            {Tokens::LESS_THAN, INFIX},
+            {Tokens::GREATER_THAN, INFIX},
+            {Tokens::COMMA, INFIX},
+            {Tokens::ARROW_LEFT, INFIX},
     };
     /**
      * @brief Will consume an input (needs to be done before parsing)
      * @param symbol
      */
-    void consume(std::string& symbol);
+    void consume(ParseToken& token);
     /**
      * @brief Will flush the stack and create a new expression
      */
@@ -99,7 +112,7 @@ private:
      * @brief Getter for the top of the stack
      * @return      stack top
      */
-    std::string& getStackTop();
+    ParseToken & getStackTop();
     /**
      * @brief Simple printing function for the operator stack
      */
@@ -113,17 +126,17 @@ private:
      * @param symbol    symbol to check
      * @return      operator?
      */
-    bool isOperator(std::string& symbol);
+    bool isOperator(ParseToken &symbol);
     /**
      * @brief Will consume an operator pre-parsing
      * @param opSymbol  toConsume
      */
-    void consumeOperator(std::string& opSymbol);
+    void consumeOperator(ParseToken &opSymbol);
     /**
      * @brief Will consume a non-operator pre-parsing
      * @param text      toConsume
      */
-    void consumeText(std::string& text);
+    void consumeText(ParseToken &text);
     /**
      * @brief will parse a certain operator during the parse() function
      * @note Changes the expression of the class (and clears the previous expression)
@@ -131,7 +144,7 @@ private:
      * @param output        a vector for storing all the results (for later printing)
      * @note Adds RA words to the expression
      */
-    void parseOperator(std::string& queueFront, std::vector<std::string>& output);
+    void parseOperator(ParseToken &queueFront, std::vector<std::string>& output);
 };
 
 
