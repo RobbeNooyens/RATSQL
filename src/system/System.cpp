@@ -3,7 +3,6 @@
 //
 
 #include "System.h"
-#include "../utilities/Parsers.h"
 #include "../datastructures/RAExpression.h"
 #include "../algorithms/ShuntingAlgorithm.h"
 
