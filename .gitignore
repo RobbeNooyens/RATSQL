@@ -112,4 +112,4 @@ fabric.properties
 .idea/
 cmake-build-debug/
 
-output/*
+output/out.dot

@@ -212,9 +212,9 @@ void MainWindow::onConvertBtnClicked()
                          QMessageBox::Ok);
     } else {
 //        // Else, parse the input
-//        std::string SQL = mSys->convertToSQL(query);
-//        mOutputTextEdit->clear();
-//        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
+        std::string SQL = mSys->convertToSQL(query);
+        mOutputTextEdit->clear();
+        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
     }
 }
 
