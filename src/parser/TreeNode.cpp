@@ -313,10 +313,11 @@ std::string RenameNode::translate(vector<std::string> &v) {
         newTable = newTable.substr(0, separator);
         s = table;
     }
+    // Copy the old table
+    v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + table + ");\n";
     // Write the string
-    v[0] += "ALTER TABLE " + table + " RENAME " + type + old + "TO " + newTable;
-    lastTable = s;
-
+    v[0] += "ALTER TABLE TempTable" + to_string(tempTableNumber-1) + " RENAME " + type + old + "TO " + newTable;
+    lastTable = "TempTable" + to_string(tempTableNumber-1);
     v[0] += output + ";\n";
     v[2] = lastTable;
     return "";
