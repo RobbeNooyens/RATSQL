@@ -10,6 +10,7 @@
 #include "../io/CommandHandler.h"
 #include "./ui_MainWindow.h"
 
+#include "../parser/Tokens.h"
 #include "SQLHighLighter.h"
 #include "RAHighLighter.h"
 
@@ -164,7 +165,6 @@ void MainWindow::onConvertBtnClicked()
     bool correction = mTextEdit->isErrorDetection();
     int deviation = mTextEdit->getDeviation();
     bool optimized = mTextEdit->isOptimized();
-    bool namingConventions = mTextEdit->isNamingConventions();
 
     std::vector<std::vector<ParseToken>> tokens;
 
@@ -173,10 +173,14 @@ void MainWindow::onConvertBtnClicked()
     #else
     auto stringList = mTextEdit->toPlainText().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
     #endif
+
+
     for(auto& s: stringList) {
         string str = s.toStdString();
-        tokens.push_back(mSys->tokenize(str));
+        if (!str.empty())
+            tokens.push_back(mSys->tokenize(str));
     }
+
 
     std::vector<std::vector<ParseToken>> optimizedRA;
 
@@ -195,12 +199,13 @@ void MainWindow::onConvertBtnClicked()
     // OptimzedRA back to the mTextEdit
     QString lines;
     for(auto& expression: optimizedRA) {
-        std::stringstream combined;
+        std::string combined;
         for(auto& token: expression) {
-            combined << token.getContent() << " ";
+            combined += token.getContent();
+            combined += " ";
         }
-        combined << endl;
-        lines.push_back(QString::fromStdString(combined.str()));
+        combined.pop_back();
+        lines.push_back(QString::fromStdString(combined));
     }
     mTextEdit->setText(lines);
 
