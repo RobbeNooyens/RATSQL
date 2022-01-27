@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("RATSQL"));
-    setFixedSize(800, 500);
+    setBaseSize(800, 500);
 
     // Create menu + other things
     init();
@@ -54,14 +54,11 @@ void MainWindow::init()
 
     // Menu bar
 
-
     // Settings
     ui->mGridSettings->setVerticalSpacing(3);
     createSettingButtons();
 
     // Characters
-//    ui->mGridChars->setHorizontalSpacing(0);
-//    ui->mGridChars->setVerticalSpacing(1);
     createCharButtons();
 
     // Convert button
