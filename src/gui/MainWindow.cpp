@@ -164,16 +164,13 @@ void MainWindow::onConvertBtnClicked()
     bool optimized = mTextEdit->isOptimized();
     bool namingConventions = mTextEdit->isNamingConventions();
 
-    // Show error message if expression is empty
-    if (query.empty())
-    {
-        createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error: given regular expression is empty."),
-                         QMessageBox::Ok);
-    } else {
-        // Else, parse the input
+    // Show error when exception is thrown
+    try{
         std::string SQL = mSys->convertToSQL(query);
         mOutputTextEdit->clear();
         mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
+    } catch (std::exception& e) {
+        createMessageBox(QMessageBox::Critical, QString("Error"), QString(e.what()), QMessageBox::Ok);
     }
 }
 
