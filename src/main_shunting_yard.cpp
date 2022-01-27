@@ -20,7 +20,7 @@
 #include "datastructures/CFG.h"
 
 int main(int argc, char* argv[]) {
-    std::shared_ptr<CFG> cfg = make_shared<CFG>("../input/grammar.json");
+    std::shared_ptr<CFG> cfg = make_shared<CFG>("input/grammar.json");
     Lexer lexer = Lexer(cfg->getAliasMap(), cfg->getAliases());
 
     std::vector<ParseToken> tokens = {
