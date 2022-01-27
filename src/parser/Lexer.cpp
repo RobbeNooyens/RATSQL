@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include "Lexer.h"
-#include "UndefinedTokenException.h"
+#include "../exceptions/UndefinedTokenException.h"
 
 Lexer::Lexer(const map<string, string> &m, const vector<vector<string>> &a) : tokenMap(m), aliases(a) {}
 
@@ -126,6 +126,10 @@ bool Lexer::isName(const string &s) {
 }
 
 vector<ParseToken> Lexer::tokenise(const string &s) {
+    if (s.empty()) {
+        // Todo: throw exception
+        return {};
+    }
     return tokenise(splitString(s));
 }
 

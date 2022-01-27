@@ -18,6 +18,7 @@
 
 #include "LevenshteinTest.h"
 #include "ShuntingYardTest.h"
+#include "QueryTest.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ TestManager &TestManager::getInstance() {
 void TestManager::initiateTests() {
     this->tests.push_back(std::make_unique<LevenshteinTest>());
     this->tests.push_back(std::make_unique<ShuntingYardTest>());
+    this->tests.push_back(std::make_unique<QueryTest>());
 }
 
 TestManager::TestManager() {

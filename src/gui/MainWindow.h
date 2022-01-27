@@ -65,6 +65,10 @@ private:
     std::vector<CharButton*> mCharacters;
     std::vector<QWidget*> mSettings;
 
+    //std::shared_ptr<CFG> mCFG;
+    //std::unique_ptr<Lexer> mLexer;
+    //std::unique_ptr<EarleyParser> mEarlyParser;
+
     TextEdit* mTextEdit;
     TextEdit* mOutputTextEdit;
 };

@@ -12,37 +12,50 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTING_YARD_PARSERS_H
-#define RATSQL_SHUNTING_YARD_PARSERS_H
+#ifndef RATSQL_PARSING_QUERYTEST_H
+#define RATSQL_PARSING_QUERYTEST_H
+
+#include "Test.h"
+
+// TODO - doen via Cedric zijn klasse?
+#include "../parser/EarleyParser.h"
+#include "../parser/Lexer.h"
+#include "../datastructures/CFG.h"
 
 #include <memory>
-#include <vector>
 
-class ReplaceSuggestion;
-class RAExpression;
-class SQLStatement;
-class ParseSettings;
+class QueryTest : public Test {
 
-/**
- * @namespace
- * @designPattern Adapt pattern
- */
-namespace parsers {
-    // Convert input to RAExpression with separation by tokens
-    std::shared_ptr<RAExpression> toRelationalExpression(const std::string& query);
+public:
+    QueryTest() : Test() {
+        mCFG = std::make_shared<CFG>("input/grammar.json");
+        mLexer = std::make_unique<Lexer>(mCFG->getAliasMap(), mCFG->getAliases());
+        mParser = std::make_unique<EarleyParser>(mCFG);
+    }
 
-    // Error correction
-    std::vector<ReplaceSuggestion> checkTypos(const std::shared_ptr<RAExpression>& expression);
+    void run() override;
 
-    // Optimization
-    std::shared_ptr<RAExpression> optimizeRA(const std::shared_ptr<RAExpression>& expression);
+    void testSelection();
 
-    // Naming conventions
-    std::vector<ReplaceSuggestion> checkNamingConventions(const std::shared_ptr<RAExpression>& expression);
+    void testProjection();
 
-    // SQL parser
-    std::shared_ptr<SQLStatement> toSQL(const std::shared_ptr<RAExpression>& expression, ParseSettings& settings);
+    void testRename();
 
+    void testMisc();
+
+    void testNested();
+
+    virtual ~QueryTest() = default;
+
+private:
+    std::shared_ptr<CFG> mCFG;
+    std::unique_ptr<Lexer> mLexer;
+    std::unique_ptr<EarleyParser> mParser;
+
+    std::string translate(const std::string& s);
+
+    std::string createMessage(const std::string& given, const std::string& exp, const std::string& test) const;
 };
 
-#endif //RATSQL_SHUNTING_YARD_PARSERS_H
+
+#endif //RATSQL_PARSING_QUERYTEST_H

@@ -9,18 +9,20 @@
 #include <QList>
 #include <QFont>
 
-#include <iostream>
 
-TextEdit::TextEdit(QWidget* parent, bool readonly) : QTextEdit(parent), mErrorDetection(false), mDeviation(1),
-                                      mNamingConventions(false), mOptimize(false)
+TextEdit::TextEdit(QWidget* parent, bool readonly) : QTextEdit(parent),
+                                        mErrorDetection(false), mDeviation(1), mNamingConventions(false), mOptimize(false)
 {
     setFont(QFont("Courier", 12));
     setReadOnly(readonly);
     setContextMenuPolicy(Qt::CustomContextMenu);
     installEventFilter(this);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomMenu(QPoint)));
+}
 
-    mHighlighter = new HighLighter(this);
+void TextEdit::setHighLighter(HighLighter *highlighter)
+{
+    mHighlighter = highlighter;
     connect(this, SIGNAL(spacePressed()), mHighlighter, SLOT(onSpacePressed()));
 }
 

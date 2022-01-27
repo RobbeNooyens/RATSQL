@@ -13,7 +13,7 @@ public:
     /**
      * @brief Constructor for SettingButton object
      * @param name QString - text of button
-     * @param parent QWiqdget - pointer to parent to send signals to
+     * @param parent QWidget - pointer to parent to send signals to
      */
     SettingButton(QString name, QWidget *parent = nullptr);
 signals:

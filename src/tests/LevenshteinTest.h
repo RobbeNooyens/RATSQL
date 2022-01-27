@@ -21,6 +21,8 @@ class LevenshteinTest: public Test {
 public:
     void run() override;
 
+    virtual ~LevenshteinTest() = default;
+
     static void testDistance();
     static void testIdentical();
     static void testNotIdentical();

@@ -134,6 +134,13 @@ void CommandHandler::toSQL() {
     // TODO: implement command
 }
 
+void CommandHandler::parseRAQuery(std::string& query) {
+    // todo add shunting algorithm somewhere in the mix?
+
+    // Converting to tokens
+
+}
+
 void CommandHandler::parse() {
     vector<ParseToken> tokens{
             {"PI", "pi"},

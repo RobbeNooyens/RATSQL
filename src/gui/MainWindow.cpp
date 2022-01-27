@@ -5,7 +5,11 @@
 #include <chrono>
 
 #include "MainWindow.h"
+#include "../io/CommandHandler.h"
 #include "./ui_MainWindow.h"
+
+#include "SQLHighLighter.h"
+#include "RAHighLighter.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -41,7 +45,9 @@ void MainWindow::init()
 
     // Editor
     mTextEdit = new TextEdit(this);
+    mTextEdit->setHighLighter(new RAHighLighter(mTextEdit));
     mOutputTextEdit = new TextEdit(this, true);
+    mOutputTextEdit->setHighLighter(new SQLHighLighter(mOutputTextEdit));
     ui->layoutTextEdit->addWidget(mTextEdit);
     ui->layoutTextEdit->addWidget(mOutputTextEdit);
 
@@ -60,7 +66,10 @@ void MainWindow::init()
     ui->gridChards->setVerticalSpacing(1);
     createCharButtons();
 
-
+    // TODO - post-build cmakelists resources kopieren naar targets
+    // Parser
+    //mCFG = std::make_shared<CFG>("input/grammar.json");
+    //mLexer = std::make_unique<Lexer>(mCFG->getAliasMap(), mCFG->getAliases());
 }
 
 void MainWindow::createCharButtons()
@@ -81,8 +90,8 @@ void MainWindow::createCharButtons()
     createButton(L"π", 0, 0);
     createButton(L"σ", 0, 1);
     createButton(L"ρ", 0, 2);
-    createButton(L"->", 0, 3);
-    createButton(L"<-", 0, 4);
+    createButton(L"→", 0, 3);
+    createButton(L"←", 0, 4);
     createButton(L"∧", 0, 5);
     createButton(L"∨", 0, 6);
     createButton(L"¬", 0, 7);
@@ -156,11 +165,23 @@ void MainWindow::onConvertBtnClicked()
     {
         createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error: given regular expression is empty."),
                          QMessageBox::Ok);
+    } else {
+        // Else, parse the input
+        //CommandHandler::parseRAQuery(query);
     }
 
+    //mEarlyParser = std::make_unique<EarleyParser>(mCFG);
 
+    //const auto& tokens = mLexer->tokenise(query);
+    //const auto& tree = mEarlyParser->earleyParse(tokens);
+
+
+    //std::string SQL = tree->translate();
+    std::string SQL;
+
+    //std::cout << SQL << "\n";
 
     mOutputTextEdit->clear();
-    mOutputTextEdit->insertPlainText(QString::fromStdString(query));
+    mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
 }
 

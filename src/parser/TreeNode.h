@@ -33,7 +33,19 @@ public:
      * Function to insert the translation of a node into an vector
      * @param v vector to put the translation in
      */
-    virtual void translate(std::vector<std::string> &v) const {};
+    virtual std::string translate(std::vector<std::string> &v) {return "";};
+
+    /**
+     * Getter for the token
+     * @return the token
+     */
+    const string &getToken() const;
+
+    /**
+     * Getter for the value
+     * @return the value
+     */
+    const string &getValue() const;
 
 protected:
     std::string token;
@@ -74,10 +86,17 @@ public:
 
     std::string translate() const override;
 
-    void translate(std::vector<std::string> &v) const override;
+    virtual std::string translate(std::vector<std::string> &v) override;
+
+    void createView(vector<string> &v);
+
+protected:
+    static unsigned int tempTableNumber;
+
+    static std::string lastTable;
 };
 
-class ModificationNode: public TreeNode {
+class ModificationNode: public ExpressionNode {
 public:
     /**
      * Constructor
@@ -85,10 +104,11 @@ public:
      */
     explicit ModificationNode(const std::string &token);
 
-    void translate(std::vector<std::string> &v) const override;
+    virtual std::string translate(std::vector<std::string> &v) override;
+
 };
 
-class SelectionNode: public TreeNode {
+class SelectionNode: public ModificationNode {
 public:
     /**
      * Constructor
@@ -96,10 +116,10 @@ public:
      */
     explicit SelectionNode(const std::string &token);
 
-    void translate(std::vector<std::string> &v) const override;
+    std::string translate(std::vector<std::string> &v) override;
 };
 
-class ProjectionNode: public TreeNode {
+class ProjectionNode: public ModificationNode {
 public:
     /**
      * Constructor
@@ -107,16 +127,29 @@ public:
      */
     explicit ProjectionNode(const std::string &token);
 
-    void translate(std::vector<std::string> &v) const override;
+    std::string translate(std::vector<std::string> &v) override;
 };
 
-class RenameNode: public TreeNode {
+class RenameNode: public ModificationNode {
 public:
     /**
      * Constructor
      * @param token
      */
     explicit RenameNode(const std::string &token);
+
+    std::string translate(std::vector<std::string> &v) override;
+};
+
+class RenamePremiseNode: public TreeNode {
+public:
+    /**
+     * Constructor
+     * @param token
+     */
+    explicit RenamePremiseNode(const std::string &token);
+
+    std::string translate() const override;
 };
 
 class TableNode: public TreeNode {
@@ -129,7 +162,7 @@ public:
 
     std::string translate() const override;
 
-    void translate(std::vector<std::string> &v) const override;
+    std::string translate(std::vector<std::string> &v) override;
 };
 
 

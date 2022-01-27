@@ -12,37 +12,42 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#ifndef RATSQL_SHUNTING_YARD_PARSERS_H
-#define RATSQL_SHUNTING_YARD_PARSERS_H
+#include "Utils.h"
 
-#include <memory>
-#include <vector>
+using namespace Utils;
 
-class ReplaceSuggestion;
-class RAExpression;
-class SQLStatement;
-class ParseSettings;
 
-/**
- * @namespace
- * @designPattern Adapt pattern
- */
-namespace parsers {
-    // Convert input to RAExpression with separation by tokens
-    std::shared_ptr<RAExpression> toRelationalExpression(const std::string& query);
+std::string toSnakeCase(const std::string &camel) {
+    std::string snake = std::string(1, std::tolower(camel[0]));
 
-    // Error correction
-    std::vector<ReplaceSuggestion> checkTypos(const std::shared_ptr<RAExpression>& expression);
+    auto it = std::begin(camel) + 1;
+    while (it != std::end(camel)) {
+        if (std::isupper(*it))
+        {
+            const auto& c = *(it - 1);
+            if (c != '_' && std::islower(c)) { snake += "_"; }
+        }
+        snake += std::tolower(*it);
+        it++;
+    }
+    return snake;
+}
 
-    // Optimization
-    std::shared_ptr<RAExpression> optimizeRA(const std::shared_ptr<RAExpression>& expression);
+std::string toCamelCase(const std::string &snake) {
+    std::string camel = std::string(1, std::toupper(snake[0]));
 
-    // Naming conventions
-    std::vector<ReplaceSuggestion> checkNamingConventions(const std::shared_ptr<RAExpression>& expression);
-
-    // SQL parser
-    std::shared_ptr<SQLStatement> toSQL(const std::shared_ptr<RAExpression>& expression, ParseSettings& settings);
-
-};
-
-#endif //RATSQL_SHUNTING_YARD_PARSERS_H
+    auto it = std::begin(snake) + 1;
+    while (it != std::end(snake))
+    {
+        const auto& c = (*it);
+        if (c == '_')
+        {
+            camel += std::toupper(*(it + 1));
+            it += 2;
+            continue;
+        }
+        camel += c;
+        it++;
+    }
+    return camel;
+}

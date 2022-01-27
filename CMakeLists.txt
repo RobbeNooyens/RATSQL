@@ -44,108 +44,121 @@ else (DOXYGEN_FOUND)
     message("Doxygen package was not found")
 endif (DOXYGEN_FOUND)
 
-add_executable(RATSQL_CMD
-        src/main_cmd.cpp
+
+
+set(UTILITIES
         src/utilities/Utils.h
-        src/algorithms/ShuntingAlgorithm.cpp
-        src/algorithms/ShuntingAlgorithm.h
-        src/algorithms/LevenshteinDistance.cpp
-        src/algorithms/LevenshteinDistance.h
-        src/datastructures/RAExpression.cpp
-        src/datastructures/RAExpression.h
-        src/datastructures/SQLStatement.cpp
-        src/datastructures/SQLStatement.h
-        src/datastructures/ParseSettings.h
-        src/datastructures/ReplaceSuggestion.h
+        src/utilities/Utils.cpp
         src/utilities/Parsers.h
-        src/utilities/Parsers.cpp
-        src/parser/Lexer.h
-        src/parser/Lexer.cpp
-        src/parser/UndefinedTokenException.h
+        src/utilities/Parsers.cpp)
+
+set(PARSERS
         src/parser/EarleyParser.h
         src/parser/EarleyParser.cpp
+        src/parser/Lexer.h
+        src/parser/Lexer.cpp
+        src/parser/ParseState.h
+        src/parser/ParseState.cpp
+        src/parser/ParseTemplate.h
+        src/parser/SQLTranslator.h
+        src/parser/SQLTranslator.cpp
+        src/parser/Tokens.h
+        src/parser/TreeNode.h
+        src/parser/TreeNode.cpp)
+
+set(QTGUI
+        src/gui/CharButton.h
+        src/gui/CharButton.cpp
+        src/gui/Highlighter.h
+        src/gui/Highlighter.cpp
+        src/gui/MainWindow.h
+        src/gui/MainWindow.cpp
+        src/gui/MainWindow.ui
+        src/gui/RAHighLighter.h
+        src/gui/RAHighLighter.cpp
+        src/gui/SettingButton.h
+        src/gui/SettingButton.cpp
+        src/gui/SQLHighLighter.h
+        src/gui/SQLHighLighter.cpp
+        src/gui/TextEdit.h
+        src/gui/TextEdit.cpp)
+
+set(COMMANDHANDLERS
         src/io/CommandHandler.h
         src/io/CommandHandler.cpp
         src/datastructures/CFG.cpp
         src/datastructures/CFG.h
         libs/json.hpp
         src/exceptions/ExceptionHandler.cpp
-        src/exceptions/ExceptionHandler.h src/parser/ParseState.cpp src/parser/ParseState.h src/parser/Tokens.h src/algorithms/ShuntingGrid.cpp src/algorithms/ShuntingGrid.h)
+        src/exceptions/ExceptionHandler.h 
+        src/parser/ParseState.cpp 
+        src/parser/ParseState.h 
+        src/parser/Tokens.h 
+        src/algorithms/ShuntingGrid.cpp 
+        src/algorithms/ShuntingGrid.h
+        src/io/CommandHandler.cpp)
+
+set(ALGORITHMS
+        src/algorithms/LevenshteinDistance.h
+        src/algorithms/LevenshteinDistance.cpp
+        src/algorithms/ShuntingAlgorithm.h
+        src/algorithms/ShuntingAlgorithm.cpp)
+
+set(DATASTRUCTURES
+        src/datastructures/CFG.h
+        src/datastructures/CFG.cpp
+        src/datastructures/ParseSettings.h
+        src/datastructures/RAExpression.h
+        src/datastructures/RAExpression.cpp
+        src/datastructures/ReplaceSuggestion.h
+        src/datastructures/SQLStatement.h
+        src/datastructures/SQLStatement.cpp)
+
+set(EXCEPTIONHANDLING
+        src/exceptions/ExceptionHandler.h
+        src/exceptions/ExceptionHandler.cpp
+        src/exceptions/UndefinedTokenException.h)
+
+set(SYSTEM
+        src/system/System.h
+        src/system/System.cpp)
+
+set(TESTS
+        src/tests/LevenshteinTest.h
+        src/tests/LevenshteinTest.cpp
+        src/tests/ShuntingYardTest.h
+        src/tests/ShuntingYardTest.cpp
+        src/tests/QueryTest.h
+        src/tests/QueryTest.cpp
+        src/tests/Test.h
+        src/tests/Test.cpp
+        src/tests/TestManager.h
+        src/tests/TestManager.cpp)
+
+set(LOGICLIBRARY
+        libs/json.hpp
+        ${UTILITIES}
+        ${ALGORITHMS}
+        ${DATASTRUCTURES}
+        ${PARSERS}
+        ${EXCEPTIONHANDLING}
+        ${SYSTEM}
+        )
+
+add_executable(RATSQL_CMD
+        src/main_cmd.cpp
+        ${LOGICLIBRARY}
+        ${COMMANDHANDLERS})
 
 add_executable(RATSQL_GUI
         src/main_gui.cpp
-        src/utilities/Utils.h
-        src/algorithms/ShuntingAlgorithm.cpp
-        src/algorithms/ShuntingAlgorithm.h
-        src/algorithms/LevenshteinDistance.cpp
-        src/algorithms/LevenshteinDistance.h
-        src/datastructures/RAExpression.cpp
-        src/datastructures/RAExpression.h
-        src/datastructures/SQLStatement.cpp
-        src/datastructures/SQLStatement.h
-        src/datastructures/ParseSettings.h
-        src/datastructures/ReplaceSuggestion.h
-        src/exceptions/ExceptionHandler.h
-        src/parser/TreeNode.cpp
-        src/parser/TreeNode.h
-        src/parser/ParseState.cpp
-        src/parser/ParseState.h)
-
-#add_executable(RATSQL_GUI
-#        src/main_gui.cpp
-#        src/utilities/Utils.h
-#        src/algorithms/ShuntingAlgorithm.cpp
-#        src/algorithms/ShuntingAlgorithm.h
-#        src/algorithms/LevenshteinDistance.cpp
-#        src/algorithms/LevenshteinDistance.h
-#        src/datastructures/RAExpression.cpp
-#        src/datastructures/RAExpression.h
-#        src/datastructures/SQLStatement.cpp
-#        src/datastructures/SQLStatement.h
-#        src/datastructures/ParseSettings.h
-#        src/datastructures/ReplaceSuggestion.h
-#        src/exceptions/ExceptionHandler.h
-#        src/exceptions/ExceptionHandler.cpp
-#        src/utilities/Parsers.h
-#        src/utilities/Parsers.cpp
-#        src/gui/MainWindow.cpp
-#        src/gui/MainWindow.h
-#        src/gui/MainWindow.ui
-#        src/gui/CharButton.h
-#        src/gui/CharButton.cpp
-#        src/gui/SettingButton.h
-#        src/gui/Highlighter.cpp
-#        src/gui/Highlighter.h
-#        src/gui/SettingButton.cpp
-#        src/gui/TextEdit.h
-#        src/gui/TextEdit.cpp
-#        )
+        ${LOGICLIBRARY}
+        ${QTGUI})
 
 add_executable(RATSQL_TESTS
         src/main_tests.cpp
-        src/utilities/Utils.h
-        src/algorithms/ShuntingAlgorithm.cpp
-        src/algorithms/ShuntingAlgorithm.h
-        src/algorithms/LevenshteinDistance.cpp
-        src/algorithms/LevenshteinDistance.h
-        src/datastructures/RAExpression.cpp
-        src/datastructures/RAExpression.h
-        src/datastructures/SQLStatement.cpp
-        src/datastructures/SQLStatement.h
-        src/datastructures/ParseSettings.h
-        src/datastructures/ReplaceSuggestion.h
-        src/exceptions/ExceptionHandler.h
-        src/exceptions/ExceptionHandler.cpp
-        src/utilities/Parsers.h
-        src/utilities/Parsers.cpp
-        src/tests/TestManager.cpp
-        src/tests/TestManager.h
-        src/tests/Test.h
-        src/tests/LevenshteinTest.cpp
-        src/tests/LevenshteinTest.h
-        src/tests/ShuntingYardTest.cpp
-        src/tests/ShuntingYardTest.h
-        src/tests/Test.cpp)
+        ${LOGICLIBRARY}
+        ${TESTS})
 
 add_executable(RATSQL_SHUNTING_YARD
         src/main_shunting_yard.cpp
@@ -162,18 +175,13 @@ add_executable(RATSQL_SHUNTING_YARD
         src/parser/Lexer.cpp
         src/algorithms/ShuntingGrid.h
         src/algorithms/ShuntingGrid.cpp
-        )
+        ${LOGICLIBRARY})
 
 add_executable(RATSQL_PARSING
         src/main_parsing.cpp
-        src/parser/EarleyParser.h
-        src/parser/EarleyParser.cpp
-        src/datastructures/CFG.cpp
-        src/datastructures/CFG.h
-        src/parser/ParseState.h
-        src/parser/ParseState.cpp
-        libs/json.hpp)
+        libs/json.hpp
+        ${PARSERS}
+        ${DATASTRUCTURES})
 
-# Alles hieronder was eigenlijk onnodig?
 find_package(Qt${QT_VERSION} COMPONENTS ${REQUIRED_LIBS} REQUIRED)
 target_link_libraries(RATSQL_GUI ${REQUIRED_LIBS_QUALIFIED})

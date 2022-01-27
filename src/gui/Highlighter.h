@@ -37,7 +37,7 @@ public:
      * @brief Constructor for Highlighter object
      * @param parent QTextEdit - pointer to parent widget
      */
-    explicit HighLighter(QTextEdit *parent);
+    explicit HighLighter(QTextEdit *parent = nullptr);
     /**
      * @brief Add keywords to be highlighted in given format
      * @param keywords QStringList - list containing keywords

@@ -22,11 +22,28 @@ class Test {
 public:
     virtual void run() = 0;
 
+    virtual ~Test() = default;
+
 protected:
     static void exp_eq_int(int p1, int p2, std::string message);
 
-    //template <typename T> static void exp_eq(const T& t1, const T& t2, std::string message);
-    //template<typename T> static void exp_neq(const T& t1, const T& t2, std::string message);
+//    template <typename T> static void exp_eq(const T& t1, const T& t2, std::string message);
+//    template<typename T> static void exp_neq(const T& t1, const T& t2, std::string message);
+
+    template<typename T>
+    static void exp_eq(const T &t1, const T &t2, std::string message) {
+        if (t1 != t2) {
+            TestManager::testFailed(message);
+        }
+    }
+
+
+    template<typename T>
+    static void exp_neq(const T &t1, const T &t2, std::string message) {
+        if (t1 == t2) {
+            TestManager::testFailed(message);
+        }
+    }
 
 };
 
