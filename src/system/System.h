@@ -30,12 +30,15 @@ public:
 
     vector<vector<ParseToken>> optimize(vector<ParseToken>& tokens);
 
+    string convertToSQL(const vector<ParseToken> &query);
+
 private:
     /// @brief Unique pointer to an earley parser
     std::unique_ptr<EarleyParser> parser{};
     /// @brief Unique pointer to
     std::unique_ptr<Lexer> lexer{};
     std::shared_ptr<CFG> cfg{};
+
 };
 
 
