@@ -51,9 +51,10 @@ int main(int argc, char *argv[]) {
 //    std::string input = "π  maker , model ( Product ⨝ σ  price < 1000 PC )";
 //    std::string input = "σ maker2 < maker ( ρ maker2 ← maker π maker, type Product ⨝ π maker, type Product)";
 //    std::string input = "π maker σ type = 'laptop' Product - π maker σ type = 'pc' Product";
-    std::string input = "A = (π model, maker Product ⨝ π model σ speed ≥ 2.8 (π model, speed PC ∪ π model, speed Laptop))\n"
-                        "B = pi model Product\n"
-                        "B join A"; // Todo maak
+//    std::string input = "A = (π model, maker Product ⨝ π model σ speed ≥ 2.8 (π model, speed PC ∪ π model, speed Laptop))\n"
+//                        "B = pi model Product\n"
+//                        "B join A"; // Todo maak
+    std::string input = "A = pi model Product\nA";
 //    std::string input = "π model, price ((π model, price Laptop ∪ π model, price PC ∪ π model, price Printer) ⨝ σ maker= 'B' Product)";
 //    std::string input = "pi model, maker pi model, maker, type (Product)";
 //    std::string input = "sigma m <= 1010 rho model→m rho K sigma type = 'laptop' pi model, price, type sigma price <= 1000 (PC)";

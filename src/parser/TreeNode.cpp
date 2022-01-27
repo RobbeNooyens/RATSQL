@@ -165,11 +165,34 @@ std::vector<std::string> ExpressionNode::translateToVector() {
 }
 
 void ExpressionNode::createView(vector<string> &v) {
-    std::string output;
+//    std::string output;
+//    if (v[1].empty() && v[3].empty()) {
+//        return;
+//    }
+//    std::string tempTable = "TempTable" + to_string(tempTableNumber++);
+//    if (v[1].empty()) {
+//        v[1] = "SELECT * FROM ";
+//    }
+//    if (v[2].empty()) {
+//        v[2] = lastTable;
+//    }
+//    for (int i = 1; i < v.size(); ++i) {
+//        output += v[i]; // Write the string
+//        v[i].clear(); // Empty the string
+//    }
+//    v[0] += "CREATE VIEW " + tempTable + " AS (" + output + ");\n";
+//    output.clear();
+//    lastTable = tempTable;
+//    v[2] = lastTable;
     if (v[1].empty() && v[3].empty()) {
         return;
     }
     std::string tempTable = "TempTable" + to_string(tempTableNumber++);
+    createView(v, tempTable);
+}
+
+void ExpressionNode::createView(vector<string> &v, const std::string &viewName) {
+    std::string output;
     if (v[1].empty()) {
         v[1] = "SELECT * FROM ";
     }
@@ -180,9 +203,9 @@ void ExpressionNode::createView(vector<string> &v) {
         output += v[i]; // Write the string
         v[i].clear(); // Empty the string
     }
-    v[0] += "CREATE VIEW " + tempTable + " AS (" + output + ");\n";
+    v[0] += "CREATE VIEW " + viewName + " AS (" + output + ");\n";
     output.clear();
-    lastTable = tempTable;
+    lastTable = viewName;
     v[2] = lastTable;
 }
 
@@ -379,16 +402,24 @@ RootNode::RootNode(const string &token): TreeNode(token) {}
 std::string RootNode::translate() const {
     std::string output;
     // Check for assignment
+    std::vector<std::string> v;
+    v.reserve(4);
+    for (int i = 0; i < 4; ++i) {
+        v.emplace_back("");
+    }
     if (children[0]->getToken() == "NAME") {
-        std::vector<std::string> v;
-        v.reserve(4);
-        for (int i = 0; i < 4; ++i) {
-
-        }
+        children[2]->translate(v);
+        ExpressionNode::createView(v, children[0]->translate());
+        output += v[0];
     } else {
         for (auto child : children) {
             output += child->translate();
         }
     }
     return output;
+}
+
+std::string RootNode::translate(vector<std::string> &v) {
+    v[0] += translate();
+    return "";
 }

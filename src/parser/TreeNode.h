@@ -85,6 +85,8 @@ public:
     explicit RootNode(const std::string &token);
 
     std::string translate() const override;
+
+    std::string translate(std::vector<std::string> &v) override;
 };
 
 class ExpressionNode: public TreeNode {
@@ -101,7 +103,9 @@ public:
 
     std::vector<std::string> translateToVector();
 
-    void createView(vector<string> &v);
+    static void createView(vector<string> &v);
+
+    static void createView(vector<string> &v, const string &viewName);
 
 protected:
     static unsigned int tempTableNumber;
