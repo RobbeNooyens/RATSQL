@@ -5,6 +5,7 @@
 #include <chrono>
 #include <sstream>
 #include <regex>
+#include <QTextStream>
 
 #include "MainWindow.h"
 #include "../io/CommandHandler.h"
@@ -253,7 +254,7 @@ void MainWindow::onConvertBtnClicked()
 void MainWindow::onAboutAct()
 {
 //    QMessageBox::about(this, QString("About"), QString("RATSQL created by Robbe, Cedric, Maarten and Pablo.\nCopyright © 2022 RATSQL."));
-    auto a = AboutDialog();
+    AboutDialog a(nullptr);
     a.exec();
 }
 
