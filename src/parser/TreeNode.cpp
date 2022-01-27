@@ -341,7 +341,15 @@ std::string JoinNode::translate(std::vector<std::string> &v) {
     std::pair<std::string, std::string> tables;
     tables.first = children[0]->translate(v);
     tables.second = children[size - 1]->translate(v);
-    v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + tables.first + " NATURAL JOIN " + tables.second + ");\n";
+    std::string joinType;
+    std::string condition;
+    if (size == 4) {
+        condition = " ON " + children[2]->translate();
+    } else {
+        joinType = " NATURAL";
+    }
+    v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + tables.first +
+             joinType + " JOIN " + tables.second + condition + ");\n";
     lastTable = "TempTable"+ to_string(tempTableNumber-1);
     v[2] += lastTable;
     return lastTable;

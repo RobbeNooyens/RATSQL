@@ -4,10 +4,12 @@
 
 #include <algorithm>
 #include <iostream>
+#include <regex>
 
 #include "Lexer.h"
 #include "../datastructures/CFG.h"
 #include "../exceptions/UndefinedTokenException.h"
+#include "../exceptions/IllegalEntryException.h"
 
 Lexer::Lexer(const map<string, string> &m, const vector<vector<string>> &a) : tokenMap(m), aliases(a) {}
 
@@ -28,7 +30,7 @@ vector<string> Lexer::splitString(const string &parseString) {
             // Remove the substring from the string that needs to be parsed still
             stringCopy.erase(stringCopy.begin(), stringCopy.begin() + i+1);
             i = -1;
-        } else { // Todo: nakijken
+        } else {
             // Check for a match with any other delimiter
             unsigned int k = isDelimiter(stringCopy, i);
             if (k) {
@@ -53,7 +55,6 @@ vector<string> Lexer::splitString(const string &parseString) {
     return stringToTokens;
 }
 
-// Todo: nakijken
 unsigned int Lexer::isDelimiter(const string &s, unsigned int offset) {
     int k = 0;
     for (const auto &name : aliases) {
@@ -127,8 +128,17 @@ bool Lexer::isName(const string &s) {
 }
 
 vector<ParseToken> Lexer::tokenise(const string &s) {
-    if (s.empty()) {
-        // Todo: throw exception
+    // Check for empty inputs
+    std::string copy = s;
+    // Filter spaces
+    for (int i = 0; i < copy.size(); ++i) {
+        auto iter = copy.begin() + i;
+        if (*iter == ' ') {
+            copy.erase(iter);
+        }
+    }
+    if (copy.empty()) {
+        throw IllegalEntryException(s, "You can not convert an empty string.");
         return {};
     }
     return tokenise(splitString(s));
