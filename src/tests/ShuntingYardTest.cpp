@@ -19,7 +19,7 @@ void ShuntingYardTest::run() {
 }
 
 void ShuntingYardTest::testExpectedOutput() {
-    std::string input1 = "σ maker2<maker ( ρ maker2←maker π maker,type Product ⋈ π maker,type Product )";
+    std::string input1 = "σ maker2 < maker ( ρ maker2 ← maker π maker, type Product ⋈ π maker, type Product )";
     ShuntingAlgorithm shunting;
 //    shunting(input1);
     //shunting.getParser().parse();

@@ -8,6 +8,10 @@
 
 using namespace std;
 
+bool isPrefixOperator(string& str) {
+    return str == Tokens::PI || str == Tokens::SIGMA || str == Tokens::RHO;
+}
+
 int ShuntingGrid::addExpression(ParseToken &t1, ParseToken &t2, ParseToken &t3) {
     vector<ParseToken> tokens = {t1, t2, t3};
     int index = -1;
@@ -25,11 +29,12 @@ int ShuntingGrid::addExpression(ParseToken &t1, ParseToken &t2, ParseToken &t3) 
 
 void ShuntingGrid::substitute(vector<ParseToken>& current, int row) {
     int colId = 0;
+    string rowType = grid.at(row).front().getToken();
     for(auto& token: grid.at(row)) {
         if(token.getToken() == Tokens::SUBSTITUTION) {
             int id = stoi(token.getContent());
             string firstToken = grid.at(id).front().getToken();
-            if(usages.at(id) > 1 && (firstToken == Tokens::PI || firstToken == Tokens::SIGMA)) {
+            if(usages.at(id) > 1 && isPrefixOperator(firstToken)) {
                 current.emplace_back(Tokens::NAME, firstToken + to_string(id));
             } else {
                 substitute(current, id);
@@ -38,6 +43,12 @@ void ShuntingGrid::substitute(vector<ParseToken>& current, int row) {
             current.push_back(token);
         }
         colId++;
+        if(isPrefixOperator(rowType)) {
+            if(colId == 2)
+                current.emplace_back(Tokens::ROUNDED_BRACKET_LEFT, "(");
+            else if(colId == 3)
+                current.emplace_back(Tokens::ROUNDED_BRACKET_RIGHT, ")");
+        }
     }
 }
 

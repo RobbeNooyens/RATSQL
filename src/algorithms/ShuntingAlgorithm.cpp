@@ -168,6 +168,6 @@ void ShuntingAlgorithm::parseOperator(ParseToken &queueFront, vector<string>& ou
     textStack.push({Tokens::SUBSTITUTION, to_string(index)});
 }
 
-std::shared_ptr<RAExpression> ShuntingAlgorithm::getRAExpression() {
-    return std::shared_ptr<RAExpression>();
+std::vector<std::vector<ParseToken>> ShuntingAlgorithm::getShuntingOutput() {
+    return grid.substitute();
 }

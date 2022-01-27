@@ -27,7 +27,7 @@
 #include "../parser/ParseTemplate.h"
 #include "ShuntingGrid.h"
 
-enum OperatorType {PREFIX, INFIX, POSTFIX};
+enum OperatorType {PREFIX, INFIX};
 
 class ParseToken;
 
@@ -58,7 +58,7 @@ public:
      * @brief Getter for the RA expression
      * @return
      */
-    std::shared_ptr<RAExpression> getRAExpression();
+    std::vector<std::vector<ParseToken>> getShuntingOutput();
 private:
     ShuntingGrid grid;
     /// @brief Stack with all the operators
@@ -165,10 +165,6 @@ private:
      * @note Adds RA words to the expression
      */
     void parseOperator(ParseToken &queueFront, std::vector<std::string>& output);
-
-    void replaceSubstitution(int index, std::shared_ptr<RAWord>& sequence);
-
-    string replaceVariable(int index, bool first);
 };
 
 

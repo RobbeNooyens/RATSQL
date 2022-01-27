@@ -19,7 +19,7 @@
 void QueryTest::run() {
 //    testSelection();
 //    testProjection();
-//    testRename();
+    testRename();
 //    testMisc();
 //    testNested();
 }

@@ -7,67 +7,27 @@ digraph ParseTree {
   2 -> 3
   3 [label="MODIFICATION"];
   3 -> 4
-  4 [label="MODIFICATION"];
+  4 [label="RENAME"];
   4 -> 5
-  5 [label="PROJECTION"];
-  5 -> 6
-  6 [label="PI"];
-  5 -> 7
-  7 [label="PROJECTION_PREMISE"];
+  5 [label="RHO"];
+  4 -> 6
+  6 [label="RENAME_PREMISE"];
+  6 -> 7
+  7 [label="COLUMN_NAME"];
   7 -> 8
-  8 [label="PROJECTION_PREMISE"];
-  8 -> 9
-  9 [label="COLUMN_NAME"];
-  9 -> 10
+  8 [label="NAME"];
+  6 -> 9
+  9 [label="RIGHT_ARROW"];
+  6 -> 10
   10 [label="NAME"];
-  7 -> 11
-  11 [label="COMMA"];
-  7 -> 12
-  12 [label="PROJECTION_PREMISE"];
-  12 -> 13
-  13 [label="COLUMN_NAME"];
+  2 -> 11
+  11 [label="TABLE"];
+  11 -> 12
+  12 [label="ROUNDED_BRACKET_LEFT"];
+  11 -> 13
+  13 [label="TABLE"];
   13 -> 14
   14 [label="NAME"];
-  3 -> 15
-  15 [label="MODIFICATION"];
-  15 -> 16
-  16 [label="PROJECTION"];
-  16 -> 17
-  17 [label="PI"];
-  16 -> 18
-  18 [label="PROJECTION_PREMISE"];
-  18 -> 19
-  19 [label="PROJECTION_PREMISE"];
-  19 -> 20
-  20 [label="PROJECTION_PREMISE"];
-  20 -> 21
-  21 [label="COLUMN_NAME"];
-  21 -> 22
-  22 [label="NAME"];
-  19 -> 23
-  23 [label="COMMA"];
-  19 -> 24
-  24 [label="PROJECTION_PREMISE"];
-  24 -> 25
-  25 [label="COLUMN_NAME"];
-  25 -> 26
-  26 [label="NAME"];
-  18 -> 27
-  27 [label="COMMA"];
-  18 -> 28
-  28 [label="PROJECTION_PREMISE"];
-  28 -> 29
-  29 [label="COLUMN_NAME"];
-  29 -> 30
-  30 [label="NAME"];
-  2 -> 31
-  31 [label="TABLE"];
-  31 -> 32
-  32 [label="ROUNDED_BRACKET_LEFT"];
-  31 -> 33
-  33 [label="TABLE"];
-  33 -> 34
-  34 [label="NAME"];
-  31 -> 35
-  35 [label="ROUNDED_BRACKET_RIGHT"];
+  11 -> 15
+  15 [label="ROUNDED_BRACKET_RIGHT"];
 }
