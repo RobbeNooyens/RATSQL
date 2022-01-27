@@ -51,3 +51,26 @@ std::string toCamelCase(const std::string &snake) {
     }
     return camel;
 }
+
+Matrix::Matrix(int dimX, int dimY) {
+    this->matrix = std::vector<std::vector<int>>(dimX, std::vector<int>(dimY));
+}
+
+void Matrix::setValue(int x, int y, int val) {
+    assert(x < this->matrix.size());
+    assert(y < this->matrix[x].size());
+    this->matrix[x][y] = val;
+}
+
+int Matrix::getValue(int x, int y) const {
+    assert(x < this->matrix.size());
+    assert(y < this->matrix[x].size());
+    return this->matrix[x][y];
+}
+
+void Matrix::clear() {
+    for (auto item: this->matrix) {
+        item.clear();
+    }
+    this->matrix.clear();
+}

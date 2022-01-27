@@ -49,8 +49,7 @@ endif (DOXYGEN_FOUND)
 set(UTILITIES
         src/utilities/Utils.h
         src/utilities/Utils.cpp
-        src/utilities/Parsers.h
-        src/utilities/Parsers.cpp)
+        )
 
 set(PARSERS
         src/parser/EarleyParser.h

@@ -29,6 +29,7 @@ namespace Utils {
      * @return std::string in snake case
      */
     static std::string toSnakeCase(const std::string &camel);
+
     /**
      * @brief Convert given string from snake case to camel case
      * @example "rat_is_cool" --> "RatIsCool"
@@ -43,50 +44,42 @@ namespace Utils {
         std::vector<std::vector<int>> matrix;
     public:
         /**
-         * A big constructing boi
+         * @brief A big constructing boi
          * @param dimX  Dimension X of the matrix (rows)
          * @param dimY  Dimension Y of the matrix (columns)
          */
-        Matrix(int dimX, int dimY) {
-            this->matrix = std::vector<std::vector<int>>(dimX, std::vector<int>(dimY));
-        }
-        ~Matrix()=default;
+        Matrix(int dimX, int dimY);
+
         /**
-         * Setter for a value in the matrix
+         * @brief Destructor
+         */
+        ~Matrix()=default;
+
+        /**
+         * @brief Setter for a value in the matrix
          * @param x     Which row in the matrix
          * @param y     Which column in the matrix
          * @param val   Value to put in matrix(x,y)
          */
-        void setValue(int x, int y, int val) {
-            assert(x < this->matrix.size());
-            assert(y < this->matrix[x].size());
-            this->matrix[x][y] = val;
-        }
+        void setValue(int x, int y, int val);
+
         /**
-         * Clears the entire matrix
+         * @brief Clears the entire matrix
          */
-        void clear() {
-            for (auto item: this->matrix) {
-                item.clear();
-            }
-            this->matrix.clear();
-        }
+        void clear();
+
         /**
-         * Gets a value out of the matrix of the spot matrix(x,y)
+         * @brief Gets a value out of the matrix of the spot matrix(x,y)
          * @param x     Row of the matrix
          * @param y     Column of the matrix
          * @return
          */
-        int getValue(int x, int y) const {
-            assert(x < this->matrix.size());
-            assert(y < this->matrix[x].size());
-            return this->matrix[x][y];
-        }
+        int getValue(int x, int y) const;
 
     };
 
     /**
-     * Function to insert an item at a given location in a vector, ensuring there are no duplicates
+     * @brief Function to insert an item at a given location in a vector, ensuring there are no duplicates
      * @param v vector to insert into
      * @param iter place to insert in
      * @param t item to insert
