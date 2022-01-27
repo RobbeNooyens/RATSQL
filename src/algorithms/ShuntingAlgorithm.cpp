@@ -81,12 +81,14 @@ void ShuntingAlgorithm::consumeOperator(ParseToken &opSymbol) {
     operatorStack.push(opSymbol);
 }
 
+
 void ShuntingAlgorithm::consumeText(ParseToken &text) {
     queue.push(text);
     if(operatorStack.empty())
         return;
     auto& opToken = operatorStack.top().getToken();
-    if(opToken == Tokens::COMMA || opToken == Tokens::ARROW_LEFT || opToken == Tokens::LESS_THAN || opToken == Tokens::EQUALS) {
+//    if(opToken == Tokens::COMMA || opToken == Tokens::ARROW_LEFT || opToken == Tokens::LESS_THAN || opToken == Tokens::EQUALS) {
+    if(precedence[opToken] == 1) {
         queue.push(operatorStack.top());
         operatorStack.pop();
     }
