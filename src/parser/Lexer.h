@@ -15,49 +15,52 @@
 using namespace std;
 
 class CFG;
-
+/**
+ * @class Lexer
+ * @brief Class implemented for Lexer, reading and lexing the input
+ */
 class Lexer {
 private:
+    /// @brief char - delimiter used to split the given strings
     const char delimiter = ' ';
-
+    /// @brief std::map<std::string, std::string> - tokenmap
     map<string, string> tokenMap;
-
+    /// @brief std::vector<std::vector<std::string>> - aliases, containing aliases for symbols
     vector<vector<string>> aliases;
-
 public:
+    /**
+     * @brief Default constructor for Lexer
+     */
     Lexer();
     /**
-     * Constructor for Relax EarleyParser
+     * @brief Constructor for Lexer
      * @param m mapping from inputs to tokentypes
      * @param a list of supported aliases
      */
     Lexer(const map<string, string> &m, const vector<vector<string>> &a);
-
-    Lexer(const std::shared_ptr<CFG>& cfg);
-
-//    vector<Token> tokenise(const string &s);
-
+    /**
+     * @brief Construct a new Lexer object from CFG object
+     * @param cfg CFG - cfg object
+     */
+    explicit Lexer(const std::shared_ptr<CFG>& cfg);
     /**
      * @brief Function to split strings on the characters listed in the delimiter variable
      * @param parseString string to split
      * @return vector with split parts
      */
     vector<string> splitString(const string &parseString);
-
     /**
      * @brief Function to tokenise a vector of strings
      * @param v vector containing strings
      * @return vector containing tokens for the strings
      */
     vector<ParseToken> tokenise(const vector<string> &v);
-
     /**
      * @brief Function to tokenise a string, splitting it on ' '
      * @param s string to tokenise
      * @return vector containing tokens for the string
      */
     vector<ParseToken> tokenise(const string &s);
-
     /**
      * @brief Function to check if a string represents a string
      * @param s the string to check
@@ -79,7 +82,6 @@ public:
      * @return true if it represents a number
      */
     bool isNumber(const string &s);
-
     /**
      * @brief Function to check if a string represents a name
      * @param s the string to check
@@ -90,7 +92,6 @@ public:
      * @return true if it represents a name
      */
     bool isName(const string &s);
-
     /**
      * @brief Function checking for a delimiter in a string, matching the longest possible delimiter
      * @param s string to check
