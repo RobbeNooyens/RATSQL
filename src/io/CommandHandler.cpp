@@ -77,7 +77,6 @@ void CommandHandler::operator()(std::string &command) {
  * On execute: prints all words that have a max levenshtein distance from a given string
  */
 void CommandHandler::levDisCmd() {
-    // TODO: implement command
 }
 
 /**
@@ -86,7 +85,6 @@ void CommandHandler::levDisCmd() {
  * On execute: For every replacement, print it and ask whether it should execute the replacement [Y/N]
  */
 void CommandHandler::checkTypos() {
-    // TODO: implement command
 }
 
 /**
@@ -95,7 +93,6 @@ void CommandHandler::checkTypos() {
  * On execute: Show the replacements that were automatically executed
  */
 void CommandHandler::autocorrect() {
-    // TODO: implement command
 }
 
 /**
@@ -104,7 +101,6 @@ void CommandHandler::autocorrect() {
  * On execute: Load the given RA in a RAExpression
  */
 void CommandHandler::loadRA() {
-    // TODO: implement command
 }
 
 /**
@@ -113,7 +109,6 @@ void CommandHandler::loadRA() {
  * On execute: For every replacement, print it and ask whether it should execute the replacement [Y/N]
  */
 void CommandHandler::checkConventions() {
-    // TODO: implement command
 }
 
 /**
@@ -122,7 +117,6 @@ void CommandHandler::checkConventions() {
  * On execute: Show the replacements that were automatically executed
  */
 void CommandHandler::autoConventions() {
-    // TODO: implement command
 }
 
 /**
@@ -131,14 +125,6 @@ void CommandHandler::autoConventions() {
  * On execute: Save generated SQL statement to the given file
  */
 void CommandHandler::toSQL() {
-    // TODO: implement command
-}
-
-void CommandHandler::parseRAQuery(std::string& query) {
-    // todo add shunting algorithm somewhere in the mix?
-
-    // Converting to tokens
-
 }
 
 void CommandHandler::parse() {

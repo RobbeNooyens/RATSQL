@@ -77,7 +77,6 @@ void QueryTest::testRename() {
     std::string q1 = "ρ model→m (Laptop)";
     std::string q1_ = "rho model→m (Laptop)";
     std::string q1_caps = "RHO model→m (Laptop)";
-    // TODO
     std::string q1_exp = "ALTER TABLE Laptop RENAME COLUMN model TO m;";
     std::string sql_q1 = mSystem->convertToSQL(q1);
     std::string sql_q1_ = mSystem->convertToSQL(q1_);
@@ -91,7 +90,6 @@ void QueryTest::testMisc() {
     // Cartesian Product / Join
     std::string q1 = "Laptop x PC";
     std::string q1_ = "Laptop ⨯ PC";
-    // TODO
     std::string q1_exp = "SELECT * FROM Laptop, PC";
     std::string sql_q1 = mSystem->convertToSQL(q1);
     std::string sql_q1_ = mSystem->convertToSQL(q1_);
@@ -102,7 +100,6 @@ void QueryTest::testMisc() {
     std::string q2 = "Laptop union PC";
     std::string q2_ = "Laptop ∪ PC";
     std::string _q2 = "Laptop U PC";
-    // TODO
     std::string q2_exp = "SELECT * FROM Laptop, PC";
     std::string sql_q2 = mSystem->convertToSQL(q2);
     std::string sql_q2_ = mSystem->convertToSQL(q2_);
@@ -114,7 +111,6 @@ void QueryTest::testMisc() {
     // Intersect
     std::string q3 = "Laptop intersect PC";
     std::string q3_ = "Laptop ∩ PC";
-    // TODO
     std::string q3_exp = "SELECT * FROM Laptop, PC";
     std::string sql_q3 = mSystem->convertToSQL(q3);
     std::string sql_q3_ = mSystem->convertToSQL(q3_);
@@ -133,7 +129,6 @@ void QueryTest::testNested() {
     std::string sql_q2 = mSystem->convertToSQL(q2);
     QueryTest::exp_eq<std::string>(sql_q2, q2_exp, createMessage(sql_q2, q2_exp, "QueryTest::testNested q2"));
 
-    // TODO
     std::string q3 = "model_with_price = π model, price PC ∪ π model, price Laptop ∪ π model, price Printer";
     std::string q3_exp = "CREATE VIEW AS (SELECT model, price FROM PC UNION SELECT model, price FROM Laptop UNION SELECT model, price FROM Printer)'";
     std::string sql_q3 = mSystem->convertToSQL(q3);

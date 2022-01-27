@@ -28,7 +28,6 @@ void ShuntingYardTest::testExpectedOutput() {
     std::string error = "ShuntingYardTest::testExpectedOutput failed.";
     //for (int it = 0; it < expVector.size(); it++) {
         //switch(it) {
-            // todo fix this with the new RAWord
             //case 0: if (!(expVector[it] != "π maker,type Product")) TestManager::testFailed(error);
             //case 1: if (!(expVector[it] != "ρ maker2←maker 0")) TestManager::testFailed(error);
             //case 2: if (!(expVector[it] != "1 ⋈ 0")) TestManager::testFailed(error);
@@ -36,6 +35,4 @@ void ShuntingYardTest::testExpectedOutput() {
             //default: TestManager::testFailed(error); // Default should never happen!
         //}
     //}
-
-    // todo @cedric add one more test to be sure
 }

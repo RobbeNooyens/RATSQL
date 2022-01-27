@@ -20,7 +20,7 @@ public:
         lexer = std::make_unique<Lexer>(cfg);
     }
     /**
-     * @brief Will parse a relational expression to an SQL statement // todo
+     * @brief Will parse a relational expression to an SQL statement
      * @param query     Given by reference - will change the string to an SQL statement
      */
     std::string convertToSQL(const std::string& query);

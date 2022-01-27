@@ -1,8 +1,0 @@
-// TODO know what happens when we press a button in the GUI
-// TODO CommandHandler fixen
-// TODO Parser van Maarten toevoegen
-// TODO Functies implementeren in parsers.h
-// TODO Shunting filteren op spacies (iets anders fixen)
-// TODO TODO
-// TODO Testen schrijven
-// TODO docu fixen

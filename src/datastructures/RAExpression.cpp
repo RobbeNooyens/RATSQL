@@ -62,8 +62,6 @@ void RAExpression::addWord(std::shared_ptr<RAWord> &word) {
 }
 
 RAExpression::RAExpression(const std::vector<ParseToken> &expression) {
-    // TODO: make RAExpression work with ParseTokens
-
 }
 
 bool RAExpression::operator==(const RAExpression &rhs) const {
