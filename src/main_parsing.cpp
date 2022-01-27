@@ -44,7 +44,7 @@ int main(int argc, char *argv[]) {
     EarleyParser parser(cfg);
 //    std::string input = "σ model = 1001 pi maker, model sigma type = 'pc' pi maker, model, type (Product)";
 //    std::string input = "sigma name = 'a' pi name sigma id = 1 pi id, name (test)";
-    std::string input = "pi model pi model, maker sigma type = 'pc' (Product)";
+    std::string input = "sigma model=1001 pi model pi model, maker sigma type = 'pc' (Product)";
     auto tokens = lexer.tokenise(input);
     auto tree = parser.earleyParse(tokens);
     auto s = tree->translate();

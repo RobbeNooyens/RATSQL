@@ -5,7 +5,105 @@ digraph ParseTree {
   1 -> 2
   2 [label="EXPRESSION"];
   2 -> 3
-  3 [label="TABLE"];
+  3 [label="MODIFICATION"];
   3 -> 4
-  4 [label="NAME"];
+  4 [label="MODIFICATION"];
+  4 -> 5
+  5 [label="MODIFICATION"];
+  5 -> 6
+  6 [label="MODIFICATION"];
+  6 -> 7
+  7 [label="SELECTION"];
+  7 -> 8
+  8 [label="SIGMA"];
+  7 -> 9
+  9 [label="EQUATION"];
+  9 -> 10
+  10 [label="VAR"];
+  10 -> 11
+  11 [label="COLUMN_NAME"];
+  11 -> 12
+  12 [label="NAME"];
+  9 -> 13
+  13 [label="OPERATOR1"];
+  13 -> 14
+  14 [label="EQ"];
+  9 -> 15
+  15 [label="VAR"];
+  15 -> 16
+  16 [label="NUMBER"];
+  16 -> 17
+  17 [label="DIGIT"];
+  5 -> 18
+  18 [label="MODIFICATION"];
+  18 -> 19
+  19 [label="PROJECTION"];
+  19 -> 20
+  20 [label="PI"];
+  19 -> 21
+  21 [label="PROJECTION_PREMISE"];
+  21 -> 22
+  22 [label="COLUMN_NAME"];
+  22 -> 23
+  23 [label="NAME"];
+  4 -> 24
+  24 [label="MODIFICATION"];
+  24 -> 25
+  25 [label="PROJECTION"];
+  25 -> 26
+  26 [label="PI"];
+  25 -> 27
+  27 [label="PROJECTION_PREMISE"];
+  27 -> 28
+  28 [label="PROJECTION_PREMISE"];
+  28 -> 29
+  29 [label="COLUMN_NAME"];
+  29 -> 30
+  30 [label="NAME"];
+  27 -> 31
+  31 [label="COMMA"];
+  27 -> 32
+  32 [label="PROJECTION_PREMISE"];
+  32 -> 33
+  33 [label="COLUMN_NAME"];
+  33 -> 34
+  34 [label="NAME"];
+  3 -> 35
+  35 [label="MODIFICATION"];
+  35 -> 36
+  36 [label="SELECTION"];
+  36 -> 37
+  37 [label="SIGMA"];
+  36 -> 38
+  38 [label="EQUATION"];
+  38 -> 39
+  39 [label="VAR"];
+  39 -> 40
+  40 [label="COLUMN_NAME"];
+  40 -> 41
+  41 [label="NAME"];
+  38 -> 42
+  42 [label="OPERATOR1"];
+  42 -> 43
+  43 [label="EQ"];
+  38 -> 44
+  44 [label="VAR"];
+  44 -> 45
+  45 [label="STRING"];
+  45 -> 46
+  46 [label="'"];
+  45 -> 47
+  47 [label="NAME"];
+  45 -> 48
+  48 [label="'"];
+  2 -> 49
+  49 [label="TABLE"];
+  49 -> 50
+  50 [label="ROUNDED_BRACKET_LEFT"];
+  49 -> 51
+  51 [label="TABLE"];
+  51 -> 52
+  52 [label="NAME"];
+  49 -> 53
+  53 [label="ROUNDED_BRACKET_RIGHT"];
 }
