@@ -173,6 +173,9 @@ void ExpressionNode::createView(vector<string> &v) {
     if (v[1].empty()) {
         v[1] = "SELECT * FROM ";
     }
+    if (v[2].empty()) {
+        v[2] = lastTable;
+    }
     for (int i = 1; i < v.size(); ++i) {
         output += v[i]; // Write the string
         v[i].clear(); // Empty the string
@@ -211,7 +214,7 @@ std::string SelectionNode::translate(vector<std::string> &v) {
 //        where.insert(where.begin(), tempTable.begin(), tempTable.end());
 //    }
     v[3] += where + output;
-    return "";
+    return lastTable;
 }
 
 ProjectionNode::ProjectionNode(const string &token): ModificationNode(token) {}
