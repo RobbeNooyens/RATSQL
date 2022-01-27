@@ -25,7 +25,7 @@ public:
 private:
     /// @brief Shared pointer to an earley parser
     std::unique_ptr<EarleyParser> parser{};
-    std::unique_ptr<Lexer> lexer{};
+    std::unique_ptr<Lexer> lexer;
     std::shared_ptr<CFG> cfg{};
 
 };
