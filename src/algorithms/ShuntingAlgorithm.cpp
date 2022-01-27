@@ -36,6 +36,8 @@ void ShuntingAlgorithm::operator()(std::vector<ParseToken>& tokens, std::ostream
     flush();
     printQueue();
     parse(stream);
+
+    grid.substitute();
 }
 
 void ShuntingAlgorithm::flush() {
@@ -43,7 +45,6 @@ void ShuntingAlgorithm::flush() {
         queue.push(operatorStack.top());
         operatorStack.pop();
     }
-    expression = RAExpression();
 }
 
 void ShuntingAlgorithm::consumeOperator(ParseToken &opSymbol) {
@@ -126,13 +127,10 @@ ParseToken & ShuntingAlgorithm::getStackTop() {
     return operatorStack.empty() ? emptyToken : operatorStack.top();
 }
 
-RAExpression ShuntingAlgorithm::parse(ostream &stream, bool print) {
-    // Creating a new expression for saving
-    expression = RAExpression();
+void ShuntingAlgorithm::parse(ostream &stream, bool print) {
     // Creating a new variable for printing
     vector<string> output;
 
-    // todo algorithm: count the amount of times a table entry occurs + take the amounts into account
     // Algorithm
     ParseToken& queueFront = emptyToken;
     while(!queue.empty()) {
@@ -147,14 +145,6 @@ RAExpression ShuntingAlgorithm::parse(ostream &stream, bool print) {
         // Pop the top of the queue and start over
         queue.pop();
     }
-
-    // Printing the result if asked to do so
-    if (print) expression.printExpression(stream);
-    return expression;
-}
-
-RAExpression ShuntingAlgorithm::getRAExpression() const {
-    return this->expression;
 }
 
 void ShuntingAlgorithm::parseOperator(ParseToken &queueFront, vector<string>& output) {
@@ -163,35 +153,21 @@ void ShuntingAlgorithm::parseOperator(ParseToken &queueFront, vector<string>& ou
     auto& stackTop2 = textStack.top();
     if (!textStack.empty()) textStack.pop();
 
-    string joined;
-    std::shared_ptr<RAWord> word;
+    int index = 0;
     if(operatorTypes[queueFront.getToken()] == PREFIX) {
         // We have an operator that uses prefix
-        word = std::make_shared<RAWord>(std::vector<ParseToken>{queueFront, stackTop2, stackTop1});
-        joined = queueFront.getContent();
-        joined.append(" ").append(stackTop2.getContent()).append(" ").append(stackTop1.getContent());
+        index = grid.addExpression(queueFront, stackTop2, stackTop1);
     } else if(operatorTypes[queueFront.getToken()] == INFIX) {
         // Operator that uses infix
-        word = std::make_shared<RAWord>(std::vector<ParseToken>{stackTop2, queueFront, stackTop1});
-        joined = stackTop2.getContent();
-        joined.append(" ").append(queueFront.getContent()).append(" ").append(stackTop1.getContent());
+        index = grid.addExpression(stackTop2, queueFront, stackTop1);
     } else {
         // Operator that uses postfix
-        word = std::make_shared<RAWord>(std::vector<ParseToken>{stackTop2, stackTop1, queueFront});
-        joined = stackTop2.getContent();
-        joined.append(" ").append(stackTop1.getContent()).append(" ").append(queueFront.getContent());
+        index = grid.addExpression(stackTop2, stackTop1, queueFront);
     }
 
-    int index = -1;
-    for(int i = 0; i < output.size(); i++) {
-        if(output[i] == joined) {
-            index = i;
-        }
-    }
-    if(index == -1) {
-        index = (int) output.size();
-        expression.addWord(word);
-        output.push_back(joined);
-    }
     textStack.push({Tokens::SUBSTITUTION, to_string(index)});
+}
+
+std::shared_ptr<RAExpression> ShuntingAlgorithm::getRAExpression() {
+    return std::shared_ptr<RAExpression>();
 }

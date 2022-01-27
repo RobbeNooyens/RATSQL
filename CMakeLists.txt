@@ -85,6 +85,17 @@ set(QTGUI
 
 set(COMMANDHANDLERS
         src/io/CommandHandler.h
+        src/io/CommandHandler.cpp
+        src/datastructures/CFG.cpp
+        src/datastructures/CFG.h
+        libs/json.hpp
+        src/exceptions/ExceptionHandler.cpp
+        src/exceptions/ExceptionHandler.h 
+        src/parser/ParseState.cpp 
+        src/parser/ParseState.h 
+        src/parser/Tokens.h 
+        src/algorithms/ShuntingGrid.cpp 
+        src/algorithms/ShuntingGrid.h
         src/io/CommandHandler.cpp)
 
 set(ALGORITHMS
@@ -151,6 +162,19 @@ add_executable(RATSQL_TESTS
 
 add_executable(RATSQL_SHUNTING_YARD
         src/main_shunting_yard.cpp
+        src/algorithms/ShuntingAlgorithm.cpp
+        src/algorithms/ShuntingAlgorithm.h
+        src/exceptions/ExceptionHandler.h
+        src/exceptions/ExceptionHandler.cpp
+        src/datastructures/RAExpression.h
+        src/datastructures/RAExpression.cpp
+        src/parser/Tokens.h
+        src/datastructures/CFG.h
+        src/datastructures/CFG.cpp
+        src/parser/Lexer.h
+        src/parser/Lexer.cpp
+        src/algorithms/ShuntingGrid.h
+        src/algorithms/ShuntingGrid.cpp
         ${LOGICLIBRARY})
 
 add_executable(RATSQL_PARSING

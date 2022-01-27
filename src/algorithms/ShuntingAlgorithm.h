@@ -25,6 +25,7 @@
 #include "../datastructures/RAExpression.h"
 #include "../parser/Tokens.h"
 #include "../parser/ParseTemplate.h"
+#include "ShuntingGrid.h"
 
 enum OperatorType {PREFIX, INFIX, POSTFIX};
 
@@ -52,21 +53,20 @@ public:
      * @param print     print the result - default is true
      * @return
      */
-    RAExpression parse(std::ostream& stream=std::cout, bool print=true);
+    void parse(std::ostream& stream=std::cout, bool print=true);
     /**
      * @brief Getter for the RA expression
      * @return
      */
-    RAExpression getRAExpression() const;
+    std::shared_ptr<RAExpression> getRAExpression();
 private:
+    ShuntingGrid grid;
     /// @brief Stack with all the operators
     std::stack<ParseToken> operatorStack{};
     /// @brief Main queue with the full string expression
     std::queue<ParseToken> queue{};
     /// @brief Stack with all the non-operator variables
     std::stack<ParseToken> textStack{};
-    /// @brief The relational expression that the pars() function returns
-    RAExpression expression{};
     /// @brief Demonstrates an empty string
     ParseToken emptyToken{"", ""};
     /// @brief Map with the precedence of all the operators
@@ -165,6 +165,10 @@ private:
      * @note Adds RA words to the expression
      */
     void parseOperator(ParseToken &queueFront, std::vector<std::string>& output);
+
+    void replaceSubstitution(int index, std::shared_ptr<RAWord>& sequence);
+
+    string replaceVariable(int index, bool first);
 };
 
 
