@@ -7,7 +7,7 @@
 #include "../datastructures/RAExpression.h"
 
 std::string System::convertToSQL(const string& query) {
-    lexer = std::make_unique<Lexer>(cfg->getAliasMap(), cfg->getAliases());
+    lexer = std::make_unique<Lexer>(cfg);
     const auto& tokens = lexer->tokenise(query);
     parser = std::make_unique<EarleyParser>(cfg);
     const auto& tree = parser->earleyParse(tokens);

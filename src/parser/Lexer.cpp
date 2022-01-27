@@ -6,6 +6,7 @@
 #include <iostream>
 
 #include "Lexer.h"
+#include "../datastructures/CFG.h"
 #include "../exceptions/UndefinedTokenException.h"
 
 Lexer::Lexer(const map<string, string> &m, const vector<vector<string>> &a) : tokenMap(m), aliases(a) {}
@@ -134,3 +135,5 @@ vector<ParseToken> Lexer::tokenise(const string &s) {
 }
 
 Lexer::Lexer(): tokenMap(), aliases() {}
+
+Lexer::Lexer(const std::shared_ptr<CFG>& cfg): tokenMap(cfg->getAliasMap()), aliases(cfg->getAliases()) {}

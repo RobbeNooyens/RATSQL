@@ -16,7 +16,9 @@ public:
     /**
      * @brief Small constructor that creates a new shared pointer to a new earley parser object
      */
-    System(): parser(), lexer(), cfg() {}
+    System(): parser(), lexer() {
+        cfg = std::make_shared<CFG>("input/grammar.json");
+    }
     /**
      * @brief Will parse a relational expression to an SQL statement // todo
      * @param query     Given by reference - will change the string to an SQL statement
@@ -25,9 +27,8 @@ public:
 private:
     /// @brief Shared pointer to an earley parser
     std::unique_ptr<EarleyParser> parser{};
-    std::unique_ptr<Lexer> lexer;
+    std::unique_ptr<Lexer> lexer{};
     std::shared_ptr<CFG> cfg{};
-
 };
 
 
