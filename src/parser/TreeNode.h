@@ -88,12 +88,25 @@ public:
 
     virtual std::string translate(std::vector<std::string> &v) override;
 
+    std::vector<std::string> translateToVector();
+
     void createView(vector<string> &v);
 
 protected:
     static unsigned int tempTableNumber;
 
     static std::string lastTable;
+};
+
+class JoinNode: public ExpressionNode {
+public:
+    /**
+     * Constructor
+     * @param token
+     */
+    explicit JoinNode(const std::string &token);
+
+    std::string translate(std::vector<std::string> &v) override;
 };
 
 class ModificationNode: public ExpressionNode {

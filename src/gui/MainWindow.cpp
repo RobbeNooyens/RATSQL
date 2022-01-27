@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("RATSQL"));
-    setFixedSize(800, 500);
+    setBaseSize(800, 500);
 
     // Create menu + other things
     init();
@@ -42,9 +42,8 @@ void MainWindow::init()
     std::string styleSheet((std::istreambuf_iterator<char>(file)),
                      std::istreambuf_iterator<char>());
     ui->centralwidget->setStyleSheet(QString::fromStdString(styleSheet));
-//    ui->centralwidget->setBackgroundRole(QPalette(QColor(41, 41, 41)));
     ui->centralwidget->setAutoFillBackground(true);
-//    ui->centralwidget->setBackgroundRole(QPalette::ColorRole::);
+    setStyleSheet("background-color: rgb(32, 32, 35);");
 
     // Editor
     mTextEdit = new TextEdit(this);
@@ -56,23 +55,18 @@ void MainWindow::init()
 
     // Menu bar
 
-    // Convert button
-    ui->mButtonConvert->setText(QString("CONVERT"));
-    connect(ui->mButtonConvert, SIGNAL(clicked()), this, SLOT(onConvertBtnClicked()));
-
     // Settings
     ui->mGridSettings->setVerticalSpacing(3);
     createSettingButtons();
 
     // Characters
-    ui->mGridChars->setHorizontalSpacing(1);
-    ui->mGridChars->setVerticalSpacing(1);
     createCharButtons();
 
-    // TODO - post-build cmakelists resources kopieren naar targets
-    // Parser
-    //mCFG = std::make_shared<CFG>("input/grammar.json");
-    //mLexer = std::make_unique<Lexer>(mCFG->getAliasMap(), mCFG->getAliases());
+    // Convert button
+    ui->mButtonConvert->setText(QString("CONVERT"));
+    ui->mButtonConvert->setFixedSize(100, 30);
+    connect(ui->mButtonConvert, SIGNAL(clicked()), this, SLOT(onConvertBtnClicked()));
+
     mSys = std::make_unique<System>();
 }
 
@@ -103,26 +97,26 @@ void MainWindow::createCharButtons()
     createButton(L"≠", 0, 8);
     createButton(L"=", 0, 9);
     createButton(L"≥", 0, 10);
-    createButton(L"≤", 0, 11);
-    createButton(L">", 0, 12);
-    createButton(L"<", 0, 13);
+    createButton(L"≤", 1, 0);
+    createButton(L">", 1, 1);
+    createButton(L"<", 1, 2);
 
     // Operators
-    createButton(L"∩", 1, 0);
-    createButton(L"∪", 1, 1);
-    createButton(L"/", 1, 2);
-    createButton(L"-", 1, 3);
-    createButton(L"⨯", 1, 4);
-    createButton(L"⨝", 1, 5);
+    createButton(L"∩", 1, 3);
+    createButton(L"∪", 1, 4);
+    createButton(L"/", 1, 5);
+    createButton(L"-", 1, 6);
+    createButton(L"⨯", 1, 7);
+    createButton(L"⨝", 1, 8);
 
     // Misc
-    createButton(L"{", 1, 6);
-    createButton(L"}", 1, 7);
-    createButton(L"(", 1, 8);
-    createButton(L")", 1, 9);
-    createButton(L".", 1, 10);
-    createButton(L",", 1, 11);
-    createButton(L"'", 1, 12);
+    createButton(L"{", 1, 9);
+    createButton(L"}", 1, 10);
+    createButton(L"(", 2, 0);
+    createButton(L")", 2, 1);
+    createButton(L".", 2, 2);
+    createButton(L",", 2, 3);
+    createButton(L"'", 2, 4);
 }
 
 void MainWindow::createSettingButtons()
@@ -137,6 +131,7 @@ void MainWindow::createSettingButtons()
     connect(er, SIGNAL(clicked(bool)), mTextEdit, SLOT(onErrorDetection(bool)));
     auto* erDeviation = new QLineEdit("1", this);
     erDeviation->setMaxLength(1);
+    erDeviation->setFixedSize(30,20);
     erDeviation->setValidator(new QIntValidator(0, 10, erDeviation));
     ui->mGridSettings->addWidget(erDeviation, 0, 1);
     mSettings.emplace_back(erDeviation);
