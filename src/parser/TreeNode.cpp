@@ -223,6 +223,8 @@ std::string ProjectionNode::translate(vector<std::string> &v) {
     }
     if (!v[1].empty()) {
         createView(v);
+    }
+    if (v[2].empty()) {
         v[2] = lastTable;
     }
     std::string tempTableName = "TempTable" + to_string(tempTableNumber++);
