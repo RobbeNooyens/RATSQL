@@ -1,5 +1,5 @@
 {
-  "Variables": ["S", "COMMENT", "MULTILINE_COMMENT", "LINE_COMMENT","EXPRESSION", "MODIFICATION", "JOIN_OP", "SELECTION", "PROJECTION", "RENAME", "PROJECTION_PREMISE", "RENAME_PREMISE", "OPERATOR1", "OPERATOR2", "OPERATOR3", "EQUATION", "VAR", "NUMBER", "STRING", "TABLE", "COLUMN_NAME"],
+  "Variables": ["S", "COMMENT", "MULTILINE_COMMENT", "LINE_COMMENT","EXPRESSION", "MODIFICATION", "SET_OP","JOIN_OP", "SELECTION", "PROJECTION", "RENAME", "PROJECTION_PREMISE", "RENAME_PREMISE", "OPERATOR1", "OPERATOR2", "OPERATOR3", "OPERATOR4","EQUATION", "VAR", "NUMBER", "STRING", "TABLE", "COLUMN_NAME"],
   "Terminals": ["DIGIT", "NAME", "PI", "SIGMA", "RHO", "JOIN", "COMMA", "DOT", "RIGHT_ARROW", "LEFT_ARROW", "ROUNDED_BRACKET_LEFT", "ROUNDED_BRACKET_RIGHT", "EQ", "NEQ", "GEQ", "LEQ", "LT", "GT", "AND", "OR", "NOT", "INTERSECT", "UNION", "DIV", "SUB", "JOIN", "SCALAR", "EOL", "MULTI_COMMENT_START", "MULTI_COMMENT_END", "LINE_COMMENT_START", "QUOTE"],
   "Productions": [
     {"head": "S", "body": ["EXPRESSION"]},
@@ -13,6 +13,7 @@
     {"head": "EXPRESSION", "body": ["MODIFICATION", "EXPRESSION"]},
     {"head": "EXPRESSION", "body": ["TABLE"]},
     {"head": "EXPRESSION", "body": ["JOIN_OP"]},
+    {"head": "EXPRESSION", "body": ["SET_OP"]},
     {"head": "EXPRESSION", "body": ["ROUNDED_BRACKET_LEFT","EXPRESSION", "ROUNDED_BRACKET_RIGHT"]},
     {"head": "MODIFICATION", "body": ["PROJECTION"]},
     {"head": "MODIFICATION", "body": ["SELECTION"]},
@@ -20,6 +21,7 @@
     {"head": "MODIFICATION", "body": ["MODIFICATION", "MODIFICATION"]},
     {"head": "JOIN_OP", "body": ["EXPRESSION", "JOIN", "EXPRESSION"]},
     {"head": "JOIN_OP", "body": ["EXPRESSION", "JOIN", "EQUATION", "EXPRESSION"]},
+    {"head": "SET_OP", "body": ["EXPRESSION", "OPERATOR4", "EXPRESSION"]},
     {"head": "SELECTION", "body": ["SIGMA", "EQUATION"]},
     {"head": "PROJECTION", "body": ["PI", "PROJECTION_PREMISE"]},
     {"head": "RENAME", "body": ["RHO", "RENAME_PREMISE"]},
@@ -40,11 +42,12 @@
     {"head": "OPERATOR2", "body":  ["AND"]},
     {"head": "OPERATOR2", "body":  ["OR"]},
 
-    {"head": "OPERATOR3", "body":  ["INTERSECT"]},
-    {"head": "OPERATOR3", "body":  ["UNION"]},
     {"head": "OPERATOR3", "body":  ["DIV"]},
     {"head": "OPERATOR3", "body":  ["SUB"]},
     {"head": "OPERATOR3", "body":  ["SCALAR"]},
+
+    {"head": "OPERATOR4", "body":  ["INTERSECT"]},
+    {"head": "OPERATOR4", "body":  ["UNION"]},
 
     {"head": "EQUATION", "body":  ["NOT", "ROUNDED_BRACKET_LEFT", "EQUATION", "ROUNDED_BRACKET_RIGHT"]},
     {"head": "EQUATION", "body":  ["ROUNDED_BRACKET_LEFT", "EQUATION", "ROUNDED_BRACKET_RIGHT"]},

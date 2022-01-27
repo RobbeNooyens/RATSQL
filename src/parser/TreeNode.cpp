@@ -173,6 +173,9 @@ void ExpressionNode::createView(vector<string> &v) {
     if (v[1].empty()) {
         v[1] = "SELECT * FROM ";
     }
+    if (v[2].empty()) {
+        v[2] = lastTable;
+    }
     for (int i = 1; i < v.size(); ++i) {
         output += v[i]; // Write the string
         v[i].clear(); // Empty the string
@@ -211,7 +214,7 @@ std::string SelectionNode::translate(vector<std::string> &v) {
 //        where.insert(where.begin(), tempTable.begin(), tempTable.end());
 //    }
     v[3] += where + output;
-    return "";
+    return lastTable;
 }
 
 ProjectionNode::ProjectionNode(const string &token): ModificationNode(token) {}
@@ -352,6 +355,19 @@ std::string JoinNode::translate(std::vector<std::string> &v) {
     }
     v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + tables.first +
              joinType + " JOIN " + tables.second + condition + ");\n";
+    lastTable = "TempTable"+ to_string(tempTableNumber-1);
+    v[2] += lastTable;
+    return lastTable;
+}
+
+SetOperatorNode::SetOperatorNode(const string & token): ExpressionNode(token) {}
+
+std::string SetOperatorNode::translate(vector<std::string> &v) {
+    std::pair<std::string, std::string> tables;
+    tables.first = children[0]->translate(v);
+    tables.second = children[2]->translate(v);
+    v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + tables.first + " " + children[1]->translate() + " SELECT * FROM "
+            + tables.second + ");\n";
     lastTable = "TempTable"+ to_string(tempTableNumber-1);
     v[2] += lastTable;
     return lastTable;
