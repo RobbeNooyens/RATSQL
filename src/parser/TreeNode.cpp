@@ -373,3 +373,21 @@ std::string SetOperatorNode::translate(vector<std::string> &v) {
     v[2] += lastTable;
     return lastTable;
 }
+
+RootNode::RootNode(const string &token): TreeNode(token) {}
+
+std::string RootNode::translate() const {
+    std::string output;
+    // Check for assignment
+    if (children[0]->getToken() == "NAME") {
+        std::vector<std::string> v;
+        v.reserve(4);
+        for (int i = 0; i < 4; ++i) {
+
+        }
+    } else {
+        for (auto child : children) {
+            output += child->translate();
+        }
+    }
+}

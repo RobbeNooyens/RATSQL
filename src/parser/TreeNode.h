@@ -76,6 +76,17 @@ public:
      std::string translate() const override;
 };
 
+class RootNode: public TreeNode {
+public:
+    /**
+     * Constructor
+     * @param token
+     */
+    explicit RootNode(const std::string &token);
+
+    std::string translate() const override;
+};
+
 class ExpressionNode: public TreeNode {
 public:
     /**

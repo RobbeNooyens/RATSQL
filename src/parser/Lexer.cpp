@@ -87,6 +87,7 @@ vector<ParseToken> Lexer::tokenise(const vector<string> &v) {
             token = tokenMap[entry];
         } else if (isNumber(entry)) {
             token = "DIGIT";
+
         } else if (isName(entry)){
             token = "NAME";
         } else {

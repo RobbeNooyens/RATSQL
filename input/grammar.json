@@ -5,7 +5,7 @@
     {"head": "S", "body": ["EXPRESSION"]},
     {"head": "S", "body": ["NAME", "EQ", "EXPRESSION"]},
     {"head": "S", "body": ["COMMENT"]},
-    {"head": "S", "body": ["S","S"]},
+    {"head": "S", "body": ["S", "EOL" ,"S"]},
     {"head": "COMMENT", "body": ["MULTILINE_COMMENT"]},
     {"head": "COMMENT", "body": ["LINE_COMMENT"]},
     {"head": "MULTILINE_COMMENT", "body": ["MULTI_COMMENT_START","TEXT","MULTI_COMMENT_END"]},

@@ -3,119 +3,221 @@ digraph ParseTree {
   0 -> 1
   1 [label="S"];
   1 -> 2
-  2 [label="EXPRESSION"];
+  2 [label="S"];
   2 -> 3
-  3 [label="MODIFICATION"];
+  3 [label="S"];
   3 -> 4
-  4 [label="SELECTION"];
-  4 -> 5
-  5 [label="SIGMA"];
-  4 -> 6
-  6 [label="EQUATION"];
+  4 [label="NAME"];
+  3 -> 5
+  5 [label="EQ"];
+  3 -> 6
+  6 [label="EXPRESSION"];
   6 -> 7
-  7 [label="VAR"];
-  7 -> 8
-  8 [label="COLUMN_NAME"];
+  7 [label="ROUNDED_BRACKET_LEFT"];
+  6 -> 8
+  8 [label="EXPRESSION"];
   8 -> 9
-  9 [label="NAME"];
-  6 -> 10
-  10 [label="OPERATOR1"];
+  9 [label="JOIN_OP"];
+  9 -> 10
+  10 [label="EXPRESSION"];
   10 -> 11
-  11 [label="LT"];
-  6 -> 12
-  12 [label="VAR"];
+  11 [label="MODIFICATION"];
+  11 -> 12
+  12 [label="PROJECTION"];
   12 -> 13
-  13 [label="COLUMN_NAME"];
-  13 -> 14
-  14 [label="NAME"];
-  2 -> 15
-  15 [label="EXPRESSION"];
+  13 [label="PI"];
+  12 -> 14
+  14 [label="PROJECTION_PREMISE"];
+  14 -> 15
+  15 [label="PROJECTION_PREMISE"];
   15 -> 16
-  16 [label="ROUNDED_BRACKET_LEFT"];
-  15 -> 17
-  17 [label="EXPRESSION"];
-  17 -> 18
-  18 [label="JOIN_OP"];
-  18 -> 19
-  19 [label="EXPRESSION"];
+  16 [label="COLUMN_NAME"];
+  16 -> 17
+  17 [label="NAME"];
+  14 -> 18
+  18 [label="COMMA"];
+  14 -> 19
+  19 [label="PROJECTION_PREMISE"];
   19 -> 20
-  20 [label="MODIFICATION"];
+  20 [label="COLUMN_NAME"];
   20 -> 21
-  21 [label="MODIFICATION"];
-  21 -> 22
-  22 [label="RENAME"];
+  21 [label="NAME"];
+  10 -> 22
+  22 [label="EXPRESSION"];
   22 -> 23
-  23 [label="RHO"];
-  22 -> 24
-  24 [label="RENAME_PREMISE"];
-  24 -> 25
-  25 [label="NAME"];
-  24 -> 26
-  26 [label="LEFT_ARROW"];
-  24 -> 27
-  27 [label="COLUMN_NAME"];
+  23 [label="TABLE"];
+  23 -> 24
+  24 [label="NAME"];
+  9 -> 25
+  25 [label="JOIN"];
+  9 -> 26
+  26 [label="EXPRESSION"];
+  26 -> 27
+  27 [label="MODIFICATION"];
   27 -> 28
-  28 [label="NAME"];
-  20 -> 29
-  29 [label="MODIFICATION"];
+  28 [label="MODIFICATION"];
+  28 -> 29
+  29 [label="PROJECTION"];
   29 -> 30
-  30 [label="PROJECTION"];
-  30 -> 31
-  31 [label="PI"];
-  30 -> 32
-  32 [label="PROJECTION_PREMISE"];
+  30 [label="PI"];
+  29 -> 31
+  31 [label="PROJECTION_PREMISE"];
+  31 -> 32
+  32 [label="COLUMN_NAME"];
   32 -> 33
-  33 [label="PROJECTION_PREMISE"];
-  33 -> 34
-  34 [label="COLUMN_NAME"];
+  33 [label="NAME"];
+  27 -> 34
+  34 [label="MODIFICATION"];
   34 -> 35
-  35 [label="NAME"];
-  32 -> 36
-  36 [label="COMMA"];
-  32 -> 37
-  37 [label="PROJECTION_PREMISE"];
+  35 [label="SELECTION"];
+  35 -> 36
+  36 [label="SIGMA"];
+  35 -> 37
+  37 [label="EQUATION"];
   37 -> 38
-  38 [label="COLUMN_NAME"];
+  38 [label="VAR"];
   38 -> 39
-  39 [label="NAME"];
-  19 -> 40
-  40 [label="EXPRESSION"];
-  40 -> 41
-  41 [label="TABLE"];
+  39 [label="COLUMN_NAME"];
+  39 -> 40
+  40 [label="NAME"];
+  37 -> 41
+  41 [label="OPERATOR1"];
   41 -> 42
-  42 [label="NAME"];
-  18 -> 43
-  43 [label="JOIN"];
-  18 -> 44
-  44 [label="EXPRESSION"];
+  42 [label="GEQ"];
+  37 -> 43
+  43 [label="VAR"];
+  43 -> 44
+  44 [label="NUMBER"];
   44 -> 45
-  45 [label="MODIFICATION"];
-  45 -> 46
-  46 [label="PROJECTION"];
-  46 -> 47
-  47 [label="PI"];
-  46 -> 48
-  48 [label="PROJECTION_PREMISE"];
+  45 [label="DIGIT"];
+  44 -> 46
+  46 [label="DOT"];
+  44 -> 47
+  47 [label="DIGIT"];
+  26 -> 48
+  48 [label="EXPRESSION"];
   48 -> 49
-  49 [label="PROJECTION_PREMISE"];
-  49 -> 50
-  50 [label="COLUMN_NAME"];
+  49 [label="ROUNDED_BRACKET_LEFT"];
+  48 -> 50
+  50 [label="EXPRESSION"];
   50 -> 51
-  51 [label="NAME"];
-  48 -> 52
-  52 [label="COMMA"];
-  48 -> 53
-  53 [label="PROJECTION_PREMISE"];
+  51 [label="SET_OP"];
+  51 -> 52
+  52 [label="EXPRESSION"];
+  52 -> 53
+  53 [label="MODIFICATION"];
   53 -> 54
-  54 [label="COLUMN_NAME"];
+  54 [label="PROJECTION"];
   54 -> 55
-  55 [label="NAME"];
-  44 -> 56
-  56 [label="EXPRESSION"];
+  55 [label="PI"];
+  54 -> 56
+  56 [label="PROJECTION_PREMISE"];
   56 -> 57
-  57 [label="TABLE"];
+  57 [label="PROJECTION_PREMISE"];
   57 -> 58
-  58 [label="NAME"];
-  15 -> 59
-  59 [label="ROUNDED_BRACKET_RIGHT"];
+  58 [label="COLUMN_NAME"];
+  58 -> 59
+  59 [label="NAME"];
+  56 -> 60
+  60 [label="COMMA"];
+  56 -> 61
+  61 [label="PROJECTION_PREMISE"];
+  61 -> 62
+  62 [label="COLUMN_NAME"];
+  62 -> 63
+  63 [label="NAME"];
+  52 -> 64
+  64 [label="EXPRESSION"];
+  64 -> 65
+  65 [label="TABLE"];
+  65 -> 66
+  66 [label="NAME"];
+  51 -> 67
+  67 [label="OPERATOR4"];
+  67 -> 68
+  68 [label="UNION"];
+  51 -> 69
+  69 [label="EXPRESSION"];
+  69 -> 70
+  70 [label="MODIFICATION"];
+  70 -> 71
+  71 [label="PROJECTION"];
+  71 -> 72
+  72 [label="PI"];
+  71 -> 73
+  73 [label="PROJECTION_PREMISE"];
+  73 -> 74
+  74 [label="PROJECTION_PREMISE"];
+  74 -> 75
+  75 [label="COLUMN_NAME"];
+  75 -> 76
+  76 [label="NAME"];
+  73 -> 77
+  77 [label="COMMA"];
+  73 -> 78
+  78 [label="PROJECTION_PREMISE"];
+  78 -> 79
+  79 [label="COLUMN_NAME"];
+  79 -> 80
+  80 [label="NAME"];
+  69 -> 81
+  81 [label="EXPRESSION"];
+  81 -> 82
+  82 [label="TABLE"];
+  82 -> 83
+  83 [label="NAME"];
+  48 -> 84
+  84 [label="ROUNDED_BRACKET_RIGHT"];
+  6 -> 85
+  85 [label="ROUNDED_BRACKET_RIGHT"];
+  2 -> 86
+  86 [label="EOL"];
+  2 -> 87
+  87 [label="S"];
+  87 -> 88
+  88 [label="NAME"];
+  87 -> 89
+  89 [label="EQ"];
+  87 -> 90
+  90 [label="EXPRESSION"];
+  90 -> 91
+  91 [label="MODIFICATION"];
+  91 -> 92
+  92 [label="PROJECTION"];
+  92 -> 93
+  93 [label="PI"];
+  92 -> 94
+  94 [label="PROJECTION_PREMISE"];
+  94 -> 95
+  95 [label="COLUMN_NAME"];
+  95 -> 96
+  96 [label="NAME"];
+  90 -> 97
+  97 [label="EXPRESSION"];
+  97 -> 98
+  98 [label="TABLE"];
+  98 -> 99
+  99 [label="NAME"];
+  1 -> 100
+  100 [label="EOL"];
+  1 -> 101
+  101 [label="S"];
+  101 -> 102
+  102 [label="EXPRESSION"];
+  102 -> 103
+  103 [label="JOIN_OP"];
+  103 -> 104
+  104 [label="EXPRESSION"];
+  104 -> 105
+  105 [label="TABLE"];
+  105 -> 106
+  106 [label="NAME"];
+  103 -> 107
+  107 [label="JOIN"];
+  103 -> 108
+  108 [label="EXPRESSION"];
+  108 -> 109
+  109 [label="TABLE"];
+  109 -> 110
+  110 [label="NAME"];
 }
