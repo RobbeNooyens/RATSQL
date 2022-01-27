@@ -59,6 +59,16 @@ vector<vector<ParseToken>> ShuntingGrid::substitute() {
         cout << usage << " ";
     cout << endl;
 
+    int index = 0;
+    for(auto& row: grid) {
+        cout << index << ": ";
+        for(auto& token: row) {
+            cout << token << " ";
+        }
+        cout << endl;
+        index++;
+    }
+
     vector<vector<ParseToken>> result;
 
     // Substitute main expression
