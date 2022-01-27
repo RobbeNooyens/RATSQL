@@ -70,9 +70,9 @@
   ],
   "Start": "S",
   "Aliases": [
-    {"head":  "PI", "body":  ["pi", "π", "PI"]},
-    {"head":  "SIGMA", "body":  ["sigma", "σ", "SIGMA"]},
-    {"head":  "RHO", "body":  ["rho", "ρ", "RHO"]},
+    {"head":  "PI", "body":  ["pi ", "π ", "PI "]},
+    {"head":  "SIGMA", "body":  ["sigma ", "σ ", "SIGMA "]},
+    {"head":  "RHO", "body":  ["rho ", "ρ ", "RHO "]},
     {"head":  "EQ", "body":  ["="]},
     {"head":  "NEQ", "body":  ["!=", "≠"]},
     {"head":  "GEQ", "body":  [">=", "≥"]},
