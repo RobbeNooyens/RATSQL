@@ -53,7 +53,7 @@ LevenshteinDistance::LevenshteinDistance(const std::string& path) {
         while (std::getline(file, str)) { mDict.emplace_back(str); }
         file.close();
     } catch (std::exception& e) {
-        ExceptionHandler::handle(e,"Levenshtein distance file read failed!"); // todo file is not open if this fails?
+        ExceptionHandler::handle(e,"Levenshtein distance file path not found!");
     }
 }
 
@@ -66,14 +66,12 @@ std::pair<bool, std::vector<std::string>> LevenshteinDistance::eval(const std::s
     std::vector<std::string> sugg;
     bool flag = false;
     for (const auto &i : mDict) {
-        if (str1 == i)
-        {
+        if (str1 == i) {
             flag = true;
             if (skip) { return {flag, sugg}; }
         }
 
-        if (evalLevenshteinDistance(str1, i, deviation))
-        {
+        if (evalLevenshteinDistance(str1, i, deviation)) {
             sugg.emplace_back(i);
         }
     }

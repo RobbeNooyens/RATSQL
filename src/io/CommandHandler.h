@@ -24,6 +24,7 @@ class RAExpression;
 class CommandHandler {
 public:
     void operator()(std::string& command);
+    static void parseRAQuery(std::string& query);
 
 private:
     std::shared_ptr<RAExpression> expression;

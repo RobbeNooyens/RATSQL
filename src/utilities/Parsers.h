@@ -28,6 +28,9 @@ class ParseSettings;
  * @designPattern Adapt pattern
  */
 namespace parsers {
+    // Convert input to RAExpression with separation by tokens
+    std::shared_ptr<RAExpression> toRelationalExpression(const std::string& query);
+
     // Error correction
     std::vector<ReplaceSuggestion> checkTypos(const std::shared_ptr<RAExpression>& expression);
 

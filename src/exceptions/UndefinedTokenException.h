@@ -18,7 +18,7 @@ public:
      * Constructor for UndefinedTokenException
      * @param m message for the error
      */
-    UndefinedTokenException(const string &m) {
+    explicit UndefinedTokenException(const string &m) {
         message = "We couldn't find a token for entry: '" + m + "'. Consider checking for typo's.";
     }
 

@@ -6,7 +6,7 @@
 #include <iostream>
 
 #include "Lexer.h"
-#include "UndefinedTokenException.h"
+#include "../exceptions/UndefinedTokenException.h"
 
 Lexer::Lexer(const map<string, string> &m, const vector<vector<string>> &a) : tokenMap(m), aliases(a) {}
 
