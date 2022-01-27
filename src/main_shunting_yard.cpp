@@ -12,8 +12,6 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#include <iostream>
-#include "algorithms/LevenshteinDistance.h"
 #include "algorithms/ShuntingAlgorithm.h"
 #include "parser/Lexer.h"
 #include "parser/Tokens.h"
@@ -52,27 +50,6 @@ int main(int argc, char* argv[]) {
             {Tokens::ROUNDED_BRACKET_RIGHT, ")"},
             {Tokens::ROUNDED_BRACKET_RIGHT, ")"}
     };
-    /*
-        maker2
-        maker
-        <
-        maker2
-        maker
-        <-
-        maker
-        type
-        ,
-        Product
-        pi
-        rho
-        maker
-        type
-        ,
-        Product
-        pi
-        U
-        sigma
-     */
     std::string input = "σ maker2 < maker ( ρ maker2←maker π maker,type Product U π maker,type Product )";
     auto tokenized = lexer.tokenise(input);
     ShuntingAlgorithm algorithm;

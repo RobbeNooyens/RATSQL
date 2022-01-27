@@ -19,6 +19,12 @@
 
 enum CmdColor {GREEN, WHITE, BLUE};
 
+/**
+ * @brief Gives a color to a string
+ * @param str   String to color
+ * @param color Color to give to the string
+ * @return      The colored string
+ */
 std::string color(std::string str, CmdColor color) {
     std::string result;
     switch (color) {
