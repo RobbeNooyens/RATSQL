@@ -40,7 +40,10 @@ in another expression first.
 
 ---
 
-# Notes
+
+<p align="center">
+     Notes
+</p>
 
 --- 
 
@@ -50,4 +53,14 @@ new enter, a new relational algebra expression is expected.
 Some tests of the query tests fail, this is because the tests are written to the optimal output, and our generated
 view creates some extra views (but is still fully correct).
 
+---
 
+
+<p align="center">
+     Usage
+</p>
+
+--- 
+
+Make sure that Qt 6 is installed (there is some support for Qt 5 for certain configurations, but limited). Secondly,
+make sure to set the working directory to the project root.
