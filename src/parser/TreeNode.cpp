@@ -134,7 +134,7 @@ std::string ExpressionNode::translate() const {
         v[1] = "SELECT * FROM ";
     }
     if (v[2].empty()) {
-        // Todo: throw error saying a table should be specified
+        v[2] = lastTable;
     }
     std::string output;
     for (const auto &s : v) {

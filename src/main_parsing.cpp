@@ -49,7 +49,7 @@ int main(int argc, char *argv[]) {
 //    std::string input = "PC ∪ pi model, speed, ram, hd, price Laptop";
 //    std::string input = "pi model (PC intersect pi model, speed, ram, hd, price Laptop)";
 //    std::string input = "π  maker , model ( Product ⨝ σ  price < 1000 PC )";
-    std::string input = "π maker (Product ⨝ σ ram > 2000 (π model, ram PC ∪ π model, ram Laptop))";
+    std::string input = "σ maker2 < maker ( ρ maker2 ← maker π maker, type Product ⨝ π maker, type Product)";
 //    std::string input = "pi model, maker pi model, maker, type (Product)";
 //    std::string input = "sigma m <= 1010 rho model→m rho K sigma type = 'laptop' pi model, price, type sigma price <= 1000 (PC)";
     auto tokens = lexer.tokenise(input); // Todo: error voor lege string / vermijden dat er geconvert kan worden in (ook spaties tellen niet)
