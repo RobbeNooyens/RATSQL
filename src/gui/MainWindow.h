@@ -8,6 +8,8 @@
 #include <QLineEdit>
 #include <QLabel>
 #include <QValidator>
+#include <QString>
+#include <QRegularExpression>
 
 #include "CharButton.h"
 #include "SettingButton.h"

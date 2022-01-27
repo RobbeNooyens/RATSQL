@@ -16,7 +16,7 @@ public:
     /**
      * @brief Small constructor that creates a new shared pointer to a new earley parser object
      */
-    System(): parser(), lexer() {
+    System(): parser() {
         cfg = std::make_shared<CFG>("input/grammar.json");
         lexer = std::make_unique<Lexer>(cfg);
     }
@@ -31,8 +31,9 @@ public:
     vector<vector<ParseToken>> optimize(vector<ParseToken>& tokens);
 
 private:
-    /// @brief Shared pointer to an earley parser
+    /// @brief Unique pointer to an earley parser
     std::unique_ptr<EarleyParser> parser{};
+    /// @brief Unique pointer to
     std::unique_ptr<Lexer> lexer{};
     std::shared_ptr<CFG> cfg{};
 };
