@@ -26,28 +26,4 @@ void HighLighter::highlightBlock(const QString &text)
             setFormat((int) next.capturedStart(), (int) next.capturedLength(), i.mFormat);
         }
     }
-
-    // TODO - nog steeds te traag en heeft eig ook geen zin om te doen
-
-//    if (!mErrorDetection || !mErrorFlag) { return; }
-//
-//    QTextCharFormat formatError;
-//    formatError.setUnderlineStyle(QTextCharFormat::SpellCheckUnderline);
-//    formatError.setUnderlineColor(QColor(255, 0, 0));
-//    QStringList list = text.split(QRegularExpression(R"((\s|\n|\r)+)"));
-//
-//    int counter = 0;
-//    int pointer = 1;
-//    for (const auto &i : list)
-//    {
-//        QString word = text.section(QRegularExpression("\\s+"), counter, counter,
-//                                    QString::SectionSkipEmpty).toLower();
-//        const auto& suggestions = LevenshteinDistance::getInstance().eval(word.toStdString(), mDeviation);
-//        if (!suggestions.first)
-//        {
-//            setFormat(pointer, (int) word.length(), formatError);
-//        }
-//        pointer += (int) word.length();
-//        counter++;
-//    }
 }

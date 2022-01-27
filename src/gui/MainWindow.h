@@ -10,6 +10,8 @@
 #include <QValidator>
 #include <QString>
 #include <QRegularExpression>
+#include <QFileDialog>
+#include <QPixmap>
 
 #include "CharButton.h"
 #include "SettingButton.h"
@@ -42,6 +44,11 @@ private:
      * @brief Create buttons, actions, ...
      */
     void init();
+
+    void createMenu();
+
+    void createAction();
+
     /**
      * @brief Create buttons for different special characters
      */
@@ -63,6 +70,9 @@ private:
 public slots:
     void onConvertBtnClicked();
 
+    void onAboutAct();
+    void onSaveAct();
+    void onOpenAct();
 private:
     Ui::MainWindow *ui;
     std::vector<CharButton*> mCharacters;
@@ -75,5 +85,14 @@ private:
 
     TextEdit* mTextEdit;
     TextEdit* mOutputTextEdit;
+
+    // Menu
+    QMenu* mAbout;
+    QMenu* mFile;
+
+    // Action
+    QAction* mAboutAct;
+    QAction* mSaveAct;
+    QAction* mOpenAct;
 };
 #endif // MAINWINDOW_H
