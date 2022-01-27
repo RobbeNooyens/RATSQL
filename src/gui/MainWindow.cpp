@@ -172,9 +172,6 @@ void MainWindow::createSettingButtons()
 
     auto opt = createButton("Optimizer", 1, 0);
     connect(opt, SIGNAL(clicked(bool)), mTextEdit, SLOT(onOptimize(bool)));
-//
-//    auto nm = createButton("Naming conventions", 2, 0);
-//    connect(nm, SIGNAL(clicked(bool)), mTextEdit, SLOT(onNamingConventions(bool)));
 }
 
 QMessageBox* MainWindow::createMessageBox(QMessageBox::Icon icon, const QString& title, const QString& text,
@@ -190,64 +187,62 @@ QMessageBox* MainWindow::createMessageBox(QMessageBox::Icon icon, const QString&
 
 void MainWindow::onConvertBtnClicked()
 {
-    // Regular expression
-    std::string query = mTextEdit->toPlainText().toStdString();
+    try {
+        // Regular expression
+        std::string query = mTextEdit->toPlainText().toStdString();
 
-    bool correction = mTextEdit->isErrorDetection();
-    int deviation = mTextEdit->getDeviation();
-    bool optimized = mTextEdit->isOptimized();
-    bool namingConventions = mTextEdit->isNamingConventions();
+        bool correction = mTextEdit->isErrorDetection();
+        int deviation = mTextEdit->getDeviation();
+        bool optimized = mTextEdit->isOptimized();
 
-    std::vector<std::vector<ParseToken>> tokens;
+        std::vector<std::vector<ParseToken>> tokens;
 
-    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
-    auto stringList = mTextEdit->toPlainText().split(QRegularExpression("[\r\n]"));
-    #else
-    auto stringList = mTextEdit->toPlainText().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
-    #endif
-    for(auto& s: stringList) {
-        string str = s.toStdString();
-        tokens.push_back(mSys->tokenize(str));
-    }
+        #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+        auto stringList = mTextEdit->toPlainText().split(QRegularExpression("[\r\n]"));
+        #else
+        auto stringList = mTextEdit->toPlainText().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+        #endif
+        for(auto& s: stringList) {
+            string str = s.toStdString();
+            if (!str.empty()) { tokens.push_back(mSys->tokenize(str)); }
+        }
 
-    std::vector<std::vector<ParseToken>> optimizedRA;
+        std::vector<std::vector<ParseToken>> optimizedRA;
 
-    if(optimized) {
-        for(auto& row: tokens) {
-            for(auto& optimizedRow: mSys->optimize(row)){
-                optimizedRA.push_back(optimizedRow);
+        if(optimized) {
+            for(auto& row: tokens) {
+                for(auto& optimizedRow: mSys->optimize(row)){
+                    optimizedRA.push_back(optimizedRow);
+                }
+            }
+        } else {
+            for(auto& row: tokens) {
+                optimizedRA.push_back(row);
             }
         }
-    } else {
-        for(auto& row: tokens) {
-            optimizedRA.push_back(row);
+
+        // OptimzedRA back to the mTextEdit
+        QString lines;
+        for(auto& expression: optimizedRA) {
+            std::string combined;
+            for(auto& token: expression) {
+                combined += token.getContent();
+                combined += " ";
+            }
+            combined.pop_back();
+            combined += "\n";
+            if (expression == optimizedRA.back())
+                combined.pop_back();
+            lines.push_back(QString::fromStdString(combined));
         }
-    }
+        mTextEdit->setText(lines);
 
-    // OptimzedRA back to the mTextEdit
-    QString lines;
-    for(auto& expression: optimizedRA) {
-        std::stringstream combined;
-        for(auto& token: expression) {
-            combined << token.getContent() << " ";
-        }
-        combined << endl;
-        lines.push_back(QString::fromStdString(combined.str()));
-    }
-    mTextEdit->setText(lines);
-
-
-    // Show error message if expression is empty
-    if (query.empty())
-    {
-        createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error: given regular expression is empty."),
+        std::string SQL = mSys->convertToSQL(query);
+        mOutputTextEdit->clear();
+        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
+    } catch (std::exception& e) {
+        createMessageBox(QMessageBox::Critical, QString("Error"), QString(e.what()),
                          QMessageBox::Ok);
-
-    } else {
-//        // Else, parse the input
-//        std::string SQL = mSys->convertToSQL(query);
-//        mOutputTextEdit->clear();
-//        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
     }
 }
 
