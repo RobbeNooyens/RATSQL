@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("RATSQL"));
-    setFixedSize(700, 700);
+    setFixedSize(800, 500);
 
     // Create menu + other things
     init();
@@ -41,14 +41,17 @@ void MainWindow::init()
     std::string styleSheet((std::istreambuf_iterator<char>(file)),
                      std::istreambuf_iterator<char>());
     ui->centralwidget->setStyleSheet(QString::fromStdString(styleSheet));
+//    ui->centralwidget->setBackgroundRole(QPalette(QColor(41, 41, 41)));
+    ui->centralwidget->setAutoFillBackground(true);
+//    ui->centralwidget->setBackgroundRole(QPalette::ColorRole::);
 
     // Editor
     mTextEdit = new TextEdit(this);
     mTextEdit->setHighLighter(new RAHighLighter(mTextEdit));
     mOutputTextEdit = new TextEdit(this, true);
     mOutputTextEdit->setHighLighter(new SQLHighLighter(mOutputTextEdit));
-    ui->mTextEdit->addWidget(mTextEdit);
-    ui->mTextEdit->addWidget(mOutputTextEdit);
+    ui->mInput->addWidget(mTextEdit);
+    ui->mOutput->addWidget(mOutputTextEdit);
 
     // Menu bar
 
@@ -160,6 +163,12 @@ void MainWindow::onConvertBtnClicked()
 {
     // Regular expression
     std::string query = mTextEdit->toPlainText().toStdString();
+
+    bool correction = mTextEdit->isErrorDetection();
+    int deviation = mTextEdit->getDeviation();
+    bool optimized = mTextEdit->isOptimized();
+    bool namingConventions = mTextEdit->isNamingConventions();
+
     // Show error message if expression is empty
     if (query.empty())
     {

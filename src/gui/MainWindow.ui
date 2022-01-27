@@ -29,10 +29,10 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>10</y>
-      <width>751</width>
-      <height>121</height>
+      <x>540</x>
+      <y>50</y>
+      <width>311</width>
+      <height>321</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mGridChars">
@@ -44,8 +44,8 @@
    <widget class="QPushButton" name="mButtonConvert">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>160</y>
+      <x>560</x>
+      <y>440</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -57,10 +57,10 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>220</y>
-      <width>331</width>
-      <height>261</height>
+      <x>10</x>
+      <y>330</y>
+      <width>491</width>
+      <height>151</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="mGridSettings"/>
@@ -68,13 +68,24 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>149</y>
+      <x>10</x>
+      <y>20</y>
       <width>491</width>
-      <height>331</height>
+      <height>141</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="mTextEdit"/>
+    <layout class="QVBoxLayout" name="mInput"/>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>170</y>
+      <width>491</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="mOutput"/>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

@@ -34,6 +34,7 @@ public:
     void setHighLighter(HighLighter* highlighter);
 
     bool isErrorDetection() const { return mErrorDetection; }
+    int getDeviation() const { return mDeviation; }
     bool isOptimized() const { return mOptimize; }
     bool isNamingConventions() const { return mNamingConventions; }
 private:

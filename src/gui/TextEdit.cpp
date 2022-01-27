@@ -18,6 +18,8 @@ TextEdit::TextEdit(QWidget* parent, bool readonly) : QTextEdit(parent),
     setContextMenuPolicy(Qt::CustomContextMenu);
     installEventFilter(this);
     connect(this, SIGNAL(customContextMenuRequested(QPoint)), this, SLOT(onCustomMenu(QPoint)));
+    setHorizontalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAsNeeded);
+    setVerticalScrollBarPolicy(Qt::ScrollBarPolicy::ScrollBarAsNeeded);
 }
 
 void TextEdit::setHighLighter(HighLighter *highlighter)
