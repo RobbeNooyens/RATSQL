@@ -48,6 +48,8 @@ namespace Tokens {
     const std::string LINE_COMMENT_START = "LINE_COMMENT_START";
 
     const std::string NAME = "NAME";
+    const std::string DIGIT = "DIGIT";
+    const std::string QUOTE = "QUOTE";
 
     const std::string SUBSTITUTION = "SUBSTITUTION";
 }
