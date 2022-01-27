@@ -144,12 +144,31 @@ std::string ExpressionNode::translate() const {
 }
 
 std::string ExpressionNode::translate(vector<std::string> &v) {
-    v[2] += translate();
-    return "";
+    v[0] += translateToVector()[0];
+    return lastTable;
+}
+
+std::vector<std::string> ExpressionNode::translateToVector() {
+    auto iter = children.rbegin();
+    std::vector<std::string> v;
+    v.reserve(4);
+    for (int i = 0; i < 4; ++i) {
+        v.emplace_back("");
+    }
+    lastTable = (*iter++)->translate(v);
+    if (iter != children.rend()) {
+        // There are modifications to the table
+        lastTable = (*iter)->translate(v);
+    }
+    createView(v);
+    return v;
 }
 
 void ExpressionNode::createView(vector<string> &v) {
     std::string output;
+    if (v[1].empty() && v[3].empty()) {
+        return;
+    }
     std::string tempTable = "TempTable" + to_string(tempTableNumber++);
     if (v[1].empty()) {
         v[1] = "SELECT * FROM ";
@@ -171,7 +190,7 @@ std::string ModificationNode::translate(vector<std::string> &v) {
         (*child)->translate(v);
         const TreeNode *node = *child;
     }
-    return "";
+    return lastTable;
 }
 
 SelectionNode::SelectionNode(const string &token): ModificationNode(token) {}
@@ -222,8 +241,9 @@ std::string ProjectionNode::translate(vector<std::string> &v) {
 TableNode::TableNode(const string &token): TreeNode(token) {}
 
 std::string TableNode::translate(vector<std::string> &v) {
-    v[2] += translate();
-    return "";
+    std::string computed = translate();
+    v[2] += computed;
+    return computed;
 }
 
 std::string TableNode::translate() const {
@@ -312,4 +332,17 @@ std::string RenamePremiseNode::translate() const {
         table += "," + children[2]->translate();
     }
     return "COL" + table;
+}
+
+JoinNode::JoinNode(const string &token) : ExpressionNode(token) {}
+
+std::string JoinNode::translate(std::vector<std::string> &v) {
+    int size = children.size();
+    std::pair<std::string, std::string> tables;
+    tables.first = children[0]->translate(v);
+    tables.second = children[size - 1]->translate(v);
+    v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + tables.first + " NATURAL JOIN " + tables.second + ");\n";
+    lastTable = "TempTable"+ to_string(tempTableNumber-1);
+    v[2] += lastTable;
+    return lastTable;
 }
