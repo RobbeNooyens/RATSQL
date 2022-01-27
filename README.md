@@ -38,6 +38,16 @@ our system. Like we said before, to implement nad make the query as optimal as p
 we are going to implement the Shunting-yard algorithm.  This algorithm allows us to treat expressions that are contained
 in another expression first.
 
-// todo uitleg over tests van querrys
+---
 
-// todo no enters in input
+# Notes
+
+--- 
+
+It needs to be noted that no enters are allowed in the direct input for parsing a relational algebra expression. When writing a
+new enter, a new relational algebra expression is expected.
+
+Some tests of the query tests fail, this is because the tests are written to the optimal output, and our generated
+view creates some extra views (but is still fully correct).
+
+
