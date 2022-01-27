@@ -18,7 +18,7 @@ class CFG {
 public:
     CFG();
     CFG(StringSet  variables, StringSet  terminals, ProductionRules  productionRules, std::string  startSymbol);
-    CFG(const std::string& json);
+    explicit CFG(const std::string& json);
     StringSet getVariables();
     StringSet getTerminals();
     ProductionRules getProductionRules();
