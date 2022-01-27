@@ -129,6 +129,8 @@ public:
      * @param token
      */
     explicit RenameNode(const std::string &token);
+
+    void translate(std::vector<std::string> &v) const override
 };
 
 class TableNode: public TreeNode {
