@@ -148,6 +148,22 @@ std::string ExpressionNode::translate(vector<std::string> &v) {
     return "";
 }
 
+void ExpressionNode::createView(vector<string> &v) {
+    std::string output;
+    std::string tempTable = "TempTable" + to_string(tempTableNumber++);
+    if (v[1].empty()) {
+        v[1] = "SELECT * FROM ";
+    }
+    for (int i = 1; i < v.size(); ++i) {
+        output += v[i]; // Write the string
+        v[i].clear(); // Empty the string
+    }
+    v[0] += "CREATE VIEW " + tempTable + " AS (" + output + ");\n";
+    output.clear();
+    lastTable = tempTable;
+    v[2] = lastTable;
+}
+
 ModificationNode::ModificationNode(const string &token): ExpressionNode(token) {}
 
 std::string ModificationNode::translate(vector<std::string> &v) {
@@ -167,6 +183,9 @@ std::string SelectionNode::translate(vector<std::string> &v) {
         output += child->translate();
     }
     std::string where = " WHERE ";
+    if (!v[3].empty()) {
+        createView(v);
+    }
 //    if (!v[3].empty()) {
 //        std::string tempTableName = "TempTable" + to_string(tempTableCount);
 //        std::string tempTable = ") AS " + tempTableName;
@@ -183,15 +202,19 @@ std::string ProjectionNode::translate(vector<std::string> &v) {
     for (auto child: children) {
         output += child->translate();
     }
+    if (!v[1].empty()) {
+        createView(v);
+        v[2] = lastTable;
+    }
     std::string tempTableName = "TempTable" + to_string(tempTableNumber++);
     lastTable = tempTableName;
     std::string tempTable = " AS " + tempTableName;
     output += " FROM ";
-    if (!v[3].empty()) { // Add brackets when selecting from a query
+    if (!v[3].empty() && !v[1].empty()) { // Add brackets when selecting from a query
         tempTable = ")" + tempTable;
         output += "(";
     }
-    v[3] += tempTable;
+    v[3] = tempTable + v[3];
     v[1].insert(v[1].begin(), output.begin(), output.end());
     return "";
 }
@@ -237,14 +260,15 @@ std::string RenameNode::translate(vector<std::string> &v) {
             v[i].clear();
         }
     } else {
-        std::string tempTable = "TempTable" + to_string(tempTableNumber++);
-        for (int i = 1; i < v.size(); ++i) {
-            output += v[i]; // Write the string
-            v[i].clear(); // Empty the string
-        }
-        v[0] += "CREATE VIEW " + tempTable + " AS (" + output + ");\n";
-        output.clear();
-        lastTable = tempTable;
+        createView(v);
+//        std::string tempTable = "TempTable" + to_string(tempTableNumber++);
+//        for (int i = 1; i < v.size(); ++i) {
+//            output += v[i]; // Write the string
+//            v[i].clear(); // Empty the string
+//        }
+//        v[0] += "CREATE VIEW " + tempTable + " AS (" + output + ");\n";
+//        output.clear();
+//        lastTable = tempTable;
         table = lastTable;
     }
     std::string rename = (*children.crbegin())->translate();

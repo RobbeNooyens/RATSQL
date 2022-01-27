@@ -9,65 +9,153 @@ digraph ParseTree {
   3 -> 4
   4 [label="MODIFICATION"];
   4 -> 5
-  5 [label="PROJECTION"];
+  5 [label="MODIFICATION"];
   5 -> 6
-  6 [label="PI"];
-  5 -> 7
-  7 [label="PROJECTION_PREMISE"];
+  6 [label="MODIFICATION"];
+  6 -> 7
+  7 [label="MODIFICATION"];
   7 -> 8
-  8 [label="PROJECTION_PREMISE"];
+  8 [label="MODIFICATION"];
   8 -> 9
-  9 [label="COLUMN_NAME"];
+  9 [label="SELECTION"];
   9 -> 10
-  10 [label="NAME"];
-  7 -> 11
-  11 [label="COMMA"];
-  7 -> 12
-  12 [label="PROJECTION_PREMISE"];
+  10 [label="SIGMA"];
+  9 -> 11
+  11 [label="EQUATION"];
+  11 -> 12
+  12 [label="VAR"];
   12 -> 13
   13 [label="COLUMN_NAME"];
   13 -> 14
   14 [label="NAME"];
-  3 -> 15
-  15 [label="MODIFICATION"];
+  11 -> 15
+  15 [label="OPERATOR1"];
   15 -> 16
-  16 [label="PROJECTION"];
-  16 -> 17
-  17 [label="PI"];
-  16 -> 18
-  18 [label="PROJECTION_PREMISE"];
+  16 [label="LEQ"];
+  11 -> 17
+  17 [label="VAR"];
+  17 -> 18
+  18 [label="NUMBER"];
   18 -> 19
-  19 [label="PROJECTION_PREMISE"];
-  19 -> 20
-  20 [label="PROJECTION_PREMISE"];
+  19 [label="DIGIT"];
+  7 -> 20
+  20 [label="MODIFICATION"];
   20 -> 21
-  21 [label="COLUMN_NAME"];
+  21 [label="RENAME"];
   21 -> 22
-  22 [label="NAME"];
-  19 -> 23
-  23 [label="COMMA"];
-  19 -> 24
-  24 [label="PROJECTION_PREMISE"];
+  22 [label="RHO"];
+  21 -> 23
+  23 [label="RENAME_PREMISE"];
+  23 -> 24
+  24 [label="COLUMN_NAME"];
   24 -> 25
-  25 [label="COLUMN_NAME"];
-  25 -> 26
-  26 [label="NAME"];
-  18 -> 27
-  27 [label="COMMA"];
-  18 -> 28
-  28 [label="PROJECTION_PREMISE"];
+  25 [label="NAME"];
+  23 -> 26
+  26 [label="RIGHT_ARROW"];
+  23 -> 27
+  27 [label="NAME"];
+  6 -> 28
+  28 [label="MODIFICATION"];
   28 -> 29
-  29 [label="COLUMN_NAME"];
+  29 [label="RENAME"];
   29 -> 30
-  30 [label="NAME"];
-  2 -> 31
-  31 [label="TABLE"];
+  30 [label="RHO"];
+  29 -> 31
+  31 [label="RENAME_PREMISE"];
   31 -> 32
-  32 [label="ROUNDED_BRACKET_LEFT"];
-  31 -> 33
-  33 [label="TABLE"];
+  32 [label="NAME"];
+  5 -> 33
+  33 [label="MODIFICATION"];
   33 -> 34
-  34 [label="NAME"];
-  31 -> 35
-  35 [label="ROUNDED_BRACKET_RIGHT"];
+  34 [label="SELECTION"];
+  34 -> 35
+  35 [label="SIGMA"];
+  34 -> 36
+  36 [label="EQUATION"];
+  36 -> 37
+  37 [label="VAR"];
+  37 -> 38
+  38 [label="COLUMN_NAME"];
+  38 -> 39
+  39 [label="NAME"];
+  36 -> 40
+  40 [label="OPERATOR1"];
+  40 -> 41
+  41 [label="EQ"];
+  36 -> 42
+  42 [label="VAR"];
+  42 -> 43
+  43 [label="STRING"];
+  43 -> 44
+  44 [label="'"];
+  43 -> 45
+  45 [label="NAME"];
+  43 -> 46
+  46 [label="'"];
+  4 -> 47
+  47 [label="MODIFICATION"];
+  47 -> 48
+  48 [label="PROJECTION"];
+  48 -> 49
+  49 [label="PI"];
+  48 -> 50
+  50 [label="PROJECTION_PREMISE"];
+  50 -> 51
+  51 [label="PROJECTION_PREMISE"];
+  51 -> 52
+  52 [label="PROJECTION_PREMISE"];
+  52 -> 53
+  53 [label="COLUMN_NAME"];
+  53 -> 54
+  54 [label="NAME"];
+  51 -> 55
+  55 [label="COMMA"];
+  51 -> 56
+  56 [label="PROJECTION_PREMISE"];
+  56 -> 57
+  57 [label="COLUMN_NAME"];
+  57 -> 58
+  58 [label="NAME"];
+  50 -> 59
+  59 [label="COMMA"];
+  50 -> 60
+  60 [label="PROJECTION_PREMISE"];
+  60 -> 61
+  61 [label="COLUMN_NAME"];
+  61 -> 62
+  62 [label="NAME"];
+  3 -> 63
+  63 [label="MODIFICATION"];
+  63 -> 64
+  64 [label="SELECTION"];
+  64 -> 65
+  65 [label="SIGMA"];
+  64 -> 66
+  66 [label="EQUATION"];
+  66 -> 67
+  67 [label="VAR"];
+  67 -> 68
+  68 [label="COLUMN_NAME"];
+  68 -> 69
+  69 [label="NAME"];
+  66 -> 70
+  70 [label="OPERATOR1"];
+  70 -> 71
+  71 [label="LEQ"];
+  66 -> 72
+  72 [label="VAR"];
+  72 -> 73
+  73 [label="NUMBER"];
+  73 -> 74
+  74 [label="DIGIT"];
+  2 -> 75
+  75 [label="TABLE"];
+  75 -> 76
+  76 [label="ROUNDED_BRACKET_LEFT"];
+  75 -> 77
+  77 [label="TABLE"];
+  77 -> 78
+  78 [label="NAME"];
+  75 -> 79
+  79 [label="ROUNDED_BRACKET_RIGHT"];
 }

@@ -88,6 +88,8 @@ public:
 
     virtual std::string translate(std::vector<std::string> &v) override;
 
+    void createView(vector<string> &v);
+
 protected:
     static unsigned int tempTableNumber;
 
