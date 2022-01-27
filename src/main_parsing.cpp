@@ -42,11 +42,12 @@ int main(int argc, char *argv[]) {
     std::shared_ptr<CFG> cfg = make_shared<CFG>("input/grammar.json");
     Lexer lexer = Lexer(cfg->getAliasMap(), cfg->getAliases());
     EarleyParser parser(cfg);
-//    std::string input = "σ model = 1001 pi maker, model sigma type = 'pc' pi maker, model, type (Product)";
+    std::string input = "σ model = 1001 pi maker, model sigma type = 'pc' pi maker, model, type (Product)";
+//    std::string input = "sigma model = 1001 pi maker, model sigma type = 'pc' pi maker, model, type (Product)";
 //    std::string input = "sigma name = 'a' pi name sigma id = 1 pi id, name (test)";
 //    std::string input = "Product ⨝ (rho model→m (PC))"; // Todo: <-- geeft problemen
 //    std::string input = "pi model, maker pi model, maker, type (Product)";
-    std::string input = "sigma m <= 1010 rho model→m rho K sigma type = 'laptop' pi model, price, type sigma price <= 1000 (PC)";
+//    std::string input = "sigma m <= 1010 rho model→m rho K sigma type = 'laptop' pi model, price, type sigma price <= 1000 (PC)";
     auto tokens = lexer.tokenise(input); // Todo: error voor lege string / vermijden dat er geconvert kan worden in (ook spaties tellen niet)
     for (auto &t : tokens) {
         std::cout << t << "\t";

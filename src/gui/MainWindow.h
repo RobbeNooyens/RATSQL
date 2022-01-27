@@ -12,6 +12,7 @@
 #include "CharButton.h"
 #include "SettingButton.h"
 #include "TextEdit.h"
+#include "../system/System.h"
 
 #include <memory>
 #include <vector>
@@ -65,6 +66,7 @@ private:
     std::vector<CharButton*> mCharacters;
     std::vector<QWidget*> mSettings;
 
+    std::unique_ptr<System> sys = std::make_unique<System>();
     //std::shared_ptr<CFG> mCFG;
     //std::unique_ptr<Lexer> mLexer;
     //std::unique_ptr<EarleyParser> mEarlyParser;

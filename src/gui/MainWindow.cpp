@@ -159,7 +159,6 @@ void MainWindow::onConvertBtnClicked()
 {
     // Regular expression
     std::string query = mTextEdit->toPlainText().toStdString();
-
     // Show error message if expression is empty
     if (query.empty())
     {
@@ -167,9 +166,10 @@ void MainWindow::onConvertBtnClicked()
                          QMessageBox::Ok);
     } else {
         // Else, parse the input
-        //CommandHandler::parseRAQuery(query);
+        std::string SQL = sys->convertToSQL(query);
+        mOutputTextEdit->clear();
+        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
     }
-
     //mEarlyParser = std::make_unique<EarleyParser>(mCFG);
 
     //const auto& tokens = mLexer->tokenise(query);
@@ -177,11 +177,7 @@ void MainWindow::onConvertBtnClicked()
 
 
     //std::string SQL = tree->translate();
-    std::string SQL;
 
     //std::cout << SQL << "\n";
-
-    mOutputTextEdit->clear();
-    mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
 }
 

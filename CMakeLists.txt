@@ -29,7 +29,7 @@ find_package(Doxygen)
 if (DOXYGEN_FOUND)
     # input and output files
     set(DOXYYGEN_IN ${PROJECT_SOURCE_DIR}/docs/Doxyfile.in)
-    set(DOXYGEN_OUT ${PROJECT_SOURCE_DIR}/docs/Doxyfile)
+    set(DOXYGEN_OUT docs/Doxyfile)
 
     # configure doxygen file
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
@@ -38,7 +38,7 @@ if (DOXYGEN_FOUND)
     # add custom target
     ADD_CUSTOM_TARGET(RATSQL_DOCS
             COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR}
+            WORKING_DIRECTORY .
             VERBATIM)
 else (DOXYGEN_FOUND)
     message("Doxygen package was not found")
@@ -102,7 +102,9 @@ set(ALGORITHMS
         src/algorithms/LevenshteinDistance.h
         src/algorithms/LevenshteinDistance.cpp
         src/algorithms/ShuntingAlgorithm.h
-        src/algorithms/ShuntingAlgorithm.cpp)
+        src/algorithms/ShuntingAlgorithm.cpp
+        src/algorithms/ShuntingGrid.h
+        src/algorithms/ShuntingGrid.cpp)
 
 set(DATASTRUCTURES
         src/datastructures/CFG.h
@@ -142,8 +144,7 @@ set(LOGICLIBRARY
         ${DATASTRUCTURES}
         ${PARSERS}
         ${EXCEPTIONHANDLING}
-        ${SYSTEM}
-        )
+        ${SYSTEM})
 
 add_executable(RATSQL_CMD
         src/main_cmd.cpp
@@ -162,19 +163,6 @@ add_executable(RATSQL_TESTS
 
 add_executable(RATSQL_SHUNTING_YARD
         src/main_shunting_yard.cpp
-        src/algorithms/ShuntingAlgorithm.cpp
-        src/algorithms/ShuntingAlgorithm.h
-        src/exceptions/ExceptionHandler.h
-        src/exceptions/ExceptionHandler.cpp
-        src/datastructures/RAExpression.h
-        src/datastructures/RAExpression.cpp
-        src/parser/Tokens.h
-        src/datastructures/CFG.h
-        src/datastructures/CFG.cpp
-        src/parser/Lexer.h
-        src/parser/Lexer.cpp
-        src/algorithms/ShuntingGrid.h
-        src/algorithms/ShuntingGrid.cpp
         ${LOGICLIBRARY})
 
 add_executable(RATSQL_PARSING

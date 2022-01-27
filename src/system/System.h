@@ -8,6 +8,7 @@
 #include <string>
 
 #include "../parser/EarleyParser.h"
+#include "../parser/Lexer.h"
 
 
 class System {
@@ -15,15 +16,18 @@ public:
     /**
      * @brief Small constructor that creates a new shared pointer to a new earley parser object
      */
-    System(): parser() {}
+    System(): parser(), lexer(), cfg() {}
     /**
      * @brief Will parse a relational expression to an SQL statement // todo
      * @param query     Given by reference - will change the string to an SQL statement
      */
-    std::string convertToSQL(std::string query);
+    std::string convertToSQL(const std::string& query);
 private:
     /// @brief Shared pointer to an earley parser
-    std::shared_ptr<EarleyParser> parser{};
+    std::unique_ptr<EarleyParser> parser{};
+    std::unique_ptr<Lexer> lexer{};
+    std::shared_ptr<CFG> cfg{};
+
 };
 
 
