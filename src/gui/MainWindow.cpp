@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 #include <sstream>
+#include <regex>
 
 #include "MainWindow.h"
 #include "../io/CommandHandler.h"
@@ -167,8 +168,11 @@ void MainWindow::onConvertBtnClicked()
 
     std::vector<std::vector<ParseToken>> tokens;
 
+    #if QT_VERSION >= QT_VERSION_CHECK(6, 0, 0)
+    auto stringList = mTextEdit->toPlainText().split(QRegularExpression("[\r\n]"));
+    #else
     auto stringList = mTextEdit->toPlainText().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
-
+    #endif
     for(auto& s: stringList) {
         string str = s.toStdString();
         tokens.push_back(mSys->tokenize(str));

@@ -119,7 +119,7 @@ set(DATASTRUCTURES
 set(EXCEPTIONHANDLING
         src/exceptions/ExceptionHandler.h
         src/exceptions/ExceptionHandler.cpp
-        src/exceptions/UndefinedTokenException.h)
+        src/exceptions/UndefinedTokenException.h src/exceptions/IllegalEntryException.h)
 
 set(SYSTEM
         src/system/System.h
