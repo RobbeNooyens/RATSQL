@@ -117,6 +117,8 @@ set(TESTS
         src/tests/LevenshteinTest.cpp
         src/tests/ShuntingYardTest.h
         src/tests/ShuntingYardTest.cpp
+        src/tests/QueryTest.h
+        src/tests/QueryTest.cpp
         src/tests/Test.h
         src/tests/Test.cpp
         src/tests/TestManager.h

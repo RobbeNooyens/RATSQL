@@ -11,7 +11,7 @@ class SQLHighLighter : public HighLighter {
 
 public:
     /**
-     * @brief Constructor for Highlighter object
+     * @brief Constructor for SQLHighLighter object
      * @param parent QTextEdit - pointer to parent widget
      */
     explicit SQLHighLighter(QTextEdit *parent = nullptr);

@@ -22,6 +22,7 @@
 class ShuntingYardTest: public Test {
 public:
     void run() override;
+    virtual ~ShuntingYardTest() = default;
     static void testExpectedOutput();
 };
 

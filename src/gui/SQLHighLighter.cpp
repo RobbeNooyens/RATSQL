@@ -22,6 +22,6 @@ SQLHighLighter::SQLHighLighter(QTextEdit *parent) : HighLighter(parent)
     formatMisc.setForeground(QBrush(QColor(230, 100, 10)));
     formatMisc.setFontWeight(13);
 
-    misc << "\\*";
+    misc << "\\*" << "\\(" << "\\)" << "\\;" << "\\≠" << "\\=" << "\\=" << "\\>" << "\\<" << "\\≥" << "\\≤";
     addKeywords(misc, formatMisc);
 }

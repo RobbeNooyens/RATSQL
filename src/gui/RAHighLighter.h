@@ -11,7 +11,7 @@ class RAHighLighter : public HighLighter {
 
 public:
     /**
-     * @brief Constructor for Highlighter object
+     * @brief Constructor for RAHighLighter object
      * @param parent QTextEdit - pointer to parent widget
      */
     explicit RAHighLighter(QTextEdit *parent = nullptr);
