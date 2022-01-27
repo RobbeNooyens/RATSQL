@@ -18,6 +18,9 @@
 
 ---
 
+RATSQL was created for the course Machines and Complexity at the University of Antwerp. Queries in relational algebra form can be entered inside the editor with the help of the special symbol buttons.The query can be translated to SQL using the convert button. Some options can be aplied like the choice to optimize the query or choosing the amount of deviations can take place when requesting a replacement for a selected word.
+
+
 This year, next to machines and computability, we have another computer-related course that is completely new to us, 
 namely the course "introduction to databases". During these classes so far we learned how to set up entity-relationship 
 models, how to write queries in relational algebra and how to then translate them into a usable SQL query. Of course, 
