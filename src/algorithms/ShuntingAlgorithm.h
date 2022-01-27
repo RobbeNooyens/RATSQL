@@ -27,13 +27,15 @@
 #include "../parser/ParseTemplate.h"
 #include "ShuntingGrid.h"
 
+/**
+ * @brief Enumeration for all the notation kinds used
+ */
 enum OperatorType {PREFIX, INFIX};
 
 class ParseToken;
 
 /**
  * @class ShuntingAlgorithm
- * @isFriendOf ShuntingYardParser
  */
 class ShuntingAlgorithm {
 public:
@@ -51,15 +53,15 @@ public:
      * @brief Will parse the input, create an expression, and possibly print the result
      * @param stream    to which stream to print - default is cout
      * @param print     print the result - default is true
-     * @return
      */
     void parse(std::ostream& stream=std::cout, bool print=true);
     /**
      * @brief Getter for the RA expression
-     * @return
+     * @return      RA expression
      */
     std::vector<std::vector<ParseToken>> getShuntingOutput();
 private:
+    /// @brief Shunting yard grid
     ShuntingGrid grid;
     /// @brief Stack with all the operators
     std::stack<ParseToken> operatorStack{};

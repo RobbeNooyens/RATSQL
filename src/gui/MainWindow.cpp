@@ -1,3 +1,17 @@
+/**
+ *  ╒═══════════════════════════════════════════════════════════╕
+ *  │                                                           │
+ *  │                     RATSQL Project                        │
+ *  │                Relational Algebra To SQL                  │
+ *  │                                                           │
+ *  │       Contributors: Pablo Deputter, Cédric Leclercq,      │
+ *  │                     Robbe Nooyens, Maarten Peirsman       │
+ *  │                                                           │
+ *  │    University of Antwerp - Machines en Berekenbaarheid    │
+ *  │                                                           │
+ *  ╘═══════════════════════════════════════════════════════════╛
+ */
+
 #include <iostream>
 #include <fstream>
 #include <streambuf>
@@ -56,9 +70,6 @@ void MainWindow::init()
     ui->mInput->addWidget(mTextEdit);
     ui->mOutput->addWidget(mOutputTextEdit);
 
-    // Logo
-
-
     // Menu bar
     createMenu();
     createAction();
@@ -72,7 +83,6 @@ void MainWindow::init()
 
     // Convert button
     ui->mButtonConvert->setText(QString("CONVERT"));
-//    ui->mButtonConvert->setFixedSize(100, 30);
     connect(ui->mButtonConvert, SIGNAL(clicked()), this, SLOT(onConvertBtnClicked()));
 
     mSys = std::make_unique<System>();

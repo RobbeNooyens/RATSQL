@@ -19,10 +19,23 @@
 #include "Test.h"
 #include "../algorithms/ShuntingAlgorithm.h"
 
+/**
+ * @class ShuntingYardTest
+ * @brief ShuntingYardTest derived from Test
+ */
 class ShuntingYardTest: public Test {
 public:
+    /**
+     * @brief Run tests
+     */
     void run() override;
+    /**
+     * @brief Virtual default destructor
+     */
     virtual ~ShuntingYardTest() = default;
+    /**
+     * @brief Test ShuntingYard-algorithm
+     */
     static void testExpectedOutput();
 };
 

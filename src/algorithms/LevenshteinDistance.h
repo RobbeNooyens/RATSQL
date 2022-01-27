@@ -22,22 +22,34 @@
 
 #include "../utilities/Utils.h"
 
+/**
+ * @class LevenshteinDistance
+ * @brief Class to calculate the levenshtein distance between strings
+ * @Note Singleton design pattern
+ */
 class LevenshteinDistance {
 private:
+    /// @brief Dictionary with all the strings known to the system
     std::vector<std::string> mDict;
-
+    /**
+     * @brief Private explicit constructor with one argument - will set the dictionary
+     * @param path      path to the dictionary
+     */
     explicit LevenshteinDistance(const std::string& path);
 public:
+    /// @brief Deleted operator = copy
     LevenshteinDistance& operator=(const LevenshteinDistance&) = delete;
-
+    /// @brief Deleted copy constructor
     LevenshteinDistance(const LevenshteinDistance&) = delete;
-
+    /// @brief Deleted operator = move
     LevenshteinDistance& operator=(const LevenshteinDistance&&) = delete;
-
+    /// @brief Deleted move constructor
     LevenshteinDistance(const LevenshteinDistance&&) = delete;
-
+    /**
+     * @brief Part of Singleton design pattern - get an instance of the class
+     * @return      static instance of levenshtein distance
+     */
     static LevenshteinDistance& getInstance();
-
     /**
      * @brief Evaluates a string compared with the dictionary
      * @param str1      input string

@@ -1,6 +1,16 @@
-//
-// Created by robnoo on 20/12/21.
-//
+/**
+ *  ╒═══════════════════════════════════════════════════════════╕
+ *  │                                                           │
+ *  │                     RATSQL Project                        │
+ *  │                Relational Algebra To SQL                  │
+ *  │                                                           │
+ *  │       Contributors: Pablo Deputter, Cédric Leclercq,      │
+ *  │                     Robbe Nooyens, Maarten Peirsman       │
+ *  │                                                           │
+ *  │    University of Antwerp - Machines en Berekenbaarheid    │
+ *  │                                                           │
+ *  ╘═══════════════════════════════════════════════════════════╛
+ */
 
 #include "CFG.h"
 #include "../../libs/json.hpp"
@@ -18,10 +28,10 @@ using Table = vector<Row>;
 struct CYK {
     CFG* cfg;
     Table table;
-    TableEntry* currentEntry;
-    int r,c;
-    int tableSize;
-    CYK(CFG* cfg): cfg(cfg){}
+    TableEntry* currentEntry{};
+    int r{},c{};
+    int tableSize{};
+    explicit CYK(CFG* cfg): cfg(cfg){}
     void operator()(string str) {
         tableSize = (int) str.length();
         table.clear();

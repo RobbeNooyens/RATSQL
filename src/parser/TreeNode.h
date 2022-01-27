@@ -11,45 +11,88 @@
 
 class TreeNode {
 public:
+    /**
+     * @brief TreeNode parameter constructor
+     * @param token the token identifier this tree contains
+     */
     explicit TreeNode(std::string token);
+    /**
+     * @brief TreeNode destructor
+     */
     ~TreeNode();
 
+    /**
+     * @brief Adds a child to the tree
+     * @param tree tree to add as a child
+     */
     void addChild(TreeNode* tree);
+    /**
+     * @brief Returns the child at the given index
+     * @param index index of the requested child
+     * @return pointer to the child at the given position
+     */
     TreeNode* getChild(int index);
-    const std::vector<TreeNode*> &getChildren() const;
+    /**
+     * @brief Returns a vector of the children of the tree
+     * @return vector of pointers to the children
+     */
+    [[nodiscard]] const std::vector<TreeNode*> &getChildren() const;
 
+    /**
+     * @brief Assigns tokens based onthe given tokens and the index
+     * @param tokens tokens to be assigned
+     * @param tokenIndex index at which the tokens should be assigned
+     */
     void assignTokens(const std::vector<ParseToken> &tokens, int &tokenIndex);
 
+    /**
+     * @brief Exports the current tree to the given file
+     * @param file file to export the dot graph to
+     */
     void exportDot(std::string& file);
+    /**
+     * @brief Exports the children of the tree
+     * @param out file to write the tree to
+     * @param index current index that belongs to the tree
+     */
     void exportDotRecursive(std::ofstream& out, int& index);
 
     /**
-     * Function for translating a node
+     * @brief Function for translating a node
      * @return string representation of the node's contents
      */
-    virtual std::string translate() const;
+    [[nodiscard]] virtual std::string translate() const;
 
     /**
-     * Function to insert the translation of a node into an vector
+     * @brief Function to insert the translation of a node into an vector
      * @param v vector to put the translation in
      */
     virtual std::string translate(std::vector<std::string> &v) {return "";};
 
     /**
-     * Getter for the token
+     * @brief Getter for the token
      * @return the token
      */
-    const string &getToken() const;
+    [[nodiscard]] const string &getToken() const;
 
     /**
-     * Getter for the value
+     * @brief Getter for the value
      * @return the value
      */
-    const string &getValue() const;
+    [[nodiscard]] const string &getValue() const;
 
 protected:
+    /**
+     * @brief Token identifier belonging to the tree
+     */
     std::string token;
+    /**
+     * @brief Value of the token belonging to the tree
+     */
     std::string value;
+    /**
+     * @brief Children of the tree
+     */
     std::vector<TreeNode*> children;
 
 };
@@ -57,49 +100,66 @@ protected:
 class BasicNode: public TreeNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit BasicNode(const std::string &token);
 
-    std::string translate() const override;
+    /**
+     * @brief Translates the current node
+     * @return translated representation
+     */
+    [[nodiscard]] std::string translate() const override;
 };
 
 class ValueNode: public TreeNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
      explicit ValueNode(const std::string &token);
 
-     std::string translate() const override;
+     /**
+     * @brief Translates the current node
+     * @return translated representation
+     */
+     [[nodiscard]] std::string translate() const override;
 };
 
 class RootNode: public TreeNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit RootNode(const std::string &token);
 
-    std::string translate() const override;
-
+    [[nodiscard]] std::string translate() const override;
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
     std::string translate(std::vector<std::string> &v) override;
 };
 
 class ExpressionNode: public TreeNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit ExpressionNode(const std::string &token);
-
-    std::string translate() const override;
-
-    virtual std::string translate(std::vector<std::string> &v) override;
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
+    [[nodiscard]] std::string translate() const override;
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
+    std::string translate(std::vector<std::string> &v) override;
 
     std::vector<std::string> translateToVector();
 
@@ -116,8 +176,8 @@ protected:
 class JoinNode: public ExpressionNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit JoinNode(const std::string &token);
 
@@ -127,20 +187,23 @@ public:
 class ModificationNode: public ExpressionNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit ModificationNode(const std::string &token);
-
-    virtual std::string translate(std::vector<std::string> &v) override;
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
+    std::string translate(std::vector<std::string> &v) override;
 
 };
 
 class SelectionNode: public ModificationNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit SelectionNode(const std::string &token);
 
@@ -150,8 +213,8 @@ public:
 class ProjectionNode: public ModificationNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit ProjectionNode(const std::string &token);
 
@@ -161,8 +224,8 @@ public:
 class RenameNode: public ModificationNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit RenameNode(const std::string &token);
 
@@ -172,19 +235,22 @@ public:
 class RenamePremiseNode: public TreeNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit RenamePremiseNode(const std::string &token);
-
-    std::string translate() const override;
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
+    [[nodiscard]] std::string translate() const override;
 };
 
 class SetOperatorNode: public ExpressionNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit SetOperatorNode(const std::string &token);
 
@@ -194,13 +260,19 @@ public:
 class TableNode: public TreeNode {
 public:
     /**
-     * Constructor
-     * @param token
+     * @brief Constructor
+     * @param token token identifier for this node
      */
     explicit TableNode(const std::string &token);
-
-    std::string translate() const override;
-
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
+    [[nodiscard]] std::string translate() const override;
+    /**
+    * @brief Translates the current node
+    * @return translated representation
+    */
     std::string translate(std::vector<std::string> &v) override;
 };
 

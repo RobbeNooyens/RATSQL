@@ -66,7 +66,7 @@ vector<vector<ParseToken>> ShuntingGrid::substitute() {
 
     // Substitute main expression
     vector<ParseToken> start;
-    substitute(start, grid.size() - 1);
+    substitute(start, static_cast<int>(grid.size() - 1));
     result.push_back(start);
 
     // Substitute variables

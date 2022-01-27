@@ -7,6 +7,9 @@
 
 #include <string>
 
+/**
+ * @namespace Tokens namespace
+ */
 namespace Tokens {
 
     const std::string PI = "PI";

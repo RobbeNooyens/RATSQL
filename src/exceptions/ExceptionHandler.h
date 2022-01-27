@@ -9,7 +9,16 @@
 
 class ExceptionHandler {
 public:
+    /**
+     * @brief Singleton design pattern - not used
+     * @return      static instance of a exception handler object
+     */
     __attribute__((unused)) static ExceptionHandler& getInstance();
+    /**
+     * @brief Static function to handle an exception and give an error message
+     * @param exc       Exception that was thrown
+     * @param message   Message to give when an exception happened
+     */
     static void handle(std::exception& exc, const std::string& message) noexcept;
 };
 
