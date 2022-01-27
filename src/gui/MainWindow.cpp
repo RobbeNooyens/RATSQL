@@ -205,10 +205,12 @@ void MainWindow::onConvertBtnClicked()
             combined += " ";
         }
         combined.pop_back();
+        combined += "\n";
+        if (expression == optimizedRA.back())
+            combined.pop_back();
         lines.push_back(QString::fromStdString(combined));
     }
     mTextEdit->setText(lines);
-
 
     // Show error message if expression is empty
     if (query.empty())
