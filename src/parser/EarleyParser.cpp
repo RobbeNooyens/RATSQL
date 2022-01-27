@@ -8,7 +8,6 @@
 
 #include "../utilities/Utils.h"
 
-#include <iostream>
 #include <utility>
 #include <sstream>
 
@@ -65,12 +64,6 @@ TreeNode * EarleyParser::earleyParse(const vector<ParseToken> &tokens) {
                 }
             }
 
-        }
-    }
-    for(int k = 0; k < S.size(); k++) {
-        cout << "=====[ k = " << k << " ]=====" << endl;
-        for(auto& state: S[k]) {
-            cout << state->toString() << endl;
         }
     }
     ParseState* initReplacement = nullptr;

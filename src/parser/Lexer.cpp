@@ -3,8 +3,6 @@
 //
 
 #include <algorithm>
-#include <iostream>
-#include <regex>
 
 #include "Lexer.h"
 #include "../datastructures/CFG.h"
