@@ -3,39 +3,79 @@ digraph ParseTree {
   0 -> 1
   1 [label="S"];
   1 -> 2
-  2 [label="S"];
+  2 [label="EXPRESSION"];
   2 -> 3
-  3 [label="NAME"];
-  2 -> 4
-  4 [label="EQ"];
-  2 -> 5
-  5 [label="EXPRESSION"];
+  3 [label="MODIFICATION"];
+  3 -> 4
+  4 [label="MODIFICATION"];
+  4 -> 5
+  5 [label="PROJECTION"];
   5 -> 6
-  6 [label="MODIFICATION"];
-  6 -> 7
-  7 [label="PROJECTION"];
+  6 [label="PI"];
+  5 -> 7
+  7 [label="PROJECTION_PREMISE"];
   7 -> 8
-  8 [label="PI"];
-  7 -> 9
-  9 [label="PROJECTION_PREMISE"];
-  9 -> 10
-  10 [label="COLUMN_NAME"];
+  8 [label="COLUMN_NAME"];
+  8 -> 9
+  9 [label="NAME"];
+  3 -> 10
+  10 [label="MODIFICATION"];
   10 -> 11
-  11 [label="NAME"];
-  5 -> 12
-  12 [label="EXPRESSION"];
-  12 -> 13
-  13 [label="TABLE"];
+  11 [label="SELECTION"];
+  11 -> 12
+  12 [label="SIGMA"];
+  11 -> 13
+  13 [label="EQUATION"];
   13 -> 14
-  14 [label="NAME"];
-  1 -> 15
-  15 [label="EOL"];
-  1 -> 16
-  16 [label="S"];
+  14 [label="EQUATION"];
+  14 -> 15
+  15 [label="VAR"];
+  15 -> 16
+  16 [label="COLUMN_NAME"];
   16 -> 17
-  17 [label="EXPRESSION"];
-  17 -> 18
-  18 [label="TABLE"];
+  17 [label="NAME"];
+  14 -> 18
+  18 [label="OPERATOR1"];
   18 -> 19
-  19 [label="NAME"];
+  19 [label="GT"];
+  14 -> 20
+  20 [label="VAR"];
+  20 -> 21
+  21 [label="NUMBER"];
+  21 -> 22
+  22 [label="DIGIT"];
+  13 -> 23
+  23 [label="OPERATOR2"];
+  23 -> 24
+  24 [label=" AND "];
+  13 -> 25
+  25 [label="EQUATION"];
+  25 -> 26
+  26 [label="VAR"];
+  26 -> 27
+  27 [label="COLUMN_NAME"];
+  27 -> 28
+  28 [label="NAME"];
+  25 -> 29
+  29 [label="OPERATOR1"];
+  29 -> 30
+  30 [label="GEQ"];
+  25 -> 31
+  31 [label="VAR"];
+  31 -> 32
+  32 [label="NUMBER"];
+  32 -> 33
+  33 [label="DIGIT"];
+  2 -> 34
+  34 [label="EXPRESSION"];
+  34 -> 35
+  35 [label="ROUNDED_BRACKET_LEFT"];
+  34 -> 36
+  36 [label="EXPRESSION"];
+  36 -> 37
+  37 [label="TABLE"];
+  37 -> 38
+  38 [label="NAME"];
+  34 -> 39
+  39 [label="ROUNDED_BRACKET_RIGHT"];
 }

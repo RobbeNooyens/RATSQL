@@ -79,7 +79,7 @@ TreeNode* ParseState::createNode(const std::string &s) const {
     } else if (s == "TABLE") {
         return new TableNode(s);
     } else if (s == "AND" || s == "OR") {
-        return new ValueNode(s);
+        return new ValueNode(" "+s+" ");
     } else if (s == "NEQ") {
         return new ValueNode("!=");
     } else if (s == "QUOTE") {

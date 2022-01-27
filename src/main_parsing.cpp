@@ -54,7 +54,8 @@ int main(int argc, char *argv[]) {
 //    std::string input = "A = (π model, maker Product ⨝ π model σ speed ≥ 2.8 (π model, speed PC ∪ π model, speed Laptop))\n"
 //                        "B = pi model Product\n"
 //                        "B join A"; // Todo maak
-    std::string input = "A = pi model Product\nA";
+//    std::string input = "A = pi model Product\nB= sigma model < 1020 Product\nA union B";
+    std::string input = "π model σ price > 2000 and ram >= 400 (PC)";
 //    std::string input = "π model, price ((π model, price Laptop ∪ π model, price PC ∪ π model, price Printer) ⨝ σ maker= 'B' Product)";
 //    std::string input = "pi model, maker pi model, maker, type (Product)";
 //    std::string input = "sigma m <= 1010 rho model→m rho K sigma type = 'laptop' pi model, price, type sigma price <= 1000 (PC)";
