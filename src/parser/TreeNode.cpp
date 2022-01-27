@@ -390,4 +390,5 @@ std::string RootNode::translate() const {
             output += child->translate();
         }
     }
+    return output;
 }
