@@ -10,8 +10,11 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <memory>
 
 using namespace std;
+
+class CFG;
 
 class Lexer {
 private:
@@ -29,6 +32,8 @@ public:
      * @param a list of supported aliases
      */
     Lexer(const map<string, string> &m, const vector<vector<string>> &a);
+
+    Lexer(const std::shared_ptr<CFG>& cfg);
 
 //    vector<Token> tokenise(const string &s);
 
