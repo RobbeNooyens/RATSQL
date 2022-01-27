@@ -9,7 +9,7 @@
 
 using namespace std;
 
-bool isPrefixOperator(string& str) {
+bool isPrefixOperator(const string &str) {
     return str == Tokens::PI || str == Tokens::SIGMA || str == Tokens::RHO;
 }
 
@@ -31,6 +31,7 @@ int ShuntingGrid::addExpression(ParseToken &t1, ParseToken &t2, ParseToken &t3) 
 void ShuntingGrid::substitute(vector<ParseToken>& current, int row) {
     int colId = 0;
     string rowType = grid.at(row).front().getToken();
+    bool skipBrackets = false;
     for(auto& token: grid.at(row)) {
         if(token.getToken() == Tokens::SUBSTITUTION) {
             int id = stoi(token.getContent());
@@ -45,9 +46,15 @@ void ShuntingGrid::substitute(vector<ParseToken>& current, int row) {
         }
         colId++;
         if(isPrefixOperator(rowType)) {
-            if(colId == 2)
-                current.emplace_back(Tokens::ROUNDED_BRACKET_LEFT, "(");
-            else if(colId == 3)
+            if(colId == 2) {
+                if(grid.at(row).at(colId).getToken() == Tokens::SUBSTITUTION) {
+                    int otherRow = stoi(grid.at(row).at(colId).getContent());
+                    skipBrackets = isPrefixOperator(grid.at(otherRow).front().getToken());
+                }
+                if(!skipBrackets)
+                    current.emplace_back(Tokens::ROUNDED_BRACKET_LEFT, "(");
+            }
+            else if(colId == 3 && !skipBrackets)
                 current.emplace_back(Tokens::ROUNDED_BRACKET_RIGHT, ")");
         }
     }

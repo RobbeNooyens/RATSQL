@@ -71,9 +71,9 @@ private:
     ParseToken emptyToken{"", ""};
     /// @brief Map with the precedence of all the operators
     std::map<std::string, int> precedence = {
-            {Tokens::PI, 2},
+            {Tokens::PI, 4},
             {Tokens::SIGMA, 3},
-            {Tokens::RHO, 4},
+            {Tokens::RHO, 5},
 
             {Tokens::JOIN, 10},
             {Tokens::UNION, 10},

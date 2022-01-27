@@ -14,6 +14,7 @@
 
 #include "SQLHighLighter.h"
 #include "RAHighLighter.h"
+#include "../parser/Tokens.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -207,10 +208,26 @@ void MainWindow::onConvertBtnClicked()
             if (!str.empty()) { tokens.push_back(mSys->tokenize(str)); }
         }
 
+        std::vector<std::vector<ParseToken>> tokensWithoutEOL;
+        for(auto& row: tokens) {
+            std::vector<ParseToken> currentRow;
+            for(auto& token: row) {
+                if(token.getToken() == Tokens::END_OF_LINE) {
+                    if(!currentRow.empty())
+                        tokensWithoutEOL.push_back(currentRow);
+                    currentRow.clear();
+                } else {
+                    currentRow.push_back(token);
+                }
+            }
+            if(!currentRow.empty())
+                tokensWithoutEOL.push_back(currentRow);
+        }
+
         std::vector<std::vector<ParseToken>> optimizedRA;
 
         if(optimized) {
-            for(auto& row: tokens) {
+            for(auto& row: tokensWithoutEOL) {
                 for(auto& optimizedRow: mSys->optimize(row)){
                     optimizedRA.push_back(optimizedRow);
                 }
