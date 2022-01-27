@@ -10,7 +10,7 @@
     {"head": "COMMENT", "body": ["LINE_COMMENT"]},
     {"head": "MULTILINE_COMMENT", "body": ["MULTI_COMMENT_START","TEXT","MULTI_COMMENT_END"]},
     {"head": "LINE_COMMENT", "body": ["LINE_COMMENT_START","TEXT","EOL"]},
-    {"head": "EXPRESSION", "body": ["MODIFICATION", "TABLE"]},
+    {"head": "EXPRESSION", "body": ["MODIFICATION", "EXPRESSION"]},
     {"head": "EXPRESSION", "body": ["TABLE"]},
     {"head": "EXPRESSION", "body": ["JOIN_OP"]},
     {"head": "EXPRESSION", "body": ["ROUNDED_BRACKET_LEFT","EXPRESSION", "ROUNDED_BRACKET_RIGHT"]},
@@ -44,7 +44,6 @@
     {"head": "OPERATOR3", "body":  ["UNION"]},
     {"head": "OPERATOR3", "body":  ["DIV"]},
     {"head": "OPERATOR3", "body":  ["SUB"]},
-    {"head": "OPERATOR3", "body":  ["JOIN"]},
     {"head": "OPERATOR3", "body":  ["SCALAR"]},
 
     {"head": "EQUATION", "body":  ["NOT", "ROUNDED_BRACKET_LEFT", "EQUATION", "ROUNDED_BRACKET_RIGHT"]},
