@@ -2,7 +2,6 @@
 // Created by robnoo on 27/01/22.
 //
 
-#include <iostream>
 #include <algorithm>
 #include "ShuntingGrid.h"
 #include "../parser/Tokens.h"
@@ -62,19 +61,6 @@ void ShuntingGrid::substitute(vector<ParseToken>& current, int row) {
 
 vector<vector<ParseToken>> ShuntingGrid::substitute() {
     calculateUsages();
-    for(auto& usage: usages)
-        cout << usage << " ";
-    cout << endl;
-
-    int index = 0;
-    for(auto& row: grid) {
-        cout << index << ": ";
-        for(auto& token: row) {
-            cout << token << " ";
-        }
-        cout << endl;
-        index++;
-    }
 
     vector<vector<ParseToken>> result;
 
@@ -93,13 +79,6 @@ vector<vector<ParseToken>> ShuntingGrid::substitute() {
             substitute(expression, i);
             result.push_back(expression);
         }
-    }
-
-    for(auto& row: result) {
-        for(auto& column: row) {
-            cout << column << " ";
-        }
-        cout << endl;
     }
 
     std::reverse(result.begin(), result.end());

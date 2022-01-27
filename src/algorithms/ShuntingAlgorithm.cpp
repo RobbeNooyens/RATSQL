@@ -12,7 +12,6 @@
  *  ╘═══════════════════════════════════════════════════════════╛
  */
 
-#include <iostream>
 #include <algorithm>
 #include <memory>
 #include "ShuntingAlgorithm.h"
@@ -37,12 +36,8 @@ void ShuntingAlgorithm::operator()(std::vector<ParseToken>& tokens, std::ostream
         } else {
             consumeText(token);
         }
-        printQueue();
-        printOperatorStack();
-        cout << endl;
     }
     flush();
-    printQueue();
     parse(stream);
 
     grid.substitute();
