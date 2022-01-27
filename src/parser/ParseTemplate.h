@@ -42,6 +42,10 @@ public:
         os << token.tokenType << "(" << token.content << ")";
         return os;
     }
+
+    bool operator==(const ParseToken& other) const {
+        return tokenType == other.tokenType && content == other.content;
+    }
 };
 
 
