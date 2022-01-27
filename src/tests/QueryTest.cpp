@@ -138,5 +138,20 @@ void QueryTest::testNested() {
     std::string q2_exp = "SELECT maker FROM Product AS TempTable0 WHERE type='laptop' OR type='printer'";
     std::string sql_q2 = translate(q2);
     QueryTest::exp_eq<std::string>(sql_q2, q2_exp, createMessage(sql_q2, q2_exp, "QueryTest::testNested q2"));
-}
 
+    // TODO
+    std::string q3 = "model_with_price = π model, price PC ∪ π model, price Laptop ∪ π model, price Printer";
+    std::string q3_exp = "CREATE VIEW AS (SELECT model, price FROM PC UNION SELECT model, price FROM Laptop UNION SELECT model, price FROM Printer)'";
+    std::string sql_q3 = translate(q3);
+    QueryTest::exp_eq<std::string>(sql_q3, q3_exp, createMessage(sql_q3, q3_exp, "QueryTest::testNested q3"));
+
+    std::string q4 = "all_prices = π price (model_with_price)";
+    std::string q4_exp = "CREATE VIEW all_prices AS SELECT price FROM model_with_price";
+    std::string sql_q4 = translate(q4);
+    QueryTest::exp_eq<std::string>(sql_q4, q4_exp, createMessage(sql_q4, q4_exp, "QueryTest::testNested q4"));
+
+    std::string q5 = "π model (model_with_price) ⨝ (all_prices - π price σ price < price_ (all_prices ⨯ ρ price→price_ all_prices))";
+    std::string q5_exp = "";
+    std::string sql_q5 = translate(q5);
+    QueryTest::exp_eq<std::string>(sql_q5, q5_exp, createMessage(sql_q5, q5_exp, "QueryTest::testNested q5"));
+}

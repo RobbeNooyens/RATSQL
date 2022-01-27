@@ -73,7 +73,6 @@ public:
     void printExpression(std::ostream & stream);
 
     bool operator==(const RAExpression &rhs) const;
-
 };
 
 

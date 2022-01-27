@@ -66,7 +66,7 @@ private:
     std::vector<CharButton*> mCharacters;
     std::vector<QWidget*> mSettings;
 
-    std::unique_ptr<System> sys = std::make_unique<System>();
+    std::unique_ptr<System> mSys;
     //std::shared_ptr<CFG> mCFG;
     //std::unique_ptr<Lexer> mLexer;
     //std::unique_ptr<EarleyParser> mEarlyParser;

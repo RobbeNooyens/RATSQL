@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("RATSQL"));
-    setFixedSize(1000, 700);
+    setFixedSize(700, 700);
 
     // Create menu + other things
     init();
@@ -36,7 +36,6 @@ void MainWindow::init()
 {
     // Central widget
     this->setCentralWidget(ui->centralwidget);
-    // TODO - CMakelists.txt post-build command // todo wa is deze todo pablo?
     std::ifstream file("resources/styleSheet.qss");
     if (!file.is_open()) { std::cerr << "styleSheet can't be opened\n"; }
     std::string styleSheet((std::istreambuf_iterator<char>(file)),
@@ -48,28 +47,29 @@ void MainWindow::init()
     mTextEdit->setHighLighter(new RAHighLighter(mTextEdit));
     mOutputTextEdit = new TextEdit(this, true);
     mOutputTextEdit->setHighLighter(new SQLHighLighter(mOutputTextEdit));
-    ui->layoutTextEdit->addWidget(mTextEdit);
-    ui->layoutTextEdit->addWidget(mOutputTextEdit);
+    ui->mTextEdit->addWidget(mTextEdit);
+    ui->mTextEdit->addWidget(mOutputTextEdit);
 
     // Menu bar
 
     // Convert button
-    ui->buttonConvert->setText(QString("CONVERT"));
-    connect(ui->buttonConvert, SIGNAL(clicked()), this, SLOT(onConvertBtnClicked()));
+    ui->mButtonConvert->setText(QString("CONVERT"));
+    connect(ui->mButtonConvert, SIGNAL(clicked()), this, SLOT(onConvertBtnClicked()));
 
     // Settings
-    ui->gridSettings->setVerticalSpacing(3);
+    ui->mGridSettings->setVerticalSpacing(3);
     createSettingButtons();
 
     // Characters
-    ui->gridChards->setHorizontalSpacing(1);
-    ui->gridChards->setVerticalSpacing(1);
+    ui->mGridChars->setHorizontalSpacing(1);
+    ui->mGridChars->setVerticalSpacing(1);
     createCharButtons();
 
     // TODO - post-build cmakelists resources kopieren naar targets
     // Parser
     //mCFG = std::make_shared<CFG>("input/grammar.json");
     //mLexer = std::make_unique<Lexer>(mCFG->getAliasMap(), mCFG->getAliases());
+    mSys = std::make_unique<System>();
 }
 
 void MainWindow::createCharButtons()
@@ -82,9 +82,10 @@ void MainWindow::createCharButtons()
      */
     auto createButton = [this](const std::wstring& character, int row, int column) -> void {
         CharButton* a = new CharButton(QString::fromStdWString(character), this);
+        a->setFixedSize(QSize(30, 30));
         connect(a, SIGNAL(clicked(QString)), mTextEdit, SLOT(onCharacterAdded(QString)));
         mCharacters.emplace_back(a);
-        ui->gridChards->addWidget(a, row, column);
+        ui->mGridChars->addWidget(a, row, column);
     };
     // Special characters / symbols
     createButton(L"π", 0, 0);
@@ -125,7 +126,7 @@ void MainWindow::createSettingButtons()
     auto createButton = [this](const std::string& name, int row, int column) -> SettingButton* {
         SettingButton* s = new SettingButton(QString::fromStdString(name), this);
         mSettings.emplace_back(s);
-        ui->gridSettings->addWidget(s, row, column);
+        ui->mGridSettings->addWidget(s, row, column);
         return s;
     };
     auto er = createButton("Error correction", 0, 0);
@@ -133,7 +134,7 @@ void MainWindow::createSettingButtons()
     auto* erDeviation = new QLineEdit("1", this);
     erDeviation->setMaxLength(1);
     erDeviation->setValidator(new QIntValidator(0, 10, erDeviation));
-    ui->gridSettings->addWidget(erDeviation, 0, 1);
+    ui->mGridSettings->addWidget(erDeviation, 0, 1);
     mSettings.emplace_back(erDeviation);
     connect(erDeviation, SIGNAL(textChanged(QString)), mTextEdit, SLOT(onDeviation(QString)));
 
@@ -166,18 +167,9 @@ void MainWindow::onConvertBtnClicked()
                          QMessageBox::Ok);
     } else {
         // Else, parse the input
-        std::string SQL = sys->convertToSQL(query);
+        std::string SQL = mSys->convertToSQL(query);
         mOutputTextEdit->clear();
         mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
     }
-    //mEarlyParser = std::make_unique<EarleyParser>(mCFG);
-
-    //const auto& tokens = mLexer->tokenise(query);
-    //const auto& tree = mEarlyParser->earleyParse(tokens);
-
-
-    //std::string SQL = tree->translate();
-
-    //std::cout << SQL << "\n";
 }
 
