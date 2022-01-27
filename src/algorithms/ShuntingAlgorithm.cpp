@@ -23,7 +23,17 @@
 using namespace std;
 
 void ShuntingAlgorithm::operator()(std::vector<ParseToken>& tokens, std::ostream& stream) {
+    bool quoteOpen = false;
     for(auto& token: tokens) {
+        if(!quoteOpen && token.getToken() == Tokens::QUOTE){
+            quoteOpen = true;
+            continue;
+        } else if(quoteOpen && (token.getToken() == Tokens::NAME || token.getToken() == Tokens::DIGIT)) {
+            token.enquote();
+        } else if(quoteOpen && token.getToken() == Tokens::QUOTE) {
+            quoteOpen = false;
+            continue;
+        }
         if(isOperator(token)) {
             consumeOperator(token);
         } else {

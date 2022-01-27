@@ -46,6 +46,10 @@ public:
     bool operator==(const ParseToken& other) const {
         return tokenType == other.tokenType && content == other.content;
     }
+
+    void enquote() {
+        content = "'" + content + "'";
+    }
 };
 
 
