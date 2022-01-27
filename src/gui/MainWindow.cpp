@@ -181,6 +181,7 @@ void MainWindow::onConvertBtnClicked()
             tokens.push_back(mSys->tokenize(str));
     }
 
+
     std::vector<std::vector<ParseToken>> optimizedRA;
 
     if(optimized) {
