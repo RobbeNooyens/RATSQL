@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <algorithm>
 #include "ShuntingGrid.h"
 #include "../parser/Tokens.h"
 
@@ -83,6 +84,8 @@ vector<vector<ParseToken>> ShuntingGrid::substitute() {
         }
         cout << endl;
     }
+
+    std::reverse(result.begin(), result.end());
 
     return result;
 }

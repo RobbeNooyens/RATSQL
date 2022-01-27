@@ -18,12 +18,18 @@ public:
      */
     System(): parser(), lexer() {
         cfg = std::make_shared<CFG>("input/grammar.json");
+        lexer = std::make_unique<Lexer>(cfg);
     }
     /**
      * @brief Will parse a relational expression to an SQL statement // todo
      * @param query     Given by reference - will change the string to an SQL statement
      */
     std::string convertToSQL(const std::string& query);
+
+    vector<ParseToken> tokenize(std::string& str);
+
+    vector<vector<ParseToken>> optimize(vector<ParseToken>& tokens);
+
 private:
     /// @brief Shared pointer to an earley parser
     std::unique_ptr<EarleyParser> parser{};

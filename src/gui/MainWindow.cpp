@@ -3,6 +3,7 @@
 #include <streambuf>
 #include <thread>
 #include <chrono>
+#include <sstream>
 
 #include "MainWindow.h"
 #include "../io/CommandHandler.h"
@@ -164,16 +165,52 @@ void MainWindow::onConvertBtnClicked()
     bool optimized = mTextEdit->isOptimized();
     bool namingConventions = mTextEdit->isNamingConventions();
 
+    std::vector<std::vector<ParseToken>> tokens;
+
+    auto stringList = mTextEdit->toPlainText().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
+
+    for(auto& s: stringList) {
+        string str = s.toStdString();
+        tokens.push_back(mSys->tokenize(str));
+    }
+
+    std::vector<std::vector<ParseToken>> optimizedRA;
+
+    if(optimized) {
+        for(auto& row: tokens) {
+            for(auto& optimizedRow: mSys->optimize(row)){
+                optimizedRA.push_back(optimizedRow);
+            }
+        }
+    } else {
+        for(auto& row: tokens) {
+            optimizedRA.push_back(row);
+        }
+    }
+
+    // OptimzedRA back to the mTextEdit
+    QString lines;
+    for(auto& expression: optimizedRA) {
+        std::stringstream combined;
+        for(auto& token: expression) {
+            combined << token.getContent() << " ";
+        }
+        combined << endl;
+        lines.push_back(QString::fromStdString(combined.str()));
+    }
+    mTextEdit->setText(lines);
+
+
     // Show error message if expression is empty
     if (query.empty())
     {
         createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error: given regular expression is empty."),
                          QMessageBox::Ok);
     } else {
-        // Else, parse the input
-        std::string SQL = mSys->convertToSQL(query);
-        mOutputTextEdit->clear();
-        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
+//        // Else, parse the input
+//        std::string SQL = mSys->convertToSQL(query);
+//        mOutputTextEdit->clear();
+//        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
     }
 }
 

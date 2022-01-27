@@ -5,9 +5,9 @@ digraph ParseTree {
   1 -> 2
   2 [label="EXPRESSION"];
   2 -> 3
-  3 [label="MODIFICATION"];
+  3 [label="JOIN_OP"];
   3 -> 4
-  4 [label="MODIFICATION"];
+  4 [label="EXPRESSION"];
   4 -> 5
   5 [label="PROJECTION"];
   5 -> 6
