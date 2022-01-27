@@ -165,6 +165,17 @@ public:
     std::string translate() const override;
 };
 
+class SetOperatorNode: public ExpressionNode {
+public:
+    /**
+     * Constructor
+     * @param token
+     */
+    explicit SetOperatorNode(const std::string &token);
+
+    std::string translate(std::vector<std::string> &v) override;
+};
+
 class TableNode: public TreeNode {
 public:
     /**

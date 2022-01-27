@@ -86,6 +86,10 @@ TreeNode* ParseState::createNode(const std::string &s) const {
         return new RenamePremiseNode(s);
     } else if (s == "JOIN_OP") {
         return new JoinNode(s);
+    } else if (s == "SET_OP") {
+        return new SetOperatorNode(s);
+    } else if (s == "UNION" || s == "INTERSECT") {
+        return new ValueNode(s);
     }
 
 

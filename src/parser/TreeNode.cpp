@@ -356,3 +356,16 @@ std::string JoinNode::translate(std::vector<std::string> &v) {
     v[2] += lastTable;
     return lastTable;
 }
+
+SetOperatorNode::SetOperatorNode(const string & token): ExpressionNode(token) {}
+
+std::string SetOperatorNode::translate(vector<std::string> &v) {
+    std::pair<std::string, std::string> tables;
+    tables.first = children[0]->translate(v);
+    tables.second = children[2]->translate(v);
+    v[0] += "CREATE VIEW TempTable" + to_string(tempTableNumber++) + " AS (SELECT * FROM " + tables.first + " " + children[1]->translate() + " SELECT * FROM "
+            + tables.second + ");\n";
+    lastTable = "TempTable"+ to_string(tempTableNumber-1);
+    v[2] += lastTable;
+    return lastTable;
+}
