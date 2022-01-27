@@ -1,0 +1,35 @@
+\hypertarget{_system_8h_source}{}\doxysection{System.\+h}
+\label{_system_8h_source}\index{src/system/System.h@{src/system/System.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Cédric Leclercq on 26/01/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_SYSTEM\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_SYSTEM\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../parser/EarleyParser.h"{}}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../parser/Lexer.h"{}}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_system}{System}} \{}
+\DoxyCodeLine{14 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_system_ae317936c9bcf1374d61745572e0f2f8a}{System}}(): parser() \{}
+\DoxyCodeLine{19         cfg = std::make\_shared<CFG>(\textcolor{stringliteral}{"{}input/grammar.json"{}});}
+\DoxyCodeLine{20         lexer = std::make\_unique<Lexer>(cfg);}
+\DoxyCodeLine{21     \}}
+\DoxyCodeLine{26     std::string \mbox{\hyperlink{class_system_a2264bd8534bd6edb0bef7b7803c981f5}{convertToSQL}}(\textcolor{keyword}{const} std::string\& query);}
+\DoxyCodeLine{32     vector<ParseToken> \mbox{\hyperlink{class_system_ad317ad7e63b973f9b4d05ae2840dffa7}{tokenize}}(std::string\& str);}
+\DoxyCodeLine{38     vector<vector<ParseToken>> \mbox{\hyperlink{class_system_a8e48312dede2309b9c34091b7ae8f875}{optimize}}(vector<ParseToken>\& tokens);}
+\DoxyCodeLine{44     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_system_a2264bd8534bd6edb0bef7b7803c981f5}{convertToSQL}}(\textcolor{keyword}{const} vector<ParseToken> \&query);}
+\DoxyCodeLine{45 \textcolor{keyword}{private}:}
+\DoxyCodeLine{47     std::unique\_ptr<EarleyParser> parser\{\};}
+\DoxyCodeLine{49     std::unique\_ptr<Lexer> lexer\{\};}
+\DoxyCodeLine{51     std::shared\_ptr<CFG> cfg\{\};}
+\DoxyCodeLine{52 \};}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{54 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_SYSTEM\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,30 @@
+\hypertarget{_shunting_grid_8h_source}{}\doxysection{Shunting\+Grid.\+h}
+\label{_shunting_grid_8h_source}\index{src/algorithms/ShuntingGrid.h@{src/algorithms/ShuntingGrid.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by robnoo on 27/01/22.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_SHUNTINGGRID\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_SHUNTINGGRID\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include "{}../parser/ParseTemplate.h"{}}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_shunting_grid}{ShuntingGrid}} \{}
+\DoxyCodeLine{17 \textcolor{keyword}{private}:}
+\DoxyCodeLine{19     std::vector<std::vector<ParseToken>> grid;}
+\DoxyCodeLine{21     std::vector<int> usages;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{void} calculateUsages();}
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{34     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_shunting_grid_ac4dc975c25a2af3fcb204313147196a8}{addExpression}}(\mbox{\hyperlink{class_parse_token}{ParseToken}}\& t1, \mbox{\hyperlink{class_parse_token}{ParseToken}}\& t2, \mbox{\hyperlink{class_parse_token}{ParseToken}}\& t3);}
+\DoxyCodeLine{39     std::vector<std::vector<ParseToken>> \mbox{\hyperlink{class_shunting_grid_af21f6f440e079e76b333a0b089cfa372}{substitute}}();}
+\DoxyCodeLine{45     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_shunting_grid_af21f6f440e079e76b333a0b089cfa372}{substitute}}(vector<ParseToken> \&current, \textcolor{keywordtype}{int} row);}
+\DoxyCodeLine{46 \};}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_SHUNTINGGRID\_H}}
+
+\end{DoxyCode}

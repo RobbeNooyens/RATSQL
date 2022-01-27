@@ -1,0 +1,40 @@
+\hypertarget{_earley_parser_8h_source}{}\doxysection{Earley\+Parser.\+h}
+\label{_earley_parser_8h_source}\index{src/parser/EarleyParser.h@{src/parser/EarleyParser.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Maarten on 17/12/2021.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTING\_YARD\_PARSER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_SHUNTING\_YARD\_PARSER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}../datastructures/CFG.h"{}}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}ParseTemplate.h"{}}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include "{}TreeNode.h"{}}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{class_parse_state}{ParseState}};}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_earley_parser}{EarleyParser}} \{}
+\DoxyCodeLine{25     std::vector<std::vector<ParseState*>> S;}
+\DoxyCodeLine{27     std::shared\_ptr<CFG> cfg;}
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{34     \mbox{\hyperlink{class_tree_node}{TreeNode}} * \mbox{\hyperlink{class_earley_parser_a1c74df8489f62063e44e448866832016}{earleyParse}}(\textcolor{keyword}{const} std::vector<ParseToken> \&tokens);}
+\DoxyCodeLine{39     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_earley_parser_a021a080ea30bfc848064d806277be9a3}{EarleyParser}}(std::string\& grammar);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{45     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_earley_parser_a860318a0cab84777c951ab48db593cd4}{EarleyParser}}(\textcolor{keyword}{const} std::shared\_ptr<CFG> \&cfg);}
+\DoxyCodeLine{49     \mbox{\hyperlink{class_earley_parser_a6725513a76608fa04d4a24d2124be1b4}{\string~EarleyParser}}();}
+\DoxyCodeLine{55     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_earley_parser_ac621f88f73c06b6562bcba4ac6e1f7c9}{predictor}}(\mbox{\hyperlink{class_parse_state}{ParseState}}* closureRule, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{62     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_earley_parser_a938deaa8cbdaf7fdc10eee53170760eb}{scanner}}(\mbox{\hyperlink{class_parse_state}{ParseState}}* state, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} k, \textcolor{keyword}{const} std::vector<ParseToken> \&tokens);}
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_earley_parser_aa2d9211ccb6af4f33de6e413f051c3c4}{completer}}(\mbox{\hyperlink{class_parse_state}{ParseState}}* closureRule, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} k);}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 }
+\DoxyCodeLine{72 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTING\_YARD\_PARSER\_H}}
+
+\end{DoxyCode}

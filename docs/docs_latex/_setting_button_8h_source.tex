@@ -1,0 +1,26 @@
+\hypertarget{_setting_button_8h_source}{}\doxysection{Setting\+Button.\+h}
+\label{_setting_button_8h_source}\index{src/gui/SettingButton.h@{src/gui/SettingButton.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef SETTINGBUTTON\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define SETTINGBUTTON\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QCheckBox>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <QObject>}}
+\DoxyCodeLine{6 }
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_setting_button}{SettingButton}} : \textcolor{keyword}{public} QCheckBox}
+\DoxyCodeLine{10 \{}
+\DoxyCodeLine{11     Q\_OBJECT}
+\DoxyCodeLine{12 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \mbox{\hyperlink{class_setting_button_a59d2a24604e64a2653fbecbfb601a953}{SettingButton}}(QString name, QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{19 signals:}
+\DoxyCodeLine{24     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_setting_button_a28a11c47198d7fff73d4270b82a7f57a}{clicked}}(\textcolor{keywordtype}{bool} flag);}
+\DoxyCodeLine{25 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{29     \textcolor{keywordtype}{void} reemitClicked() \{ emit \mbox{\hyperlink{class_setting_button_a28a11c47198d7fff73d4270b82a7f57a}{clicked}}(isChecked()); \}}
+\DoxyCodeLine{30 \};}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// SETTINGBUTTON\_H}}
+
+\end{DoxyCode}

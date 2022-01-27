@@ -1,0 +1,33 @@
+\hypertarget{_undefined_token_exception_8h_source}{}\doxysection{Undefined\+Token\+Exception.\+h}
+\label{_undefined_token_exception_8h_source}\index{src/exceptions/UndefinedTokenException.h@{src/exceptions/UndefinedTokenException.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Maarten on 13/12/2021.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_UNDEFINEDTOKENEXCEPTION\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_UNDEFINEDTOKENEXCEPTION\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <exception>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{12 }
+\DoxyCodeLine{16 \textcolor{keyword}{class }\mbox{\hyperlink{class_undefined_token_exception}{UndefinedTokenException}}: \textcolor{keyword}{public} exception \{}
+\DoxyCodeLine{18     \textcolor{keywordtype}{string} message;}
+\DoxyCodeLine{19 \textcolor{keyword}{public}:}
+\DoxyCodeLine{24     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_undefined_token_exception_a40ae920f551e8a98ff9a860778786f3f}{UndefinedTokenException}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&m) \{}
+\DoxyCodeLine{25         message = \textcolor{stringliteral}{"{}We couldn't find a token for entry: '"{}} + m + \textcolor{stringliteral}{"{}'. Consider checking for typo's."{}};}
+\DoxyCodeLine{26     \}}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{32     \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{class_undefined_token_exception_a4d629d483c986e5d0325641c2e224eee}{what}}() const noexcept override;}
+\DoxyCodeLine{33 \};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 const \textcolor{keywordtype}{char} *\mbox{\hyperlink{class_undefined_token_exception}{UndefinedTokenException}}::\mbox{\hyperlink{class_undefined_token_exception_a4d629d483c986e5d0325641c2e224eee}{what}}() const noexcept \{}
+\DoxyCodeLine{36     \textcolor{keywordflow}{return} message.c\_str();}
+\DoxyCodeLine{37 \}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_UNDEFINEDTOKENEXCEPTION\_H}}
+
+\end{DoxyCode}

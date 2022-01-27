@@ -1,0 +1,234 @@
+\hypertarget{class_lexer}{}\doxysection{Lexer Class Reference}
+\label{class_lexer}\index{Lexer@{Lexer}}
+
+
+Class implemented for \mbox{\hyperlink{class_lexer}{Lexer}}, reading and lexing the input.  
+
+
+
+
+{\ttfamily \#include $<$Lexer.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_lexer_a2752a2b16cc1ffbcb8fc3e82e95bf331}\label{class_lexer_a2752a2b16cc1ffbcb8fc3e82e95bf331}} 
+{\bfseries Lexer} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{class_lexer}{Lexer}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_lexer_a4e26659107bb1c89a46fa8749415ee72}{Lexer}} (const map$<$ string, string $>$ \&m, const vector$<$ vector$<$ string $>$ $>$ \&a)
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{class_lexer}{Lexer}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_lexer_a36e94817e92ad3a7d0cde5d58e42865f}{Lexer}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_c_f_g}{CFG}} $>$ \&cfg)
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{class_lexer}{Lexer}} object from \mbox{\hyperlink{class_c_f_g}{CFG}} object. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{class_lexer_a026e4a0baccf5ea103f4a311b9e56f70}{split\+String}} (const string \&parse\+String)
+\begin{DoxyCompactList}\small\item\em Function to split strings on the characters listed in the delimiter variable. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \mbox{\hyperlink{class_lexer_a65256511a56e367a60c5ca44bde57066}{tokenise}} (const vector$<$ string $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Function to tokenise a vector of strings. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \mbox{\hyperlink{class_lexer_a10613242d1eb6852dfa20e936b13ad03}{tokenise}} (const string \&s)
+\begin{DoxyCompactList}\small\item\em Function to tokenise a string, splitting it on \textquotesingle{} \textquotesingle{}. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_lexer_adcfd4045a38745d11c245d6ecba7a432}{is\+String}} (const string \&s)
+\begin{DoxyCompactList}\small\item\em Function to check if a string represents a string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_lexer_addbd44c72f68e92db733e4b717619094}{is\+Number}} (const string \&s)
+\begin{DoxyCompactList}\small\item\em Function to check if a string represents a number. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_lexer_a0f952e6c0dd381d6109c3541d64d5fdd}{is\+Name}} (const string \&s)
+\begin{DoxyCompactList}\small\item\em Function to check if a string represents a name. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{class_lexer_a44dd62baecd45ee332fa7283e40dc741}{is\+Delimiter}} (const string \&s, unsigned int offset)
+\begin{DoxyCompactList}\small\item\em Function checking for a delimiter in a string, matching the longest possible delimiter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class implemented for \mbox{\hyperlink{class_lexer}{Lexer}}, reading and lexing the input. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_lexer_a4e26659107bb1c89a46fa8749415ee72}\label{class_lexer_a4e26659107bb1c89a46fa8749415ee72}} 
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{Lexer()}{Lexer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Lexer\+::\+Lexer (\begin{DoxyParamCaption}\item[{const map$<$ string, string $>$ \&}]{m,  }\item[{const vector$<$ vector$<$ string $>$ $>$ \&}]{a }\end{DoxyParamCaption})}
+
+
+
+Constructor for \mbox{\hyperlink{class_lexer}{Lexer}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em m} & mapping from inputs to tokentypes \\
+\hline
+{\em a} & list of supported aliases \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_lexer_a36e94817e92ad3a7d0cde5d58e42865f}\label{class_lexer_a36e94817e92ad3a7d0cde5d58e42865f}} 
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\index{Lexer@{Lexer}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{Lexer()}{Lexer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Lexer\+::\+Lexer (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_c_f_g}{CFG}} $>$ \&}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new \mbox{\hyperlink{class_lexer}{Lexer}} object from \mbox{\hyperlink{class_c_f_g}{CFG}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & \mbox{\hyperlink{class_c_f_g}{CFG}} -\/ cfg object \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_lexer_a44dd62baecd45ee332fa7283e40dc741}\label{class_lexer_a44dd62baecd45ee332fa7283e40dc741}} 
+\index{Lexer@{Lexer}!isDelimiter@{isDelimiter}}
+\index{isDelimiter@{isDelimiter}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{isDelimiter()}{isDelimiter()}}
+{\footnotesize\ttfamily unsigned int Lexer\+::is\+Delimiter (\begin{DoxyParamCaption}\item[{const string \&}]{s,  }\item[{unsigned int}]{offset }\end{DoxyParamCaption})}
+
+
+
+Function checking for a delimiter in a string, matching the longest possible delimiter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & string to check \\
+\hline
+{\em offset} & amount of characters that have been checked already \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+length of the found delimiter (0 if none was found) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_a0f952e6c0dd381d6109c3541d64d5fdd}\label{class_lexer_a0f952e6c0dd381d6109c3541d64d5fdd}} 
+\index{Lexer@{Lexer}!isName@{isName}}
+\index{isName@{isName}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{isName()}{isName()}}
+{\footnotesize\ttfamily bool Lexer\+::is\+Name (\begin{DoxyParamCaption}\item[{const string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string represents a name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it represents a name
+\end{DoxyReturn}
+Function to check if a string represents a name 
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it represents a name 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_addbd44c72f68e92db733e4b717619094}\label{class_lexer_addbd44c72f68e92db733e4b717619094}} 
+\index{Lexer@{Lexer}!isNumber@{isNumber}}
+\index{isNumber@{isNumber}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{isNumber()}{isNumber()}}
+{\footnotesize\ttfamily bool Lexer\+::is\+Number (\begin{DoxyParamCaption}\item[{const string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string represents a number. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it represents a number
+\end{DoxyReturn}
+Function to check if a string represents a number 
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it represents a number 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_adcfd4045a38745d11c245d6ecba7a432}\label{class_lexer_adcfd4045a38745d11c245d6ecba7a432}} 
+\index{Lexer@{Lexer}!isString@{isString}}
+\index{isString@{isString}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{isString()}{isString()}}
+{\footnotesize\ttfamily bool Lexer\+::is\+String (\begin{DoxyParamCaption}\item[{const string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Function to check if a string represents a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it represents a string
+\end{DoxyReturn}
+Function to check if a string represents a string 
+\begin{DoxyParams}{Parameters}
+{\em s} & the string to check \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if it represents a string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_a026e4a0baccf5ea103f4a311b9e56f70}\label{class_lexer_a026e4a0baccf5ea103f4a311b9e56f70}} 
+\index{Lexer@{Lexer}!splitString@{splitString}}
+\index{splitString@{splitString}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{splitString()}{splitString()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Lexer\+::split\+String (\begin{DoxyParamCaption}\item[{const string \&}]{parse\+String }\end{DoxyParamCaption})}
+
+
+
+Function to split strings on the characters listed in the delimiter variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parse\+String} & string to split \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector with split parts 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_a10613242d1eb6852dfa20e936b13ad03}\label{class_lexer_a10613242d1eb6852dfa20e936b13ad03}} 
+\index{Lexer@{Lexer}!tokenise@{tokenise}}
+\index{tokenise@{tokenise}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{tokenise()}{tokenise()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ Lexer\+::tokenise (\begin{DoxyParamCaption}\item[{const string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Function to tokenise a string, splitting it on \textquotesingle{} \textquotesingle{}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & string to tokenise \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector containing tokens for the string 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_lexer_a65256511a56e367a60c5ca44bde57066}\label{class_lexer_a65256511a56e367a60c5ca44bde57066}} 
+\index{Lexer@{Lexer}!tokenise@{tokenise}}
+\index{tokenise@{tokenise}!Lexer@{Lexer}}
+\doxysubsubsection{\texorpdfstring{tokenise()}{tokenise()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ Lexer\+::tokenise (\begin{DoxyParamCaption}\item[{const vector$<$ string $>$ \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Function to tokenise a vector of strings. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector containing strings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector containing tokens for the strings 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/Lexer.\+h\item 
+src/parser/Lexer.\+cpp\end{DoxyCompactItemize}

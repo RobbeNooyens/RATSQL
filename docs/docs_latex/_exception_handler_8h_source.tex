@@ -1,0 +1,23 @@
+\hypertarget{_exception_handler_8h_source}{}\doxysection{Exception\+Handler.\+h}
+\label{_exception_handler_8h_source}\index{src/exceptions/ExceptionHandler.h@{src/exceptions/ExceptionHandler.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Cédric Leclercq on 20/12/2021.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTING\_YARD\_EXCEPTIONHANDLER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_SHUNTING\_YARD\_EXCEPTIONHANDLER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{keyword}{class }\mbox{\hyperlink{class_exception_handler}{ExceptionHandler}} \{}
+\DoxyCodeLine{11 \textcolor{keyword}{public}:}
+\DoxyCodeLine{16     \mbox{\hyperlink{class_exception_handler_a50918c7a3857af2464f538895a627419}{\_\_attribute\_\_}}((unused)) \textcolor{keyword}{static} \mbox{\hyperlink{class_exception_handler}{ExceptionHandler}}\& getInstance();}
+\DoxyCodeLine{22     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_exception_handler_ac07dba5943b5fc0d686b575740f440f1}{handle}}(std::exception\& exc, \textcolor{keyword}{const} std::string\& message) \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{23 \};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTING\_YARD\_EXCEPTIONHANDLER\_H}}
+
+\end{DoxyCode}

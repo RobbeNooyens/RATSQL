@@ -1,0 +1,32 @@
+\hypertarget{_query_test_8h_source}{}\doxysection{Query\+Test.\+h}
+\label{_query_test_8h_source}\index{src/tests/QueryTest.h@{src/tests/QueryTest.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_QUERYTEST\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_QUERYTEST\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include "{}Test.h"{}}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}../system/System.h"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_query_test}{QueryTest}} : \textcolor{keyword}{public} \mbox{\hyperlink{class_test}{Test}} \{}
+\DoxyCodeLine{28 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     \mbox{\hyperlink{class_query_test_a861b0d67e6184fb14c1c84f58b603b0b}{QueryTest}}() : \mbox{\hyperlink{class_test}{Test}}() \{ mSystem = std::make\_unique<System>(); \}}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_query_test_ae6cfddc8865c6a17d1b53822e0337847}{run}}() \textcolor{keyword}{override};}
+\DoxyCodeLine{40     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_query_test_aa537870f86cd99cc6d9438bc1031eadf}{testSelection}}();}
+\DoxyCodeLine{44     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_query_test_ac92d7d94bbd77001d2fdcb941b24aba0}{testProjection}}();}
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_query_test_a35c6b87d227c33607258e429d60d4273}{testRename}}();}
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_query_test_a04fbdf578aa40be8425932969052e27a}{testMisc}}();}
+\DoxyCodeLine{56     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_query_test_a89e05421d84c65c1d431b63c2392cb53}{testNested}}();}
+\DoxyCodeLine{60     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_query_test_a3b3ddba1b626d8a745588b176ce679d5}{\string~QueryTest}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{61 \textcolor{keyword}{private}:}
+\DoxyCodeLine{63     std::unique\_ptr<System> mSystem;}
+\DoxyCodeLine{71     std::string createMessage(\textcolor{keyword}{const} std::string\& given, \textcolor{keyword}{const} std::string\& exp, \textcolor{keyword}{const} std::string\& test) \textcolor{keyword}{const};}
+\DoxyCodeLine{72 \};}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74 }
+\DoxyCodeLine{75 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_QUERYTEST\_H}}
+
+\end{DoxyCode}

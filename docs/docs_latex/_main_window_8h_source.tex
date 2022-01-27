@@ -1,0 +1,70 @@
+\hypertarget{_main_window_8h_source}{}\doxysection{Main\+Window.\+h}
+\label{_main_window_8h_source}\index{src/gui/MainWindow.h@{src/gui/MainWindow.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef MAINWINDOW\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define MAINWINDOW\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <QMainWindow>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <QPushButton>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <QStringListModel>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <QMessageBox>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <QLineEdit>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <QLabel>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <QValidator>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include <QString>}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include <QRegularExpression>}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include <QFileDialog>}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include <QPixmap>}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{30 \textcolor{preprocessor}{\#include "{}CharButton.h"{}}}
+\DoxyCodeLine{31 \textcolor{preprocessor}{\#include "{}SettingButton.h"{}}}
+\DoxyCodeLine{32 \textcolor{preprocessor}{\#include "{}TextEdit.h"{}}}
+\DoxyCodeLine{33 \textcolor{preprocessor}{\#include "{}../system/System.h"{}}}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{36 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{37 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{40 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_ui}{Ui}} \{ \textcolor{keyword}{class }\mbox{\hyperlink{class_main_window}{MainWindow}}; \}}
+\DoxyCodeLine{41 QT\_END\_NAMESPACE}
+\DoxyCodeLine{42 }
+\DoxyCodeLine{47 \textcolor{keyword}{class }\mbox{\hyperlink{class_main_window}{MainWindow}} : \textcolor{keyword}{public} QMainWindow}
+\DoxyCodeLine{48 \{}
+\DoxyCodeLine{49     Q\_OBJECT}
+\DoxyCodeLine{50 \textcolor{keyword}{public}:}
+\DoxyCodeLine{55     \mbox{\hyperlink{class_main_window_a996c5a2b6f77944776856f08ec30858d}{MainWindow}}(QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{59     \mbox{\hyperlink{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}{\string~MainWindow}}();}
+\DoxyCodeLine{60 \textcolor{keyword}{private}:}
+\DoxyCodeLine{64     \textcolor{keywordtype}{void} init();}
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} createMenu();}
+\DoxyCodeLine{72     \textcolor{keywordtype}{void} createAction();}
+\DoxyCodeLine{76     \textcolor{keywordtype}{void} createCharButtons();}
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} createSettingButtons();}
+\DoxyCodeLine{89     QMessageBox* createMessageBox(QMessageBox::Icon icon, \textcolor{keyword}{const} QString\& title, \textcolor{keyword}{const} QString\& text,}
+\DoxyCodeLine{90                                   QMessageBox::StandardButton button);}
+\DoxyCodeLine{91 \textcolor{keyword}{public} slots:}
+\DoxyCodeLine{95     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_aee7921917b2c52e4b84ffbe473ac81ae}{onConvertBtnClicked}}();}
+\DoxyCodeLine{99     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a8b2b7eb34c7f8e4cf705668304245671}{onAboutAct}}();}
+\DoxyCodeLine{103     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_ae823fac70a587da47588e35a7846b2e8}{onSaveAct}}();}
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_main_window_a46f165a8247ca1a471d71134b0d4de36}{onOpenAct}}();}
+\DoxyCodeLine{108 \textcolor{keyword}{private}:}
+\DoxyCodeLine{109     Ui::MainWindow *ui;}
+\DoxyCodeLine{111     std::vector<CharButton*> mCharacters;}
+\DoxyCodeLine{113     std::vector<QWidget*> mSettings;}
+\DoxyCodeLine{115     std::unique\_ptr<System> mSys;}
+\DoxyCodeLine{116     \mbox{\hyperlink{class_text_edit}{TextEdit}}* mTextEdit;}
+\DoxyCodeLine{117     \mbox{\hyperlink{class_text_edit}{TextEdit}}* mOutputTextEdit;}
+\DoxyCodeLine{118     \textcolor{comment}{// Menu's}}
+\DoxyCodeLine{119     QMenu* mAbout;}
+\DoxyCodeLine{120     QMenu* mFile;}
+\DoxyCodeLine{121     \textcolor{comment}{// Actions}}
+\DoxyCodeLine{122     QAction* mAboutAct;}
+\DoxyCodeLine{123     QAction* mSaveAct;}
+\DoxyCodeLine{124     QAction* mOpenAct;}
+\DoxyCodeLine{125 \};}
+\DoxyCodeLine{126 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// MAINWINDOW\_H}}
+
+\end{DoxyCode}

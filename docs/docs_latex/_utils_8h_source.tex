@@ -1,0 +1,57 @@
+\hypertarget{_utils_8h_source}{}\doxysection{Utils.\+h}
+\label{_utils_8h_source}\index{src/utilities/Utils.h@{src/utilities/Utils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef RATSQL\_UTILS\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RATSQL\_UTILS\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <cassert>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <algorithm>}}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{24 \textcolor{keyword}{namespace }\mbox{\hyperlink{namespace_utils}{Utils}} \{}
+\DoxyCodeLine{31     \textcolor{keyword}{static} std::string toSnakeCase(\textcolor{keyword}{const} std::string \&camel);}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{39     \textcolor{keyword}{static} std::string toCamelCase(\textcolor{keyword}{const} std::string \&snake);}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{keyword}{class }\mbox{\hyperlink{class_utils_1_1_matrix}{Matrix}} \{}
+\DoxyCodeLine{42     \textcolor{keyword}{private}:}
+\DoxyCodeLine{44         std::vector<std::vector<int>> matrix;}
+\DoxyCodeLine{45     \textcolor{keyword}{public}:}
+\DoxyCodeLine{51         \mbox{\hyperlink{class_utils_1_1_matrix_a8ab85d579c57f0e7b14ed8f72d4f2ed7}{Matrix}}(\textcolor{keywordtype}{int} dimX, \textcolor{keywordtype}{int} dimY);}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{56         \mbox{\hyperlink{class_utils_1_1_matrix_ac13b41c2dd7bfbc0ef13420d68d915bc}{\string~Matrix}}()=\textcolor{keywordflow}{default};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{64         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_utils_1_1_matrix_ad497e3a9ef352c89a78b80353ae65f75}{setValue}}(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y, \textcolor{keywordtype}{int} val);}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{69         \textcolor{keywordtype}{void} \mbox{\hyperlink{class_utils_1_1_matrix_ac0e2adb05e204d5a40cd129d9fb0593f}{clear}}();}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{77         \textcolor{keywordtype}{int} \mbox{\hyperlink{class_utils_1_1_matrix_aecf2ff3640990f45887a474c5f0d2bfc}{getValue}}(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y) \textcolor{keyword}{const};}
+\DoxyCodeLine{78 }
+\DoxyCodeLine{79     \};}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{88     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{89     \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespace_utils_a5459b98ac79acb0b4e9d5f72a401a35a}{insert\_unique}}(std::vector<T> \&v, \textcolor{keyword}{typename} std::vector<T>::iterator iter, \textcolor{keyword}{const} T \&t) \{}
+\DoxyCodeLine{90         \textcolor{keywordflow}{if} (std::find(v.begin(), v.end(), t) == v.end()) \{}
+\DoxyCodeLine{91             v.insert(iter, t);}
+\DoxyCodeLine{92             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{93         \}}
+\DoxyCodeLine{94         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{95     \}}
+\DoxyCodeLine{96 }
+\DoxyCodeLine{103     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{104     \textcolor{keywordtype}{bool} \mbox{\hyperlink{namespace_utils_a98dce72964179d1489a5912e859db6d0}{emplace\_back\_unique}}(std::vector<T> \&v, \textcolor{keyword}{const} T \&t) \{}
+\DoxyCodeLine{105         \textcolor{keywordflow}{if} (std::find(v.begin(), v.end(), t) == v.end()) \{}
+\DoxyCodeLine{106             v.emplace\_back(t);}
+\DoxyCodeLine{107             \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{108         \}}
+\DoxyCodeLine{109         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{110     \}}
+\DoxyCodeLine{111 \}}
+\DoxyCodeLine{112 }
+\DoxyCodeLine{113 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_UTILS\_H}}
+
+\end{DoxyCode}

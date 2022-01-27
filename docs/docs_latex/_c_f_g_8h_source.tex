@@ -1,0 +1,48 @@
+\hypertarget{_c_f_g_8h_source}{}\doxysection{CFG.\+h}
+\label{_c_f_g_8h_source}\index{src/datastructures/CFG.h@{src/datastructures/CFG.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTING\_YARD\_CFG\_H}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#define RATSQL\_SHUNTING\_YARD\_CFG\_H}}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{typedef} std::set<std::string> StringSet;}
+\DoxyCodeLine{15 \textcolor{keyword}{typedef} std::pair<std::string, std::vector<std::string>> ProductionRule;}
+\DoxyCodeLine{16 \textcolor{keyword}{typedef} std::set<ProductionRule> ProductionRules;}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_f_g}{CFG}} \{}
+\DoxyCodeLine{23 \textcolor{keyword}{public}:}
+\DoxyCodeLine{27     \mbox{\hyperlink{class_c_f_g_a6a6d74b60d6abc9b91031aaac23067ff}{CFG}}();}
+\DoxyCodeLine{35     \mbox{\hyperlink{class_c_f_g_a6a6d74b60d6abc9b91031aaac23067ff}{CFG}}(StringSet  variables, StringSet  terminals, ProductionRules  productionRules, std::string  startSymbol);}
+\DoxyCodeLine{40     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_c_f_g_a6a6d74b60d6abc9b91031aaac23067ff}{CFG}}(\textcolor{keyword}{const} std::string\& json);}
+\DoxyCodeLine{45     StringSet \mbox{\hyperlink{class_c_f_g_a224b0e7a22390122614a994f9f565ca2}{getVariables}}();}
+\DoxyCodeLine{50     StringSet \mbox{\hyperlink{class_c_f_g_a98ec970111c7f6936ceb8aa7d88aa983}{getTerminals}}();}
+\DoxyCodeLine{55     ProductionRules \mbox{\hyperlink{class_c_f_g_a6e3c17dc8a918ffc2b83bc0597aec8cc}{getProductionRules}}();}
+\DoxyCodeLine{60     std::string \mbox{\hyperlink{class_c_f_g_a1e04c0452634f908327541f364c82988}{getStartSymbol}}();}
+\DoxyCodeLine{65     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_c_f_g_a03249f93345a56f3b491749f39c0e402}{accepts}}(\textcolor{keyword}{const} std::string\&);}
+\DoxyCodeLine{71     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_c_f_g_ae24d104607dca3d389ff47e96deaf91d}{isVariable}}(\textcolor{keyword}{const} std::string\& s);}
+\DoxyCodeLine{77     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_c_f_g_a75144947ca0a2f2d97b2f51f21dc6ec7}{isTerminal}}(\textcolor{keyword}{const} std::string\& s);}
+\DoxyCodeLine{82     ProductionRules \mbox{\hyperlink{class_c_f_g_ac62caff80c90d6255afa1d919df8d9e7}{getRules}}(\textcolor{keyword}{const} std::string\& head);    }
+\DoxyCodeLine{90     \textcolor{keyword}{const} std::vector<std::vector<std::string>> \&\mbox{\hyperlink{class_c_f_g_a318207c98090e26fc7555a845e8a7599}{getAliases}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{95     \textcolor{keyword}{const} std::map<std::string, std::string> \&\mbox{\hyperlink{class_c_f_g_a1389aa9031b1877f7a81b684a71165fa}{getAliasMap}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{99     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_c_f_g_a55918dc260b387f98d4de8424b4584e5}{print}}();}
+\DoxyCodeLine{100 \textcolor{keyword}{private}:}
+\DoxyCodeLine{102     StringSet variables;}
+\DoxyCodeLine{104     StringSet terminals;}
+\DoxyCodeLine{106     ProductionRules productionRules;}
+\DoxyCodeLine{108     std::string startSymbol;}
+\DoxyCodeLine{110     std::vector<std::vector<std::string>> aliases;}
+\DoxyCodeLine{112     std::map<std::string, std::string> aliasMap;}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{119     std::string stringSetToString(StringSet \&set);}
+\DoxyCodeLine{125     std::string stringVectorToString(\textcolor{keyword}{const} std::vector<std::string> \&vector);}
+\DoxyCodeLine{126 \};}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTING\_YARD\_CFG\_H}}
+
+\end{DoxyCode}

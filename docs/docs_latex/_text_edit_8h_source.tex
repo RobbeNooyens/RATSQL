@@ -1,0 +1,65 @@
+\hypertarget{_text_edit_8h_source}{}\doxysection{Text\+Edit.\+h}
+\label{_text_edit_8h_source}\index{src/gui/TextEdit.h@{src/gui/TextEdit.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef TEXTEDIT\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define TEXTEDIT\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QTextEdit>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <QObject>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <QCompleter>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include "{}../algorithms/LevenshteinDistance.h"{}}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}Highlighter.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{class_text_edit}{TextEdit}} : \textcolor{keyword}{public} QTextEdit}
+\DoxyCodeLine{18 \{}
+\DoxyCodeLine{19     Q\_OBJECT}
+\DoxyCodeLine{20 \textcolor{keyword}{private}:}
+\DoxyCodeLine{21     \mbox{\hyperlink{class_high_lighter}{HighLighter}}* mHighlighter; }
+\DoxyCodeLine{22     \textcolor{keywordtype}{bool} mErrorDetection;}
+\DoxyCodeLine{23     \textcolor{keywordtype}{int} mDeviation;}
+\DoxyCodeLine{24     \textcolor{keywordtype}{bool} mOptimize;}
+\DoxyCodeLine{25     \textcolor{keywordtype}{bool} mNamingConventions;}
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{32     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_text_edit_a1a51ffd7e6b6be9f057b4e71b12c6426}{TextEdit}}(QWidget* parent = \textcolor{keyword}{nullptr}, \textcolor{keywordtype}{bool} readonly = \textcolor{keyword}{false});}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34     \textcolor{keywordtype}{void} setHighLighter(\mbox{\hyperlink{class_high_lighter}{HighLighter}}* highlighter);}
+\DoxyCodeLine{35 }
+\DoxyCodeLine{36     \textcolor{keywordtype}{bool} isErrorDetection()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mErrorDetection; \}}
+\DoxyCodeLine{37     \textcolor{keywordtype}{int} getDeviation()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mDeviation; \}}
+\DoxyCodeLine{38     \textcolor{keywordtype}{bool} isOptimized()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mOptimize; \}}
+\DoxyCodeLine{39     \textcolor{keywordtype}{bool} isNamingConventions()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} mNamingConventions; \}}
+\DoxyCodeLine{40 \textcolor{keyword}{private}:}
+\DoxyCodeLine{45     QMenu* createReplaceMenu();}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47     \textcolor{keywordtype}{bool} eventFilter(QObject* \textcolor{keywordtype}{object}, QEvent* event);}
+\DoxyCodeLine{48 }
+\DoxyCodeLine{49 signals:}
+\DoxyCodeLine{50     \textcolor{keywordtype}{void} spacePressed();}
+\DoxyCodeLine{51 }
+\DoxyCodeLine{52 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} onCharacterAdded(\textcolor{keyword}{const} QString\& character) \{ insertPlainText(character); \}}
+\DoxyCodeLine{63     \textcolor{keywordtype}{void} onCustomMenu(\textcolor{keyword}{const} QPoint\& pos);}
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} onCorrect(QAction* act);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{keywordtype}{void} onErrorDetection(\textcolor{keywordtype}{bool} b)}
+\DoxyCodeLine{71     \{}
+\DoxyCodeLine{72         mErrorDetection = b;}
+\DoxyCodeLine{73         mHighlighter-\/>setErrorDetection(b);}
+\DoxyCodeLine{74     \}}
+\DoxyCodeLine{75     \textcolor{keywordtype}{void} onDeviation(\textcolor{keyword}{const} QString\& s)}
+\DoxyCodeLine{76     \{}
+\DoxyCodeLine{77         mDeviation = s.toInt();}
+\DoxyCodeLine{78         mHighlighter-\/>setDeviation(s.toInt());}
+\DoxyCodeLine{79     \}}
+\DoxyCodeLine{80     \textcolor{keywordtype}{void} onOptimize(\textcolor{keywordtype}{bool} b) \{ mOptimize = b; \}}
+\DoxyCodeLine{81     \textcolor{keywordtype}{void} onNamingConventions(\textcolor{keywordtype}{bool} b) \{ mNamingConventions = b; \}}
+\DoxyCodeLine{82 \};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// TEXTEDIT\_H}}
+
+\end{DoxyCode}

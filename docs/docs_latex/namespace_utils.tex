@@ -1,0 +1,60 @@
+\hypertarget{namespace_utils}{}\doxysection{Utils Namespace Reference}
+\label{namespace_utils}\index{Utils@{Utils}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_utils_1_1_matrix}{Matrix}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespace_utils_a5459b98ac79acb0b4e9d5f72a401a35a}{insert\+\_\+unique}} (std\+::vector$<$ T $>$ \&v, typename std\+::vector$<$ T $>$\+::iterator iter, const T \&t)
+\begin{DoxyCompactList}\small\item\em Function to insert an item at a given location in a vector, ensuring there are no duplicates. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\bool \mbox{\hyperlink{namespace_utils_a98dce72964179d1489a5912e859db6d0}{emplace\+\_\+back\+\_\+unique}} (std\+::vector$<$ T $>$ \&v, const T \&t)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+╒═══════════════════════════════════════════════════════════╕ │ │ │ RATSQL Project │ │ Relational Algebra To SQL │ │ │ │ Contributors\+: Pablo Deputter, Cédric Leclercq, │ │ Robbe Nooyens, Maarten Peirsman │ │ │ │ University of Antwerp -\/ Machines en Berekenbaarheid │ │ │ ╘═══════════════════════════════════════════════════════════╛ 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{namespace_utils_a98dce72964179d1489a5912e859db6d0}\label{namespace_utils_a98dce72964179d1489a5912e859db6d0}} 
+\index{Utils@{Utils}!emplace\_back\_unique@{emplace\_back\_unique}}
+\index{emplace\_back\_unique@{emplace\_back\_unique}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{emplace\_back\_unique()}{emplace\_back\_unique()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Utils\+::emplace\+\_\+back\+\_\+unique (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$ \&}]{v,  }\item[{const T \&}]{t }\end{DoxyParamCaption})}
+
+Function to emplace an item in a vector, ensuring there are no duplicates 
+\begin{DoxyParams}{Parameters}
+{\em v} & vector to insert into \\
+\hline
+{\em t} & item to insert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if item inserted, false if it already existed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{namespace_utils_a5459b98ac79acb0b4e9d5f72a401a35a}\label{namespace_utils_a5459b98ac79acb0b4e9d5f72a401a35a}} 
+\index{Utils@{Utils}!insert\_unique@{insert\_unique}}
+\index{insert\_unique@{insert\_unique}!Utils@{Utils}}
+\doxysubsubsection{\texorpdfstring{insert\_unique()}{insert\_unique()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+bool Utils\+::insert\+\_\+unique (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$ \&}]{v,  }\item[{typename std\+::vector$<$ T $>$\+::iterator}]{iter,  }\item[{const T \&}]{t }\end{DoxyParamCaption})}
+
+
+
+Function to insert an item at a given location in a vector, ensuring there are no duplicates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector to insert into \\
+\hline
+{\em iter} & place to insert in \\
+\hline
+{\em t} & item to insert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if item inserted, false if it already existed 
+\end{DoxyReturn}

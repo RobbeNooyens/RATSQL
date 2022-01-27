@@ -1,0 +1,28 @@
+\hypertarget{_s_q_l_translator_8h_source}{}\doxysection{SQLTranslator.\+h}
+\label{_s_q_l_translator_8h_source}\index{src/parser/SQLTranslator.h@{src/parser/SQLTranslator.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Maarten on 06/01/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_SQLTRANSLATOR\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_SQLTRANSLATOR\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}TreeNode.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{13 \textcolor{keyword}{class }\mbox{\hyperlink{class_s_q_l_translator}{SQLTranslator}} \{}
+\DoxyCodeLine{15     \mbox{\hyperlink{class_tree_node}{TreeNode}}* rootNode;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_s_q_l_translator_ab0fc5af6b05f5528e7cbd6264ee185cd}{SQLTranslator}}(\mbox{\hyperlink{class_tree_node}{TreeNode}}* root);}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28     [[nodiscard]] std::string \mbox{\hyperlink{class_s_q_l_translator_a5224f7ec699e45dde09b3d581ef51987}{translate}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{35     \textcolor{keyword}{static} \textcolor{keywordtype}{string} \mbox{\hyperlink{class_s_q_l_translator_a24522046fe1de8e3bbb1dec2cbfa1236}{translateNode}}(\mbox{\hyperlink{class_tree_node}{TreeNode}} *root);}
+\DoxyCodeLine{36 \};}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_SQLTRANSLATOR\_H}}
+
+\end{DoxyCode}

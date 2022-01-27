@@ -1,0 +1,38 @@
+\hypertarget{_r_a_expression_8h_source}{}\doxysection{RAExpression.\+h}
+\label{_r_a_expression_8h_source}\index{src/datastructures/RAExpression.h@{src/datastructures/RAExpression.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTING\_YARD\_RAEXPRESSION\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RATSQL\_SHUNTING\_YARD\_RAEXPRESSION\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include "{}../parser/ParseTemplate.h"{}}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_parse_token}{ParseToken}};}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{using} RAWord = std::vector<ParseToken>;}
+\DoxyCodeLine{26 }
+\DoxyCodeLine{27 \textcolor{keyword}{class }\mbox{\hyperlink{class_parse_token}{ParseToken}};}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{33 \textcolor{keyword}{class }\mbox{\hyperlink{class_r_a_expression}{RAExpression}} \{}
+\DoxyCodeLine{34 \textcolor{keyword}{private}:}
+\DoxyCodeLine{36     std::vector<std::shared\_ptr<RAWord>> expression;}
+\DoxyCodeLine{37 \textcolor{keyword}{public}:}
+\DoxyCodeLine{41     \mbox{\hyperlink{class_r_a_expression_a8c5dee627e4138db017c4166f0b51ea9}{RAExpression}}()=\textcolor{keywordflow}{default};}
+\DoxyCodeLine{46     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_r_a_expression_a8c5dee627e4138db017c4166f0b51ea9}{RAExpression}}(\textcolor{keyword}{const} std::vector<std::string>\& expression);}
+\DoxyCodeLine{51     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_r_a_expression_a8c5dee627e4138db017c4166f0b51ea9}{RAExpression}}(\textcolor{keyword}{const} std::vector<ParseToken>\& expression);}
+\DoxyCodeLine{56     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_r_a_expression_a2ef33084bed10a5fa1e367e10b003409}{setWord}}(\textcolor{keywordtype}{int} index, \textcolor{keyword}{const} std::shared\_ptr<RAWord>\& word);}
+\DoxyCodeLine{61     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_r_a_expression_a1f07499e5ca1783a2fe0790430f0f459}{addWord}}(std::shared\_ptr<RAWord> \&word);}
+\DoxyCodeLine{67     std::shared\_ptr<RAWord> \mbox{\hyperlink{class_r_a_expression_a96aa9149e393fca8ac74ed7e9846ccb4}{getWord}}(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{72     std::vector<std::shared\_ptr<RAWord>> \mbox{\hyperlink{class_r_a_expression_a8562d228e19b4321bb803c9d24dce716}{getExpression}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{77     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_r_a_expression_aa5473ba8fad9f91e49aa69ea8e7bf4ff}{printExpression}}(std::ostream \& stream);}
+\DoxyCodeLine{83     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_r_a_expression_acf8c0d355841eb940b479e2545af95f7}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_r_a_expression}{RAExpression}} \&rhs) \textcolor{keyword}{const};}
+\DoxyCodeLine{84 \};}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTING\_YARD\_RAEXPRESSION\_H}}
+
+\end{DoxyCode}

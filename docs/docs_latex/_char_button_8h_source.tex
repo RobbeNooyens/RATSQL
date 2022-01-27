@@ -1,0 +1,34 @@
+\hypertarget{_char_button_8h_source}{}\doxysection{Char\+Button.\+h}
+\label{_char_button_8h_source}\index{src/gui/CharButton.h@{src/gui/CharButton.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#ifndef CHARBUTTON\_H}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#define CHARBUTTON\_H}}
+\DoxyCodeLine{3 }
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <QWidget>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <QPushButton>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <QEvent>}}
+\DoxyCodeLine{7 \textcolor{preprocessor}{\#include <QVariantAnimation>}}
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <QStylePainter>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <QStyleOptionButton>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <QColor>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_char_button}{CharButton}} : \textcolor{keyword}{public} QPushButton}
+\DoxyCodeLine{15 \{}
+\DoxyCodeLine{16     Q\_OBJECT}
+\DoxyCodeLine{17 \textcolor{keyword}{private}:}
+\DoxyCodeLine{18     QString mChar; }
+\DoxyCodeLine{19 \textcolor{keyword}{public}:}
+\DoxyCodeLine{25     \mbox{\hyperlink{class_char_button_a447be2361928c6d2a1191397bf4ebdcf}{CharButton}}(QString character, QWidget *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{26 signals:}
+\DoxyCodeLine{31     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_char_button_aae9c30b101781b5e403d9dc5eccdab48}{clicked}}(QString character);}
+\DoxyCodeLine{32 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{36     \textcolor{keywordtype}{void} reemitClicked() \{ emit \mbox{\hyperlink{class_char_button_aae9c30b101781b5e403d9dc5eccdab48}{clicked}}(mChar); \}}
+\DoxyCodeLine{37 \};}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{39 }
+\DoxyCodeLine{40 \textcolor{preprocessor}{\#endif }\textcolor{comment}{// CHARBUTTON\_H}}
+
+\end{DoxyCode}

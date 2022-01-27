@@ -1,0 +1,70 @@
+\hypertarget{class_shunting_algorithm}{}\doxysection{Shunting\+Algorithm Class Reference}
+\label{class_shunting_algorithm}\index{ShuntingAlgorithm@{ShuntingAlgorithm}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_shunting_algorithm_aa72a41644140a80cd71f16674cdab4f5}\label{class_shunting_algorithm_aa72a41644140a80cd71f16674cdab4f5}} 
+{\bfseries Shunting\+Algorithm} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shunting_algorithm_ae1b92ccfb5e29fa6522c016fcce2340f}{operator()}} (std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&tokens, std\+::ostream \&stream=std\+::cout)
+\begin{DoxyCompactList}\small\item\em Apply the shunting algorithm by the operator() \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shunting_algorithm_a7e6f94cf1c2fac767e40d3b59ccf7c95}{parse}} (std\+::ostream \&stream=std\+::cout, bool print=true)
+\begin{DoxyCompactList}\small\item\em Will parse the input, create an expression, and possibly print the result. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ $>$ \mbox{\hyperlink{class_shunting_algorithm_aedbc1cc01e2bf772d0f098b0da1c3cbe}{get\+Shunting\+Output}} ()
+\begin{DoxyCompactList}\small\item\em Getter for the RA expression. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_shunting_algorithm_aedbc1cc01e2bf772d0f098b0da1c3cbe}\label{class_shunting_algorithm_aedbc1cc01e2bf772d0f098b0da1c3cbe}} 
+\index{ShuntingAlgorithm@{ShuntingAlgorithm}!getShuntingOutput@{getShuntingOutput}}
+\index{getShuntingOutput@{getShuntingOutput}!ShuntingAlgorithm@{ShuntingAlgorithm}}
+\doxysubsubsection{\texorpdfstring{getShuntingOutput()}{getShuntingOutput()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ $>$ Shunting\+Algorithm\+::get\+Shunting\+Output (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Getter for the RA expression. 
+
+\begin{DoxyReturn}{Returns}
+RA expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shunting_algorithm_ae1b92ccfb5e29fa6522c016fcce2340f}\label{class_shunting_algorithm_ae1b92ccfb5e29fa6522c016fcce2340f}} 
+\index{ShuntingAlgorithm@{ShuntingAlgorithm}!operator()@{operator()}}
+\index{operator()@{operator()}!ShuntingAlgorithm@{ShuntingAlgorithm}}
+\doxysubsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily void Shunting\+Algorithm\+::operator() (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{tokens,  }\item[{std\+::ostream \&}]{stream = {\ttfamily std\+:\+:cout} }\end{DoxyParamCaption})}
+
+
+
+Apply the shunting algorithm by the operator() 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & str for the algorithm to apply on \\
+\hline
+{\em stream} & ostream for the output \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shunting_algorithm_a7e6f94cf1c2fac767e40d3b59ccf7c95}\label{class_shunting_algorithm_a7e6f94cf1c2fac767e40d3b59ccf7c95}} 
+\index{ShuntingAlgorithm@{ShuntingAlgorithm}!parse@{parse}}
+\index{parse@{parse}!ShuntingAlgorithm@{ShuntingAlgorithm}}
+\doxysubsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily void Shunting\+Algorithm\+::parse (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream = {\ttfamily std\+:\+:cout},  }\item[{bool}]{print = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Will parse the input, create an expression, and possibly print the result. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & to which stream to print -\/ default is cout \\
+\hline
+{\em print} & print the result -\/ default is true \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/algorithms/Shunting\+Algorithm.\+h\item 
+src/algorithms/Shunting\+Algorithm.\+cpp\end{DoxyCompactItemize}

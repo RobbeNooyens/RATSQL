@@ -1,0 +1,172 @@
+\hypertarget{class_r_a_expression}{}\doxysection{RAExpression Class Reference}
+\label{class_r_a_expression}\index{RAExpression@{RAExpression}}
+
+
+Class for representing a relation algebra expressions.  
+
+
+
+
+{\ttfamily \#include $<$RAExpression.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_r_a_expression_a8c5dee627e4138db017c4166f0b51ea9}\label{class_r_a_expression_a8c5dee627e4138db017c4166f0b51ea9}} 
+{\bfseries RAExpression} ()=default
+\begin{DoxyCompactList}\small\item\em Default constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_r_a_expression_a1ce008d37a93769e43ec5534757ae7c5}{RAExpression}} (const std\+::vector$<$ std\+::string $>$ \&expression)
+\begin{DoxyCompactList}\small\item\em Constructor that will make an expression based on the given vector. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_r_a_expression_a27c3a158d9def1167fda5a0f681334ee}{RAExpression}} (const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&expression)
+\begin{DoxyCompactList}\small\item\em Constructor that will make an expression based on the given vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_r_a_expression_a2ef33084bed10a5fa1e367e10b003409}{set\+Word}} (int index, const std\+::shared\+\_\+ptr$<$ RAWord $>$ \&word)
+\begin{DoxyCompactList}\small\item\em Setter for a word in the expression. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_r_a_expression_a1f07499e5ca1783a2fe0790430f0f459}{add\+Word}} (std\+::shared\+\_\+ptr$<$ RAWord $>$ \&word)
+\begin{DoxyCompactList}\small\item\em Will add a word to the expression. \end{DoxyCompactList}\item 
+std\+::shared\+\_\+ptr$<$ RAWord $>$ \mbox{\hyperlink{class_r_a_expression_a96aa9149e393fca8ac74ed7e9846ccb4}{get\+Word}} (int index)
+\begin{DoxyCompactList}\small\item\em Getter for a word on a given index. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ RAWord $>$ $>$ \mbox{\hyperlink{class_r_a_expression_a8562d228e19b4321bb803c9d24dce716}{get\+Expression}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the expression. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_r_a_expression_aa5473ba8fad9f91e49aa69ea8e7bf4ff}{print\+Expression}} (std\+::ostream \&stream)
+\begin{DoxyCompactList}\small\item\em Print the expression to a io stream. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_r_a_expression_acf8c0d355841eb940b479e2545af95f7}{operator==}} (const \mbox{\hyperlink{class_r_a_expression}{RAExpression}} \&rhs) const
+\begin{DoxyCompactList}\small\item\em Operator ==. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for representing a relation algebra expressions. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_r_a_expression_a1ce008d37a93769e43ec5534757ae7c5}\label{class_r_a_expression_a1ce008d37a93769e43ec5534757ae7c5}} 
+\index{RAExpression@{RAExpression}!RAExpression@{RAExpression}}
+\index{RAExpression@{RAExpression}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{RAExpression()}{RAExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily RAExpression\+::\+RAExpression (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{expression }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor that will make an expression based on the given vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & Given vector of strings \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_r_a_expression_a27c3a158d9def1167fda5a0f681334ee}\label{class_r_a_expression_a27c3a158d9def1167fda5a0f681334ee}} 
+\index{RAExpression@{RAExpression}!RAExpression@{RAExpression}}
+\index{RAExpression@{RAExpression}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{RAExpression()}{RAExpression()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily RAExpression\+::\+RAExpression (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{expression }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor that will make an expression based on the given vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em expression} & Given vector of strings \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_r_a_expression_a1f07499e5ca1783a2fe0790430f0f459}\label{class_r_a_expression_a1f07499e5ca1783a2fe0790430f0f459}} 
+\index{RAExpression@{RAExpression}!addWord@{addWord}}
+\index{addWord@{addWord}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{addWord()}{addWord()}}
+{\footnotesize\ttfamily void RAExpression\+::add\+Word (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ RAWord $>$ \&}]{word }\end{DoxyParamCaption})}
+
+
+
+Will add a word to the expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em word} & Word to add to the expression \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_r_a_expression_a8562d228e19b4321bb803c9d24dce716}\label{class_r_a_expression_a8562d228e19b4321bb803c9d24dce716}} 
+\index{RAExpression@{RAExpression}!getExpression@{getExpression}}
+\index{getExpression@{getExpression}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{getExpression()}{getExpression()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ RAWord $>$ $>$ RAExpression\+::get\+Expression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the expression. 
+
+\begin{DoxyReturn}{Returns}
+Current expression 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_r_a_expression_a96aa9149e393fca8ac74ed7e9846ccb4}\label{class_r_a_expression_a96aa9149e393fca8ac74ed7e9846ccb4}} 
+\index{RAExpression@{RAExpression}!getWord@{getWord}}
+\index{getWord@{getWord}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{getWord()}{getWord()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ RAWord $>$ RAExpression\+::get\+Word (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Getter for a word on a given index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index of the world we want to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_r_a_expression_acf8c0d355841eb940b479e2545af95f7}\label{class_r_a_expression_acf8c0d355841eb940b479e2545af95f7}} 
+\index{RAExpression@{RAExpression}!operator==@{operator==}}
+\index{operator==@{operator==}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool RAExpression\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_r_a_expression}{RAExpression}} \&}]{rhs }\end{DoxyParamCaption}) const}
+
+
+
+Operator ==. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rhs} & value to compare to \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this == rhs?? 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_r_a_expression_aa5473ba8fad9f91e49aa69ea8e7bf4ff}\label{class_r_a_expression_aa5473ba8fad9f91e49aa69ea8e7bf4ff}} 
+\index{RAExpression@{RAExpression}!printExpression@{printExpression}}
+\index{printExpression@{printExpression}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{printExpression()}{printExpression()}}
+{\footnotesize\ttfamily void RAExpression\+::print\+Expression (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{stream }\end{DoxyParamCaption})}
+
+
+
+Print the expression to a io stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & io stream to print to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_r_a_expression_a2ef33084bed10a5fa1e367e10b003409}\label{class_r_a_expression_a2ef33084bed10a5fa1e367e10b003409}} 
+\index{RAExpression@{RAExpression}!setWord@{setWord}}
+\index{setWord@{setWord}!RAExpression@{RAExpression}}
+\doxysubsubsection{\texorpdfstring{setWord()}{setWord()}}
+{\footnotesize\ttfamily void RAExpression\+::set\+Word (\begin{DoxyParamCaption}\item[{int}]{index,  }\item[{const std\+::shared\+\_\+ptr$<$ RAWord $>$ \&}]{word }\end{DoxyParamCaption})}
+
+
+
+Setter for a word in the expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & Index on where the word should come\\
+\hline
+\end{DoxyParams}
+╒═══════════════════════════════════════════════════════════╕ │ │ │ RATSQL Project │ │ Relational Algebra To SQL │ │ │ │ Contributors\+: Pablo Deputter, Cédric Leclercq, │ │ Robbe Nooyens, Maarten Peirsman │ │ │ │ University of Antwerp -\/ Machines en Berekenbaarheid │ │ │ ╘═══════════════════════════════════════════════════════════╛ 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/datastructures/RAExpression.\+h\item 
+src/datastructures/RAExpression.\+cpp\end{DoxyCompactItemize}

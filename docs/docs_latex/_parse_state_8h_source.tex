@@ -1,0 +1,52 @@
+\hypertarget{_parse_state_8h_source}{}\doxysection{Parse\+State.\+h}
+\label{_parse_state_8h_source}\index{src/parser/ParseState.h@{src/parser/ParseState.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by robnoo on 3/01/22.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_PARSESTATE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_PARSESTATE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}../datastructures/CFG.h"{}}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{keyword}{class }\mbox{\hyperlink{class_tree_node}{TreeNode}};}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_parse_state}{ParseState}} \{}
+\DoxyCodeLine{20 \textcolor{keyword}{public}:}
+\DoxyCodeLine{27     \mbox{\hyperlink{class_parse_state_a3df4b5ef1d26b70b65e56f80b4fe8454}{ParseState}}(ProductionRule production, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} dot, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} origin);}
+\DoxyCodeLine{28 }
+\DoxyCodeLine{32     \textcolor{keyword}{const} ProductionRule\& \mbox{\hyperlink{class_parse_state_a1a91307dc8fd28260fae6bfa8d9a257a}{getProduction}}();}
+\DoxyCodeLine{36     [[nodiscard]] \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_parse_state_af3daae0bd7ba5bc945f7a4e436604620}{getDot}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{40     [[nodiscard]] \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_parse_state_a5d1bff7871360cd939446d1dc4210d5c}{getOrigin}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{44     \textcolor{keyword}{const} std::string\& \mbox{\hyperlink{class_parse_state_a7b08f8213ab2aaffbd20b76ed67f60a3}{nextElement}}();}
+\DoxyCodeLine{48     std::vector<std::pair<ParseState*, ParseState*>>\& \mbox{\hyperlink{class_parse_state_adb170a2ab9d3b0b6acf1b3eed01c9b09}{getDerivedStates}}();}
+\DoxyCodeLine{52     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_parse_state_aa8103dd4175756ea3244322120f6ef01}{isFinished}}();}
+\DoxyCodeLine{56     std::string \mbox{\hyperlink{class_parse_state_a8bb3f7dcfc04538439bc18dee284dca0}{toString}}();}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58     \textcolor{comment}{// Actions}}
+\DoxyCodeLine{63 \textcolor{comment}{}    \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parse_state_a8416098dbe104369fc00bc2d12d806e3}{addDerivedState}}(std::pair<ParseState*, ParseState*> state);}
+\DoxyCodeLine{68     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parse_state_ad80112ad2120f064a99ae60c42397541}{evaluate}}(\mbox{\hyperlink{class_tree_node}{TreeNode}} *tree);}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70     \textcolor{comment}{// Comparators}}
+\DoxyCodeLine{76 \textcolor{comment}{}    \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_parse_state_a550ab890f6705c592279dc884c4b2067}{operator==}}(\mbox{\hyperlink{class_parse_state}{ParseState}}\& rhs);}
+\DoxyCodeLine{82     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_parse_state_ad71b7b3296c62a1fba59687b40041134}{operator!=}}(\mbox{\hyperlink{class_parse_state}{ParseState}}\& rhs);}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{private}:}
+\DoxyCodeLine{88     ProductionRule production;}
+\DoxyCodeLine{92     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} dot = 0;}
+\DoxyCodeLine{96     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} origin = 0;}
+\DoxyCodeLine{100     std::vector<std::pair<ParseState*, ParseState*>> derivedStates;}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{107     \mbox{\hyperlink{class_tree_node}{TreeNode}} *createNode(\textcolor{keyword}{const} std::string \&s) \textcolor{keyword}{const};}
+\DoxyCodeLine{108 \};}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_PARSESTATE\_H}}
+
+\end{DoxyCode}

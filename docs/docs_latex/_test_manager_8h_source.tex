@@ -1,0 +1,30 @@
+\hypertarget{_test_manager_8h_source}{}\doxysection{Test\+Manager.\+h}
+\label{_test_manager_8h_source}\index{src/tests/TestManager.h@{src/tests/TestManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTING\_YARD\_TESTMANAGER\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RATSQL\_SHUNTING\_YARD\_TESTMANAGER\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23 \textcolor{keyword}{class }\mbox{\hyperlink{class_test}{Test}};}
+\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{class_test_manager}{TestManager}} \{}
+\DoxyCodeLine{29 \textcolor{keyword}{public}:}
+\DoxyCodeLine{34     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_test_manager_a419f1a3ed67b59a6ec59467759902bb6}{testFailed}}(std::string\& message);}
+\DoxyCodeLine{38     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_test_manager_a68c0f5db0839493183eae5218cd6de20}{runTests}}();}
+\DoxyCodeLine{39 \textcolor{keyword}{private}:}
+\DoxyCodeLine{44     \textcolor{keyword}{static} \mbox{\hyperlink{class_test_manager}{TestManager}}\& getInstance();}
+\DoxyCodeLine{48     \mbox{\hyperlink{class_test_manager}{TestManager}}();}
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} initiateTests();}
+\DoxyCodeLine{53 }
+\DoxyCodeLine{55     std::vector<std::unique\_ptr<Test>> tests;}
+\DoxyCodeLine{56 \};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 }
+\DoxyCodeLine{59 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTING\_YARD\_TESTMANAGER\_H}}
+
+\end{DoxyCode}

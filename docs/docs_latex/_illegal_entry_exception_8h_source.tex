@@ -1,0 +1,30 @@
+\hypertarget{_illegal_entry_exception_8h_source}{}\doxysection{Illegal\+Entry\+Exception.\+h}
+\label{_illegal_entry_exception_8h_source}\index{src/exceptions/IllegalEntryException.h@{src/exceptions/IllegalEntryException.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Maarten on 27/01/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_ILLEGALENTRYEXCEPTION\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_ILLEGALENTRYEXCEPTION\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <exception>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \textcolor{keyword}{class }\mbox{\hyperlink{class_illegal_entry_exception}{IllegalEntryException}}: \textcolor{keyword}{public} std::exception \{}
+\DoxyCodeLine{12 \textcolor{keyword}{private}:}
+\DoxyCodeLine{14     std::string message;}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{16 \textcolor{keyword}{public}:}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_illegal_entry_exception_a3f14c8f90a3fe9864a212404fe64519b}{IllegalEntryException}}(\textcolor{keyword}{const} std::string \&entry, \textcolor{keyword}{const} std::string \&m) \{}
+\DoxyCodeLine{23         message = \textcolor{stringliteral}{"{}Illegal Entry: '"{}} + entry + \textcolor{stringliteral}{"{}' found. Reason: "{}} + m;}
+\DoxyCodeLine{24     \}}
+\DoxyCodeLine{29     \textcolor{keyword}{const} \textcolor{keywordtype}{char} * \mbox{\hyperlink{class_illegal_entry_exception_a7970385d0b7e88e5297ae6fb5ae3ae7f}{what}}() const noexcept\textcolor{keyword}{ override }\{}
+\DoxyCodeLine{30         \textcolor{keywordflow}{return} message.c\_str();}
+\DoxyCodeLine{31     \}}
+\DoxyCodeLine{32 \};}
+\DoxyCodeLine{33 }
+\DoxyCodeLine{34 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_ILLEGALENTRYEXCEPTION\_H}}
+
+\end{DoxyCode}

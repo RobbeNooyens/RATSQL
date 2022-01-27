@@ -1,0 +1,232 @@
+\hypertarget{class_tree_node}{}\doxysection{Tree\+Node Class Reference}
+\label{class_tree_node}\index{TreeNode@{TreeNode}}
+Inheritance diagram for Tree\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.666667cm]{class_tree_node}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tree_node_ad238633d11330656e1581dc37c4df6e3}{Tree\+Node}} (std\+::string \mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}})
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_tree_node}{Tree\+Node}} parameter constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_tree_node_a138449d182c342d032c78e7037afc151}\label{class_tree_node_a138449d182c342d032c78e7037afc151}} 
+{\bfseries $\sim$\+Tree\+Node} ()
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_tree_node}{Tree\+Node}} destructor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tree_node_aea9bed13891124d9b45549f3d8502ed8}{add\+Child}} (\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$tree)
+\begin{DoxyCompactList}\small\item\em Adds a child to the tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ \mbox{\hyperlink{class_tree_node_aeae51e20178c3eed1e179ef1a14d737e}{get\+Child}} (int index)
+\begin{DoxyCompactList}\small\item\em Returns the child at the given index. \end{DoxyCompactList}\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ $>$ \& \mbox{\hyperlink{class_tree_node_a777c9e3bf4fb30842929f383e1f14663}{get\+Children}} () const
+\begin{DoxyCompactList}\small\item\em Returns a vector of the children of the tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tree_node_adf2d7166f70e4b73d68be0aad4a0043c}{assign\+Tokens}} (const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&tokens, int \&token\+Index)
+\begin{DoxyCompactList}\small\item\em Assigns tokens based onthe given tokens and the index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tree_node_a7b91ce6b65d6da4c590279f974a882a1}{export\+Dot}} (std\+::string \&file)
+\begin{DoxyCompactList}\small\item\em Exports the current tree to the given file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_tree_node_abba271af8f159ca46180650156af0e4a}{export\+Dot\+Recursive}} (std\+::ofstream \&out, int \&index)
+\begin{DoxyCompactList}\small\item\em Exports the children of the tree. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_tree_node_a3f80f326fdf7d30fcc194772692ed0bd}{translate}} () const
+\begin{DoxyCompactList}\small\item\em Function for translating a node. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_tree_node_af1dd5d7b17e144b2c876fdaaf3e10f6a}{translate}} (std\+::vector$<$ std\+::string $>$ \&v)
+\begin{DoxyCompactList}\small\item\em Function to insert the translation of a node into an vector. \end{DoxyCompactList}\item 
+const string \& \mbox{\hyperlink{class_tree_node_a2d06112780640a3be446acf303b52a0c}{get\+Token}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the token. \end{DoxyCompactList}\item 
+const string \& \mbox{\hyperlink{class_tree_node_a092ccc50d54713857a3df8d043fd0b4d}{get\+Value}} () const
+\begin{DoxyCompactList}\small\item\em Getter for the value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}\label{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}} 
+std\+::string {\bfseries token}
+\begin{DoxyCompactList}\small\item\em Token identifier belonging to the tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_tree_node_ac76584b6a5b634dd52032b76724a36b2}\label{class_tree_node_ac76584b6a5b634dd52032b76724a36b2}} 
+std\+::string {\bfseries value}
+\begin{DoxyCompactList}\small\item\em Value of the token belonging to the tree. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_tree_node_abbe71a8e7bc752998ec85ef64f8e5010}\label{class_tree_node_abbe71a8e7bc752998ec85ef64f8e5010}} 
+std\+::vector$<$ \mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ $>$ {\bfseries children}
+\begin{DoxyCompactList}\small\item\em Children of the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_tree_node_ad238633d11330656e1581dc37c4df6e3}\label{class_tree_node_ad238633d11330656e1581dc37c4df6e3}} 
+\index{TreeNode@{TreeNode}!TreeNode@{TreeNode}}
+\index{TreeNode@{TreeNode}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{TreeNode()}{TreeNode()}}
+{\footnotesize\ttfamily Tree\+Node\+::\+Tree\+Node (\begin{DoxyParamCaption}\item[{std\+::string}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+\mbox{\hyperlink{class_tree_node}{Tree\+Node}} parameter constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & the token identifier this tree contains \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_tree_node_aea9bed13891124d9b45549f3d8502ed8}\label{class_tree_node_aea9bed13891124d9b45549f3d8502ed8}} 
+\index{TreeNode@{TreeNode}!addChild@{addChild}}
+\index{addChild@{addChild}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{addChild()}{addChild()}}
+{\footnotesize\ttfamily void Tree\+Node\+::add\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$}]{tree }\end{DoxyParamCaption})}
+
+
+
+Adds a child to the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & tree to add as a child \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tree_node_adf2d7166f70e4b73d68be0aad4a0043c}\label{class_tree_node_adf2d7166f70e4b73d68be0aad4a0043c}} 
+\index{TreeNode@{TreeNode}!assignTokens@{assignTokens}}
+\index{assignTokens@{assignTokens}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{assignTokens()}{assignTokens()}}
+{\footnotesize\ttfamily void Tree\+Node\+::assign\+Tokens (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{tokens,  }\item[{int \&}]{token\+Index }\end{DoxyParamCaption})}
+
+
+
+Assigns tokens based onthe given tokens and the index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & tokens to be assigned \\
+\hline
+{\em token\+Index} & index at which the tokens should be assigned \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tree_node_a7b91ce6b65d6da4c590279f974a882a1}\label{class_tree_node_a7b91ce6b65d6da4c590279f974a882a1}} 
+\index{TreeNode@{TreeNode}!exportDot@{exportDot}}
+\index{exportDot@{exportDot}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{exportDot()}{exportDot()}}
+{\footnotesize\ttfamily void Tree\+Node\+::export\+Dot (\begin{DoxyParamCaption}\item[{std\+::string \&}]{file }\end{DoxyParamCaption})}
+
+
+
+Exports the current tree to the given file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & file to export the dot graph to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tree_node_abba271af8f159ca46180650156af0e4a}\label{class_tree_node_abba271af8f159ca46180650156af0e4a}} 
+\index{TreeNode@{TreeNode}!exportDotRecursive@{exportDotRecursive}}
+\index{exportDotRecursive@{exportDotRecursive}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{exportDotRecursive()}{exportDotRecursive()}}
+{\footnotesize\ttfamily void Tree\+Node\+::export\+Dot\+Recursive (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{out,  }\item[{int \&}]{index }\end{DoxyParamCaption})}
+
+
+
+Exports the children of the tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em out} & file to write the tree to \\
+\hline
+{\em index} & current index that belongs to the tree \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_tree_node_aeae51e20178c3eed1e179ef1a14d737e}\label{class_tree_node_aeae51e20178c3eed1e179ef1a14d737e}} 
+\index{TreeNode@{TreeNode}!getChild@{getChild}}
+\index{getChild@{getChild}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{getChild()}{getChild()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ Tree\+Node\+::get\+Child (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Returns the child at the given index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & index of the requested child \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pointer to the child at the given position 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tree_node_a777c9e3bf4fb30842929f383e1f14663}\label{class_tree_node_a777c9e3bf4fb30842929f383e1f14663}} 
+\index{TreeNode@{TreeNode}!getChildren@{getChildren}}
+\index{getChildren@{getChildren}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{getChildren()}{getChildren()}}
+{\footnotesize\ttfamily const std\+::vector$<$ \mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ $>$ \& Tree\+Node\+::get\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector of the children of the tree. 
+
+\begin{DoxyReturn}{Returns}
+vector of pointers to the children 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tree_node_a2d06112780640a3be446acf303b52a0c}\label{class_tree_node_a2d06112780640a3be446acf303b52a0c}} 
+\index{TreeNode@{TreeNode}!getToken@{getToken}}
+\index{getToken@{getToken}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{getToken()}{getToken()}}
+{\footnotesize\ttfamily const string \& Tree\+Node\+::get\+Token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the token. 
+
+\begin{DoxyReturn}{Returns}
+the token 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tree_node_a092ccc50d54713857a3df8d043fd0b4d}\label{class_tree_node_a092ccc50d54713857a3df8d043fd0b4d}} 
+\index{TreeNode@{TreeNode}!getValue@{getValue}}
+\index{getValue@{getValue}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily const string \& Tree\+Node\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter for the value. 
+
+\begin{DoxyReturn}{Returns}
+the value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_tree_node_a3f80f326fdf7d30fcc194772692ed0bd}\label{class_tree_node_a3f80f326fdf7d30fcc194772692ed0bd}} 
+\index{TreeNode@{TreeNode}!translate@{translate}}
+\index{translate@{translate}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{translate()}{translate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Tree\+Node\+::translate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Function for translating a node. 
+
+\begin{DoxyReturn}{Returns}
+string representation of the node\textquotesingle{}s contents 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_basic_node_a41de1b3c1bd1eecc0d21b7574e813ebe}{Basic\+Node}}, \mbox{\hyperlink{class_value_node_a9c1591d00c61b83e4fa84c53077b9154}{Value\+Node}}, \mbox{\hyperlink{class_root_node_a1b4087a7d02113ca62d1824c2b334f90}{Root\+Node}}, \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{Expression\+Node}}, \mbox{\hyperlink{class_rename_premise_node_aff4660c6b7a96d0805bf3de1324dbb09}{Rename\+Premise\+Node}}, and \mbox{\hyperlink{class_table_node_a203d86748f9db546b16b457fddaeb432}{Table\+Node}}.
+
+\mbox{\Hypertarget{class_tree_node_af1dd5d7b17e144b2c876fdaaf3e10f6a}\label{class_tree_node_af1dd5d7b17e144b2c876fdaaf3e10f6a}} 
+\index{TreeNode@{TreeNode}!translate@{translate}}
+\index{translate@{translate}!TreeNode@{TreeNode}}
+\doxysubsubsection{\texorpdfstring{translate()}{translate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily virtual std\+::string Tree\+Node\+::translate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Function to insert the translation of a node into an vector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & vector to put the translation in \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_root_node_ad2871f3cda7962f10ba4c3dae7089192}{Root\+Node}}, \mbox{\hyperlink{class_expression_node_a2a6a553311f95a1dedcd61a149e8595b}{Expression\+Node}}, \mbox{\hyperlink{class_join_node_a624cac92d548b4fccd59eaa3cb61d7d7}{Join\+Node}}, \mbox{\hyperlink{class_modification_node_a36dc4bdd14d5ba362309db71a85fc778}{Modification\+Node}}, \mbox{\hyperlink{class_selection_node_a168001b3d4ead7fc3951576306e7fd31}{Selection\+Node}}, \mbox{\hyperlink{class_projection_node_a861d532568a59e49f6b3e25b55f2b725}{Projection\+Node}}, \mbox{\hyperlink{class_rename_node_ae9bd45ff3d306b695a1dd85a701ad627}{Rename\+Node}}, \mbox{\hyperlink{class_set_operator_node_a2f3f07bf12e87716d044773d204b2640}{Set\+Operator\+Node}}, and \mbox{\hyperlink{class_table_node_a4a01a49e10ba5482590dbfe38dd13244}{Table\+Node}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/Tree\+Node.\+h\item 
+src/parser/Tree\+Node.\+cpp\end{DoxyCompactItemize}

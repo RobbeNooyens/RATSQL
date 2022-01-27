@@ -1,0 +1,144 @@
+\hypertarget{class_earley_parser}{}\doxysection{Earley\+Parser Class Reference}
+\label{class_earley_parser}\index{EarleyParser@{EarleyParser}}
+
+
+An implementation of a fully working earley parser.  
+
+
+
+
+{\ttfamily \#include $<$Earley\+Parser.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ \mbox{\hyperlink{class_earley_parser_a1c74df8489f62063e44e448866832016}{earley\+Parse}} (const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&tokens)
+\begin{DoxyCompactList}\small\item\em Function to construct an early parser for a given set of tokens, based on a grammar. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_earley_parser_a021a080ea30bfc848064d806277be9a3}{Earley\+Parser}} (std\+::string \&grammar)
+\begin{DoxyCompactList}\small\item\em Explicit constructor for the earley parser. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_earley_parser_a860318a0cab84777c951ab48db593cd4}{Earley\+Parser}} (const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_c_f_g}{CFG}} $>$ \&cfg)
+\begin{DoxyCompactList}\small\item\em Constructor for Early\+Parser. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_earley_parser_a6725513a76608fa04d4a24d2124be1b4}\label{class_earley_parser_a6725513a76608fa04d4a24d2124be1b4}} 
+{\bfseries $\sim$\+Earley\+Parser} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the earley parser. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_earley_parser_ac621f88f73c06b6562bcba4ac6e1f7c9}{predictor}} (\mbox{\hyperlink{class_parse_state}{Parse\+State}} $\ast$closure\+Rule, unsigned int k)
+\begin{DoxyCompactList}\small\item\em Predictor for the parser. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_earley_parser_a938deaa8cbdaf7fdc10eee53170760eb}{scanner}} (\mbox{\hyperlink{class_parse_state}{Parse\+State}} $\ast$state, unsigned int k, const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&tokens)
+\begin{DoxyCompactList}\small\item\em Scanner for the parser. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_earley_parser_aa2d9211ccb6af4f33de6e413f051c3c4}{completer}} (\mbox{\hyperlink{class_parse_state}{Parse\+State}} $\ast$closure\+Rule, unsigned int k)
+\begin{DoxyCompactList}\small\item\em Completer for the parser. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An implementation of a fully working earley parser. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_earley_parser_a021a080ea30bfc848064d806277be9a3}\label{class_earley_parser_a021a080ea30bfc848064d806277be9a3}} 
+\index{EarleyParser@{EarleyParser}!EarleyParser@{EarleyParser}}
+\index{EarleyParser@{EarleyParser}!EarleyParser@{EarleyParser}}
+\doxysubsubsection{\texorpdfstring{EarleyParser()}{EarleyParser()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Earley\+Parser\+::\+Earley\+Parser (\begin{DoxyParamCaption}\item[{std\+::string \&}]{grammar }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Explicit constructor for the earley parser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grammar} & grammar to construct the parser with \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_earley_parser_a860318a0cab84777c951ab48db593cd4}\label{class_earley_parser_a860318a0cab84777c951ab48db593cd4}} 
+\index{EarleyParser@{EarleyParser}!EarleyParser@{EarleyParser}}
+\index{EarleyParser@{EarleyParser}!EarleyParser@{EarleyParser}}
+\doxysubsubsection{\texorpdfstring{EarleyParser()}{EarleyParser()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Earley\+Parser\+::\+Earley\+Parser (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{class_c_f_g}{CFG}} $>$ \&}]{cfg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for Early\+Parser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & pointer to the grammar \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_earley_parser_aa2d9211ccb6af4f33de6e413f051c3c4}\label{class_earley_parser_aa2d9211ccb6af4f33de6e413f051c3c4}} 
+\index{EarleyParser@{EarleyParser}!completer@{completer}}
+\index{completer@{completer}!EarleyParser@{EarleyParser}}
+\doxysubsubsection{\texorpdfstring{completer()}{completer()}}
+{\footnotesize\ttfamily void Earley\+Parser\+::completer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_parse_state}{Parse\+State}} $\ast$}]{closure\+Rule,  }\item[{unsigned int}]{k }\end{DoxyParamCaption})}
+
+
+
+Completer for the parser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em closure\+Rule} & The closure rule for the completer \\
+\hline
+{\em k} & The set where you need to input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_earley_parser_a1c74df8489f62063e44e448866832016}\label{class_earley_parser_a1c74df8489f62063e44e448866832016}} 
+\index{EarleyParser@{EarleyParser}!earleyParse@{earleyParse}}
+\index{earleyParse@{earleyParse}!EarleyParser@{EarleyParser}}
+\doxysubsubsection{\texorpdfstring{earleyParse()}{earleyParse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$ Earley\+Parser\+::earley\+Parse (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{tokens }\end{DoxyParamCaption})}
+
+
+
+Function to construct an early parser for a given set of tokens, based on a grammar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & tokens \\
+\hline
+{\em grammar} & grammar \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_earley_parser_ac621f88f73c06b6562bcba4ac6e1f7c9}\label{class_earley_parser_ac621f88f73c06b6562bcba4ac6e1f7c9}} 
+\index{EarleyParser@{EarleyParser}!predictor@{predictor}}
+\index{predictor@{predictor}!EarleyParser@{EarleyParser}}
+\doxysubsubsection{\texorpdfstring{predictor()}{predictor()}}
+{\footnotesize\ttfamily void Earley\+Parser\+::predictor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_parse_state}{Parse\+State}} $\ast$}]{closure\+Rule,  }\item[{unsigned int}]{k }\end{DoxyParamCaption})}
+
+
+
+Predictor for the parser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em closure\+Rule} & The closure rule for the predictor \\
+\hline
+{\em k} & The set where you need to input \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_earley_parser_a938deaa8cbdaf7fdc10eee53170760eb}\label{class_earley_parser_a938deaa8cbdaf7fdc10eee53170760eb}} 
+\index{EarleyParser@{EarleyParser}!scanner@{scanner}}
+\index{scanner@{scanner}!EarleyParser@{EarleyParser}}
+\doxysubsubsection{\texorpdfstring{scanner()}{scanner()}}
+{\footnotesize\ttfamily void Earley\+Parser\+::scanner (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_parse_state}{Parse\+State}} $\ast$}]{state,  }\item[{unsigned int}]{k,  }\item[{const std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{tokens }\end{DoxyParamCaption})}
+
+
+
+Scanner for the parser. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & state to scan \\
+\hline
+{\em k} & The set to input in \\
+\hline
+{\em tokens} & \mbox{\hyperlink{namespace_tokens}{Tokens}} to use \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/Earley\+Parser.\+h\item 
+src/parser/Earley\+Parser.\+cpp\end{DoxyCompactItemize}

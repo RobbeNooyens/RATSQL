@@ -1,0 +1,131 @@
+\hypertarget{class_test}{}\doxysection{Test Class Reference}
+\label{class_test}\index{Test@{Test}}
+
+
+Abstract class implemented for Tests.  
+
+
+
+
+{\ttfamily \#include $<$Test.\+h$>$}
+
+Inheritance diagram for Test\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_test}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_test_a7e98fbe7ebf3acede5ee3fed91de3c6a}{run}} ()=0
+\begin{DoxyCompactList}\small\item\em Abstract member to run tests. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_test_a7d2e66978c23349d97ce9f49a965f815}\label{class_test_a7d2e66978c23349d97ce9f49a965f815}} 
+virtual {\bfseries $\sim$\+Test} ()=default
+\begin{DoxyCompactList}\small\item\em Virtual default destructor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_test_a3aebcfb4e56a24fcb486cb383579d604}{exp\+\_\+eq\+\_\+int}} (int p1, int p2, std\+::string message)
+\begin{DoxyCompactList}\small\item\em Check if 2 given ints are equal, when not display an error message. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \mbox{\hyperlink{class_test_adff46a6e6cc21673cfe65924f7e489f2}{exp\+\_\+eq}} (const T \&t1, const T \&t2, std\+::string message)
+\begin{DoxyCompactList}\small\item\em Check if two given objects of class T are equal, when not display an error message. \end{DoxyCompactList}\item 
+{\footnotesize template$<$typename T $>$ }\\static void \mbox{\hyperlink{class_test_abd59b328a741b9fa86b059344fa92c24}{exp\+\_\+neq}} (const T \&t1, const T \&t2, std\+::string message)
+\begin{DoxyCompactList}\small\item\em Check if two given objects of class T are not equal, when not display an error message. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Abstract class implemented for Tests. 
+
+╒═══════════════════════════════════════════════════════════╕ │ │ │ RATSQL Project │ │ Relational Algebra To SQL │ │ │ │ Contributors\+: Pablo Deputter, Cédric Leclercq, │ │ Robbe Nooyens, Maarten Peirsman │ │ │ │ University of Antwerp -\/ Machines en Berekenbaarheid │ │ │ ╘═══════════════════════════════════════════════════════════╛ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_test_adff46a6e6cc21673cfe65924f7e489f2}\label{class_test_adff46a6e6cc21673cfe65924f7e489f2}} 
+\index{Test@{Test}!exp\_eq@{exp\_eq}}
+\index{exp\_eq@{exp\_eq}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{exp\_eq()}{exp\_eq()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static void Test\+::exp\+\_\+eq (\begin{DoxyParamCaption}\item[{const T \&}]{t1,  }\item[{const T \&}]{t2,  }\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Check if two given objects of class T are equal, when not display an error message. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template parameter used in member function \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em t1} & T -\/ first object \\
+\hline
+{\em t2} & T -\/ second object \\
+\hline
+{\em message} & td\+::string -\/ message to be displayed when two object are not equal \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_test_a3aebcfb4e56a24fcb486cb383579d604}\label{class_test_a3aebcfb4e56a24fcb486cb383579d604}} 
+\index{Test@{Test}!exp\_eq\_int@{exp\_eq\_int}}
+\index{exp\_eq\_int@{exp\_eq\_int}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{exp\_eq\_int()}{exp\_eq\_int()}}
+{\footnotesize\ttfamily void Test\+::exp\+\_\+eq\+\_\+int (\begin{DoxyParamCaption}\item[{int}]{p1,  }\item[{int}]{p2,  }\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Check if 2 given ints are equal, when not display an error message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p1} & int -\/ first int \\
+\hline
+{\em p2} & int -\/ second int \\
+\hline
+{\em message} & std\+::string -\/ message to be displayed when two ints are not equal\\
+\hline
+\end{DoxyParams}
+╒═══════════════════════════════════════════════════════════╕ │ │ │ RATSQL Project │ │ Relational Algebra To SQL │ │ │ │ Contributors\+: Pablo Deputter, Cédric Leclercq, │ │ Robbe Nooyens, Maarten Peirsman │ │ │ │ University of Antwerp -\/ Machines en Berekenbaarheid │ │ │ ╘═══════════════════════════════════════════════════════════╛ \mbox{\Hypertarget{class_test_abd59b328a741b9fa86b059344fa92c24}\label{class_test_abd59b328a741b9fa86b059344fa92c24}} 
+\index{Test@{Test}!exp\_neq@{exp\_neq}}
+\index{exp\_neq@{exp\_neq}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{exp\_neq()}{exp\_neq()}}
+{\footnotesize\ttfamily template$<$typename T $>$ \\
+static void Test\+::exp\+\_\+neq (\begin{DoxyParamCaption}\item[{const T \&}]{t1,  }\item[{const T \&}]{t2,  }\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Check if two given objects of class T are not equal, when not display an error message. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em T} & template parameter used in member function \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em t1} & T -\/ first object \\
+\hline
+{\em t2} & T -\/ second object \\
+\hline
+{\em message} & td\+::string -\/ message to be displayed when two object are equal \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_test_a7e98fbe7ebf3acede5ee3fed91de3c6a}\label{class_test_a7e98fbe7ebf3acede5ee3fed91de3c6a}} 
+\index{Test@{Test}!run@{run}}
+\index{run@{run}!Test@{Test}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily virtual void Test\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Abstract member to run tests. 
+
+
+
+Implemented in \mbox{\hyperlink{class_levenshtein_test_a36642e61cb7bc1bf5af485d8fbd73f28}{Levenshtein\+Test}}, \mbox{\hyperlink{class_query_test_ae6cfddc8865c6a17d1b53822e0337847}{Query\+Test}}, and \mbox{\hyperlink{class_shunting_yard_test_ad28516d0c74bdc0cee1c78767754edc3}{Shunting\+Yard\+Test}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/tests/Test.\+h\item 
+src/tests/Test.\+cpp\end{DoxyCompactItemize}

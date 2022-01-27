@@ -1,0 +1,128 @@
+\hypertarget{class_parse_token}{}\doxysection{Parse\+Token Class Reference}
+\label{class_parse_token}\index{ParseToken@{ParseToken}}
+
+
+A class to implement a parse token.  
+
+
+
+
+{\ttfamily \#include $<$Parse\+Template.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_parse_token_a364076693b4baecb533fdabd702ba362}{Parse\+Token}} (string t, string c)
+\begin{DoxyCompactList}\small\item\em Constructor for Token. \end{DoxyCompactList}\item 
+const string \& \mbox{\hyperlink{class_parse_token_ae46d388bd73871406227f40fb58372c7}{get\+Token}} () const
+\begin{DoxyCompactList}\small\item\em Function returning the type of the token. \end{DoxyCompactList}\item 
+const string \& \mbox{\hyperlink{class_parse_token_acfb4bb6d9a0cfd7d727dd37247f82a93}{get\+Content}} () const
+\begin{DoxyCompactList}\small\item\em Function returning the content of the token. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_parse_token_acb7c1e12f6751900c6f15d92d5905bca}{operator==}} (const \mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&other) const
+\begin{DoxyCompactList}\small\item\em operator== \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_parse_token_ab59f034648c29c188d478a37ecc6a6bf}\label{class_parse_token_ab59f034648c29c188d478a37ecc6a6bf}} 
+void {\bfseries enquote} ()
+\begin{DoxyCompactList}\small\item\em Function to quote content. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \mbox{\hyperlink{class_parse_token_a5092b0c503ca1c83c651d4a11d3bd7c9}{operator$<$$<$}} (ostream \&os, const \mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&token)
+\begin{DoxyCompactList}\small\item\em operator \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} for a parse template \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class to implement a parse token. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_parse_token_a364076693b4baecb533fdabd702ba362}\label{class_parse_token_a364076693b4baecb533fdabd702ba362}} 
+\index{ParseToken@{ParseToken}!ParseToken@{ParseToken}}
+\index{ParseToken@{ParseToken}!ParseToken@{ParseToken}}
+\doxysubsubsection{\texorpdfstring{ParseToken()}{ParseToken()}}
+{\footnotesize\ttfamily Parse\+Token\+::\+Parse\+Token (\begin{DoxyParamCaption}\item[{string}]{t,  }\item[{string}]{c }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for Token. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t} & Type of the token \\
+\hline
+{\em c} & Content of the token \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_parse_token_acfb4bb6d9a0cfd7d727dd37247f82a93}\label{class_parse_token_acfb4bb6d9a0cfd7d727dd37247f82a93}} 
+\index{ParseToken@{ParseToken}!getContent@{getContent}}
+\index{getContent@{getContent}!ParseToken@{ParseToken}}
+\doxysubsubsection{\texorpdfstring{getContent()}{getContent()}}
+{\footnotesize\ttfamily const string \& Parse\+Token\+::get\+Content (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function returning the content of the token. 
+
+\begin{DoxyReturn}{Returns}
+content of the token 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_parse_token_ae46d388bd73871406227f40fb58372c7}\label{class_parse_token_ae46d388bd73871406227f40fb58372c7}} 
+\index{ParseToken@{ParseToken}!getToken@{getToken}}
+\index{getToken@{getToken}!ParseToken@{ParseToken}}
+\doxysubsubsection{\texorpdfstring{getToken()}{getToken()}}
+{\footnotesize\ttfamily const string \& Parse\+Token\+::get\+Token (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function returning the type of the token. 
+
+\begin{DoxyReturn}{Returns}
+type of the token 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_parse_token_acb7c1e12f6751900c6f15d92d5905bca}\label{class_parse_token_acb7c1e12f6751900c6f15d92d5905bca}} 
+\index{ParseToken@{ParseToken}!operator==@{operator==}}
+\index{operator==@{operator==}!ParseToken@{ParseToken}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily bool Parse\+Token\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+operator== 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & object to compare with \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+this == object 
+\end{DoxyReturn}
+
+
+\doxysubsection{Friends And Related Function Documentation}
+\mbox{\Hypertarget{class_parse_token_a5092b0c503ca1c83c651d4a11d3bd7c9}\label{class_parse_token_a5092b0c503ca1c83c651d4a11d3bd7c9}} 
+\index{ParseToken@{ParseToken}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!ParseToken@{ParseToken}}
+\doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{ostream \&}]{os,  }\item[{const \mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+operator \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} for a parse template 
+
+
+\begin{DoxyParams}{Parameters}
+{\em os} & ostream to cout to \\
+\hline
+{\em token} & token to cout \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ostream 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/Parse\+Template.\+h\end{DoxyCompactItemize}

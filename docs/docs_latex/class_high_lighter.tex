@@ -1,0 +1,97 @@
+\hypertarget{class_high_lighter}{}\doxysection{High\+Lighter Class Reference}
+\label{class_high_lighter}\index{HighLighter@{HighLighter}}
+
+
+Class for QText\+Edit syntax highlighter, derived from QSyntax\+Highlighter.  
+
+
+
+
+{\ttfamily \#include $<$Highlighter.\+h$>$}
+
+Inheritance diagram for High\+Lighter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_high_lighter}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_high_lighter_ac2676eaa1a387a7d908606575a87fe72}{High\+Lighter}} (QText\+Edit $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for Highlighter object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_high_lighter_a45b12eeefe02873bb4702dd14357ee6c}{add\+Keywords}} (const QString\+List \&keywords, const QText\+Char\+Format \&format)
+\begin{DoxyCompactList}\small\item\em Add keywords to be highlighted in given format. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_high_lighter_ae5c3d65c55af0ae86ddb185d8d6d2664}\label{class_high_lighter_ae5c3d65c55af0ae86ddb185d8d6d2664}} 
+void {\bfseries set\+Error\+Detection} (bool b)
+\item 
+\mbox{\Hypertarget{class_high_lighter_ae65603b65598ae92b17074fa0325ab7d}\label{class_high_lighter_ae65603b65598ae92b17074fa0325ab7d}} 
+void {\bfseries set\+Deviation} (int dev)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_high_lighter_af7ca98f02f64373e1c7c17f5cb59637f}{highlight\+Block}} (const QString \&text) override
+\begin{DoxyCompactList}\small\item\em Called every time whenever a update happens in the connected QText\+Edit class / parent class and shall highlight given text. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class for QText\+Edit syntax highlighter, derived from QSyntax\+Highlighter. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_high_lighter_ac2676eaa1a387a7d908606575a87fe72}\label{class_high_lighter_ac2676eaa1a387a7d908606575a87fe72}} 
+\index{HighLighter@{HighLighter}!HighLighter@{HighLighter}}
+\index{HighLighter@{HighLighter}!HighLighter@{HighLighter}}
+\doxysubsubsection{\texorpdfstring{HighLighter()}{HighLighter()}}
+{\footnotesize\ttfamily High\+Lighter\+::\+High\+Lighter (\begin{DoxyParamCaption}\item[{QText\+Edit $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for Highlighter object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & QText\+Edit -\/ pointer to parent widget \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_high_lighter_a45b12eeefe02873bb4702dd14357ee6c}\label{class_high_lighter_a45b12eeefe02873bb4702dd14357ee6c}} 
+\index{HighLighter@{HighLighter}!addKeywords@{addKeywords}}
+\index{addKeywords@{addKeywords}!HighLighter@{HighLighter}}
+\doxysubsubsection{\texorpdfstring{addKeywords()}{addKeywords()}}
+{\footnotesize\ttfamily void High\+Lighter\+::add\+Keywords (\begin{DoxyParamCaption}\item[{const QString\+List \&}]{keywords,  }\item[{const QText\+Char\+Format \&}]{format }\end{DoxyParamCaption})}
+
+
+
+Add keywords to be highlighted in given format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em keywords} & QString\+List -\/ list containing keywords \\
+\hline
+{\em format} & QText\+Char\+Format -\/ format of keywords \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_high_lighter_af7ca98f02f64373e1c7c17f5cb59637f}\label{class_high_lighter_af7ca98f02f64373e1c7c17f5cb59637f}} 
+\index{HighLighter@{HighLighter}!highlightBlock@{highlightBlock}}
+\index{highlightBlock@{highlightBlock}!HighLighter@{HighLighter}}
+\doxysubsubsection{\texorpdfstring{highlightBlock()}{highlightBlock()}}
+{\footnotesize\ttfamily void High\+Lighter\+::highlight\+Block (\begin{DoxyParamCaption}\item[{const QString \&}]{text }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Called every time whenever a update happens in the connected QText\+Edit class / parent class and shall highlight given text. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em text} & QString -\/ text inside QText\+Edit class \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/gui/Highlighter.\+h\item 
+src/gui/Highlighter.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,94 @@
+\hypertarget{class_system}{}\doxysection{System Class Reference}
+\label{class_system}\index{System@{System}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_system_ae317936c9bcf1374d61745572e0f2f8a}\label{class_system_ae317936c9bcf1374d61745572e0f2f8a}} 
+{\bfseries System} ()
+\begin{DoxyCompactList}\small\item\em Small constructor that creates a new shared pointer to a new earley parser object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_system_a2264bd8534bd6edb0bef7b7803c981f5}{convert\+To\+SQL}} (const std\+::string \&query)
+\begin{DoxyCompactList}\small\item\em Will parse a relational expression to an SQL statement // todo. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \mbox{\hyperlink{class_system_ad317ad7e63b973f9b4d05ae2840dffa7}{tokenize}} (std\+::string \&str)
+\begin{DoxyCompactList}\small\item\em Tokenize a given std\+::string. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ $>$ \mbox{\hyperlink{class_system_a8e48312dede2309b9c34091b7ae8f875}{optimize}} (vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&tokens)
+\begin{DoxyCompactList}\small\item\em Optimize a given expression in vector of \mbox{\hyperlink{class_parse_token}{Parse\+Token}} forms. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{class_system_a92ae9055a66d7282a262f1c6bab67e3c}{convert\+To\+SQL}} (const vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&query)
+\begin{DoxyCompactList}\small\item\em Convert given query to SQL form. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_system_a2264bd8534bd6edb0bef7b7803c981f5}\label{class_system_a2264bd8534bd6edb0bef7b7803c981f5}} 
+\index{System@{System}!convertToSQL@{convertToSQL}}
+\index{convertToSQL@{convertToSQL}!System@{System}}
+\doxysubsubsection{\texorpdfstring{convertToSQL()}{convertToSQL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string System\+::convert\+To\+SQL (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{query }\end{DoxyParamCaption})}
+
+
+
+Will parse a relational expression to an SQL statement // todo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & Given by reference -\/ will change the string to an SQL statement \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_system_a92ae9055a66d7282a262f1c6bab67e3c}\label{class_system_a92ae9055a66d7282a262f1c6bab67e3c}} 
+\index{System@{System}!convertToSQL@{convertToSQL}}
+\index{convertToSQL@{convertToSQL}!System@{System}}
+\doxysubsubsection{\texorpdfstring{convertToSQL()}{convertToSQL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string System\+::convert\+To\+SQL (\begin{DoxyParamCaption}\item[{const vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{query }\end{DoxyParamCaption})}
+
+
+
+Convert given query to SQL form. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & std\+::vector$<$\+Parse\+Token$>$ -\/ query to be converted to SQL \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::string -\/ converted query in SQL form 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_system_a8e48312dede2309b9c34091b7ae8f875}\label{class_system_a8e48312dede2309b9c34091b7ae8f875}} 
+\index{System@{System}!optimize@{optimize}}
+\index{optimize@{optimize}!System@{System}}
+\doxysubsubsection{\texorpdfstring{optimize()}{optimize()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ $>$ System\+::optimize (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{tokens }\end{DoxyParamCaption})}
+
+
+
+Optimize a given expression in vector of \mbox{\hyperlink{class_parse_token}{Parse\+Token}} forms. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tokens} & std\+::vector$<$\+Parse\+Token$>$ -\/ tokens to be optimized by reference \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$vector$<$\+Parse\+Token$>$$>$ -\/ optimized tokens 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_system_ad317ad7e63b973f9b4d05ae2840dffa7}\label{class_system_ad317ad7e63b973f9b4d05ae2840dffa7}} 
+\index{System@{System}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!System@{System}}
+\doxysubsubsection{\texorpdfstring{tokenize()}{tokenize()}}
+{\footnotesize\ttfamily vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ System\+::tokenize (\begin{DoxyParamCaption}\item[{std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+Tokenize a given std\+::string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & std\+::string -\/ given string \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector$<$\+Parse\+Token$>$ -\/ tokens 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/system/System.\+h\item 
+src/system/System.\+cpp\end{DoxyCompactItemize}

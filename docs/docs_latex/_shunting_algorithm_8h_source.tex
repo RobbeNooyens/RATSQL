@@ -1,0 +1,103 @@
+\hypertarget{_shunting_algorithm_8h_source}{}\doxysection{Shunting\+Algorithm.\+h}
+\label{_shunting_algorithm_8h_source}\index{src/algorithms/ShuntingAlgorithm.h@{src/algorithms/ShuntingAlgorithm.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTINGALGORITHM\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RATSQL\_SHUNTINGALGORITHM\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include<vector>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include<string>}}
+\DoxyCodeLine{20 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{21 \textcolor{preprocessor}{\#include <stack>}}
+\DoxyCodeLine{22 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{23 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{24 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{25 \textcolor{preprocessor}{\#include "{}../datastructures/RAExpression.h"{}}}
+\DoxyCodeLine{26 \textcolor{preprocessor}{\#include "{}../parser/Tokens.h"{}}}
+\DoxyCodeLine{27 \textcolor{preprocessor}{\#include "{}../parser/ParseTemplate.h"{}}}
+\DoxyCodeLine{28 \textcolor{preprocessor}{\#include "{}ShuntingGrid.h"{}}}
+\DoxyCodeLine{29 }
+\DoxyCodeLine{33 \textcolor{keyword}{enum} OperatorType \{PREFIX, INFIX\};}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35 \textcolor{keyword}{class }\mbox{\hyperlink{class_parse_token}{ParseToken}};}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{40 \textcolor{keyword}{class }\mbox{\hyperlink{class_shunting_algorithm}{ShuntingAlgorithm}} \{}
+\DoxyCodeLine{41 \textcolor{keyword}{public}:}
+\DoxyCodeLine{45     \mbox{\hyperlink{class_shunting_algorithm_aa72a41644140a80cd71f16674cdab4f5}{ShuntingAlgorithm}}()=\textcolor{keywordflow}{default};}
+\DoxyCodeLine{51     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_shunting_algorithm_ae1b92ccfb5e29fa6522c016fcce2340f}{operator()}}(std::vector<ParseToken>\& tokens, std::ostream\& stream=std::cout);}
+\DoxyCodeLine{57     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_shunting_algorithm_a7e6f94cf1c2fac767e40d3b59ccf7c95}{parse}}(std::ostream\& stream=std::cout, \textcolor{keywordtype}{bool} print=\textcolor{keyword}{true});}
+\DoxyCodeLine{62     std::vector<std::vector<ParseToken>> \mbox{\hyperlink{class_shunting_algorithm_aedbc1cc01e2bf772d0f098b0da1c3cbe}{getShuntingOutput}}();}
+\DoxyCodeLine{63 \textcolor{keyword}{private}:}
+\DoxyCodeLine{65     \mbox{\hyperlink{class_shunting_grid}{ShuntingGrid}} grid;}
+\DoxyCodeLine{67     std::stack<ParseToken> operatorStack\{\};}
+\DoxyCodeLine{69     std::queue<ParseToken> queue\{\};}
+\DoxyCodeLine{71     std::stack<ParseToken> textStack\{\};}
+\DoxyCodeLine{73     \mbox{\hyperlink{class_parse_token}{ParseToken}} emptyToken\{\textcolor{stringliteral}{"{}"{}}, \textcolor{stringliteral}{"{}"{}}\};}
+\DoxyCodeLine{75     std::map<std::string, int> precedence = \{}
+\DoxyCodeLine{76             \{Tokens::PI, 4\},}
+\DoxyCodeLine{77             \{Tokens::SIGMA, 3\},}
+\DoxyCodeLine{78             \{Tokens::RHO, 5\},}
+\DoxyCodeLine{79 }
+\DoxyCodeLine{80             \{Tokens::JOIN, 10\},}
+\DoxyCodeLine{81             \{Tokens::UNION, 10\},}
+\DoxyCodeLine{82             \{Tokens::INTERSECT, 10\},}
+\DoxyCodeLine{83             \{Tokens::SUBTRACT, 10\},}
+\DoxyCodeLine{84             \{Tokens::SCALAR, 10\},}
+\DoxyCodeLine{85             \{Tokens::DOT, 10\},}
+\DoxyCodeLine{86 }
+\DoxyCodeLine{87             \{Tokens::ROUNDED\_BRACKET\_LEFT, 20\},}
+\DoxyCodeLine{88             \{Tokens::ROUNDED\_BRACKET\_RIGHT, 20\},}
+\DoxyCodeLine{89 }
+\DoxyCodeLine{90             \{Tokens::AND, 2\},}
+\DoxyCodeLine{91             \{Tokens::OR, 2\},}
+\DoxyCodeLine{92             \{Tokens::NOT, 2\},}
+\DoxyCodeLine{93 }
+\DoxyCodeLine{94             \{Tokens::EQUALS, 1\},}
+\DoxyCodeLine{95             \{Tokens::NOT\_EQUALS, 1\},}
+\DoxyCodeLine{96             \{Tokens::LESS\_THAN\_OR\_EQUALS, 1\},}
+\DoxyCodeLine{97             \{Tokens::GREATER\_THAN\_OR\_EQUALS, 1\},}
+\DoxyCodeLine{98             \{Tokens::LESS\_THAN, 1\},}
+\DoxyCodeLine{99             \{Tokens::GREATER\_THAN, 1\},}
+\DoxyCodeLine{100             \{Tokens::COMMA, 1\},}
+\DoxyCodeLine{101             \{Tokens::ARROW\_LEFT, 1\},}
+\DoxyCodeLine{102             \{Tokens::ARROW\_RIGHT, 1\},}
+\DoxyCodeLine{103     \};}
+\DoxyCodeLine{105     std::map<std::string, OperatorType> operatorTypes = \{}
+\DoxyCodeLine{106             \{Tokens::PI, PREFIX\},}
+\DoxyCodeLine{107             \{Tokens::SIGMA, PREFIX\},}
+\DoxyCodeLine{108             \{Tokens::RHO, PREFIX\},}
+\DoxyCodeLine{109 }
+\DoxyCodeLine{110             \{Tokens::AND, INFIX\},}
+\DoxyCodeLine{111             \{Tokens::OR, INFIX\},}
+\DoxyCodeLine{112             \{Tokens::NOT, INFIX\},}
+\DoxyCodeLine{113 }
+\DoxyCodeLine{114             \{Tokens::JOIN, INFIX\},}
+\DoxyCodeLine{115             \{Tokens::UNION, INFIX\},}
+\DoxyCodeLine{116             \{Tokens::INTERSECT, INFIX\},}
+\DoxyCodeLine{117             \{Tokens::SUBTRACT, INFIX\},}
+\DoxyCodeLine{118 }
+\DoxyCodeLine{119             \{Tokens::EQUALS, INFIX\},}
+\DoxyCodeLine{120             \{Tokens::NOT\_EQUALS, INFIX\},}
+\DoxyCodeLine{121             \{Tokens::GREATER\_THAN\_OR\_EQUALS, INFIX\},}
+\DoxyCodeLine{122             \{Tokens::LESS\_THAN\_OR\_EQUALS, INFIX\},}
+\DoxyCodeLine{123             \{Tokens::LESS\_THAN\_OR\_EQUALS, INFIX\},}
+\DoxyCodeLine{124             \{Tokens::LESS\_THAN, INFIX\},}
+\DoxyCodeLine{125             \{Tokens::GREATER\_THAN, INFIX\},}
+\DoxyCodeLine{126             \{Tokens::COMMA, INFIX\},}
+\DoxyCodeLine{127             \{Tokens::ARROW\_LEFT, INFIX\},}
+\DoxyCodeLine{128     \};}
+\DoxyCodeLine{132     \textcolor{keywordtype}{void} flush();}
+\DoxyCodeLine{137     \mbox{\hyperlink{class_parse_token}{ParseToken}} \& getStackTop();}
+\DoxyCodeLine{141     \_\_attribute\_\_((unused)) \textcolor{keywordtype}{void} printOperatorStack();}
+\DoxyCodeLine{145     \_\_attribute\_\_((unused)) \textcolor{keywordtype}{void} printQueue();}
+\DoxyCodeLine{151     \textcolor{keywordtype}{bool} isOperator(\mbox{\hyperlink{class_parse_token}{ParseToken}} \&symbol);}
+\DoxyCodeLine{156     \textcolor{keywordtype}{void} consumeOperator(\mbox{\hyperlink{class_parse_token}{ParseToken}} \&opSymbol);}
+\DoxyCodeLine{161     \textcolor{keywordtype}{void} consumeText(\mbox{\hyperlink{class_parse_token}{ParseToken}} \&text);}
+\DoxyCodeLine{169     \textcolor{keywordtype}{void} parseOperator(\mbox{\hyperlink{class_parse_token}{ParseToken}} \&queueFront, std::vector<std::string>\& output);}
+\DoxyCodeLine{170 \};}
+\DoxyCodeLine{171 }
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTINGALGORITHM\_H}}
+
+\end{DoxyCode}

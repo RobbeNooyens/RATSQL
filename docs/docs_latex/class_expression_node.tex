@@ -1,0 +1,104 @@
+\hypertarget{class_expression_node}{}\doxysection{Expression\+Node Class Reference}
+\label{class_expression_node}\index{ExpressionNode@{ExpressionNode}}
+Inheritance diagram for Expression\+Node\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_expression_node}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_expression_node_aa46fc484974d4891d4fb0784f250acd2}{Expression\+Node}} (const std\+::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}})
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}} () const override
+\begin{DoxyCompactList}\small\item\em Translates the current node. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_expression_node_a2a6a553311f95a1dedcd61a149e8595b}{translate}} (std\+::vector$<$ std\+::string $>$ \&v) override
+\begin{DoxyCompactList}\small\item\em Translates the current node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_expression_node_ab4db8af19eb0214fc2cd8713dab7570a}\label{class_expression_node_ab4db8af19eb0214fc2cd8713dab7570a}} 
+std\+::vector$<$ std\+::string $>$ {\bfseries translate\+To\+Vector} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_expression_node_a5f32b721d347ad46578c0917e55f43bf}\label{class_expression_node_a5f32b721d347ad46578c0917e55f43bf}} 
+static void {\bfseries create\+View} (vector$<$ string $>$ \&v)
+\item 
+\mbox{\Hypertarget{class_expression_node_ad7120d2633a43ef75ac4e5827a7a803e}\label{class_expression_node_ad7120d2633a43ef75ac4e5827a7a803e}} 
+static void {\bfseries create\+View} (vector$<$ string $>$ \&v, const string \&view\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_expression_node_a2981208eeaebe0d8024eb3ad62d076b7}\label{class_expression_node_a2981208eeaebe0d8024eb3ad62d076b7}} 
+static unsigned int {\bfseries temp\+Table\+Number} = 0
+\item 
+\mbox{\Hypertarget{class_expression_node_a22f4a6e1cad9daa0a30113deca786df8}\label{class_expression_node_a22f4a6e1cad9daa0a30113deca786df8}} 
+static std\+::string {\bfseries last\+Table}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_expression_node_aa46fc484974d4891d4fb0784f250acd2}\label{class_expression_node_aa46fc484974d4891d4fb0784f250acd2}} 
+\index{ExpressionNode@{ExpressionNode}!ExpressionNode@{ExpressionNode}}
+\index{ExpressionNode@{ExpressionNode}!ExpressionNode@{ExpressionNode}}
+\doxysubsubsection{\texorpdfstring{ExpressionNode()}{ExpressionNode()}}
+{\footnotesize\ttfamily Expression\+Node\+::\+Expression\+Node (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em token} & token identifier for this node \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}\label{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}} 
+\index{ExpressionNode@{ExpressionNode}!translate@{translate}}
+\index{translate@{translate}!ExpressionNode@{ExpressionNode}}
+\doxysubsubsection{\texorpdfstring{translate()}{translate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::string Expression\+Node\+::translate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Translates the current node. 
+
+\begin{DoxyReturn}{Returns}
+translated representation 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_tree_node_a3f80f326fdf7d30fcc194772692ed0bd}{Tree\+Node}}.
+
+\mbox{\Hypertarget{class_expression_node_a2a6a553311f95a1dedcd61a149e8595b}\label{class_expression_node_a2a6a553311f95a1dedcd61a149e8595b}} 
+\index{ExpressionNode@{ExpressionNode}!translate@{translate}}
+\index{translate@{translate}!ExpressionNode@{ExpressionNode}}
+\doxysubsubsection{\texorpdfstring{translate()}{translate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::string Expression\+Node\+::translate (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::string $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Translates the current node. 
+
+\begin{DoxyReturn}{Returns}
+translated representation 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_tree_node_af1dd5d7b17e144b2c876fdaaf3e10f6a}{Tree\+Node}}.
+
+
+
+Reimplemented in \mbox{\hyperlink{class_join_node_a624cac92d548b4fccd59eaa3cb61d7d7}{Join\+Node}}, \mbox{\hyperlink{class_modification_node_a36dc4bdd14d5ba362309db71a85fc778}{Modification\+Node}}, \mbox{\hyperlink{class_selection_node_a168001b3d4ead7fc3951576306e7fd31}{Selection\+Node}}, \mbox{\hyperlink{class_projection_node_a861d532568a59e49f6b3e25b55f2b725}{Projection\+Node}}, \mbox{\hyperlink{class_rename_node_ae9bd45ff3d306b695a1dd85a701ad627}{Rename\+Node}}, and \mbox{\hyperlink{class_set_operator_node_a2f3f07bf12e87716d044773d204b2640}{Set\+Operator\+Node}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/Tree\+Node.\+h\item 
+src/parser/Tree\+Node.\+cpp\end{DoxyCompactItemize}

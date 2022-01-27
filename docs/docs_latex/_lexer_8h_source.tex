@@ -1,0 +1,44 @@
+\hypertarget{_lexer_8h_source}{}\doxysection{Lexer.\+h}
+\label{_lexer_8h_source}\index{src/parser/Lexer.h@{src/parser/Lexer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Maarten on 28/11/2021.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_LEXER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_LEXER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include "{}ParseTemplate.h"{}}}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <memory>}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17 \textcolor{keyword}{class }\mbox{\hyperlink{class_c_f_g}{CFG}};}
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{class_lexer}{Lexer}} \{}
+\DoxyCodeLine{23 \textcolor{keyword}{private}:}
+\DoxyCodeLine{25     \textcolor{keyword}{const} \textcolor{keywordtype}{char} delimiter = \textcolor{charliteral}{' '};}
+\DoxyCodeLine{27     map<string, string> tokenMap;}
+\DoxyCodeLine{29     vector<vector<string>> aliases;}
+\DoxyCodeLine{30 \textcolor{keyword}{public}:}
+\DoxyCodeLine{34     \mbox{\hyperlink{class_lexer_a2752a2b16cc1ffbcb8fc3e82e95bf331}{Lexer}}();}
+\DoxyCodeLine{40     \mbox{\hyperlink{class_lexer_a2752a2b16cc1ffbcb8fc3e82e95bf331}{Lexer}}(\textcolor{keyword}{const} map<string, string> \&m, \textcolor{keyword}{const} vector<vector<string>> \&a);}
+\DoxyCodeLine{45     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_lexer_a2752a2b16cc1ffbcb8fc3e82e95bf331}{Lexer}}(\textcolor{keyword}{const} std::shared\_ptr<CFG>\& cfg);}
+\DoxyCodeLine{51     vector<string> \mbox{\hyperlink{class_lexer_a026e4a0baccf5ea103f4a311b9e56f70}{splitString}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&parseString);}
+\DoxyCodeLine{57     vector<ParseToken> \mbox{\hyperlink{class_lexer_a65256511a56e367a60c5ca44bde57066}{tokenise}}(\textcolor{keyword}{const} vector<string> \&v);}
+\DoxyCodeLine{63     vector<ParseToken> \mbox{\hyperlink{class_lexer_a65256511a56e367a60c5ca44bde57066}{tokenise}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&s);    }
+\DoxyCodeLine{73     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_lexer_adcfd4045a38745d11c245d6ecba7a432}{isString}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&s);}
+\DoxyCodeLine{74     }
+\DoxyCodeLine{84     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_lexer_addbd44c72f68e92db733e4b717619094}{isNumber}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&s);    }
+\DoxyCodeLine{94     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_lexer_a0f952e6c0dd381d6109c3541d64d5fdd}{isName}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&s);}
+\DoxyCodeLine{101     \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_lexer_a44dd62baecd45ee332fa7283e40dc741}{isDelimiter}}(\textcolor{keyword}{const} \textcolor{keywordtype}{string} \&s, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} offset);}
+\DoxyCodeLine{102 \};}
+\DoxyCodeLine{103 }
+\DoxyCodeLine{104 }
+\DoxyCodeLine{105 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_LEXER\_H}}
+
+\end{DoxyCode}

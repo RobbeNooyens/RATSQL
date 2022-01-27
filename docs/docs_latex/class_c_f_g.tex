@@ -1,0 +1,238 @@
+\hypertarget{class_c_f_g}{}\doxysection{CFG Class Reference}
+\label{class_c_f_g}\index{CFG@{CFG}}
+
+
+Class implemented for Context-\/\+Free-\/\+Grammar.  
+
+
+
+
+{\ttfamily \#include $<$CFG.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_c_f_g_a6a6d74b60d6abc9b91031aaac23067ff}\label{class_c_f_g_a6a6d74b60d6abc9b91031aaac23067ff}} 
+{\bfseries CFG} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{class_c_f_g}{CFG}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_f_g_af08bc9b140eaac715c6e5c9be47b1c50}{CFG}} (String\+Set variables, String\+Set terminals, Production\+Rules production\+Rules, std\+::string start\+Symbol)
+\begin{DoxyCompactList}\small\item\em Constructor for \mbox{\hyperlink{class_c_f_g}{CFG}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_c_f_g_a62ad1bb24aa9bccb43cc756d56a97bdd}{CFG}} (const std\+::string \&json)
+\begin{DoxyCompactList}\small\item\em Construct for \mbox{\hyperlink{class_c_f_g}{CFG}} object from json file. \end{DoxyCompactList}\item 
+String\+Set \mbox{\hyperlink{class_c_f_g_a224b0e7a22390122614a994f9f565ca2}{get\+Variables}} ()
+\begin{DoxyCompactList}\small\item\em Get variables. \end{DoxyCompactList}\item 
+String\+Set \mbox{\hyperlink{class_c_f_g_a98ec970111c7f6936ceb8aa7d88aa983}{get\+Terminals}} ()
+\begin{DoxyCompactList}\small\item\em Get terminals. \end{DoxyCompactList}\item 
+Production\+Rules \mbox{\hyperlink{class_c_f_g_a6e3c17dc8a918ffc2b83bc0597aec8cc}{get\+Production\+Rules}} ()
+\begin{DoxyCompactList}\small\item\em Get production rules. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_c_f_g_a1e04c0452634f908327541f364c82988}{get\+Start\+Symbol}} ()
+\begin{DoxyCompactList}\small\item\em Get start symbol. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_f_g_a03249f93345a56f3b491749f39c0e402}{accepts}} (const std\+::string \&)
+\begin{DoxyCompactList}\small\item\em Check if given std\+::string is accepted by grammar using the CYK-\/algorithm. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_f_g_ae24d104607dca3d389ff47e96deaf91d}{is\+Variable}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Check if given std\+::string is a variable. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_c_f_g_a75144947ca0a2f2d97b2f51f21dc6ec7}{is\+Terminal}} (const std\+::string \&s)
+\begin{DoxyCompactList}\small\item\em Check if given std\+::string is a terminal. \end{DoxyCompactList}\item 
+Production\+Rules \mbox{\hyperlink{class_c_f_g_ac62caff80c90d6255afa1d919df8d9e7}{get\+Rules}} (const std\+::string \&head)
+\begin{DoxyCompactList}\small\item\em Get production rules for a given variable. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \& \mbox{\hyperlink{class_c_f_g_a318207c98090e26fc7555a845e8a7599}{get\+Aliases}} () const
+\begin{DoxyCompactList}\small\item\em Get aliases (=aliases for terminals/variables of grammar) \end{DoxyCompactList}\item 
+const std\+::map$<$ std\+::string, std\+::string $>$ \& \mbox{\hyperlink{class_c_f_g_a1389aa9031b1877f7a81b684a71165fa}{get\+Alias\+Map}} () const
+\begin{DoxyCompactList}\small\item\em Get aliases as a map (=aliases for terminals/variables of grammar) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_c_f_g_a55918dc260b387f98d4de8424b4584e5}\label{class_c_f_g_a55918dc260b387f98d4de8424b4584e5}} 
+void {\bfseries print} ()
+\begin{DoxyCompactList}\small\item\em Print the \mbox{\hyperlink{class_c_f_g}{CFG}} info\+: variables, terminals, startsymbol and productionrules. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class implemented for Context-\/\+Free-\/\+Grammar. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_c_f_g_af08bc9b140eaac715c6e5c9be47b1c50}\label{class_c_f_g_af08bc9b140eaac715c6e5c9be47b1c50}} 
+\index{CFG@{CFG}!CFG@{CFG}}
+\index{CFG@{CFG}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{CFG()}{CFG()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily CFG\+::\+CFG (\begin{DoxyParamCaption}\item[{String\+Set}]{variables,  }\item[{String\+Set}]{terminals,  }\item[{Production\+Rules}]{production\+Rules,  }\item[{std\+::string}]{start\+Symbol }\end{DoxyParamCaption})}
+
+
+
+Constructor for \mbox{\hyperlink{class_c_f_g}{CFG}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variables} & std\+::set -\/ contains variables of grammar \\
+\hline
+{\em terminals} & std\+::set -\/ contains terminals of grammar \\
+\hline
+{\em production\+Rules} & std\+::set -\/ contains rules \\
+\hline
+{\em start\+Symbol} & std\+::string -\/ symbol of start variable \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_c_f_g_a62ad1bb24aa9bccb43cc756d56a97bdd}\label{class_c_f_g_a62ad1bb24aa9bccb43cc756d56a97bdd}} 
+\index{CFG@{CFG}!CFG@{CFG}}
+\index{CFG@{CFG}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{CFG()}{CFG()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily CFG\+::\+CFG (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct for \mbox{\hyperlink{class_c_f_g}{CFG}} object from json file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & std\+::string -\/ path to json file \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_c_f_g_a03249f93345a56f3b491749f39c0e402}\label{class_c_f_g_a03249f93345a56f3b491749f39c0e402}} 
+\index{CFG@{CFG}!accepts@{accepts}}
+\index{accepts@{accepts}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{accepts()}{accepts()}}
+{\footnotesize\ttfamily bool CFG\+::accepts (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})}
+
+
+
+Check if given std\+::string is accepted by grammar using the CYK-\/algorithm. 
+
+\begin{DoxyReturn}{Returns}
+bool -\/ true if accepted 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a318207c98090e26fc7555a845e8a7599}\label{class_c_f_g_a318207c98090e26fc7555a845e8a7599}} 
+\index{CFG@{CFG}!getAliases@{getAliases}}
+\index{getAliases@{getAliases}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getAliases()}{getAliases()}}
+{\footnotesize\ttfamily const vector$<$ std\+::vector$<$ std\+::string $>$ $>$ \& CFG\+::get\+Aliases (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get aliases (=aliases for terminals/variables of grammar) 
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$std\+::string$>$$>$ -\/ aliases by reference
+\end{DoxyReturn}
+Get aliases (=aliases for terminals/variables of grammar) \begin{DoxyReturn}{Returns}
+std\+::vector$<$std\+::vector$<$std\+::string$>$$>$ -\/ aliases by reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a1389aa9031b1877f7a81b684a71165fa}\label{class_c_f_g_a1389aa9031b1877f7a81b684a71165fa}} 
+\index{CFG@{CFG}!getAliasMap@{getAliasMap}}
+\index{getAliasMap@{getAliasMap}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getAliasMap()}{getAliasMap()}}
+{\footnotesize\ttfamily const map$<$ std\+::string, std\+::string $>$ \& CFG\+::get\+Alias\+Map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Get aliases as a map (=aliases for terminals/variables of grammar) 
+
+\begin{DoxyReturn}{Returns}
+std\+::map$<$std\+::string, std\+::string$>$\texorpdfstring{$>$}{>} -\/ aliases as map by reference 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a6e3c17dc8a918ffc2b83bc0597aec8cc}\label{class_c_f_g_a6e3c17dc8a918ffc2b83bc0597aec8cc}} 
+\index{CFG@{CFG}!getProductionRules@{getProductionRules}}
+\index{getProductionRules@{getProductionRules}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getProductionRules()}{getProductionRules()}}
+{\footnotesize\ttfamily Production\+Rules CFG\+::get\+Production\+Rules (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get production rules. 
+
+\begin{DoxyReturn}{Returns}
+std\+::set -\/ production rules 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_ac62caff80c90d6255afa1d919df8d9e7}\label{class_c_f_g_ac62caff80c90d6255afa1d919df8d9e7}} 
+\index{CFG@{CFG}!getRules@{getRules}}
+\index{getRules@{getRules}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getRules()}{getRules()}}
+{\footnotesize\ttfamily Production\+Rules CFG\+::get\+Rules (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{head }\end{DoxyParamCaption})}
+
+
+
+Get production rules for a given variable. 
+
+\begin{DoxyReturn}{Returns}
+std\+::set -\/ production rules 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a1e04c0452634f908327541f364c82988}\label{class_c_f_g_a1e04c0452634f908327541f364c82988}} 
+\index{CFG@{CFG}!getStartSymbol@{getStartSymbol}}
+\index{getStartSymbol@{getStartSymbol}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getStartSymbol()}{getStartSymbol()}}
+{\footnotesize\ttfamily std\+::string CFG\+::get\+Start\+Symbol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get start symbol. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string -\/ start symbol 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a98ec970111c7f6936ceb8aa7d88aa983}\label{class_c_f_g_a98ec970111c7f6936ceb8aa7d88aa983}} 
+\index{CFG@{CFG}!getTerminals@{getTerminals}}
+\index{getTerminals@{getTerminals}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getTerminals()}{getTerminals()}}
+{\footnotesize\ttfamily String\+Set CFG\+::get\+Terminals (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get terminals. 
+
+\begin{DoxyReturn}{Returns}
+std\+::set -\/ terminals 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a224b0e7a22390122614a994f9f565ca2}\label{class_c_f_g_a224b0e7a22390122614a994f9f565ca2}} 
+\index{CFG@{CFG}!getVariables@{getVariables}}
+\index{getVariables@{getVariables}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{getVariables()}{getVariables()}}
+{\footnotesize\ttfamily String\+Set CFG\+::get\+Variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get variables. 
+
+\begin{DoxyReturn}{Returns}
+std\+::set -\/ variables 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_a75144947ca0a2f2d97b2f51f21dc6ec7}\label{class_c_f_g_a75144947ca0a2f2d97b2f51f21dc6ec7}} 
+\index{CFG@{CFG}!isTerminal@{isTerminal}}
+\index{isTerminal@{isTerminal}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{isTerminal()}{isTerminal()}}
+{\footnotesize\ttfamily bool CFG\+::is\+Terminal (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Check if given std\+::string is a terminal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bool} & -\/ true if std\+::string is a terminal \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if given std\+::string is a terminal 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_c_f_g_ae24d104607dca3d389ff47e96deaf91d}\label{class_c_f_g_ae24d104607dca3d389ff47e96deaf91d}} 
+\index{CFG@{CFG}!isVariable@{isVariable}}
+\index{isVariable@{isVariable}!CFG@{CFG}}
+\doxysubsubsection{\texorpdfstring{isVariable()}{isVariable()}}
+{\footnotesize\ttfamily bool CFG\+::is\+Variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})}
+
+
+
+Check if given std\+::string is a variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bool} & -\/ true if std\+::string is a variable \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool -\/ true if given std\+::string is a variable 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/datastructures/CFG.\+h\item 
+src/datastructures/CFG.\+cpp\end{DoxyCompactItemize}

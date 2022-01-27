@@ -1,0 +1,144 @@
+\hypertarget{_tree_node_8h_source}{}\doxysection{Tree\+Node.\+h}
+\label{_tree_node_8h_source}\index{src/parser/TreeNode.h@{src/parser/TreeNode.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by robnoo on 3/01/22.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_TREENODE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_TREENODE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include "{}ParseTemplate.h"{}}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{class }\mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{13 \textcolor{keyword}{public}:}
+\DoxyCodeLine{18     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_tree_node_ad238633d11330656e1581dc37c4df6e3}{TreeNode}}(std::string \mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{22     \mbox{\hyperlink{class_tree_node_a138449d182c342d032c78e7037afc151}{\string~TreeNode}}();}
+\DoxyCodeLine{23 }
+\DoxyCodeLine{28     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tree_node_aea9bed13891124d9b45549f3d8502ed8}{addChild}}(\mbox{\hyperlink{class_tree_node}{TreeNode}}* tree);}
+\DoxyCodeLine{34     \mbox{\hyperlink{class_tree_node}{TreeNode}}* \mbox{\hyperlink{class_tree_node_aeae51e20178c3eed1e179ef1a14d737e}{getChild}}(\textcolor{keywordtype}{int} index);}
+\DoxyCodeLine{39     [[nodiscard]] \textcolor{keyword}{const} std::vector<TreeNode*> \&\mbox{\hyperlink{class_tree_node_a777c9e3bf4fb30842929f383e1f14663}{getChildren}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tree_node_adf2d7166f70e4b73d68be0aad4a0043c}{assignTokens}}(\textcolor{keyword}{const} std::vector<ParseToken> \&tokens, \textcolor{keywordtype}{int} \&tokenIndex);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{52     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tree_node_a7b91ce6b65d6da4c590279f974a882a1}{exportDot}}(std::string\& file);}
+\DoxyCodeLine{58     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_tree_node_abba271af8f159ca46180650156af0e4a}{exportDotRecursive}}(std::ofstream\& out, \textcolor{keywordtype}{int}\& index);}
+\DoxyCodeLine{59 }
+\DoxyCodeLine{64     [[nodiscard]] \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{class_tree_node_a3f80f326fdf7d30fcc194772692ed0bd}{translate}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{70     \textcolor{keyword}{virtual} std::string \mbox{\hyperlink{class_tree_node_af1dd5d7b17e144b2c876fdaaf3e10f6a}{translate}}(std::vector<std::string> \&v) \{\textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}"{}};\};}
+\DoxyCodeLine{71 }
+\DoxyCodeLine{76     [[nodiscard]] \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\mbox{\hyperlink{class_tree_node_a2d06112780640a3be446acf303b52a0c}{getToken}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{82     [[nodiscard]] \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\mbox{\hyperlink{class_tree_node_a092ccc50d54713857a3df8d043fd0b4d}{getValue}}() \textcolor{keyword}{const};}
+\DoxyCodeLine{83 }
+\DoxyCodeLine{84 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{88     std::string \mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}};}
+\DoxyCodeLine{92     std::string \mbox{\hyperlink{class_tree_node_ac76584b6a5b634dd52032b76724a36b2}{value}};}
+\DoxyCodeLine{96     std::vector<TreeNode*> \mbox{\hyperlink{class_tree_node_abbe71a8e7bc752998ec85ef64f8e5010}{children}};}
+\DoxyCodeLine{97 }
+\DoxyCodeLine{98 \};}
+\DoxyCodeLine{99 }
+\DoxyCodeLine{100 \textcolor{keyword}{class }\mbox{\hyperlink{class_basic_node}{BasicNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{101 \textcolor{keyword}{public}:}
+\DoxyCodeLine{106     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_basic_node_a94facb46006cb427a512627cdde3a23c}{BasicNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{107 }
+\DoxyCodeLine{112     [[nodiscard]] std::string \mbox{\hyperlink{class_basic_node_a41de1b3c1bd1eecc0d21b7574e813ebe}{translate}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{113 \};}
+\DoxyCodeLine{114 }
+\DoxyCodeLine{115 \textcolor{keyword}{class }\mbox{\hyperlink{class_value_node}{ValueNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{116 \textcolor{keyword}{public}:}
+\DoxyCodeLine{121      \textcolor{keyword}{explicit} \mbox{\hyperlink{class_value_node_ab667cf427e44d119e3318af76e369dfe}{ValueNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{127      [[nodiscard]] std::string \mbox{\hyperlink{class_value_node_a9c1591d00c61b83e4fa84c53077b9154}{translate}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{128 \};}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130 \textcolor{keyword}{class }\mbox{\hyperlink{class_root_node}{RootNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{131 \textcolor{keyword}{public}:}
+\DoxyCodeLine{136     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_root_node_a19e3069e4ba4ad91d6285a3253831fbc}{RootNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138     [[nodiscard]] std::string \mbox{\hyperlink{class_root_node_a1b4087a7d02113ca62d1824c2b334f90}{translate}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{143     std::string \mbox{\hyperlink{class_root_node_ad2871f3cda7962f10ba4c3dae7089192}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{144 \};}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146 \textcolor{keyword}{class }\mbox{\hyperlink{class_expression_node}{ExpressionNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{147 \textcolor{keyword}{public}:}
+\DoxyCodeLine{152     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_expression_node_aa46fc484974d4891d4fb0784f250acd2}{ExpressionNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{157     [[nodiscard]] std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{162     std::string \mbox{\hyperlink{class_expression_node_a2a6a553311f95a1dedcd61a149e8595b}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{163 }
+\DoxyCodeLine{164     std::vector<std::string> translateToVector();}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166     \textcolor{keyword}{static} \textcolor{keywordtype}{void} createView(vector<string> \&v);}
+\DoxyCodeLine{167 }
+\DoxyCodeLine{168     \textcolor{keyword}{static} \textcolor{keywordtype}{void} createView(vector<string> \&v, \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&viewName);}
+\DoxyCodeLine{169 }
+\DoxyCodeLine{170 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{171     \textcolor{keyword}{static} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} tempTableNumber;}
+\DoxyCodeLine{172 }
+\DoxyCodeLine{173     \textcolor{keyword}{static} std::string lastTable;}
+\DoxyCodeLine{174 \};}
+\DoxyCodeLine{175 }
+\DoxyCodeLine{176 \textcolor{keyword}{class }\mbox{\hyperlink{class_join_node}{JoinNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_expression_node}{ExpressionNode}} \{}
+\DoxyCodeLine{177 \textcolor{keyword}{public}:}
+\DoxyCodeLine{182     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_join_node_aa12930e64e7bd9773d264f25c8d68618}{JoinNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{183 }
+\DoxyCodeLine{184     std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{185 \};}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187 \textcolor{keyword}{class }\mbox{\hyperlink{class_modification_node}{ModificationNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_expression_node}{ExpressionNode}} \{}
+\DoxyCodeLine{188 \textcolor{keyword}{public}:}
+\DoxyCodeLine{193     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_modification_node_a3c56d7fffa26f531dc3180fe6ef9f22e}{ModificationNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{198     std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{199 }
+\DoxyCodeLine{200 \};}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{202 \textcolor{keyword}{class }\mbox{\hyperlink{class_selection_node}{SelectionNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_modification_node}{ModificationNode}} \{}
+\DoxyCodeLine{203 \textcolor{keyword}{public}:}
+\DoxyCodeLine{208     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_selection_node_a62b0c0f8520dea41ecda32a400248979}{SelectionNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{209 }
+\DoxyCodeLine{210     std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{211 \};}
+\DoxyCodeLine{212 }
+\DoxyCodeLine{213 \textcolor{keyword}{class }\mbox{\hyperlink{class_projection_node}{ProjectionNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_modification_node}{ModificationNode}} \{}
+\DoxyCodeLine{214 \textcolor{keyword}{public}:}
+\DoxyCodeLine{219     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_projection_node_ab141a956e0afc2952966d1f8eb740f74}{ProjectionNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221     std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{222 \};}
+\DoxyCodeLine{223 }
+\DoxyCodeLine{224 \textcolor{keyword}{class }\mbox{\hyperlink{class_rename_node}{RenameNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_modification_node}{ModificationNode}} \{}
+\DoxyCodeLine{225 \textcolor{keyword}{public}:}
+\DoxyCodeLine{230     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_rename_node_abb2c05c4cb28ee7c6d63fef7bbed73f4}{RenameNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{231 }
+\DoxyCodeLine{232     std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{233 \};}
+\DoxyCodeLine{234 }
+\DoxyCodeLine{235 \textcolor{keyword}{class }\mbox{\hyperlink{class_rename_premise_node}{RenamePremiseNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{236 \textcolor{keyword}{public}:}
+\DoxyCodeLine{241     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_rename_premise_node_ac9ee94babaadeca46ffa33c2c0916d7c}{RenamePremiseNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{246     [[nodiscard]] std::string \mbox{\hyperlink{class_rename_premise_node_aff4660c6b7a96d0805bf3de1324dbb09}{translate}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{247 \};}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249 \textcolor{keyword}{class }\mbox{\hyperlink{class_set_operator_node}{SetOperatorNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_expression_node}{ExpressionNode}} \{}
+\DoxyCodeLine{250 \textcolor{keyword}{public}:}
+\DoxyCodeLine{255     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_set_operator_node_a069b8b7a80540d590617959694507510}{SetOperatorNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257     std::string \mbox{\hyperlink{class_expression_node_a8d3523c9303d932e9df3460b3cf729d1}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{258 \};}
+\DoxyCodeLine{259 }
+\DoxyCodeLine{260 \textcolor{keyword}{class }\mbox{\hyperlink{class_table_node}{TableNode}}: \textcolor{keyword}{public} \mbox{\hyperlink{class_tree_node}{TreeNode}} \{}
+\DoxyCodeLine{261 \textcolor{keyword}{public}:}
+\DoxyCodeLine{266     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_table_node_acaf9561937f692001cce5c5bae25f039}{TableNode}}(\textcolor{keyword}{const} std::string \&\mbox{\hyperlink{class_tree_node_aaa4a24e6735091289fc12b07aa9912ca}{token}});}
+\DoxyCodeLine{271     [[nodiscard]] std::string \mbox{\hyperlink{class_table_node_a203d86748f9db546b16b457fddaeb432}{translate}}() \textcolor{keyword}{const override};}
+\DoxyCodeLine{276     std::string \mbox{\hyperlink{class_table_node_a4a01a49e10ba5482590dbfe38dd13244}{translate}}(std::vector<std::string> \&v) \textcolor{keyword}{override};}
+\DoxyCodeLine{277 \};}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 }
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_TREENODE\_H}}
+
+\end{DoxyCode}

@@ -1,0 +1,44 @@
+\hypertarget{_parse_template_8h_source}{}\doxysection{Parse\+Template.\+h}
+\label{_parse_template_8h_source}\index{src/parser/ParseTemplate.h@{src/parser/ParseTemplate.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Maarten on 21/12/2021.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_PARSETEMPLATE\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_PARSETEMPLATE\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <utility>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <ostream>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{class_parse_token}{ParseToken}} \{}
+\DoxyCodeLine{20     \textcolor{keywordtype}{string} tokenType;}
+\DoxyCodeLine{21 }
+\DoxyCodeLine{23     \textcolor{keywordtype}{string} content;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25 \textcolor{keyword}{public}:}
+\DoxyCodeLine{31     \mbox{\hyperlink{class_parse_token_a364076693b4baecb533fdabd702ba362}{ParseToken}}(\textcolor{keywordtype}{string} t, \textcolor{keywordtype}{string} c): tokenType(std::move(t)), content(std::move(c)) \{\}}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{37     [[nodiscard]] \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\mbox{\hyperlink{class_parse_token_ae46d388bd73871406227f40fb58372c7}{getToken}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} tokenType;\}}
+\DoxyCodeLine{38 }
+\DoxyCodeLine{43     [[nodiscard]] \textcolor{keyword}{const} \textcolor{keywordtype}{string} \&\mbox{\hyperlink{class_parse_token_acfb4bb6d9a0cfd7d727dd37247f82a93}{getContent}}()\textcolor{keyword}{ const }\{\textcolor{keywordflow}{return} content;\}}
+\DoxyCodeLine{50     \textcolor{keyword}{friend} ostream \&\mbox{\hyperlink{class_parse_token_a5092b0c503ca1c83c651d4a11d3bd7c9}{operator<<}}(ostream \&os, \textcolor{keyword}{const} \mbox{\hyperlink{class_parse_token}{ParseToken}} \&token) \{}
+\DoxyCodeLine{51         os << token.tokenType << \textcolor{stringliteral}{"{}("{}} << token.content << \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{52         \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{53     \}}
+\DoxyCodeLine{59     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_parse_token_acb7c1e12f6751900c6f15d92d5905bca}{operator==}}(\textcolor{keyword}{const} \mbox{\hyperlink{class_parse_token}{ParseToken}}\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{60         \textcolor{keywordflow}{return} tokenType == other.tokenType \&\& content == other.content;}
+\DoxyCodeLine{61     \}}
+\DoxyCodeLine{65     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_parse_token_ab59f034648c29c188d478a37ecc6a6bf}{enquote}}() \{}
+\DoxyCodeLine{66         content = \textcolor{stringliteral}{"{}'"{}} + content + \textcolor{stringliteral}{"{}'"{}};}
+\DoxyCodeLine{67     \}}
+\DoxyCodeLine{68 \};}
+\DoxyCodeLine{69 }
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_PARSETEMPLATE\_H}}
+
+\end{DoxyCode}

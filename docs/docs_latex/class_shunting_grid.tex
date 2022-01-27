@@ -1,0 +1,80 @@
+\hypertarget{class_shunting_grid}{}\doxysection{Shunting\+Grid Class Reference}
+\label{class_shunting_grid}\index{ShuntingGrid@{ShuntingGrid}}
+
+
+Shunting grid -\/ part of the shunting yard algorithm.  
+
+
+
+
+{\ttfamily \#include $<$Shunting\+Grid.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_shunting_grid_ac4dc975c25a2af3fcb204313147196a8}{add\+Expression}} (\mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&t1, \mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&t2, \mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&t3)
+\begin{DoxyCompactList}\small\item\em Will add an expression to the grid. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ $>$ \mbox{\hyperlink{class_shunting_grid_af21f6f440e079e76b333a0b089cfa372}{substitute}} ()
+\begin{DoxyCompactList}\small\item\em Will substitute any elements that have more than one usage. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shunting_grid_a1c35d7965bf80868c1103c35ae1bd4fb}{substitute}} (vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&current, int row)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Shunting grid -\/ part of the shunting yard algorithm. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_shunting_grid_ac4dc975c25a2af3fcb204313147196a8}\label{class_shunting_grid_ac4dc975c25a2af3fcb204313147196a8}} 
+\index{ShuntingGrid@{ShuntingGrid}!addExpression@{addExpression}}
+\index{addExpression@{addExpression}!ShuntingGrid@{ShuntingGrid}}
+\doxysubsubsection{\texorpdfstring{addExpression()}{addExpression()}}
+{\footnotesize\ttfamily int Shunting\+Grid\+::add\+Expression (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&}]{t1,  }\item[{\mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&}]{t2,  }\item[{\mbox{\hyperlink{class_parse_token}{Parse\+Token}} \&}]{t3 }\end{DoxyParamCaption})}
+
+
+
+Will add an expression to the grid. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t1} & first element in vector \\
+\hline
+{\em t2} & second element in vector \\
+\hline
+{\em t3} & third element in vector \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Index where the expression is placed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shunting_grid_af21f6f440e079e76b333a0b089cfa372}\label{class_shunting_grid_af21f6f440e079e76b333a0b089cfa372}} 
+\index{ShuntingGrid@{ShuntingGrid}!substitute@{substitute}}
+\index{substitute@{substitute}!ShuntingGrid@{ShuntingGrid}}
+\doxysubsubsection{\texorpdfstring{substitute()}{substitute()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily vector$<$ vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ $>$ Shunting\+Grid\+::substitute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Will substitute any elements that have more than one usage. 
+
+\begin{DoxyReturn}{Returns}
+The resulted vector with the substitutions done 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shunting_grid_a1c35d7965bf80868c1103c35ae1bd4fb}\label{class_shunting_grid_a1c35d7965bf80868c1103c35ae1bd4fb}} 
+\index{ShuntingGrid@{ShuntingGrid}!substitute@{substitute}}
+\index{substitute@{substitute}!ShuntingGrid@{ShuntingGrid}}
+\doxysubsubsection{\texorpdfstring{substitute()}{substitute()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Shunting\+Grid\+::substitute (\begin{DoxyParamCaption}\item[{vector$<$ \mbox{\hyperlink{class_parse_token}{Parse\+Token}} $>$ \&}]{current,  }\item[{int}]{row }\end{DoxyParamCaption})}
+
+Will substitute a current based on its usages and row 
+\begin{DoxyParams}{Parameters}
+{\em current} & current vector with parse tokens \\
+\hline
+{\em row} & current row \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/algorithms/Shunting\+Grid.\+h\item 
+src/algorithms/Shunting\+Grid.\+cpp\end{DoxyCompactItemize}

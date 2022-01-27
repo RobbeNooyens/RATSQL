@@ -1,0 +1,34 @@
+\hypertarget{_test_8h_source}{}\doxysection{Test.\+h}
+\label{_test_8h_source}\index{src/tests/Test.h@{src/tests/Test.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#ifndef RATSQL\_SHUNTING\_YARD\_TEST\_H}}
+\DoxyCodeLine{16 \textcolor{preprocessor}{\#define RATSQL\_SHUNTING\_YARD\_TEST\_H}}
+\DoxyCodeLine{17 }
+\DoxyCodeLine{18 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{19 \textcolor{preprocessor}{\#include "{}TestManager.h"{}}}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{25 \textcolor{keyword}{class }\mbox{\hyperlink{class_test}{Test}} \{}
+\DoxyCodeLine{26 \textcolor{keyword}{public}:}
+\DoxyCodeLine{30     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_test_a7e98fbe7ebf3acede5ee3fed91de3c6a}{run}}() = 0;}
+\DoxyCodeLine{34     \textcolor{keyword}{virtual} \mbox{\hyperlink{class_test_a7d2e66978c23349d97ce9f49a965f815}{\string~Test}}() = \textcolor{keywordflow}{default};}
+\DoxyCodeLine{35 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{42     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_test_a3aebcfb4e56a24fcb486cb383579d604}{exp\_eq\_int}}(\textcolor{keywordtype}{int} p1, \textcolor{keywordtype}{int} p2, std::string message);}
+\DoxyCodeLine{50     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{51     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_test_adff46a6e6cc21673cfe65924f7e489f2}{exp\_eq}}(\textcolor{keyword}{const} T \&t1, \textcolor{keyword}{const} T \&t2, std::string message) \{}
+\DoxyCodeLine{52         \textcolor{keywordflow}{if} (t1 != t2) \{}
+\DoxyCodeLine{53             \mbox{\hyperlink{class_test_manager_a419f1a3ed67b59a6ec59467759902bb6}{TestManager::testFailed}}(message);}
+\DoxyCodeLine{54         \}}
+\DoxyCodeLine{55     \}}
+\DoxyCodeLine{63     \textcolor{keyword}{template}<\textcolor{keyword}{typename} T>}
+\DoxyCodeLine{64     \textcolor{keyword}{static} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_test_abd59b328a741b9fa86b059344fa92c24}{exp\_neq}}(\textcolor{keyword}{const} T \&t1, \textcolor{keyword}{const} T \&t2, std::string message) \{}
+\DoxyCodeLine{65         \textcolor{keywordflow}{if} (t1 == t2) \{}
+\DoxyCodeLine{66             \mbox{\hyperlink{class_test_manager_a419f1a3ed67b59a6ec59467759902bb6}{TestManager::testFailed}}(message);}
+\DoxyCodeLine{67         \}}
+\DoxyCodeLine{68     \}}
+\DoxyCodeLine{69 \};}
+\DoxyCodeLine{70 }
+\DoxyCodeLine{71 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_SHUNTING\_YARD\_TEST\_H}}
+
+\end{DoxyCode}

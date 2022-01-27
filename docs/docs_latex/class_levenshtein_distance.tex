@@ -1,0 +1,102 @@
+\hypertarget{class_levenshtein_distance}{}\doxysection{Levenshtein\+Distance Class Reference}
+\label{class_levenshtein_distance}\index{LevenshteinDistance@{LevenshteinDistance}}
+
+
+Class to calculate the levenshtein distance between strings @\+Note Singleton design pattern.  
+
+
+
+
+{\ttfamily \#include $<$Levenshtein\+Distance.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_levenshtein_distance_af35d3a7cd88bb37e0be39a82f4175861}\label{class_levenshtein_distance_af35d3a7cd88bb37e0be39a82f4175861}} 
+\mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted operator = copy. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_levenshtein_distance_a6a355fa65174b6eb4abb49b43f3fc536}\label{class_levenshtein_distance_a6a355fa65174b6eb4abb49b43f3fc536}} 
+{\bfseries Levenshtein\+Distance} (const \mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted copy constructor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_levenshtein_distance_a39384d02ffb9f0ff0a8899130119eafb}\label{class_levenshtein_distance_a39384d02ffb9f0ff0a8899130119eafb}} 
+\mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \& {\bfseries operator=} (const \mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \&\&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted operator = move. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_levenshtein_distance_a11ca477652502da6d835facf191eece2}\label{class_levenshtein_distance_a11ca477652502da6d835facf191eece2}} 
+{\bfseries Levenshtein\+Distance} (const \mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \&\&)=delete
+\begin{DoxyCompactList}\small\item\em Deleted move constructor. \end{DoxyCompactList}\item 
+std\+::pair$<$ bool, std\+::vector$<$ std\+::string $>$ $>$ \mbox{\hyperlink{class_levenshtein_distance_afddfeb10ffae869a9637c8e76bed1368}{eval}} (const std\+::string \&str1, int deviation=2, bool skip=false)
+\begin{DoxyCompactList}\small\item\em Evaluates a string compared with the dictionary. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \& \mbox{\hyperlink{class_levenshtein_distance_ae2060ae0b4506c9eb09aa18eec102b00}{get\+Instance}} ()
+\begin{DoxyCompactList}\small\item\em Part of Singleton design pattern -\/ get an instance of the class. \end{DoxyCompactList}\item 
+static bool \mbox{\hyperlink{class_levenshtein_distance_a3fa380eac7a9978bbaa5f8253d82246c}{eval\+Levenshtein\+Distance}} (const std\+::string \&str1, const std\+::string \&str2, int deviation=2)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class to calculate the levenshtein distance between strings @\+Note Singleton design pattern. 
+
+╒═══════════════════════════════════════════════════════════╕ │ │ │ RATSQL Project │ │ Relational Algebra To SQL │ │ │ │ Contributors\+: Pablo Deputter, Cédric Leclercq, │ │ Robbe Nooyens, Maarten Peirsman │ │ │ │ University of Antwerp -\/ Machines en Berekenbaarheid │ │ │ ╘═══════════════════════════════════════════════════════════╛ 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_levenshtein_distance_afddfeb10ffae869a9637c8e76bed1368}\label{class_levenshtein_distance_afddfeb10ffae869a9637c8e76bed1368}} 
+\index{LevenshteinDistance@{LevenshteinDistance}!eval@{eval}}
+\index{eval@{eval}!LevenshteinDistance@{LevenshteinDistance}}
+\doxysubsubsection{\texorpdfstring{eval()}{eval()}}
+{\footnotesize\ttfamily std\+::pair$<$ bool, std\+::vector$<$ std\+::string $>$ $>$ Levenshtein\+Distance\+::eval (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str1,  }\item[{int}]{deviation = {\ttfamily 2},  }\item[{bool}]{skip = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Evaluates a string compared with the dictionary. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str1} & input string \\
+\hline
+{\em deviation} & max allowed levenshtein deviation \\
+\hline
+{\em skip} & return if one match is found \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+pair(word\+Found\+In\+Dictionary, similar\+Words\+To\+Input) 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_levenshtein_distance_a3fa380eac7a9978bbaa5f8253d82246c}\label{class_levenshtein_distance_a3fa380eac7a9978bbaa5f8253d82246c}} 
+\index{LevenshteinDistance@{LevenshteinDistance}!evalLevenshteinDistance@{evalLevenshteinDistance}}
+\index{evalLevenshteinDistance@{evalLevenshteinDistance}!LevenshteinDistance@{LevenshteinDistance}}
+\doxysubsubsection{\texorpdfstring{evalLevenshteinDistance()}{evalLevenshteinDistance()}}
+{\footnotesize\ttfamily bool Levenshtein\+Distance\+::eval\+Levenshtein\+Distance (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str1,  }\item[{const std\+::string \&}]{str2,  }\item[{int}]{deviation = {\ttfamily 2} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Function that evaluates the levenshtein distance according to a deviation. If the levenshtein distance between the first string and the second string \texorpdfstring{$<$}{<}= deviation, then true. This function will be used for automatic correcting of typos when parsing Re\+LaX code. 
+\begin{DoxyParams}{Parameters}
+{\em str1} & First string used for calculating \\
+\hline
+{\em str2} & Second string used for calculating \\
+\hline
+{\em deviation} & Max deviation allowed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Levenshtein\+Distance\+::levenshtein\+Distance(str1,str2) \texorpdfstring{$<$}{<}= deviation
+\end{DoxyReturn}
+╒═══════════════════════════════════════════════════════════╕ │ │ │ RATSQL Project │ │ Relational Algebra To SQL │ │ │ │ Contributors\+: Pablo Deputter, Cédric Leclercq, │ │ Robbe Nooyens, Maarten Peirsman │ │ │ │ University of Antwerp -\/ Machines en Berekenbaarheid │ │ │ ╘═══════════════════════════════════════════════════════════╛ \mbox{\Hypertarget{class_levenshtein_distance_ae2060ae0b4506c9eb09aa18eec102b00}\label{class_levenshtein_distance_ae2060ae0b4506c9eb09aa18eec102b00}} 
+\index{LevenshteinDistance@{LevenshteinDistance}!getInstance@{getInstance}}
+\index{getInstance@{getInstance}!LevenshteinDistance@{LevenshteinDistance}}
+\doxysubsubsection{\texorpdfstring{getInstance()}{getInstance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_levenshtein_distance}{Levenshtein\+Distance}} \& Levenshtein\+Distance\+::get\+Instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Part of Singleton design pattern -\/ get an instance of the class. 
+
+\begin{DoxyReturn}{Returns}
+static instance of levenshtein distance 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/algorithms/Levenshtein\+Distance.\+h\item 
+src/algorithms/Levenshtein\+Distance.\+cpp\end{DoxyCompactItemize}

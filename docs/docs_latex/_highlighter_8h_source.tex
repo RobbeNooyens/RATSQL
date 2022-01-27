@@ -1,0 +1,49 @@
+\hypertarget{_highlighter_8h_source}{}\doxysection{Highlighter.\+h}
+\label{_highlighter_8h_source}\index{src/gui/Highlighter.h@{src/gui/Highlighter.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{comment}{//}}
+\DoxyCodeLine{2 \textcolor{comment}{// Created by Pablo Deputter on 07/01/2022.}}
+\DoxyCodeLine{3 \textcolor{comment}{//}}
+\DoxyCodeLine{4 }
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#ifndef RATSQL\_PARSING\_HIGHLIGHTER\_H}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#define RATSQL\_PARSING\_HIGHLIGHTER\_H}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{preprocessor}{\#include <QSyntaxHighlighter>}}
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#include <QTextEdit>}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#include <QRegularExpression>}}
+\DoxyCodeLine{11 }
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include "{}../algorithms/LevenshteinDistance.h"{}}}
+\DoxyCodeLine{15 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{class_high_lighter}{HighLighter}} : \textcolor{keyword}{public} QSyntaxHighlighter}
+\DoxyCodeLine{20 \{}
+\DoxyCodeLine{21 Q\_OBJECT}
+\DoxyCodeLine{22 \textcolor{keyword}{private}:}
+\DoxyCodeLine{26     \textcolor{keyword}{struct }Rule}
+\DoxyCodeLine{27     \{}
+\DoxyCodeLine{28         QRegularExpression mRe; }
+\DoxyCodeLine{29         QTextCharFormat mFormat; }
+\DoxyCodeLine{30     \};}
+\DoxyCodeLine{31     std::vector<Rule> mRules; }
+\DoxyCodeLine{32     \textcolor{keywordtype}{int} mDeviation;}
+\DoxyCodeLine{33     \textcolor{keywordtype}{bool} mErrorDetection;}
+\DoxyCodeLine{34     \textcolor{keywordtype}{bool} mErrorFlag;}
+\DoxyCodeLine{35 \textcolor{keyword}{public}:}
+\DoxyCodeLine{40     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_high_lighter_ac2676eaa1a387a7d908606575a87fe72}{HighLighter}}(QTextEdit *parent = \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{46     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_high_lighter_a45b12eeefe02873bb4702dd14357ee6c}{addKeywords}}(\textcolor{keyword}{const} QStringList\& keywords, \textcolor{keyword}{const} QTextCharFormat\& format);}
+\DoxyCodeLine{47 }
+\DoxyCodeLine{48     \textcolor{keywordtype}{void} setErrorDetection(\textcolor{keywordtype}{bool} b) \{ mErrorDetection = b; \}}
+\DoxyCodeLine{49     \textcolor{keywordtype}{void} setDeviation(\textcolor{keywordtype}{int} dev) \{ mDeviation = dev; \}}
+\DoxyCodeLine{50 \textcolor{keyword}{protected}:}
+\DoxyCodeLine{56     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_high_lighter_af7ca98f02f64373e1c7c17f5cb59637f}{highlightBlock}}(\textcolor{keyword}{const} QString \&text) \textcolor{keyword}{override};}
+\DoxyCodeLine{57 }
+\DoxyCodeLine{58 \textcolor{keyword}{private} slots:}
+\DoxyCodeLine{59     \textcolor{keywordtype}{void} onSpacePressed() \{ mErrorFlag = !mErrorFlag; \};}
+\DoxyCodeLine{60 \};}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62 }
+\DoxyCodeLine{63 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//RATSQL\_PARSING\_HIGHLIGHTER\_H}}
+
+\end{DoxyCode}

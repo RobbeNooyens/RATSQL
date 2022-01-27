@@ -1,0 +1,72 @@
+\hypertarget{class_s_q_l_translator}{}\doxysection{SQLTranslator Class Reference}
+\label{class_s_q_l_translator}\index{SQLTranslator@{SQLTranslator}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_s_q_l_translator_ab0fc5af6b05f5528e7cbd6264ee185cd}{SQLTranslator}} (\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$root)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_s_q_l_translator_a5224f7ec699e45dde09b3d581ef51987}{translate}} () const
+\begin{DoxyCompactList}\small\item\em Translate to SQL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static string \mbox{\hyperlink{class_s_q_l_translator_a24522046fe1de8e3bbb1dec2cbfa1236}{translate\+Node}} (\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$root)
+\begin{DoxyCompactList}\small\item\em Function that translates a tree using postorder traversal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_s_q_l_translator_ab0fc5af6b05f5528e7cbd6264ee185cd}\label{class_s_q_l_translator_ab0fc5af6b05f5528e7cbd6264ee185cd}} 
+\index{SQLTranslator@{SQLTranslator}!SQLTranslator@{SQLTranslator}}
+\index{SQLTranslator@{SQLTranslator}!SQLTranslator@{SQLTranslator}}
+\doxysubsubsection{\texorpdfstring{SQLTranslator()}{SQLTranslator()}}
+{\footnotesize\ttfamily SQLTranslator\+::\+SQLTranslator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & rootnode of the parse tree \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_s_q_l_translator_a5224f7ec699e45dde09b3d581ef51987}\label{class_s_q_l_translator_a5224f7ec699e45dde09b3d581ef51987}} 
+\index{SQLTranslator@{SQLTranslator}!translate@{translate}}
+\index{translate@{translate}!SQLTranslator@{SQLTranslator}}
+\doxysubsubsection{\texorpdfstring{translate()}{translate()}}
+{\footnotesize\ttfamily std\+::string SQLTranslator\+::translate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Translate to SQL. 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_s_q_l_translator_a24522046fe1de8e3bbb1dec2cbfa1236}\label{class_s_q_l_translator_a24522046fe1de8e3bbb1dec2cbfa1236}} 
+\index{SQLTranslator@{SQLTranslator}!translateNode@{translateNode}}
+\index{translateNode@{translateNode}!SQLTranslator@{SQLTranslator}}
+\doxysubsubsection{\texorpdfstring{translateNode()}{translateNode()}}
+{\footnotesize\ttfamily std\+::string SQLTranslator\+::translate\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tree_node}{Tree\+Node}} $\ast$}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Function that translates a tree using postorder traversal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & root of the tree \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string containing the translation 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/parser/SQLTranslator.\+h\item 
+src/parser/SQLTranslator.\+cpp\end{DoxyCompactItemize}
