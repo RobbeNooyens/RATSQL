@@ -126,6 +126,10 @@ bool Lexer::isName(const string &s) {
 }
 
 vector<ParseToken> Lexer::tokenise(const string &s) {
+    if (s.empty()) {
+        // Todo: throw exception
+        return {};
+    }
     return tokenise(splitString(s));
 }
 
