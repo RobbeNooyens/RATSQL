@@ -17,8 +17,6 @@
 #include <memory>
 #include "ShuntingAlgorithm.h"
 #include "../exceptions/ExceptionHandler.h"
-#include "../parser/ParseTemplate.h"
-#include "../parser/Tokens.h"
 
 using namespace std;
 
@@ -157,6 +155,8 @@ void ShuntingAlgorithm::parse(ostream &stream, bool print) {
         // Pop the top of the queue and start over
         queue.pop();
     }
+
+    if (print) this->printQueue();
 }
 
 void ShuntingAlgorithm::parseOperator(ParseToken &queueFront, vector<string>& output) {
@@ -165,7 +165,7 @@ void ShuntingAlgorithm::parseOperator(ParseToken &queueFront, vector<string>& ou
     auto& stackTop2 = textStack.top();
     if (!textStack.empty()) textStack.pop();
 
-    int index = 0;
+    int index;
     if(operatorTypes[queueFront.getToken()] == PREFIX) {
         // We have an operator that uses prefix
         index = grid.addExpression(queueFront, stackTop2, stackTop1);

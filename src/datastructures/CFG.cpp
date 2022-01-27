@@ -18,10 +18,10 @@ using Table = vector<Row>;
 struct CYK {
     CFG* cfg;
     Table table;
-    TableEntry* currentEntry;
-    int r,c;
-    int tableSize;
-    CYK(CFG* cfg): cfg(cfg){}
+    TableEntry* currentEntry{};
+    int r{},c{};
+    int tableSize{};
+    explicit CYK(CFG* cfg): cfg(cfg){}
     void operator()(string str) {
         tableSize = (int) str.length();
         table.clear();

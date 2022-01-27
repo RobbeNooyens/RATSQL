@@ -26,6 +26,10 @@ using RAWord = std::vector<ParseToken>;
 
 class ParseToken;
 
+/**
+ * @class RAExpression
+ * @brief Class for representing a relation algebra expressions
+ */
 class RAExpression {
 private:
     /// @brief Relation algebra expression
@@ -63,7 +67,7 @@ public:
     std::shared_ptr<RAWord> getWord(int index);
     /**
      * @brief Getter for the expression
-     * @return      Expression
+     * @return      Current expression
      */
     std::vector<std::shared_ptr<RAWord>> getExpression() const;
     /**
@@ -71,7 +75,11 @@ public:
      * @param stream    io stream to print to
      */
     void printExpression(std::ostream & stream);
-
+    /**
+     * @brief Operator ==
+     * @param rhs     value to compare to
+     * @return        this == rhs??
+     */
     bool operator==(const RAExpression &rhs) const;
 };
 

@@ -38,61 +38,61 @@ public:
 //    vector<Token> tokenise(const string &s);
 
     /**
-     * Function to split strings on the characters listed in the delimiter variable
+     * @brief Function to split strings on the characters listed in the delimiter variable
      * @param parseString string to split
      * @return vector with split parts
      */
     vector<string> splitString(const string &parseString);
 
     /**
-     * Function to tokenise a vector of strings
+     * @brief Function to tokenise a vector of strings
      * @param v vector containing strings
      * @return vector containing tokens for the strings
      */
     vector<ParseToken> tokenise(const vector<string> &v);
 
     /**
-     * Function to tokenise a string, splitting it on ' '
+     * @brief Function to tokenise a string, splitting it on ' '
      * @param s string to tokenise
      * @return vector containing tokens for the string
      */
     vector<ParseToken> tokenise(const string &s);
 
     /**
-     * Function to check if a string represents a string
+     * @brief Function to check if a string represents a string
      * @param s the string to check
      * @return true if it represents a string
      */    /**
-     * Function to check if a string represents a string
+     * @brief Function to check if a string represents a string
      * @param s the string to check
      * @return true if it represents a string
      */
     bool isString(const string &s);
 
     /**
-     * Function to check if a string represents a number
+     * @brief Function to check if a string represents a number
      * @param s the string to check
      * @return true if it represents a number
      */    /**
-     * Function to check if a string represents a number
+     * @brief Function to check if a string represents a number
      * @param s the string to check
      * @return true if it represents a number
      */
     bool isNumber(const string &s);
 
     /**
-     * Function to check if a string represents a name
+     * @brief Function to check if a string represents a name
      * @param s the string to check
      * @return true if it represents a name
      */    /**
-     * Function to check if a string represents a name
+     * @brief Function to check if a string represents a name
      * @param s the string to check
      * @return true if it represents a name
      */
     bool isName(const string &s);
 
     /**
-     * Function checking for a delimiter in a string, matching the longest possible delimiter
+     * @brief Function checking for a delimiter in a string, matching the longest possible delimiter
      * @param s string to check
      * @param offset amount of characters that have been checked already
      * @return length of the found delimiter (0 if none was found)

@@ -7,25 +7,28 @@
 
 #include "TreeNode.h"
 
+/**
+ * @class SQLTranslator
+ */
 class SQLTranslator {
-    /// Rootnode of the parse tree
+    /// @brief Rootnode of the parse tree
     TreeNode* rootNode;
 
 public:
     /**
-     * Constructor
+     * @brief Constructor
      * @param root rootnode of the parse tree
      */
     explicit SQLTranslator(TreeNode* root);
 
     /**
-     *
+     * @brief Translate to SQL
      * @return
      */
-    std::string translate() const;
+    [[nodiscard]] std::string translate() const;
 
     /**
-     * Function that translates a tree using postorder traversal
+     * @brief Function that translates a tree using postorder traversal
      * @param root root of the tree
      * @return string containing the translation
      */

@@ -115,8 +115,7 @@ set(DATASTRUCTURES
         src/datastructures/RAExpression.h
         src/datastructures/RAExpression.cpp
         src/datastructures/ReplaceSuggestion.h
-        src/datastructures/SQLStatement.h
-        src/datastructures/SQLStatement.cpp)
+        )
 
 set(EXCEPTIONHANDLING
         src/exceptions/ExceptionHandler.h

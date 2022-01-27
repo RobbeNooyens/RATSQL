@@ -14,7 +14,6 @@
 
 #include "LevenshteinDistance.h"
 #include "../exceptions/ExceptionHandler.h"
-#include <thread>
 #include <memory>
 
 bool LevenshteinDistance::evalLevenshteinDistance(const std::string &str1, const std::string &str2, int deviation) {

@@ -15,7 +15,6 @@
 #include "RAExpression.h"
 #include "../exceptions/ExceptionHandler.h"
 #include <iostream>
-#include "../parser/ParseTemplate.h"
 
 void RAExpression::setWord(int index, const std::shared_ptr<RAWord>& word) {
     try {
