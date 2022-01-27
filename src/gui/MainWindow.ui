@@ -48,12 +48,16 @@
     <property name="geometry">
      <rect>
       <x>510</x>
-      <y>190</y>
-      <width>251</width>
-      <height>281</height>
+      <y>70</y>
+      <width>341</width>
+      <height>221</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="mGridSettings"/>
+    <layout class="QGridLayout" name="mGridSettings">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+    </layout>
    </widget>
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
@@ -72,18 +76,44 @@
       <x>10</x>
       <y>340</y>
       <width>491</width>
-      <height>131</height>
+      <height>141</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="mOutput"/>
    </widget>
+   <widget class="QLabel" name="mTitle">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>10</y>
+      <width>211</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>37</pointsize>
+      <italic>false</italic>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="text">
+     <string>RATSQL</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
    <widget class="QPushButton" name="mButtonConvert">
     <property name="geometry">
      <rect>
-      <x>239</x>
-      <y>150</y>
-      <width>261</width>
-      <height>31</height>
+      <x>510</x>
+      <y>300</y>
+      <width>341</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="text">

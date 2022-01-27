@@ -81,7 +81,10 @@ set(QTGUI
         src/gui/SQLHighLighter.h
         src/gui/SQLHighLighter.cpp
         src/gui/TextEdit.h
-        src/gui/TextEdit.cpp)
+        src/gui/TextEdit.cpp
+        src/gui/aboutdialog.cpp
+        src/gui/aboutdialog.h
+        src/gui/aboutdialog.ui)
 
 set(COMMANDHANDLERS
         src/io/CommandHandler.h
@@ -119,7 +122,7 @@ set(DATASTRUCTURES
 set(EXCEPTIONHANDLING
         src/exceptions/ExceptionHandler.h
         src/exceptions/ExceptionHandler.cpp
-        src/exceptions/UndefinedTokenException.h src/exceptions/IllegalEntryException.h)
+        src/exceptions/UndefinedTokenException.h)
 
 set(SYSTEM
         src/system/System.h

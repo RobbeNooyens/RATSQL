@@ -9,8 +9,8 @@
 #include "MainWindow.h"
 #include "../io/CommandHandler.h"
 #include "./ui_MainWindow.h"
+#include "aboutdialog.h"
 
-#include "../parser/Tokens.h"
 #include "SQLHighLighter.h"
 #include "RAHighLighter.h"
 
@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("RATSQL"));
-    setBaseSize(800, 500);
 
     // Create menu + other things
     init();
@@ -55,7 +54,12 @@ void MainWindow::init()
     ui->mInput->addWidget(mTextEdit);
     ui->mOutput->addWidget(mOutputTextEdit);
 
+    // Logo
+
+
     // Menu bar
+    createMenu();
+    createAction();
 
     // Settings
     ui->mGridSettings->setVerticalSpacing(3);
@@ -66,10 +70,36 @@ void MainWindow::init()
 
     // Convert button
     ui->mButtonConvert->setText(QString("CONVERT"));
-    ui->mButtonConvert->setFixedSize(100, 30);
+//    ui->mButtonConvert->setFixedSize(100, 30);
     connect(ui->mButtonConvert, SIGNAL(clicked()), this, SLOT(onConvertBtnClicked()));
 
     mSys = std::make_unique<System>();
+}
+
+void MainWindow::createMenu()
+{
+    ui->menuBar->setNativeMenuBar(false);
+
+    mAbout = new QMenu("About", this);
+    ui->menuBar->addMenu(mAbout);
+
+    mFile = new QMenu("File", this);
+    ui->menuBar->addMenu(mFile);
+}
+
+void MainWindow::createAction()
+{
+    mAboutAct = new QAction("About", this);
+    connect(mAboutAct, SIGNAL(triggered()), this, SLOT(onAboutAct()));
+    mAbout->addAction(mAboutAct);
+
+    mSaveAct = new QAction("Save", this);
+    connect(mSaveAct, SIGNAL(triggered()), this, SLOT(onSaveAct()));
+    mFile->addAction(mSaveAct);
+
+    mOpenAct = new QAction("Open", this);
+    connect(mOpenAct, SIGNAL(triggered()), this, SLOT(onOpenAct()));
+    mFile->addAction(mOpenAct);
 }
 
 void MainWindow::createCharButtons()
@@ -141,9 +171,9 @@ void MainWindow::createSettingButtons()
 
     auto opt = createButton("Optimizer", 1, 0);
     connect(opt, SIGNAL(clicked(bool)), mTextEdit, SLOT(onOptimize(bool)));
-
-    auto nm = createButton("Naming conventions", 2, 0);
-    connect(nm, SIGNAL(clicked(bool)), mTextEdit, SLOT(onNamingConventions(bool)));
+//
+//    auto nm = createButton("Naming conventions", 2, 0);
+//    connect(nm, SIGNAL(clicked(bool)), mTextEdit, SLOT(onNamingConventions(bool)));
 }
 
 QMessageBox* MainWindow::createMessageBox(QMessageBox::Icon icon, const QString& title, const QString& text,
@@ -165,6 +195,7 @@ void MainWindow::onConvertBtnClicked()
     bool correction = mTextEdit->isErrorDetection();
     int deviation = mTextEdit->getDeviation();
     bool optimized = mTextEdit->isOptimized();
+    bool namingConventions = mTextEdit->isNamingConventions();
 
     std::vector<std::vector<ParseToken>> tokens;
 
@@ -173,14 +204,10 @@ void MainWindow::onConvertBtnClicked()
     #else
     auto stringList = mTextEdit->toPlainText().split(QRegExp("[\r\n]"),QString::SkipEmptyParts);
     #endif
-
-
     for(auto& s: stringList) {
         string str = s.toStdString();
-        if (!str.empty())
-            tokens.push_back(mSys->tokenize(str));
+        tokens.push_back(mSys->tokenize(str));
     }
-
 
     std::vector<std::vector<ParseToken>> optimizedRA;
 
@@ -199,36 +226,70 @@ void MainWindow::onConvertBtnClicked()
     // OptimzedRA back to the mTextEdit
     QString lines;
     for(auto& expression: optimizedRA) {
-        std::string combined;
+        std::stringstream combined;
         for(auto& token: expression) {
-            combined += token.getContent();
-            combined += " ";
+            combined << token.getContent() << " ";
         }
-        combined.pop_back();
-        combined += "\n";
-        if (expression == optimizedRA.back())
-            combined.pop_back();
-        lines.push_back(QString::fromStdString(combined));
+        combined << endl;
+        lines.push_back(QString::fromStdString(combined.str()));
     }
     mTextEdit->setText(lines);
+
 
     // Show error message if expression is empty
     if (query.empty())
     {
         createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error: given regular expression is empty."),
                          QMessageBox::Ok);
+
     } else {
 //        // Else, parse the input
-        mOutputTextEdit->clear();
-        QString output;
-        for(auto& row: optimizedRA) {
-            std::string SQL = mSys->convertToSQL(row);
-            output.push_back(QString::fromStdString(SQL) + '\n');
-        }
-        mOutputTextEdit->insertPlainText(output);
 //        std::string SQL = mSys->convertToSQL(query);
 //        mOutputTextEdit->clear();
 //        mOutputTextEdit->insertPlainText(QString::fromStdString(SQL));
     }
+}
+
+void MainWindow::onAboutAct()
+{
+//    QMessageBox::about(this, QString("About"), QString("RATSQL created by Robbe, Cedric, Maarten and Pablo.\nCopyright © 2022 RATSQL."));
+    auto a = AboutDialog();
+    a.exec();
+}
+
+void MainWindow::onSaveAct()
+{
+    QString fileName = QFileDialog::getSaveFileName(this, tr("Save output"), "", tr("sql (*.sql)"));
+    QFile file(fileName);
+    if (!file.open(QIODevice::WriteOnly)) {
+        QMessageBox msg;
+        createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error while saving file."),
+                         QMessageBox::Ok);
+        return;
+    }
+    QTextStream out(&file);
+    std::string output;
+    out << mOutputTextEdit->toPlainText();
+    file.close();
+}
+
+void MainWindow::onOpenAct()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Open file"));
+    QFile file(fileName);
+    if (!file.open(QIODevice::ReadOnly)) {
+        QMessageBox msg;
+        createMessageBox(QMessageBox::Critical, QString("Error"), QString("Error while opening file."),
+                         QMessageBox::Ok);
+        return;
+    }
+    mTextEdit->clear();
+    QTextStream in(&file);
+    while(!in.atEnd()) {
+        QString line = in.readLine();
+        mTextEdit->append(line);
+    }
+    file.close();
+    file.close();
 }
 
